@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gaiaLogo from "../assets/gaia-logo.svg";
 
 const NAV_MARKETING = [
@@ -6,10 +6,10 @@ const NAV_MARKETING = [
   { label: "Stack", href: "#stack" },
   { label: "Wiki", href: "#wiki" },
   { label: "Principles", href: "#claude-md" },
-  { label: "Quick start", href: "#quick-start" },
 ];
 
 const NAV_DOCS = [
+  { label: "Quick start", href: "#quick-start" },
   { label: "Commands", href: "#commands" },
   { label: "Rules", href: "#rules" },
   { label: "Agents", href: "#agents" },
@@ -19,9 +19,22 @@ const NAV_DOCS = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [menuOpen]);
 
   return (
     <header
+      ref={headerRef}
       style={{
         position: "sticky",
         top: 0,
@@ -121,6 +134,10 @@ export function Header() {
       {menuOpen && (
         <div
           style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            right: 0,
             backgroundColor: "var(--color-bg-elev-2)",
             borderBottom: "1px solid var(--color-border)",
             padding: "1rem 2rem",

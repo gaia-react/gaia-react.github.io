@@ -6,13 +6,16 @@ export default function Hero() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-[-40%] md:top-[30%]"
         style={{
-          background:
-            'radial-gradient(ellipse 60% 50% at 50% 45%, rgba(217, 119, 87, 0.35), rgba(217, 119, 87, 0.08) 45%, transparent 75%)',
+          width: '560px',
+          height: '420px',
+          background: 'rgba(217, 119, 87, 0.18)',
+          borderRadius: '50%',
+          filter: 'blur(90px)',
         }}
       />
-      <div className="max-w-2xl mx-auto text-center relative">
+      <div className="max-w-2xl mx-auto text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-3 text-[var(--color-fg)]">
           The React template built for Claude
         </h1>

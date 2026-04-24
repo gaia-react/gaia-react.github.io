@@ -10,17 +10,17 @@ type SectionProps = {
 export function Section({ id, title, children, className }: SectionProps) {
   return (
     <section
-      id={id}
       className={className}
       style={{
-        scrollMarginTop: "5rem",
         paddingTop: "6rem",
         paddingBottom: "6rem",
         borderBottom: "1px solid var(--color-border)",
       }}
     >
       <div
+        id={id}
         style={{
+          scrollMarginTop: "5rem",
           maxWidth: "48rem",
           margin: "0 auto",
           padding: "0 2rem",

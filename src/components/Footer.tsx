@@ -30,14 +30,6 @@ export function Footer() {
           GitHub
         </a>
         <a
-          href="https://github.com/gaia-react/react-router/tree/main/wiki"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={footerLinkStyle}
-        >
-          Wiki
-        </a>
-        <a
           href="https://github.com/gaia-react/react-router/blob/main/LICENSE"
           target="_blank"
           rel="noopener noreferrer"
