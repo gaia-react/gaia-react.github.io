@@ -1,87 +1,109 @@
 import { Section } from '@/components/Section';
+import ReactRouterLogo from '@/assets/logos/ReactRouterLogo';
+import TailwindLogo from '@/assets/logos/TailwindLogo';
+import TSLogo from '@/assets/logos/TSLogo';
+import ZodLogo from '@/assets/logos/ZodLogo';
+import ConformLogo from '@/assets/logos/ConformLogo';
+import I18NextLogo from '@/assets/logos/I18NextLogo';
+import VitestLogo from '@/assets/logos/VitestLogo';
+import RTLLogo from '@/assets/logos/RTLLogo';
+import PlaywrightLogo from '@/assets/logos/PlaywrightLogo';
+import MSWLogo from '@/assets/logos/MSWLogo';
+import StorybookLogo from '@/assets/logos/StorybookLogo';
+import ChromaticLogo from '@/assets/logos/ChromaticLogo';
+import ESLintLogo from '@/assets/logos/ESLintLogo';
+import PrettierLogo from '@/assets/logos/PrettierLogo';
+import StylelintLogo from '@/assets/logos/StylelintLogo';
+
+type LogoEntry = {
+  name: string;
+  component: React.ReactNode;
+};
+
+const FOUNDATION: LogoEntry[] = [
+  { name: 'React Router', component: <ReactRouterLogo height={36} /> },
+  { name: 'Tailwind', component: <TailwindLogo height={36} /> },
+  { name: 'TypeScript', component: <TSLogo height={36} /> },
+  { name: 'Zod', component: <ZodLogo height={36} /> },
+  { name: 'Conform', component: <ConformLogo height={36} /> },
+  { name: 'i18next', component: <I18NextLogo height={36} /> },
+];
+
+const TESTING: LogoEntry[] = [
+  { name: 'Vitest', component: <VitestLogo height={36} /> },
+  { name: 'RTL', component: <RTLLogo height={36} /> },
+  { name: 'Playwright', component: <PlaywrightLogo height={36} /> },
+  { name: 'MSW', component: <MSWLogo height={36} /> },
+  { name: 'Storybook', component: <StorybookLogo height={36} /> },
+  { name: 'Chromatic', component: <ChromaticLogo height={36} /> },
+];
+
+const CODE_QUALITY: LogoEntry[] = [
+  { name: 'ESLint', component: <ESLintLogo height={36} /> },
+  { name: 'Prettier', component: <PrettierLogo height={36} /> },
+  { name: 'Stylelint', component: <StylelintLogo height={36} /> },
+];
+
+function LogoCard({ name, component }: LogoEntry) {
+  return (
+    <div
+      className="logo-card flex flex-col items-center justify-center gap-2 rounded-lg px-3 py-5"
+      style={{
+        backgroundColor: 'var(--color-bg-elev)',
+        border: '1px solid var(--color-border)',
+        transition: 'border-color 0.15s ease',
+        minHeight: '5.5rem',
+      }}
+    >
+      <div className="flex items-center justify-center" style={{ height: '2.5rem' }}>
+        {component}
+      </div>
+      <span
+        className="text-xs text-center leading-tight"
+        style={{ color: 'var(--color-fg-dim)' }}
+      >
+        {name}
+      </span>
+    </div>
+  );
+}
+
+type GroupProps = {
+  label: string;
+  items: LogoEntry[];
+};
+
+function LogoGroup({ label, items }: GroupProps) {
+  return (
+    <div className="space-y-3">
+      <h3
+        className="text-xs font-semibold uppercase tracking-widest"
+        style={{ color: 'var(--color-fg-dim)' }}
+      >
+        {label}
+      </h3>
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+        {items.map((item) => (
+          <LogoCard key={item.name} {...item} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Stack() {
   return (
-    <Section id="stack" title="What's in the box">
+    <Section id="stack" title="The stack">
       <div className="space-y-8">
-        <div>
-          <h3 className="text-lg font-semibold text-[var(--color-fg)] mb-4">Foundation</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {[
-              'React Router 7',
-              'Tailwind v4',
-              'TypeScript 6',
-              'Vitest + RTL',
-              'Playwright',
-              'Storybook + Chromatic',
-              'MSW',
-              'Conform + Zod',
-              'remix-i18next',
-              'Dark mode',
-              'Sonner',
-              'FontAwesome',
-            ].map((item) => (
-              <div
-                key={item}
-                className="px-3 py-2 bg-[var(--color-bg-elev)] rounded text-[var(--color-fg)] text-sm"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h3 className="text-lg font-semibold text-[var(--color-fg)] mb-4">GAIA ships</h3>
-          <ul className="space-y-2 text-[var(--color-fg-dim)] text-sm">
-            <li>• 14 path-scoped rules + 12 enforcement hooks + 13 Claude commands</li>
-            <li>• 1 code-review audit agent that blocks merge until issues are fixed</li>
-            <li>• Obsidian wiki (committed to git, shared across the team)</li>
-            <li>• Session hooks keep wiki fresh, memory discipline enforced</li>
-            <li>• All wired into CLAUDE.md for token-efficient context</li>
-          </ul>
-        </div>
-
-        <div className="border-t border-[var(--color-border)] pt-6">
-          <h3 className="text-lg font-semibold text-[var(--color-fg)] mb-4">How GAIA compares</h3>
-          <div className="overflow-x-auto">
-            <table className="text-sm w-full text-[var(--color-fg-dim)]">
-              <tbody className="divide-y divide-[var(--color-border)]">
-                <tr className="border-b border-[var(--color-border)]">
-                  <td className="py-2 font-semibold text-[var(--color-fg)]">Feature</td>
-                  <td className="py-2 font-semibold text-[var(--color-fg)]">GAIA</td>
-                  <td className="py-2 font-semibold text-[var(--color-fg)]">Others</td>
-                </tr>
-                <tr>
-                  <td className="py-2">Claude tooling</td>
-                  <td className="py-2 text-[var(--color-accent)]">✓ 14 rules, 12 hooks, 13 commands, 1 agent</td>
-                  <td className="py-2">—</td>
-                </tr>
-                <tr>
-                  <td className="py-2">Obsidian wiki</td>
-                  <td className="py-2 text-[var(--color-accent)]">✓</td>
-                  <td className="py-2">—</td>
-                </tr>
-                <tr>
-                  <td className="py-2">Dark mode (end-to-end)</td>
-                  <td className="py-2 text-[var(--color-accent)]">✓</td>
-                  <td className="py-2">—</td>
-                </tr>
-                <tr>
-                  <td className="py-2">i18n with examples</td>
-                  <td className="py-2 text-[var(--color-accent)]">✓ 2 languages</td>
-                  <td className="py-2">—</td>
-                </tr>
-                <tr>
-                  <td className="py-2">Code-review audit</td>
-                  <td className="py-2 text-[var(--color-accent)]">✓</td>
-                  <td className="py-2">—</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <LogoGroup label="Foundation" items={FOUNDATION} />
+        <LogoGroup label="Testing" items={TESTING} />
+        <LogoGroup label="Code quality" items={CODE_QUALITY} />
       </div>
+      <style>{`
+        .logo-card:hover {
+          border-color: var(--color-accent-soft) !important;
+        }
+      `}</style>
     </Section>
   );
 }

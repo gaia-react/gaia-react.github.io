@@ -5,7 +5,7 @@ const NAV_MARKETING = [
   { label: "Why", href: "#why" },
   { label: "Stack", href: "#stack" },
   { label: "Wiki", href: "#wiki" },
-  { label: "CLAUDE.md", href: "#claude-md" },
+  { label: "Principles", href: "#claude-md" },
   { label: "Quick start", href: "#quick-start" },
 ];
 
