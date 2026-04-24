@@ -17,42 +17,47 @@ import StylelintLogo from '@/assets/logos/StylelintLogo';
 
 type LogoEntry = {
   name: string;
+  href: string;
   component: React.ReactNode;
   wide?: boolean;
 };
 
 const FOUNDATION: LogoEntry[] = [
-  { name: 'React Router', component: <ReactRouterLogo height={36} /> },
-  { name: 'Tailwind', component: <TailwindLogo height={36} /> },
-  { name: 'TypeScript', component: <TSLogo height={36} /> },
-  { name: 'Zod', component: <ZodLogo height={36} /> },
-  { name: 'i18next', component: <I18NextLogo height={36} /> },
-  { name: 'Conform', component: <ConformLogo height={28} />, wide: true },
+  { name: 'React Router', href: 'https://reactrouter.com/', component: <ReactRouterLogo height={36} /> },
+  { name: 'Tailwind', href: 'https://tailwindcss.com', component: <TailwindLogo height={36} /> },
+  { name: 'TypeScript', href: 'https://www.typescriptlang.org/', component: <TSLogo height={36} /> },
+  { name: 'Zod', href: 'https://zod.dev/', component: <ZodLogo height={36} /> },
+  { name: 'i18next', href: 'https://react.i18next.com/', component: <I18NextLogo height={36} /> },
+  { name: 'Conform', href: 'https://conform.guide/', component: <ConformLogo height={28} />, wide: true },
 ];
 
 const TESTING: LogoEntry[] = [
-  { name: 'Vitest', component: <VitestLogo height={36} /> },
-  { name: 'RTL', component: <RTLLogo height={36} /> },
-  { name: 'Playwright', component: <PlaywrightLogo height={36} /> },
-  { name: 'MSW', component: <MSWLogo height={36} /> },
-  { name: 'Storybook', component: <StorybookLogo height={36} /> },
-  { name: 'Chromatic', component: <ChromaticLogo height={36} /> },
+  { name: 'Vitest', href: 'https://vitest.dev/', component: <VitestLogo height={36} /> },
+  { name: 'RTL', href: 'https://testing-library.com/docs/react-testing-library/intro/', component: <RTLLogo height={36} /> },
+  { name: 'Playwright', href: 'https://playwright.dev/', component: <PlaywrightLogo height={36} /> },
+  { name: 'MSW', href: 'https://mswjs.io/', component: <MSWLogo height={36} /> },
+  { name: 'Storybook', href: 'https://storybook.js.org/', component: <StorybookLogo height={36} /> },
+  { name: 'Chromatic', href: 'https://www.chromatic.com/', component: <ChromaticLogo height={36} /> },
 ];
 
 const CODE_QUALITY: LogoEntry[] = [
-  { name: 'ESLint', component: <ESLintLogo height={36} /> },
-  { name: 'Prettier', component: <PrettierLogo height={36} /> },
-  { name: 'Stylelint', component: <StylelintLogo height={36} /> },
+  { name: 'ESLint', href: 'https://eslint.org/', component: <ESLintLogo height={36} /> },
+  { name: 'Prettier', href: 'https://prettier.io/', component: <PrettierLogo height={36} /> },
+  { name: 'Stylelint', href: 'https://stylelint.io/', component: <StylelintLogo height={36} /> },
 ];
 
-function LogoCard({ name, component, wide }: LogoEntry) {
+function LogoCard({ name, href, component, wide }: LogoEntry) {
   return (
-    <div
-      className={`logo-card flex flex-col items-center justify-center gap-2 rounded-lg px-3 py-5${wide ? ' col-span-2' : ''}`}
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={name}
+      className={`logo-card flex flex-col items-center justify-center gap-2 rounded-lg px-3 py-5 no-underline${wide ? ' col-span-2' : ''}`}
       style={{
         backgroundColor: 'var(--color-bg-elev)',
         border: '1px solid var(--color-border)',
-        transition: 'border-color 0.15s ease',
+        transition: 'border-color 0.15s ease, transform 0.15s ease',
         minHeight: '5.5rem',
       }}
     >
@@ -65,7 +70,7 @@ function LogoCard({ name, component, wide }: LogoEntry) {
       >
         {name}
       </span>
-    </div>
+    </a>
   );
 }
 
