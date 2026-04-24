@@ -3,37 +3,37 @@ import { Section } from '@/components/Section';
 export default function Agents() {
   return (
     <Section id="agents" title="Agents">
-      <p className="mb-4 text-[#a89584]">
+      <p className="mb-4 text-[var(--color-fg-dim)]">
         GAIA ships with one specialized agent:
       </p>
 
-      <div className="mb-6 rounded-lg bg-[#221812] p-4 border border-[#3a2a1f]">
-        <h3 className="mb-3 text-lg font-semibold text-[#D97757]">code-review-audit</h3>
-        <p className="mb-3 text-[#f5ede4]">
+      <div className="mb-6 rounded-lg bg-[var(--color-bg-elev)] p-4 border border-[var(--color-border)]">
+        <h3 className="mb-3 text-lg font-semibold text-[var(--color-accent)]">code-review-audit</h3>
+        <p className="mb-3 text-[var(--color-fg)]">
           Comprehensive audit of your branch's changes: security vulnerabilities, performance
           bottlenecks, code smells, anti-patterns, accessibility issues, and refactoring
           opportunities. Goes beyond linting and type-checking to reason about data flow,
           architectural fitness, and intent.
         </p>
-        <p className="mb-3 text-[#f5ede4]">
-          <span className="font-semibold">When it runs:</span> Gated before <code className="text-[#E89275]">gh pr merge</code> by the{' '}
-          <code className="text-[#E89275]">pr-merge-audit-check.sh</code> hook; also available on
+        <p className="mb-3 text-[var(--color-fg)]">
+          <span className="font-semibold">When it runs:</span> Gated before <code className="text-[var(--color-accent-soft)]">gh pr merge</code> by the{' '}
+          <code className="text-[var(--color-accent-soft)]">pr-merge-audit-check.sh</code> hook; also available on
           demand.
         </p>
-        <p className="mb-3 text-[#f5ede4]">
+        <p className="mb-3 text-[var(--color-fg)]">
           <span className="font-semibold">Extensions:</span> Library-specific review rules live in{' '}
-          <code className="text-[#E89275]">.claude/agents/code-review-audit/</code> — e.g., React
+          <code className="text-[var(--color-accent-soft)]">.claude/agents/code-review-audit/</code> — e.g., React
           patterns, TypeScript strictness, Tailwind utilities, form libraries.
         </p>
-        <p className="text-[#f5ede4]">
+        <p className="text-[var(--color-fg)]">
           <span className="font-semibold">Why:</span> Every merge reviewed by a second pair of eyes
           without waiting on a human reviewer.
         </p>
       </div>
 
-      <p className="text-[#a89584]">
-        To add your own agent, create <code className="text-[#D97757]">.claude/agents/&lt;name&gt;.md</code> with a{' '}
-        <code className="text-[#E89275]">name</code>, <code className="text-[#E89275]">description</code>,
+      <p className="text-[var(--color-fg-dim)]">
+        To add your own agent, create <code className="text-[var(--color-accent)]">.claude/agents/&lt;name&gt;.md</code> with a{' '}
+        <code className="text-[var(--color-accent-soft)]">name</code>, <code className="text-[var(--color-accent-soft)]">description</code>,
         and implementation steps.
       </p>
     </Section>

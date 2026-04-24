@@ -3,27 +3,27 @@ import { Section } from '@/components/Section';
 export default function Hooks() {
   return (
     <Section id="hooks" title="Hooks">
-      <p className="mb-6 text-[#a89584]">
+      <p className="mb-6 text-[var(--color-fg-dim)]">
         Hooks are shell scripts the Claude Code harness runs at specific lifecycle events. They
         prevent common mistakes and enforce project conventions before they're committed.
       </p>
 
-      <h3 className="mb-3 text-lg font-semibold text-[#f5ede4]">Session Start / Stop</h3>
-      <p className="mb-6 text-[#f5ede4]">
+      <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">Session Start / Stop</h3>
+      <p className="mb-6 text-[var(--color-fg)]">
         Initialize and finalize wiki state across sessions. On start, record the current HEAD so
         the stop hook can detect wiki changes committed during the session. On stop, squash
         auto-commits from the claude-obsidian plugin into a clean history.
       </p>
 
-      <h3 className="mb-3 text-lg font-semibold text-[#f5ede4]">User Prompt Submit</h3>
-      <p className="mb-6 text-[#f5ede4]">
-        Intercept the built-in <code className="text-[#D97757]">/init</code> command and redirect
-        it to <code className="text-[#D97757]">/gaia-init</code> so the template's curated
+      <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">User Prompt Submit</h3>
+      <p className="mb-6 text-[var(--color-fg)]">
+        Intercept the built-in <code className="text-[var(--color-accent)]">/init</code> command and redirect
+        it to <code className="text-[var(--color-accent)]">/gaia-init</code> so the template's curated
         initialization runs instead.
       </p>
 
-      <h3 className="mb-3 text-lg font-semibold text-[#f5ede4]">Pre-Tool Use: Edit Guards</h3>
-      <p className="mb-6 text-[#f5ede4]">
+      <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">Pre-Tool Use: Edit Guards</h3>
+      <p className="mb-6 text-[var(--color-fg)]">
         Protect critical files from unintended edits:
         <ul className="mt-2 ml-4 space-y-1">
           <li>
@@ -45,8 +45,8 @@ export default function Hooks() {
         </ul>
       </p>
 
-      <h3 className="mb-3 text-lg font-semibold text-[#f5ede4]">Pre-Tool Use: Bash Guards</h3>
-      <p className="mb-6 text-[#f5ede4]">
+      <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">Pre-Tool Use: Bash Guards</h3>
+      <p className="mb-6 text-[var(--color-fg)]">
         Block destructive or expensive operations:
         <ul className="mt-2 ml-4 space-y-1">
           <li>
@@ -68,7 +68,7 @@ export default function Hooks() {
         </ul>
       </p>
 
-      <p className="text-[#a89584]">
+      <p className="text-[var(--color-fg-dim)]">
         Hooks catch debt-accumulating patterns before they're committed, turning debugging and
         refactoring into early detection.
       </p>

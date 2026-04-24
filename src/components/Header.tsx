@@ -25,7 +25,7 @@ export function Header() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        backgroundColor: "rgba(45, 32, 24, 0.85)",
+        backgroundColor: "rgba(20, 20, 19, 0.85)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         borderBottom: "1px solid var(--color-border)",
