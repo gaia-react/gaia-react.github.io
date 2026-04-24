@@ -18,6 +18,7 @@ import StylelintLogo from '@/assets/logos/StylelintLogo';
 type LogoEntry = {
   name: string;
   component: React.ReactNode;
+  wide?: boolean;
 };
 
 const FOUNDATION: LogoEntry[] = [
@@ -25,8 +26,8 @@ const FOUNDATION: LogoEntry[] = [
   { name: 'Tailwind', component: <TailwindLogo height={36} /> },
   { name: 'TypeScript', component: <TSLogo height={36} /> },
   { name: 'Zod', component: <ZodLogo height={36} /> },
-  { name: 'Conform', component: <ConformLogo height={36} /> },
   { name: 'i18next', component: <I18NextLogo height={36} /> },
+  { name: 'Conform', component: <ConformLogo height={28} />, wide: true },
 ];
 
 const TESTING: LogoEntry[] = [
@@ -44,10 +45,10 @@ const CODE_QUALITY: LogoEntry[] = [
   { name: 'Stylelint', component: <StylelintLogo height={36} /> },
 ];
 
-function LogoCard({ name, component }: LogoEntry) {
+function LogoCard({ name, component, wide }: LogoEntry) {
   return (
     <div
-      className="logo-card flex flex-col items-center justify-center gap-2 rounded-lg px-3 py-5"
+      className={`logo-card flex flex-col items-center justify-center gap-2 rounded-lg px-3 py-5${wide ? ' col-span-2' : ''}`}
       style={{
         backgroundColor: 'var(--color-bg-elev)',
         border: '1px solid var(--color-border)',
