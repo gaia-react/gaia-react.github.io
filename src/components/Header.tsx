@@ -13,6 +13,7 @@ const NAV_DOCS = [
   { label: "Commands", href: "#commands" },
   { label: "Rules", href: "#rules" },
   { label: "Agents", href: "#agents" },
+  { label: "Skills", href: "#skills" },
   { label: "Hooks", href: "#hooks" },
 ];
 
@@ -45,7 +46,7 @@ export function Header() {
       >
         <a
           href="#hero"
-          aria-label="GAIA — back to top"
+          aria-label="GAIA, back to top"
           style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
         >
           <img

@@ -13,14 +13,17 @@ export default function QuickStart() {
           </CodeBlock>
 
           <CodeBlock title="Claude Code" language="">
-            /gaia-init
+            /init
           </CodeBlock>
         </div>
 
         <p className="text-[var(--color-fg-dim)] text-sm">
-          The first command pulls the latest release and git-inits your project. The second runs
-          Claude-driven setup: configure i18n, install skills and plugins, optionally set up
-          Chromatic MCP. See the <a href="#commands" className="text-[var(--color-accent)] hover:underline">commands section</a> below for the full surface.
+          The first command pulls the latest release and git-inits your project. The second
+          initializes GAIA's Claude setup, including installing skills and plugins. See the{' '}
+          <a href="#commands" className="text-[var(--color-accent)] hover:underline">
+            commands section
+          </a>{' '}
+          below for more information.
         </p>
       </div>
     </Section>

@@ -8,6 +8,7 @@ import QuickStart from './sections/QuickStart';
 import Commands from './sections/Commands';
 import Rules from './sections/Rules';
 import Agents from './sections/Agents';
+import Skills from './sections/Skills';
 import Hooks from './sections/Hooks';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
       <Commands />
       <Rules />
       <Agents />
+      <Skills />
       <Hooks />
     </Layout>
   );

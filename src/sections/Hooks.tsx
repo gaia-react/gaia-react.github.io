@@ -4,8 +4,8 @@ export default function Hooks() {
   return (
     <Section id="hooks" title="Hooks">
       <p className="mb-6 text-[var(--color-fg-dim)]">
-        Hooks are shell scripts the Claude Code harness runs at specific lifecycle events. They
-        prevent common mistakes and enforce project conventions before they're committed.
+        GAIA's Claude hooks prevent common mistakes and enforce project conventions before they're
+        committed.
       </p>
 
       <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">Session Start / Stop</h3>
@@ -15,58 +15,42 @@ export default function Hooks() {
         auto-commits from the claude-obsidian plugin into a clean history.
       </p>
 
-      <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">User Prompt Submit</h3>
-      <p className="mb-6 text-[var(--color-fg)]">
-        Intercept the built-in <code className="text-[var(--color-accent)]">/init</code> command and redirect
-        it to <code className="text-[var(--color-accent)]">/gaia-init</code> so the template's curated
-        initialization runs instead.
-      </p>
-
       <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">Pre-Tool Use: Edit Guards</h3>
-      <p className="mb-6 text-[var(--color-fg)]">
-        Protect critical files from unintended edits:
-        <ul className="mt-2 ml-4 space-y-1">
-          <li>
-            • <span className="font-semibold">ESLint config</span> — Fix errors in the source
-            file, not the config
-          </li>
-          <li>
-            • <span className="font-semibold">Vitest tsconfig</span> — Globals are managed
-            separately
-          </li>
-          <li>
-            • <span className="font-semibold">i18n keys</span> — Keys must match the project's
-            naming scheme
-          </li>
-          <li>
-            • <span className="font-semibold">Storybook co-location</span> — Ensure stories live
-            next to components
-          </li>
-        </ul>
-      </p>
+      <p className="mb-2 text-[var(--color-fg)]">Protect critical files from unintended edits:</p>
+      <ul className="mb-6 ml-4 space-y-1 text-[var(--color-fg)]">
+        <li>
+          <span className="font-semibold">ESLint config</span> - Fix errors in the source code,
+          don't disable rules in the config
+        </li>
+        <li>
+          <span className="font-semibold">Vitest tsconfig</span> - Globals are managed separately
+        </li>
+        <li>
+          <span className="font-semibold">i18n keys</span> - Ensures no hard-coded strings slip
+          through
+        </li>
+        <li>
+          <span className="font-semibold">Storybook co-location</span> - Ensure stories live next
+          to components
+        </li>
+      </ul>
 
       <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">Pre-Tool Use: Bash Guards</h3>
-      <p className="mb-6 text-[var(--color-fg)]">
-        Block destructive or expensive operations:
-        <ul className="mt-2 ml-4 space-y-1">
-          <li>
-            • <span className="font-semibold">Bare npm test</span> — Run specific test files
-            instead
-          </li>
-          <li>
-            • <span className="font-semibold">Main branch git</span> — No commits or force-pushes
-            to main/master
-          </li>
-          <li>
-            • <span className="font-semibold">PR merge without audit</span> — Requires a
-            code-review-audit pass
-          </li>
-          <li>
-            • <span className="font-semibold">Commit without wiki check</span> — Suggests wiki
-            updates when relevant
-          </li>
-        </ul>
-      </p>
+      <p className="mb-2 text-[var(--color-fg)]">Block destructive or expensive operations:</p>
+      <ul className="mb-6 ml-4 space-y-1 text-[var(--color-fg)]">
+        <li>
+          <span className="font-semibold">Protect main branch</span> - No commits or force-pushes
+          to main
+        </li>
+        <li>
+          <span className="font-semibold">Prevent technical debt</span> - Audit code before every
+          PR merge
+        </li>
+        <li>
+          <span className="font-semibold">Keep Wiki up-to-date</span> - Automatically commits wiki
+          updates
+        </li>
+      </ul>
 
       <p className="text-[var(--color-fg-dim)]">
         Hooks catch debt-accumulating patterns before they're committed, turning debugging and

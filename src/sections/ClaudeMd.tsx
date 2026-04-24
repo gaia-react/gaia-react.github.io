@@ -2,10 +2,10 @@ import { Section } from '@/components/Section';
 
 const PRINCIPLES = [
   { name: 'Think Before Coding', desc: 'Surface assumptions, push back on complexity, ask when unclear.' },
-  { name: 'Simplicity First', desc: 'Write the minimum code that solves the problem — no speculative abstractions.' },
+  { name: 'Simplicity First', desc: 'Write the minimum code that solves the problem, no speculative abstractions.' },
   { name: 'Surgical Changes', desc: 'Touch only what is needed; match existing style; leave unbroken things alone.' },
   { name: 'Goal-Driven Execution', desc: 'Define verifiable success criteria before starting; loop until verified.' },
-  { name: 'Always Use TDD', desc: 'Vitest for units, Playwright for user flows — tests before code.' },
+  { name: 'Always Use TDD', desc: 'Vitest for units, Playwright for user flows, tests before code.' },
   { name: 'Always Verify Your Work', desc: 'Run the quality gate process; fix all warnings before reporting done.' },
 ];
 
@@ -20,7 +20,7 @@ export default function ClaudeMd() {
           </code>
           , auto-loaded for <code className="bg-[var(--color-bg-elev)] px-2 py-1 rounded text-sm">app/**/*</code>{' '}
           and <code className="bg-[var(--color-bg-elev)] px-2 py-1 rounded text-sm">test/**/*</code>.
-          It encodes six principles Claude follows on every task — no setup required.
+          It encodes six principles Claude follows on every task, no setup required.
         </p>
 
         <ul className="space-y-3">
@@ -36,7 +36,7 @@ export default function ClaudeMd() {
         </ul>
 
         <p className="text-[var(--color-fg-dim)] text-sm">
-          These draw on several sources — including{' '}
+          These draw on several sources, including{' '}
           <a
             href="https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md"
             target="_blank"
@@ -44,8 +44,8 @@ export default function ClaudeMd() {
             className="text-[var(--color-accent)] hover:underline"
           >
             Karpathy's popular CLAUDE.md
-          </a>{' '}
-          — distilled into a single file that ships with every project.
+          </a>
+          , distilled into a single file that ships with every project.
         </p>
       </div>
     </Section>

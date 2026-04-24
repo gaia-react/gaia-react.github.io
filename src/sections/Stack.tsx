@@ -1,4 +1,6 @@
 import { Section } from '@/components/Section';
+import ClaudeLogo from '@/assets/logos/ClaudeLogo';
+import ObsidianLogo from '@/assets/logos/ObsidianLogo';
 import ReactRouterLogo from '@/assets/logos/ReactRouterLogo';
 import TailwindLogo from '@/assets/logos/TailwindLogo';
 import TSLogo from '@/assets/logos/TSLogo';
@@ -23,6 +25,8 @@ type LogoEntry = {
 };
 
 const FOUNDATION: LogoEntry[] = [
+  { name: 'Claude', href: 'https://claude.com/claude-code', component: <ClaudeLogo height={36} /> },
+  { name: 'Obsidian', href: 'https://obsidian.md/', component: <ObsidianLogo height={36} /> },
   { name: 'React Router', href: 'https://reactrouter.com/', component: <ReactRouterLogo height={36} /> },
   { name: 'Tailwind', href: 'https://tailwindcss.com', component: <TailwindLogo height={36} /> },
   { name: 'TypeScript', href: 'https://www.typescriptlang.org/', component: <TSLogo height={36} /> },
