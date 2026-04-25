@@ -16,6 +16,11 @@ export default function Skills() {
           identifiers, type-only imports, Zod schemas, avoiding enums and switch statements
         </div>
         <div>
+          <span className="font-semibold text-[var(--color-accent)]">tdd</span> - red-green-refactor
+          loop, integration-style tests, behavior over implementation, stack references for
+          React/Vitest/MSW/Storybook
+        </div>
+        <div>
           <span className="font-semibold text-[var(--color-accent)]">react-code</span> - component
           patterns, hook gates (useEffect, useCallback, useState), event handlers, catching stale
           closures and unnecessary re-renders
@@ -23,11 +28,6 @@ export default function Skills() {
         <div>
           <span className="font-semibold text-[var(--color-accent)]">tailwind</span> - class naming,
           combining conditional classes, twJoin vs twMerge, custom values and rem units
-        </div>
-        <div>
-          <span className="font-semibold text-[var(--color-accent)]">tdd</span> - red-green-refactor
-          loop, integration-style tests, behavior over implementation, stack references for
-          React/Vitest/MSW/Storybook
         </div>
         <div>
           <span className="font-semibold text-[var(--color-accent)]">playwright-cli</span> - browser

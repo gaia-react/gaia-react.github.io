@@ -17,27 +17,14 @@ export function Footer() {
       }}
     >
       <span>© {year} GAIA</span>
-      <nav
-        style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}
-        aria-label="Footer navigation"
+      <a
+        href="https://github.com/gaia-react/react-router/blob/main/LICENSE"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={footerLinkStyle}
       >
-        <a
-          href="https://github.com/gaia-react/react-router"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={footerLinkStyle}
-        >
-          GitHub
-        </a>
-        <a
-          href="https://github.com/gaia-react/react-router/blob/main/LICENSE"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={footerLinkStyle}
-        >
-          MIT License
-        </a>
-      </nav>
+        MIT License
+      </a>
     </footer>
   );
 }

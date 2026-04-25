@@ -32,9 +32,9 @@ export default function Agents() {
           and also available on demand.
         </p>
         <p className="mb-3 text-[var(--color-fg)]">
-          <span className="font-semibold">Extensions:</span> Library-specific review rules live in{' '}
+          <span className="font-semibold">Extendable:</span> Review rules live in{' '}
           <code className="text-[var(--color-accent-soft)]">.claude/agents/code-review-audit/</code>{' '}
-          (React patterns, TypeScript strictness, Tailwind utilities, form libraries).
+          (React patterns, TypeScript strictness, Tailwind utilities, form libraries). Add your own as your project grows.
         </p>
         <p className="text-[var(--color-fg)]">
           <span className="font-semibold">Why:</span> Every merge reviewed by a second pair of eyes

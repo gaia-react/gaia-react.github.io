@@ -5,9 +5,9 @@ export default function Rules() {
     <Section id="rules" title="Rules">
       <p className="mb-6 text-[var(--color-fg-dim)]">
         Project rules live in <code className="text-[var(--color-accent)]">.claude/rules/</code>{' '}
-        and auto-load into Claude's context when you're working in matching file paths. They
+        and only load into Claude's context when it's working in matching file paths. They
         encode project conventions (coding style, API patterns, accessibility, testing) so Claude
-        doesn't have to re-derive them every session. Thirteen rules ship with the template.
+        doesn't have to re-derive them every session.
       </p>
 
       <div className="space-y-3 text-[var(--color-fg)]">
@@ -44,21 +44,20 @@ export default function Rules() {
           file structure, loaders, actions, page component layout
         </div>
         <div>
-          <span className="font-semibold text-[var(--color-accent)]">Quality Gate</span> - run
-          before commit: linting, types, tests, build checks
+          <span className="font-semibold text-[var(--color-accent)]">Quality Gate</span> - runs
+          before every commit: simplifying, linting, typechecking, and tests
         </div>
         <div>
-          <span className="font-semibold text-[var(--color-accent)]">State Pattern</span> - React
-          Context creation confined to{' '}
-          <code className="text-[var(--color-accent-soft)]">app/state/</code>
+          <span className="font-semibold text-[var(--color-accent)]">State Pattern</span> - Ensures
+          application state is managed well
         </div>
         <div>
           <span className="font-semibold text-[var(--color-accent)]">Storybook Conventions</span> -
-          component isolation, story structure, design tokens
+          component isolation, story structure, visual testing
         </div>
         <div>
           <span className="font-semibold text-[var(--color-accent)]">Tailwind Conventions</span> -
-          class naming, custom utilities, responsive breakpoints
+          class naming, efficient utility usage, utility rules
         </div>
         <div>
           <span className="font-semibold text-[var(--color-accent)]">Task Orchestration</span> -

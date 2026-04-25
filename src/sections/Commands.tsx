@@ -4,22 +4,21 @@ export default function Commands() {
   return (
     <Section id="commands" title="Commands">
       <p className="mb-6 text-[var(--color-fg-dim)]">
-        Slash commands you (or Claude) can invoke in Claude Code.
+        Slash commands Claude (or you) can invoke to perform specific actions, from scaffolding new features to auditing code quality to managing project lifecycle.
       </p>
 
       <h3 className="mb-3 text-lg font-semibold text-[var(--color-fg)]">Project Lifecycle</h3>
       <ul className="mb-6 space-y-2 text-[var(--color-fg)]">
         <li>
-          <code className="text-[var(--color-accent)]">/gaia-init</code> - Initialize a new project
-          from the GAIA React template
+          <code className="text-[var(--color-accent)]">/init</code> - Initializes a new GAIA project
         </li>
         <li>
-          <code className="text-[var(--color-accent)]">/gaia-update</code> - Pull the latest GAIA
-          release into this project without clobbering customizations
+          <code className="text-[var(--color-accent)]">/gaia-update</code> - Merges the latest GAIA
+          release without overwriting your customizations
         </li>
         <li>
-          <code className="text-[var(--color-accent)]">/migrate</code> - Claude will upgrade
-          packages and handle any required code updates
+          <code className="text-[var(--color-accent)]">/migrate</code> - Upgrades
+          outdated packages and handles any necessary code changes
         </li>
       </ul>
 
@@ -47,11 +46,11 @@ export default function Commands() {
       <ul className="mb-6 space-y-2 text-[var(--color-fg)]">
         <li>
           <code className="text-[var(--color-accent)]">/audit-code</code> - Run the quality gate:
-          linting, types, tests, builds
+          simplify code, typecheck, lint, and run tests
         </li>
         <li>
           <code className="text-[var(--color-accent)]">/audit-knowledge</code> - Audit memory,
-          wiki, and auto-loaded files for duplication and conflicting knowledge
+          wiki, and auto-loaded context files for duplication and/or conflicting knowledge
         </li>
       </ul>
 
