@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Layout } from './components/Layout';
 import Hero from './sections/Hero';
 import Why from './sections/Why';
@@ -13,6 +14,14 @@ import Skills from './sections/Skills';
 import Hooks from './sections/Hooks';
 
 export default function App() {
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+    }
+  }, []);
+
   return (
     <Layout>
       <Hero />

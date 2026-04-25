@@ -28,6 +28,7 @@ export function Section({ id, title, children, className }: SectionProps) {
       >
         {title && (
           <h2
+            className="group"
             style={{
               fontFamily: "var(--font-display)",
               fontWeight: 300,
@@ -38,7 +39,21 @@ export function Section({ id, title, children, className }: SectionProps) {
               lineHeight: 1.15,
             }}
           >
-            {title}
+            <a href={`#${id}`} style={{ color: "inherit", textDecoration: "none" }}>
+              {title}
+              <span
+                aria-hidden="true"
+                className="opacity-0 group-hover:opacity-40"
+                style={{
+                  marginLeft: "0.4em",
+                  fontSize: "0.6em",
+                  transition: "opacity 0.15s",
+                  userSelect: "none",
+                }}
+              >
+                #
+              </span>
+            </a>
           </h2>
         )}
         {children}
