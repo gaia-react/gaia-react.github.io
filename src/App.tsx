@@ -1,6 +1,7 @@
 import { Layout } from './components/Layout';
 import Hero from './sections/Hero';
 import Why from './sections/Why';
+import AgenticDesign from './sections/AgenticDesign';
 import Stack from './sections/Stack';
 import ObsidianWiki from './sections/ObsidianWiki';
 import ClaudeMd from './sections/ClaudeMd';
@@ -16,6 +17,7 @@ export default function App() {
     <Layout>
       <Hero />
       <Why />
+      <AgenticDesign />
       <Stack />
       <ObsidianWiki />
       <ClaudeMd />

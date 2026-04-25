@@ -1,3 +1,5 @@
+import gaiaLogo from '../assets/gaia-logo.svg';
+
 export default function Hero() {
   return (
     <section
@@ -16,16 +18,21 @@ export default function Hero() {
         }}
       />
       <div className="max-w-2xl mx-auto text-center">
+        <img
+          alt="GAIA"
+          className="mx-auto mb-6 w-40 md:w-52"
+          src={gaiaLogo}
+        />
         <h1 className="text-4xl md:text-6xl font-bold mb-3 text-fg">
           The React template built for Claude
         </h1>
         <p className="text-lg md:text-2xl text-accent-soft italic mb-6 md:mb-8">
           Claude as your lead engineer
         </p>
-        <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed">
+        <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed text-pretty">
           GAIA makes Claude trustworthy enough to own features end-to-end and token-efficient
-          enough to do it at scale, with a built-in Obsidian wiki so Claude can understand your
-          project without re-reading the codebase.
+          enough to do it at scale, with Agentic Design patterns and a built-in Obsidian wiki so
+          Claude can understand your project without re-reading the codebase.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a

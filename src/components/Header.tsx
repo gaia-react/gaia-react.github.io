@@ -4,7 +4,8 @@ import gaiaLogo from "../assets/gaia-logo.svg";
 const GITHUB_URL = "https://github.com/gaia-react/react-router";
 
 const NAV_MARKETING = [
-  { label: "Overview", href: "#why" },
+  { label: "Why GAIA", href: "#why" },
+  { label: "Agentic Design", href: "#agentic-design" },
   { label: "Stack", href: "#stack" },
   { label: "Wiki", href: "#wiki" },
   { label: "Principles", href: "#claude-md" },
