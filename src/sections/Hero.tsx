@@ -16,13 +16,13 @@ export default function Hero() {
         }}
       />
       <div className="max-w-2xl mx-auto text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-3 text-[var(--color-fg)]">
+        <h1 className="text-4xl md:text-6xl font-bold mb-3 text-fg">
           The React template built for Claude
         </h1>
-        <p className="text-lg md:text-2xl text-[var(--color-accent-soft)] italic mb-6 md:mb-8">
+        <p className="text-lg md:text-2xl text-accent-soft italic mb-6 md:mb-8">
           Claude as your lead engineer
         </p>
-        <p className="text-lg md:text-xl text-[var(--color-fg-dim)] mb-10 md:mb-12 leading-relaxed">
+        <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed">
           GAIA makes Claude trustworthy enough to own features end-to-end and token-efficient
           enough to do it at scale, with a built-in Obsidian wiki so Claude can understand your
           project without re-reading the codebase.
@@ -32,13 +32,13 @@ export default function Hero() {
             href="https://github.com/gaia-react/react-router"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 bg-[var(--color-accent)] text-[var(--color-bg)] font-semibold rounded hover:bg-[var(--color-accent-2)] transition-colors"
+            className="px-8 py-3 bg-accent text-bg font-semibold rounded hover:bg-accent-2 transition-colors"
           >
             View on GitHub
           </a>
           <a
             href="#quick-start"
-            className="px-8 py-3 border border-[var(--color-accent-soft)] text-[var(--color-fg)] font-semibold rounded hover:bg-[var(--color-bg-elev)] transition-colors"
+            className="px-8 py-3 border border-accent-soft text-fg font-semibold rounded hover:bg-bg-elev transition-colors"
           >
             Quick start &darr;
           </a>

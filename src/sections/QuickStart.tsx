@@ -5,7 +5,7 @@ export default function QuickStart() {
   return (
     <Section id="quick-start" title="Quick start">
       <div className="space-y-6">
-        <p className="text-[var(--color-fg)]">Two commands and you're initialized.</p>
+        <p className="text-fg">Two commands and you're initialized.</p>
 
         <div className="space-y-4">
           <CodeBlock title="terminal" language="bash">
@@ -17,10 +17,10 @@ export default function QuickStart() {
           </CodeBlock>
         </div>
 
-        <p className="text-[var(--color-fg-dim)] text-sm">
+        <p className="text-fg-dim text-sm">
           The first command pulls the latest release and git-inits your project. The second
           initializes GAIA's Claude setup, including installing skills and plugins. See the{' '}
-          <a href="#commands" className="text-[var(--color-accent)] hover:underline">
+          <a href="#commands" className="text-accent hover:underline">
             commands section
           </a>{' '}
           below for more information.

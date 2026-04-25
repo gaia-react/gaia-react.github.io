@@ -3,7 +3,7 @@ import { Section } from '@/components/Section';
 export default function ObsidianWiki() {
   return (
     <Section id="wiki" title="Obsidian wiki, fully integrated">
-      <div className="space-y-4 text-[var(--color-fg)]">
+      <div className="space-y-4 text-fg">
         <p>
           The wiki is a knowledge base committed to git, shared across the team, not chat history,
           not machine-local memory. It captures architecture, decisions, dependencies, concepts,
@@ -12,7 +12,7 @@ export default function ObsidianWiki() {
         </p>
 
         <p>
-          <code className="bg-[var(--color-bg-elev)] px-2 py-1 rounded text-sm">wiki/hot.md</code>{' '}
+          <code className="bg-bg-elev px-2 py-1 rounded text-sm">wiki/hot.md</code>{' '}
           is a 200-word recent-context cache auto-loaded at session start, a way to surface "where
           we left off" without forcing every session to preload massive docs.
         </p>
@@ -26,7 +26,7 @@ export default function ObsidianWiki() {
 
         <p>
           <strong>Domain isolation is mandatory.</strong> Technical work stays in{' '}
-          <code className="bg-[var(--color-bg-elev)] px-2 py-1 rounded text-sm">wiki/app/</code>.
+          <code className="bg-bg-elev px-2 py-1 rounded text-sm">wiki/app/</code>.
           Other domains, such as branding or business, are kept siloed. GAIA makes sure Claude
           doesn't cross-load unless the task genuinely spans both. This keeps every session focused
           on what matters.
