@@ -104,6 +104,11 @@ function LogoGroup({ label, items }: GroupProps) {
 export default function Stack() {
   return (
     <Section id="stack" title="The stack">
+      <p className="text-fg-dim mb-8">
+        20+ ESLint plugins, four testing layers (unit, integration, E2E,
+        visual) with mocking, i18n, dark mode, forms with validation, and Storybook — all pre-configured
+        and documented for Claude.
+      </p>
       <div className="space-y-8">
         <LogoGroup label="Foundation" items={FOUNDATION} />
         <LogoGroup label="Testing" items={TESTING} />

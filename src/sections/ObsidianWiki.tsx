@@ -13,7 +13,7 @@ export default function ObsidianWiki() {
 
         <p>
           <code className="bg-bg-elev px-2 py-1 rounded text-sm">wiki/hot.md</code>{' '}
-          is a 200-word recent-context cache auto-loaded at session start, a way to surface "where
+          is a 200-word max recent-context cache auto-loaded at session start, a way to surface "where
           we left off" without forcing every session to preload massive docs.
         </p>
 

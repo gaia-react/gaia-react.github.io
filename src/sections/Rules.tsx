@@ -59,10 +59,6 @@ export default function Rules() {
           <span className="font-semibold text-accent">Tailwind Conventions</span> -
           class naming, efficient utility usage, utility rules
         </div>
-        <div>
-          <span className="font-semibold text-accent">Task Orchestration</span> -
-          plan + orchestrator pattern for complex features
-        </div>
       </div>
     </Section>
   );

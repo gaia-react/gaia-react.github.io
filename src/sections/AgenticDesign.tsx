@@ -11,7 +11,7 @@ const PATTERNS = [
   },
   {
     name: 'Planning',
-    impl: 'For multi-file features, Claude proposes a task graph and orchestrator, waits for approval, then executes. Nothing runs without sign-off.',
+    impl: 'For complex features, GAIA\'s /orchestrate command has Claude plan, and then an orchestrator drives focused subagents through each phase, keeping context tight and token usage under control.',
   },
   {
     name: 'Multi-Agent',

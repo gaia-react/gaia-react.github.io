@@ -25,6 +25,10 @@ export default function Commands() {
       <h3 className="mb-3 text-lg font-semibold text-fg">Authoring</h3>
       <ul className="mb-6 space-y-2 text-fg">
         <li>
+          <code className="text-accent">/orchestrate</code> - Plan a complex
+          feature. Claude structures the work, you approve, then an orchestrator drives focused subagents through execution
+        </li>
+        <li>
           <code className="text-accent">/new-route</code> - Scaffold a new route
           with its page component and test
         </li>

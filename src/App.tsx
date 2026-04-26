@@ -12,6 +12,7 @@ import Rules from './sections/Rules';
 import Agents from './sections/Agents';
 import Skills from './sections/Skills';
 import Hooks from './sections/Hooks';
+import Closing from './sections/Closing';
 
 export default function App() {
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function App() {
       <Agents />
       <Skills />
       <Hooks />
+      <Closing />
     </Layout>
   );
 }
