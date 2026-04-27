@@ -24,10 +24,10 @@ export default function Hero() {
           src={gaiaLogo}
         />
         <h1 className="text-4xl md:text-6xl font-bold mb-3 text-fg">
-          The React template built for Claude
+          The React workflow for Claude
         </h1>
         <p className="text-lg md:text-2xl text-accent-soft italic mb-6 md:mb-8">
-          Claude as your lead engineer
+          Claude as your senior engineer
         </p>
         <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed text-pretty">
           GAIA makes Claude trustworthy enough to own features end-to-end and token-efficient

@@ -7,7 +7,7 @@ export default function Skills() {
         Skills live in <code className="text-accent">.claude/skills/</code> and are
         loaded on demand when Claude detects a matching pattern in the task. They encode
         project-specific conventions and patterns so Claude applies them consistently without
-        needing to re-derive them every session. Six skills ship with the template.
+        needing to re-derive them every session. Six skills ship with GAIA.
       </p>
 
       <div className="space-y-3 text-fg">

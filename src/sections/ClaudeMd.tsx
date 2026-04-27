@@ -1,12 +1,15 @@
 import { Section } from '@/components/Section';
 
-const PRINCIPLES = [
+const KARPATHY = [
   { name: 'Think Before Coding', desc: 'Surface assumptions, push back on complexity, ask when unclear.' },
   { name: 'Simplicity First', desc: 'Write the minimum code that solves the problem, no speculative abstractions.' },
   { name: 'Surgical Changes', desc: 'Touch only what is needed; match existing style; leave unbroken things alone.' },
   { name: 'Goal-Driven Execution', desc: 'Define verifiable success criteria before starting; loop until verified.' },
+];
+
+const PRINCIPLES = [
   { name: 'Always Use TDD', desc: 'Vitest for units, Playwright for user flows, tests before code.' },
-  { name: 'Always Verify Your Work', desc: 'Run the quality gate process; fix all warnings before reporting done.' },
+  { name: 'Always Verify Your Work', desc: 'Run the quality gate process; fix all warnings and errors before reporting done.' },
 ];
 
 export default function ClaudeMd() {
@@ -14,39 +17,41 @@ export default function ClaudeMd() {
     <Section id="claude-md" title="Principles built in">
       <div className="space-y-6 text-fg">
         <p>
-          Every GAIA project ships with{' '}
-          <code className="bg-bg-elev px-2 py-1 rounded text-sm">
-            .claude/rules/coding-guidelines.md
-          </code>
-          , auto-loaded for <code className="bg-bg-elev px-2 py-1 rounded text-sm">app/**/*</code>{' '}
-          and <code className="bg-bg-elev px-2 py-1 rounded text-sm">test/**/*</code>.
-          It encodes six principles Claude follows on every task, no setup required.
+          GAIA ships with coding rules which only load into the context when writing code. These rules include{' '}<a
+            href="https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline"
+        >
+          Karpathy's popular CLAUDE.md
+        </a> four principles Claude follows on every coding task:
         </p>
 
         <ul className="space-y-3">
-          {PRINCIPLES.map(({ name, desc }) => (
+          {KARPATHY.map(({ name, desc }) => (
             <li key={name} className="flex gap-3">
               <span className="text-accent shrink-0 mt-0.5">•</span>
               <span className="text-fg-dim">
-                <strong className="text-fg">{name}.</strong>{' '}
+                <strong className="text-fg">{name} - </strong>
                 {desc}
               </span>
             </li>
           ))}
         </ul>
-
-        <p className="text-fg-dim text-sm">
-          These draw on several sources, including{' '}
-          <a
-            href="https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent hover:underline"
-          >
-            Karpathy's popular CLAUDE.md
-          </a>
-          , distilled into a single file that ships with every project.
-        </p>
+      <p>
+        GAIA adds two more principles on top of these:
+      </p>
+      <ul className="space-y-3">
+        {PRINCIPLES.map(({ name, desc }) => (
+          <li key={name} className="flex gap-3">
+            <span className="text-accent shrink-0 mt-0.5">•</span>
+            <span className="text-fg-dim">
+              <strong className="text-fg">{name} - </strong>
+              {desc}
+            </span>
+          </li>
+        ))}
+      </ul>
       </div>
     </Section>
   );

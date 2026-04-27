@@ -70,14 +70,6 @@ export default function Commands() {
           handoff and continue work
         </li>
       </ul>
-
-      <h3 className="mb-3 text-lg font-semibold text-fg">Optional Features</h3>
-      <ul className="space-y-2 text-fg">
-        <li>
-          <code className="text-accent">/setup-chromatic-mcp</code> - Install and
-          register the Chromatic MCP server for Storybook integration
-        </li>
-      </ul>
     </Section>
   );
 }

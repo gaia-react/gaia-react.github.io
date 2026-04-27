@@ -14,7 +14,6 @@ export function Section({ id, title, children, className }: SectionProps) {
       style={{
         paddingTop: "6rem",
         paddingBottom: "6rem",
-        borderBottom: "1px solid var(--color-border)",
       }}
     >
       <div
