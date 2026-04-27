@@ -27,12 +27,12 @@ export default function Hero() {
           The React workflow for Claude
         </h1>
         <p className="text-lg md:text-2xl text-accent-soft italic mb-6 md:mb-8">
-          Claude as your senior engineer
+          Claude is raw power. GAIA is order and focus.
         </p>
         <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed text-pretty">
-          GAIA makes Claude trustworthy enough to own features end-to-end and token-efficient
-          enough to do it at scale, with Agentic Design patterns and a built-in Obsidian wiki so
-          Claude can understand your project without re-reading the codebase.
+          Built on Agentic Design patterns with a fully integrated Obsidian wiki, GAIA makes Claude
+          trustworthy enough to own features end to end and token-efficient enough to do it at
+          scale, whether you are a 20-year veteran or shipping your first React app.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a

@@ -5,29 +5,25 @@ export default function Why() {
     <Section id="why" title="Why GAIA">
       <div className="prose prose-invert max-w-none text-fg">
         <p className="text-fg-dim mb-4">
-          GAIA integrates Claude as an engineer you manage, and solves two of the biggest pain
-          points: you can't predict Claude's output without enforceable conventions, and context
-          bloat compounds token costs over time.
+          Two failure modes break Claude on a real project: unpredictable output and runaway token
+          costs. GAIA fixes both.
         </p>
 
         <ul className="space-y-4 mb-6">
           <li className="flex gap-3">
             <span className="text-accent shrink-0">•</span>
             <span>
-              <strong>Trustworthy by enforcing conventions.</strong> Rules encode conventions
-              directly, and guardrails against technical debt block bad patterns before Claude
-              writes them. Code-review audits, quality gates, and test-driven development enforce
-              standards before commits and merges.
+              <strong>Trustworthy by default.</strong> Conventions are enforced. Quality gates
+              and code-review audits block bad patterns before they reach a commit. What Claude
+              writes is production-grade, ready to ship.
             </span>
           </li>
           <li className="flex gap-3">
             <span className="text-accent shrink-0">•</span>
             <span>
-              <strong>Token-efficient through knowledge discipline.</strong> An Obsidian wiki
-              replaces sprawling CLAUDE.md files, and hooks that keep the wiki clean and up to date.
-              Durable knowledge lives in the wiki or in rules. Project and machine-local memory
-              get audited for duplication and conflicting instructions that would otherwise
-              accumulate and waste tokens every session.
+              <strong>Sharp at any scale.</strong> A focused Obsidian wiki and scoped rules
+              replace sprawling CLAUDE.md files. Claude loads only what the task needs, so context
+              costs do not compound as the codebase grows.
             </span>
           </li>
         </ul>
