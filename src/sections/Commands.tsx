@@ -17,7 +17,7 @@ export default function Commands() {
           release without overwriting your customizations
         </li>
         <li>
-          <code className="text-accent">/migrate</code> - Upgrades
+          <code className="text-accent">/update-deps</code> - Upgrades
           outdated packages and handles any necessary code changes
         </li>
       </ul>
