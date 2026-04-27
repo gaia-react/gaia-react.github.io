@@ -4,7 +4,7 @@ export default function Closing() {
   return (
     <section
       id="closing"
-      className="relative flex flex-col items-center justify-center px-4 py-24 md:py-32 overflow-hidden"
+      className="relative flex flex-col items-center justify-center px-4 py-16 md:py-20 overflow-hidden"
     >
       <div
         aria-hidden="true"

@@ -8,13 +8,13 @@ type SectionProps = {
   paddingTop?: string;
 };
 
-export function Section({ id, title, children, className, paddingTop = "6rem" }: SectionProps) {
+export function Section({ id, title, children, className, paddingTop = "4rem" }: SectionProps) {
   return (
     <section
       className={className}
       style={{
         paddingTop,
-        paddingBottom: "6rem",
+        paddingBottom: "4rem",
       }}
     >
       <div
