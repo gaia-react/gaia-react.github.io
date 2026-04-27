@@ -24,15 +24,15 @@ export default function Closing() {
           src={gaiaLogo}
         />
         <h2 className="text-4xl md:text-6xl font-bold mb-3 text-fg">
-          Give Claude ownership, not just instructions
+          Spend your time on the product, not the workflow
         </h2>
         <p className="text-lg md:text-2xl text-accent-soft italic mb-6 md:mb-8">
-          No babysitting required
+          Pair-programming, not babysitting
         </p>
         <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed text-pretty">
-          Rules that enforce conventions, a wiki that kills context bloat, hooks and skills that
-          make Claude trustworthy enough to own features end-to-end, all of it configured and
-          ready on day one.
+          The stack is curated to help Claude write better code. The conventions are battle-tested
+          and enforced. The gates catch bad patterns before every commit. The wiki keeps
+          token costs under control as the project grows. Your time goes into the product.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
