@@ -31,24 +31,9 @@ const GROUPS: Group[] = [
     color: 'var(--color-accent)',
     items: [
       {
-        title: 'Documentation site',
+        title: 'Documentation',
         description:
-          'The site you are reading. About, Docs, and now Roadmap pages, deployed from the gaia-react/docs project.',
-      },
-      {
-        title: 'Obsidian wiki integration',
-        description:
-          'A first-class wiki vault wired into Claude so it can recall project decisions, ADRs, and component conventions without re-reading the codebase.',
-      },
-      {
-        title: 'Agentic Design rules in CLAUDE.md',
-        description:
-          'A curated set of rules — coding guidelines, accessibility, testing, React, TypeScript — that constrain Claude into senior-engineer behavior by default.',
-      },
-      {
-        title: 'Core slash commands',
-        description:
-          '/update-deps, /update-gaia, and /ultrareview shipping as part of the starter to automate the most common chores and reviews.',
+          'The site you are reading. Growing from a tour of what GAIA includes into worked examples of common workflows, walkthroughs for every command, and FAQs that answer the questions teams hit once they start shipping with it.',
       },
     ],
   },
