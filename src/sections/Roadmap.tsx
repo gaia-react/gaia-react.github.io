@@ -21,7 +21,7 @@ const GROUPS: Group[] = [
       {
         title: 'Coming soon',
         description:
-          'GAIA is days away from its first tagged release. Watch this space — the first set of shipped items lands here as soon as v0.1 is cut.',
+          'GAIA is in pre-release. Testing and development continue ahead of 1.0. Shipped items will appear here once the release goes out.',
       },
     ],
   },
