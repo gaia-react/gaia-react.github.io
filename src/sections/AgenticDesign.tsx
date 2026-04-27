@@ -11,11 +11,11 @@ const PATTERNS = [
   },
   {
     name: 'Planning',
-    impl: 'For complex features, GAIA\'s /orchestrate command has Claude plan, and then an orchestrator drives focused subagents through each phase, keeping context tight and token usage under control.',
+    impl: 'For complex features, /orchestrate plans the work and dispatches focused subagents through each phase, keeping context tight and token usage low.',
   },
   {
     name: 'Multi-Agent',
-    impl: 'Code-review audit spawns three specialist subagents in parallel (React Patterns, TypeScript & Architecture, Translation); the orchestrator pattern dispatches implementation agents across phases.',
+    impl: 'Code-review audit spawns three specialist subagents in parallel. The orchestrator pattern dispatches implementation agents across phases.',
   },
 ];
 
@@ -42,8 +42,7 @@ export default function AgenticDesign() {
   return (
     <Section id="agentic-design" title="Agentic design">
       <p className="mb-8 text-fg-dim">
-        Agentic design is about building AI that works toward goals, not just responds to prompts.
-        All four foundational patterns are{' '}
+        Agentic design is about AI that works toward goals. All four foundational patterns are{' '}
         <strong className="text-fg font-semibold">first-class in GAIA</strong>.
       </p>
 
