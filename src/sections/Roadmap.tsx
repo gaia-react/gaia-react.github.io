@@ -208,8 +208,8 @@ export default function Roadmap() {
           Roadmap
         </h2>
         <p className="text-fg-dim mb-12">
-          What is shipped, in flight, queued up, and on the horizon. Best-guess scope and ordering —
-          priorities shift as the project (and Claude) get sharper.
+          Where GAIA stands today, and where it's going. A Claude-native React workflow, sharpening
+          with every release into a leaner, more reliable way to ship production-quality apps.
         </p>
         <div className="space-y-14">
           {GROUPS.map((group) => (
