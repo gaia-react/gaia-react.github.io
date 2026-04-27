@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react';
+
 type Item = {
   title: string;
-  description: string;
+  description: ReactNode;
 };
 
 type Group = {
@@ -56,29 +58,30 @@ const GROUPS: Group[] = [
     color: '#c8a96a',
     items: [
       {
-        title: 'Skills library',
-        description:
-          'A growing set of installable skills — review, dry-refactor, react-doctor, simplify — that ship with GAIA and can be invoked by name.',
+        title: 'Pick your framework at create time',
+        description: (
+          <>
+            <code className="bg-bg-elev px-2 py-1 rounded text-sm">npx create-gaia</code> walks you
+            through React Router, Next.js, Astro, and TanStack Start with a short Q&amp;A that
+            recommends the right foundation for the project you have in mind. No more spending a
+            weekend comparing docs before you write your first component.
+          </>
+        ),
       },
       {
-        title: 'Storybook + visual regression autopilot',
+        title: 'Choose component library and icons up front',
         description:
-          'Stories generated alongside components, with Chromatic baselines updated automatically on intentional UI changes.',
+          'Get a project already wired to use them. The defaults match the app you plan to build, not a generic template you have to rip out.',
       },
       {
-        title: 'create-gaia-app wizard',
+        title: 'Deployment whenever you are ready',
         description:
-          'A one-command bootstrap that scaffolds a new GAIA project, configures the wiki, and pre-loads rules, skills, and hooks tuned to the chosen stack.',
+          'Wire it up during create or run a command later when you decide to go live. Pick from popular targets with the tradeoffs explained, or bring your own, and walk away with the build, environment variables, and CI/CD configured for you.',
       },
       {
-        title: 'i18n authoring tooling',
+        title: 'Security and performance scanning on every PR',
         description:
-          'Helpers and skills for managing translation keys end-to-end so adding a new locale is a single conversation, not a multi-file scavenger hunt.',
-      },
-      {
-        title: 'Hook presets',
-        description:
-          'Pre-tuned PreToolUse and PostToolUse hooks for typecheck, test, lint, and format gates so Claude self-corrects before handing work back.',
+          'Snyk runs against every change before it merges, catching vulnerabilities and performance regressions while they are still cheap to fix. Staying secure stops being a thing you have to remember.',
       },
     ],
   },
