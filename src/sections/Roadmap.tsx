@@ -205,13 +205,22 @@ export default function Roadmap() {
             fontWeight: 300,
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             color: 'var(--color-fg)',
-            marginBottom: '2.5rem',
+            marginBottom: '0.5rem',
             letterSpacing: '-0.02em',
             lineHeight: 1.15,
           }}
         >
           Roadmap
         </h2>
+        <p
+          style={{
+            fontSize: '0.875rem',
+            color: 'var(--color-fg-mute)',
+            marginBottom: '2rem',
+          }}
+        >
+          Last updated: 2026-04-28
+        </p>
         <p className="text-fg-dim mb-12">
           Where GAIA stands today, and where it's going. A Claude-native React workflow, sharpening
           with every release into a leaner, more reliable way to ship production-quality apps.
