@@ -31,9 +31,14 @@ const GROUPS: Group[] = [
     color: 'var(--color-accent)',
     items: [
       {
+        title: 'Pre-1.0 hardening',
+        description:
+          'Testing, refinement, and cleanup ahead of the 1.0 release. Every command, hook, and skill gets exercised, edge cases caught, and rough surfaces smoothed before launch.',
+      },
+      {
         title: 'Documentation',
         description:
-          'The site you are reading. Growing from a tour of what GAIA includes into worked examples of common workflows, walkthroughs for every command, and FAQs that answer the questions teams hit once they start shipping with it.',
+          'The site you are reading. Growing into a full reference ahead of 1.0.',
       },
     ],
   },
