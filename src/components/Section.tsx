@@ -5,15 +5,16 @@ type SectionProps = {
   title?: string;
   children: ReactNode;
   className?: string;
+  paddingTop?: string;
 };
 
-export function Section({ id, title, children, className }: SectionProps) {
+export function Section({ id, title, children, className, paddingTop = "4rem" }: SectionProps) {
   return (
     <section
       className={className}
       style={{
-        paddingTop: "6rem",
-        paddingBottom: "6rem",
+        paddingTop,
+        paddingBottom: "4rem",
       }}
     >
       <div

@@ -2,33 +2,51 @@ import { Section } from '@/components/Section';
 
 export default function ObsidianWiki() {
   return (
-    <Section id="wiki" title="Obsidian wiki, fully integrated">
+    <Section id="wiki" title="A second brain for Claude">
       <div className="space-y-4 text-fg">
         <p>
-          The wiki is a knowledge base committed to git, shared across the team, not chat history,
-          not machine-local memory. It captures architecture, decisions, dependencies, concepts,
-          and flows as focused Markdown pages. Claude reads on demand: fetch the index for breadth,
-          then drill into the specific page that answers the current question.
+          With an Obsidian wiki, Claude understands what you are actually building, not just the
+          code in front of it. Product features, user flows, design rationale, business decisions,
+          architecture, and dependencies all live as focused markdown pages committed to git, not
+          chat history, not machine-local memory.
         </p>
 
         <p>
-          <code className="bg-bg-elev px-2 py-1 rounded text-sm">wiki/hot.md</code>{' '}
-          is a 200-word max recent-context cache auto-loaded at session start, a way to surface "where
-          we left off" without forcing every session to preload massive docs.
+          GAIA ships with the{' '}
+          <a
+            href="https://github.com/AgriciDaniel/claude-obsidian"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline"
+          >
+            claude-obsidian
+          </a>{' '}
+          integration wired up. The vault structure, the ingestion commands, and the maintenance
+          skills are configured before you write your first page.
         </p>
 
         <p>
-          <strong>Why Obsidian?</strong> Free editor, wikilinks for the graph view, canvas for
-          visual layouts, and a large plugin library. The vault is just markdown files, and
-          Obsidian is optional reading software. You can view and edit everything in any text
-          editor, directly on GitHub, or ask Claude to do it.
+          On top of the integration, GAIA layers project-specific commands and hooks that turn the
+          wiki into a self-maintaining knowledge base. Duplicates, conflicts, and stale information
+          get pruned, so the vault stays clean as the project grows.
         </p>
 
         <p>
-          <strong>Domain isolation is mandatory.</strong> Technical work stays in{' '}
-          <code className="bg-bg-elev px-2 py-1 rounded text-sm">wiki/app/</code>.
-          Other domains, such as branding or business, are kept siloed. GAIA makes sure Claude
-          doesn't cross-load unless the task genuinely spans both.
+          Token costs do not balloon as the wiki gets richer. Claude only reads the specific
+          information a task needs, so a project with 1,000 pages of context is no more expensive
+          to work in than one with 10.
+        </p>
+
+        <p>
+          <strong>Why Obsidian?</strong> A local markdown vault means the project's knowledge
+          persists, compounds, and stays yours, not held in a vendor's database or trapped in
+          chat history.
+        </p>
+
+        <p>
+          <strong>Domain isolation is mandatory.</strong> Technical, branding, and business
+          knowledge are kept siloed, and Claude does not cross-load between them unless a task
+          genuinely spans more than one.
         </p>
       </div>
     </Section>
