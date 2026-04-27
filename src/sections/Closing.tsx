@@ -31,7 +31,7 @@ export default function Closing() {
         </p>
         <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed text-pretty">
           Rules that enforce conventions, a wiki that kills context bloat, hooks and skills that
-          make Claude trustworthy enough to own features end-to-end — all of it configured and
+          make Claude trustworthy enough to own features end-to-end, all of it configured and
           ready on day one.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

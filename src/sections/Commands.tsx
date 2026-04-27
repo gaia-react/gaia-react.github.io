@@ -4,7 +4,7 @@ export default function Commands() {
   return (
     <Section id="commands" title="Commands">
       <p className="mb-6 text-fg-dim">
-        Slash commands Claude (or you) can invoke to perform specific actions, from scaffolding new features to auditing code quality to managing project lifecycle.
+        Slash commands for scaffolding, quality, session management, and project lifecycle.
       </p>
 
       <h3 className="mb-3 text-lg font-semibold text-fg">Project Lifecycle</h3>
@@ -61,9 +61,8 @@ export default function Commands() {
       <h3 className="mb-3 text-lg font-semibold text-fg">Session</h3>
       <ul className="mb-6 space-y-2 text-fg">
         <li>
-          <code className="text-accent">/handoff</code> - Generate a comprehensive
-          session handoff document so you can clear the context with confidence that nothing will
-          get lost
+          <code className="text-accent">/handoff</code> - Generate a session handoff
+          document so you can clear context without losing anything
         </li>
         <li>
           <code className="text-accent">/pickup</code> - Restore context from

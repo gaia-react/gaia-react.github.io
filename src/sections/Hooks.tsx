@@ -4,8 +4,8 @@ export default function Hooks() {
   return (
     <Section id="hooks" title="Hooks">
       <p className="mb-6 text-fg-dim">
-        GAIA's Claude hooks prevent common mistakes and debt-accumulating patterns,
-          as well as enforce project conventions before they're committed.
+        GAIA's Claude hooks prevent debt-accumulating patterns and enforce conventions
+          before code is committed.
       </p>
 
       <h3 className="mb-3 text-lg font-semibold text-fg">Edit Guards</h3>

@@ -10,7 +10,7 @@ export default function Agents() {
       <div className="mb-6 rounded-lg bg-bg-elev p-4 border border-border">
         <h3 className="mb-3 text-lg font-semibold text-accent">code-review-audit</h3>
         <p className="mb-3 text-fg">
-          Comprehensive audit of your branch's changes: security vulnerabilities, performance
+          Audits your branch's changes: security vulnerabilities, performance
           bottlenecks, code smells, anti-patterns, accessibility issues, and refactoring
           opportunities. Dispatches specialist subagents alongside{' '}
           <a
@@ -23,7 +23,7 @@ export default function Agents() {
           </a>{' '}
           (47+ React-specific checks for security, performance, correctness, and architecture) in
           parallel, then merges findings into a single report. Goes beyond linting and
-          type-checking to reason about data flow, architectural fitness, and intent.
+          type-checking to reason about data flow, architecture, and intent.
         </p>
         <p className="mb-3 text-fg">
           <span className="font-semibold">When it runs:</span> Gated before{' '}

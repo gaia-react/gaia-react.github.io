@@ -19,7 +19,7 @@ export default function ObsidianWiki() {
 
         <p>
           <strong>Why Obsidian?</strong> Free editor, wikilinks for the graph view, canvas for
-          visual layouts, and a rich plugin ecosystem. The vault is just markdown files, and
+          visual layouts, and a large plugin library. The vault is just markdown files, and
           Obsidian is optional reading software. You can view and edit everything in any text
           editor, directly on GitHub, or ask Claude to do it.
         </p>
@@ -28,8 +28,7 @@ export default function ObsidianWiki() {
           <strong>Domain isolation is mandatory.</strong> Technical work stays in{' '}
           <code className="bg-bg-elev px-2 py-1 rounded text-sm">wiki/app/</code>.
           Other domains, such as branding or business, are kept siloed. GAIA makes sure Claude
-          doesn't cross-load unless the task genuinely spans both. This keeps every session focused
-          on what matters.
+          doesn't cross-load unless the task genuinely spans both.
         </p>
       </div>
     </Section>

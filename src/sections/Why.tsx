@@ -14,7 +14,7 @@ export default function Why() {
           <li className="flex gap-3">
             <span className="text-accent shrink-0">•</span>
             <span>
-              <strong>Trustworthy by enforcing best practices.</strong> Rules encode conventions
+              <strong>Trustworthy by enforcing conventions.</strong> Rules encode conventions
               directly, and guardrails against technical debt block bad patterns before Claude
               writes them. Code-review audits, quality gates, and test-driven development enforce
               standards before commits and merges.
