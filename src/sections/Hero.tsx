@@ -36,7 +36,7 @@ export default function Hero() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="https://github.com/gaia-react/react-router"
+            href="https://github.com/gaia-react/gaia"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 bg-accent text-bg font-semibold rounded hover:bg-accent-2 transition-colors"
