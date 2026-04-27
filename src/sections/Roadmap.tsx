@@ -78,7 +78,7 @@ const GROUPS: Group[] = [
       {
         title: 'Claude as a true senior engineer',
         description:
-          'Stop managing Claude line by line. Describe what you want, and it ships. Claude is the raw power. GAIA is the order and focus that makes it a senior engineer on every task, one who already knows your stack.',
+          'Stop managing Claude line by line. Describe what you want, and it ships. Claude is raw power. GAIA is order and focus that makes it a senior engineer on every task, one who already knows your stack.',
       },
       {
         title: 'Production-ready React for any skill level',
