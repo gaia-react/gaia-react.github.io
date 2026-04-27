@@ -90,27 +90,32 @@ const GROUPS: Group[] = [
       {
         title: 'Claude as a true senior engineer',
         description:
-          'Claude owns features end-to-end — design, implementation, tests, review, and deploy — with humans steering intent rather than babysitting output.',
+          'Stop managing Claude line by line. Describe what you want, and it ships. Claude is the raw power. GAIA is the order and focus that makes it a senior engineer on every task, one who already knows your stack.',
       },
       {
-        title: 'Self-maintaining wiki',
+        title: 'Production-ready React for any skill level',
         description:
-          'The wiki updates itself as code changes: ADRs, component contracts, and architectural notes stay in sync without anyone remembering to write them down.',
+          'Whether you are a 20-year veteran or shipping your first app, what you build is production-grade. Vibe coders graduate to real apps. Teams stop relitigating style and convention. Clean, accessible, low-debt code is the path of least resistance.',
       },
       {
-        title: 'Cross-repo wiki federation',
+        title: 'Secure and fast by default',
         description:
-          'Org-wide context shared across projects so Claude can reason about shared design systems, internal libraries, and conventions that span repos.',
+          'Agentic engineering ships code faster than any human can review at a glance. GAIA closes that gap. Vulnerabilities, performance regressions, and unsafe patterns are caught before they land, not after they hit production.',
       },
       {
-        title: 'Architecture-aware planning',
+        title: 'The default starting point for greenfield React',
         description:
-          'Plans that propose structural changes — not just patches — when the simplest fix would create long-term debt, with the wiki backing the rationale.',
+          'The "what stack should I use" question that burns weeks at the start of every project is already answered. Skip the bikeshedding, the wiring, and the boilerplate, and start building the actual product the same day you start the repo.',
       },
       {
-        title: 'Zero-context-bloat at any scale',
+        title: 'Zero context bloat at any scale',
         description:
-          'Codebases of any size remain tractable: Claude pulls only what it needs, when it needs it, without re-reading half the repo to make a small change.',
+          'The cost of working with Claude does not grow with the codebase. A massive monorepo stays as cheap and responsive as a fresh repo. Claude stays sharp no matter how big the project gets.',
+      },
+      {
+        title: 'A project that remembers itself',
+        description:
+          'Institutional knowledge survives turnover, time off, and time itself. New collaborators, human or AI, get up to speed by opening the project. Onboarding stops being a multi-week ramp.',
       },
     ],
   },
