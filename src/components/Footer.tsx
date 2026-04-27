@@ -31,7 +31,7 @@ export function Footer() {
         Steven Sacks
       </a>
       <a
-        href="https://github.com/gaia-react/react-router/blob/main/LICENSE"
+        href="https://github.com/gaia-react/gaia/blob/main/LICENSE"
         target="_blank"
         rel="noopener noreferrer"
         style={{ ...footerLinkStyle, justifySelf: "end" }}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gaiaLogo from "../assets/gaia-logo.svg";
 
-const GITHUB_URL = "https://github.com/gaia-react/react-router";
+const GITHUB_URL = "https://github.com/gaia-react/gaia";
 
 const NAV_MARKETING = [
   { label: "Why GAIA", href: "#why" },
