@@ -32,7 +32,7 @@ export default function Hero() {
         <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed text-pretty">
           Built on Agentic Design patterns with a fully integrated Obsidian wiki, GAIA makes Claude
           trustworthy enough to own features end to end and token-efficient enough to do it at
-          scale, whether you are a 20-year veteran or shipping your first React app.
+          scale.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
