@@ -13,7 +13,7 @@ export default function Commands() {
           <code className="text-accent">/init</code> - Initializes a new GAIA project
         </li>
         <li>
-          <code className="text-accent">/gaia-update</code> - Merges the latest GAIA
+          <code className="text-accent">/update-gaia</code> - Merges the latest GAIA
           release without overwriting your customizations
         </li>
         <li>
