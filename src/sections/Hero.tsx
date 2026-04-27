@@ -44,10 +44,10 @@ export default function Hero() {
             View on GitHub
           </a>
           <a
-            href="#quick-start"
+            href="/docs/"
             className="px-8 py-3 border border-accent-soft text-fg font-semibold rounded hover:bg-bg-elev transition-colors"
           >
-            Quick start &darr;
+            Quick start &rarr;
           </a>
         </div>
       </div>

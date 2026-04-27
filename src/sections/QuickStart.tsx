@@ -3,7 +3,7 @@ import { CodeBlock } from '@/components/CodeBlock';
 
 export default function QuickStart() {
   return (
-    <Section id="quick-start" title="Quick start">
+    <Section id="quick-start" title="Quick start" paddingTop="2rem">
       <div className="space-y-6">
         <p className="text-fg">Two commands and you're initialized.</p>
 

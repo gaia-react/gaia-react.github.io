@@ -6,12 +6,6 @@ import AgenticDesign from './sections/AgenticDesign';
 import Stack from './sections/Stack';
 import ObsidianWiki from './sections/ObsidianWiki';
 import ClaudeMd from './sections/ClaudeMd';
-import QuickStart from './sections/QuickStart';
-import Commands from './sections/Commands';
-import Rules from './sections/Rules';
-import Agents from './sections/Agents';
-import Skills from './sections/Skills';
-import Hooks from './sections/Hooks';
 import Closing from './sections/Closing';
 
 export default function App() {
@@ -31,12 +25,6 @@ export default function App() {
       <Stack />
       <ObsidianWiki />
       <ClaudeMd />
-      <QuickStart />
-      <Commands />
-      <Rules />
-      <Agents />
-      <Skills />
-      <Hooks />
       <Closing />
     </Layout>
   );

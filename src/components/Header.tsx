@@ -4,8 +4,8 @@ import gaiaLogo from "../assets/gaia-logo.svg";
 const GITHUB_URL = "https://github.com/gaia-react/gaia";
 
 const NAV_DESKTOP = [
-  { label: "Overview", href: "#why" },
-  { label: "Docs", href: "#quick-start" },
+  { label: "Docs", href: "/docs/" },
+  { label: "Roadmap", href: "/roadmap/" },
 ];
 
 export function Header() {
@@ -49,8 +49,8 @@ export function Header() {
         }}
       >
         <a
-          href="#hero"
-          aria-label="GAIA, back to top"
+          href="/"
+          aria-label="GAIA, home"
           style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
         >
           <img
