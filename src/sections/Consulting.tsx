@@ -118,7 +118,7 @@ const SKUS: SkuData[] = [
     icon: RetainerIcon,
     tagline: "Ongoing oversight as your project grows",
     price: "From $5,000/mo",
-    priceDetail: "ongoing · async-first",
+    priceDetail: "Ongoing · async-first",
     calEvent: "retainer-intro",
     deliverables: [
       "Async review of critical PRs (5–10/month)",
@@ -126,7 +126,7 @@ const SKUS: SkuData[] = [
       "Slack/Discord access with 24-hour response time",
       "Quarterly written health-check summary",
       "First-look access to GAIA roadmap features",
-      "10% discount on additional Foundation engagements",
+      "10% discount on additional Foundation or Migration engagements",
     ],
     tiers: [
       { price: "$5k/mo", description: "8 hours, basic PR review" },
@@ -175,7 +175,7 @@ function SkuCard({ sku }: { sku: SkuData }) {
       {/* Title + tagline */}
       <div>
         {sku.icon}
-        <h2 className="font-display font-light text-[1.75rem] text-fg mb-[0.375rem] tracking-[-0.02em] leading-[1.15]">
+        <h2 className="font-display font-light text-[1.75rem] text-fg mb-1.5 tracking-[-0.02em] leading-[1.15]">
           {sku.title}
         </h2>
         <p className="text-sm text-fg-dim leading-normal min-h-[calc(0.875rem*1.5*2)]">
@@ -202,11 +202,11 @@ function SkuCard({ sku }: { sku: SkuData }) {
       <div aria-hidden="true" className="border-t border-border" />
 
       {/* Feature list */}
-      <ul className="list-none p-0 m-0 flex flex-col gap-[0.625rem] flex-1">
+      <ul className="list-none p-0 m-0 flex flex-col gap-2.5 flex-1">
         {sku.deliverables.map((item) => (
           <li
             key={item}
-            className="flex gap-[0.625rem] text-sm text-fg-dim leading-[1.55]"
+            className="flex gap-2.5 text-sm text-fg-dim leading-[1.55]"
           >
             <span
               aria-hidden="true"
@@ -262,7 +262,7 @@ export default function Consulting() {
           <h1 className="font-display font-light text-[clamp(2.5rem,6vw,4rem)] text-fg mb-6 tracking-[-0.03em] leading-[1.1]">
             Work with the creator of GAIA
           </h1>
-          <p className="text-[clamp(1rem,2vw,1.1875rem)] text-fg-dim leading-[1.65] max-w-[38rem] mx-auto">
+          <p className="text-[clamp(1rem,2vw,1.1875rem)] text-fg-dim leading-[1.65] max-w-152 mx-auto">
             I built the GAIA Flash Framework in the 2000s, which was used to build 100k+ sites and by
             every major digital agency worldwide. GAIA React carries the same
             automation philosophy into the AI-native era.
@@ -293,16 +293,29 @@ export default function Consulting() {
       </Section>
 
       {/* SKU cards */}
-      <section
-        id="pricing"
-        className="pt-4 pb-16 scroll-mt-20"
-      >
+      <section id="pricing" className="pt-4 pb-16 scroll-mt-20">
         <div className="max-w-6xl mx-auto px-8">
           <div className="flex flex-col gap-6 md:grid md:grid-cols-2">
             {SKUS.map((sku) => (
               <SkuCard key={sku.title} sku={sku} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Custom inquiries */}
+      <section id="custom" className="pb-20 scroll-mt-20">
+        <div className="max-w-3xl mx-auto px-8 text-center">
+          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
+            Need something outside these engagements? Multi-month builds, custom integrations, or scope I haven&apos;t named here.{" "}
+            <a
+              href="mailto:stevensacks@gmail.com"
+              className="text-accent hover:text-accent-2 transition-colors duration-150 underline underline-offset-4 decoration-accent/40 hover:decoration-accent-2"
+            >
+              Get in touch
+            </a>
+            .
+          </p>
         </div>
       </section>
     </>
