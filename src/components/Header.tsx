@@ -6,6 +6,7 @@ const GITHUB_URL = "https://github.com/gaia-react/gaia";
 const NAV_DESKTOP = [
   { label: "Docs", href: "/docs/" },
   { label: "Roadmap", href: "/roadmap/" },
+  { label: "Teams", href: "/teams/" },
 ];
 
 export function Header() {
