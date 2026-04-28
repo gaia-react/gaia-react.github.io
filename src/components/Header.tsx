@@ -7,6 +7,7 @@ const NAV_DESKTOP = [
   { label: "Docs", href: "/docs/" },
   { label: "Roadmap", href: "/roadmap/" },
   { label: "Consulting", href: "/consulting/" },
+  { label: "About", href: "/about/" },
 ];
 
 export function Header() {
