@@ -1,7 +1,10 @@
 import type React from "react";
+import { useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 import { Section } from "../components/Section";
 
-const CAL_URL = "#cal";
+const CAL_USERNAME = "stevensacks";
+const CAL_NAMESPACE = "consulting";
 
 type SkuTier = { price: string; description: string };
 
@@ -11,6 +14,7 @@ type SkuData = {
   price: string;
   priceDetail: string;
   deliverables: string[];
+  calEvent: string;
   tiers?: SkuTier[];
   icon: React.ReactNode;
 };
@@ -71,6 +75,7 @@ const SKUS: SkuData[] = [
     tagline: "An outside opinion on your Claude workflow",
     price: "$5,000",
     priceDetail: "1 week · 100% async",
+    calEvent: "audit-intro",
     deliverables: [
       "Deep review of one repo: CLAUDE.md, rules, hooks, prompt patterns, last 50 PRs",
       "15–25 page written report: what's working, what's costing you, top 5 fixes ranked by ROI",
@@ -84,6 +89,7 @@ const SKUS: SkuData[] = [
     tagline: "Full GAIA setup for you",
     price: "$25,000",
     priceDetail: "2 weeks · 2–3 live sessions",
+    calEvent: "foundation-intro",
     deliverables: [
       "GAIA installed and customized for your repo: rules, hooks, skills, wiki templates matched to your stack",
       "Integration with your existing tooling (Sentry, Linear, etc.)",
@@ -98,6 +104,7 @@ const SKUS: SkuData[] = [
     tagline: "Take one messy repo from AI sprawl to GAIA-ready",
     price: "From $35,000",
     priceDetail: "3–4 weeks · async-first · scope-variable",
+    calEvent: "migrate-intro",
     deliverables: [
       "Hands-on refactor of one repo: pattern consolidation, AI-debt cleanup, type tightening",
       "GAIA installed on the refactored codebase: rules, hooks, skills, wiki templates",
@@ -112,6 +119,7 @@ const SKUS: SkuData[] = [
     tagline: "Ongoing oversight as your project grows",
     price: "From $5,000/mo",
     priceDetail: "ongoing · async-first",
+    calEvent: "retainer-intro",
     deliverables: [
       "Async review of critical PRs (5–10/month)",
       "Weekly 30-minute office hour (live)",
@@ -129,36 +137,51 @@ const SKUS: SkuData[] = [
 
 function CtaButton({
   href,
+  calLink,
   children,
   fullWidth,
 }: {
-  href: string;
+  href?: string;
+  calLink?: string;
   children: React.ReactNode;
   fullWidth?: boolean;
 }) {
+  const baseStyle: React.CSSProperties = {
+    display: fullWidth ? "flex" : "inline-flex",
+    width: fullWidth ? "100%" : undefined,
+    alignItems: "center",
+    justifyContent: fullWidth ? "center" : undefined,
+    backgroundColor: "var(--color-accent)",
+    color: "var(--color-bg)",
+    textDecoration: "none",
+    fontFamily: "var(--font-body)",
+    fontSize: "0.9375rem",
+    fontWeight: 500,
+    padding: "0.6875rem 1.25rem",
+    borderRadius: "0.5rem",
+    transition: "background-color 0.15s ease",
+    letterSpacing: "0.01em",
+    whiteSpace: "nowrap",
+    boxSizing: "border-box",
+  };
+
+  if (calLink) {
+    return (
+      <button
+        type="button"
+        data-cal-namespace={CAL_NAMESPACE}
+        data-cal-link={`${CAL_USERNAME}/${calLink}`}
+        data-cal-config='{"layout":"month_view"}'
+        style={{ ...baseStyle, border: "none", cursor: "pointer" }}
+        className="consulting-cta"
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
-    <a
-      href={href}
-      style={{
-        display: fullWidth ? "flex" : "inline-flex",
-        width: fullWidth ? "100%" : undefined,
-        alignItems: "center",
-        justifyContent: fullWidth ? "center" : undefined,
-        backgroundColor: "var(--color-accent)",
-        color: "var(--color-bg)",
-        textDecoration: "none",
-        fontFamily: "var(--font-body)",
-        fontSize: "0.9375rem",
-        fontWeight: 500,
-        padding: "0.6875rem 1.25rem",
-        borderRadius: "0.5rem",
-        transition: "background-color 0.15s ease",
-        letterSpacing: "0.01em",
-        whiteSpace: "nowrap",
-        boxSizing: "border-box",
-      }}
-      className="consulting-cta"
-    >
+    <a href={href} style={baseStyle} className="consulting-cta">
       {children}
     </a>
   );
@@ -232,7 +255,7 @@ function SkuCard({ sku }: { sku: SkuData }) {
       </div>
 
       {/* CTA — above the feature list */}
-      <CtaButton href={CAL_URL} fullWidth>
+      <CtaButton calLink={sku.calEvent} fullWidth>
         Book free intro call →
       </CtaButton>
 
@@ -335,6 +358,17 @@ const bodyTextStyle: React.CSSProperties = {
 };
 
 export default function Consulting() {
+  useEffect(() => {
+    (async () => {
+      const cal = await getCalApi({ namespace: CAL_NAMESPACE });
+      cal("ui", {
+        theme: "dark",
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    })();
+  }, []);
+
   return (
     <>
       {/* Hero */}
