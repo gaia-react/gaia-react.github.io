@@ -105,7 +105,7 @@ export default function Statusline() {
           </tr>
           <tr>
             <td className="pr-6 py-1 font-mono font-bold whitespace-nowrap align-top" style={{ color: '#ffd54f' }}>Run /update-deps</td>
-            <td className="py-1 text-fg align-top">shown when outdated packages detected</td>
+            <td className="py-1 text-fg align-top">shown when there are outdated packages</td>
           </tr>
           <tr>
             <td className="pr-6 py-1 font-mono font-bold whitespace-nowrap align-top" style={{ color: '#4dd0e1' }}>Run /update-gaia</td>
