@@ -15,13 +15,12 @@ type Group = {
 const GROUPS: Group[] = [
   {
     id: 'shipped',
-    label: 'Shipped',
+    label: 'Coming soon',
     color: '#7ec488',
     items: [
       {
-        title: 'Coming soon',
-        description:
-          'GAIA is currently in development. This section will be updated after v1.0 is released.',
+        title: '1.0 Release',
+        description: 'GAIA is currently in development.',
       },
     ],
   },
