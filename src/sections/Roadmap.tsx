@@ -118,46 +118,23 @@ function StatusGroup({ group }: { group: Group }) {
   return (
     <div
       id={group.id}
-      style={{
-        scrollMarginTop: '5rem',
-        borderLeft: `2px solid ${group.color}`,
-        paddingLeft: '1.5rem',
-      }}
+      className="scroll-mt-20 pl-6"
+      style={{ borderLeft: `2px solid ${group.color}` }}
     >
       <div className="flex items-baseline gap-3 mb-2">
         <span
           aria-hidden="true"
-          style={{
-            display: 'inline-block',
-            width: '0.625rem',
-            height: '0.625rem',
-            borderRadius: '50%',
-            backgroundColor: group.color,
-            transform: 'translateY(-1px)',
-          }}
+          className="inline-block w-[0.625rem] h-[0.625rem] rounded-full -translate-y-px shrink-0"
+          style={{ backgroundColor: group.color }}
         />
         <h3
-          className="group"
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontWeight: 300,
-            fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
-            letterSpacing: '-0.02em',
-            color: 'var(--color-fg)',
-            margin: 0,
-          }}
+          className="group font-display font-light text-[clamp(1.5rem,2.5vw,2rem)] tracking-[-0.02em] text-fg m-0"
         >
-          <a href={`#${group.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+          <a href={`#${group.id}`} className="text-inherit no-underline">
             {group.label}
             <span
               aria-hidden="true"
-              className="opacity-0 group-hover:opacity-40"
-              style={{
-                marginLeft: '0.4em',
-                fontSize: '0.6em',
-                transition: 'opacity 0.15s',
-                userSelect: 'none',
-              }}
+              className="opacity-0 group-hover:opacity-40 ml-[0.4em] text-[0.6em] transition-opacity duration-150 select-none"
             >
               #
             </span>
@@ -168,14 +145,7 @@ function StatusGroup({ group }: { group: Group }) {
         {group.items.map((item) => (
           <li key={item.title}>
             <h4
-              className="text-fg"
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontWeight: 600,
-                fontSize: '1rem',
-                letterSpacing: 0,
-                marginBottom: '0.25rem',
-              }}
+              className="text-fg font-body font-semibold text-base mb-1"
             >
               {item.title}
             </h4>
@@ -189,36 +159,15 @@ function StatusGroup({ group }: { group: Group }) {
 
 export default function Roadmap() {
   return (
-    <section style={{ paddingTop: '2rem', paddingBottom: '6rem' }}>
+    <section className="pt-8 pb-24">
       <div
         id="roadmap"
-        style={{
-          scrollMarginTop: '5rem',
-          maxWidth: '48rem',
-          margin: '0 auto',
-          padding: '0 2rem',
-        }}
+        className="scroll-mt-20 max-w-3xl mx-auto px-8"
       >
-        <h2
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontWeight: 300,
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
-            color: 'var(--color-fg)',
-            marginBottom: '0.5rem',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.15,
-          }}
-        >
+        <h2 className="font-display font-light text-[clamp(2rem,4vw,3rem)] text-fg mb-2 tracking-[-0.02em] leading-[1.15]">
           Roadmap
         </h2>
-        <p
-          style={{
-            fontSize: '0.875rem',
-            color: 'var(--color-fg-mute)',
-            marginBottom: '2rem',
-          }}
-        >
+        <p className="text-sm text-fg-mute mb-8">
           Last updated: 2026-04-28
         </p>
         <p className="text-fg-dim mb-12">

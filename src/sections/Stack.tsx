@@ -57,21 +57,12 @@ function LogoCard({ name, href, component, wide }: LogoEntry) {
       target="_blank"
       rel="noreferrer"
       aria-label={name}
-      className={`logo-card flex flex-col items-center justify-center gap-2 rounded-lg px-3 py-5 no-underline${wide ? ' col-span-2' : ''}`}
-      style={{
-        backgroundColor: 'var(--color-bg-elev)',
-        border: '1px solid var(--color-border)',
-        transition: 'border-color 0.15s ease, transform 0.15s ease',
-        minHeight: '5.5rem',
-      }}
+      className={`flex flex-col items-center justify-center gap-2 rounded-lg px-3 py-5 no-underline bg-bg-elev border border-border min-h-[5.5rem] transition-[border-color,transform] duration-150 hover:border-accent-soft${wide ? ' col-span-2' : ''}`}
     >
-      <div className="flex items-center justify-center" style={{ height: '2.5rem' }}>
+      <div className="flex items-center justify-center h-10">
         {component}
       </div>
-      <span
-        className="text-xs text-center leading-tight"
-        style={{ color: 'var(--color-fg-dim)' }}
-      >
+      <span className="text-xs text-center leading-tight text-fg-dim">
         {name}
       </span>
     </a>
@@ -86,10 +77,7 @@ type GroupProps = {
 function LogoGroup({ label, items }: GroupProps) {
   return (
     <div className="space-y-3">
-      <h3
-        className="text-xs font-semibold uppercase tracking-widest"
-        style={{ color: 'var(--color-fg-dim)' }}
-      >
+      <h3 className="text-xs font-semibold uppercase tracking-widest text-fg-dim">
         {label}
       </h3>
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
@@ -114,11 +102,6 @@ export default function Stack() {
         <LogoGroup label="Testing" items={TESTING} />
         <LogoGroup label="Code quality" items={CODE_QUALITY} />
       </div>
-      <style>{`
-        .logo-card:hover {
-          border-color: var(--color-accent-soft) !important;
-        }
-      `}</style>
     </Section>
   );
 }

@@ -8,14 +8,7 @@ export default function Hero() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-[-40%] md:top-[30%]"
-        style={{
-          width: '560px',
-          height: '420px',
-          background: 'rgba(217, 119, 87, 0.18)',
-          borderRadius: '50%',
-          filter: 'blur(90px)',
-        }}
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-[-40%] md:top-[30%] w-[560px] h-[420px] bg-[rgba(217,119,87,0.18)] rounded-full blur-[90px]"
       />
       <div className="max-w-2xl mx-auto text-center">
         <img

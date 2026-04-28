@@ -8,17 +8,9 @@ type LayoutProps = {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        backgroundColor: "var(--color-bg)",
-        color: "var(--color-fg)",
-      }}
-    >
+    <div className="flex flex-col min-h-screen bg-bg text-fg">
       <Header />
-      <main style={{ flex: 1 }}>{children}</main>
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
   );

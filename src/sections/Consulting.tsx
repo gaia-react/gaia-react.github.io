@@ -29,7 +29,7 @@ const iconBaseProps = {
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
   "aria-hidden": true,
-  style: { display: "block", marginBottom: "0.875rem" },
+  className: "block mb-[0.875rem]",
 };
 
 const AuditIcon = (
@@ -146,24 +146,7 @@ function CtaButton({
   children: React.ReactNode;
   fullWidth?: boolean;
 }) {
-  const baseStyle: React.CSSProperties = {
-    display: fullWidth ? "flex" : "inline-flex",
-    width: fullWidth ? "100%" : undefined,
-    alignItems: "center",
-    justifyContent: fullWidth ? "center" : undefined,
-    backgroundColor: "var(--color-accent)",
-    color: "var(--color-bg)",
-    textDecoration: "none",
-    fontFamily: "var(--font-body)",
-    fontSize: "0.9375rem",
-    fontWeight: 500,
-    padding: "0.6875rem 1.25rem",
-    borderRadius: "0.5rem",
-    transition: "background-color 0.15s ease",
-    letterSpacing: "0.01em",
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
-  };
+  const baseClass = `${fullWidth ? "flex w-full justify-center" : "inline-flex"} items-center bg-accent text-bg no-underline font-body text-[0.9375rem] font-medium py-[0.6875rem] px-5 rounded-lg transition-colors duration-150 tracking-[0.01em] whitespace-nowrap hover:bg-accent-2`;
 
   if (calLink) {
     return (
@@ -172,8 +155,7 @@ function CtaButton({
         data-cal-namespace={CAL_NAMESPACE}
         data-cal-link={`${CAL_USERNAME}/${calLink}`}
         data-cal-config='{"layout":"month_view"}'
-        style={{ ...baseStyle, border: "none", cursor: "pointer" }}
-        className="consulting-cta"
+        className={`${baseClass} border-none cursor-pointer`}
       >
         {children}
       </button>
@@ -181,7 +163,7 @@ function CtaButton({
   }
 
   return (
-    <a href={href} style={baseStyle} className="consulting-cta">
+    <a href={href} className={baseClass}>
       {children}
     </a>
   );
@@ -189,67 +171,24 @@ function CtaButton({
 
 function SkuCard({ sku }: { sku: SkuData }) {
   return (
-    <div
-      style={{
-        backgroundColor: "var(--color-bg-elev)",
-        border: "1px solid var(--color-border)",
-        borderRadius: "0.75rem",
-        padding: "1.75rem",
-        display: "flex",
-        flexDirection: "column",
-        gap: "1.25rem",
-      }}
-    >
+    <div className="bg-bg-elev border border-border rounded-xl p-7 flex flex-col gap-5">
       {/* Title + tagline */}
       <div>
         {sku.icon}
-        <h2
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 300,
-            fontSize: "1.75rem",
-            color: "var(--color-fg)",
-            marginBottom: "0.375rem",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.15,
-          }}
-        >
+        <h2 className="font-display font-light text-[1.75rem] text-fg mb-[0.375rem] tracking-[-0.02em] leading-[1.15]">
           {sku.title}
         </h2>
-        <p
-          style={{
-            fontSize: "0.875rem",
-            color: "var(--color-fg-dim)",
-            lineHeight: 1.5,
-            minHeight: "calc(0.875rem * 1.5 * 2)",
-          }}
-        >
+        <p className="text-sm text-fg-dim leading-normal min-h-[calc(0.875rem*1.5*2)]">
           {sku.tagline}
         </p>
       </div>
 
       {/* Price */}
       <div>
-        <p
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 300,
-            fontSize: "2rem",
-            color: "var(--color-fg)",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.1,
-            marginBottom: "0.25rem",
-          }}
-        >
+        <p className="font-display font-light text-[2rem] text-fg tracking-[-0.02em] leading-[1.1] mb-1">
           {sku.price}
         </p>
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.8125rem",
-            color: "var(--color-fg-mute)",
-          }}
-        >
+        <p className="font-body text-[0.8125rem] text-fg-mute">
           {sku.priceDetail}
         </p>
       </div>
@@ -260,43 +199,18 @@ function SkuCard({ sku }: { sku: SkuData }) {
       </CtaButton>
 
       {/* Divider */}
-      <div
-        aria-hidden="true"
-        style={{ borderTop: "1px solid var(--color-border)" }}
-      />
+      <div aria-hidden="true" className="border-t border-border" />
 
       {/* Feature list */}
-      <ul
-        style={{
-          listStyle: "none",
-          padding: 0,
-          margin: 0,
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.625rem",
-          flex: 1,
-        }}
-      >
+      <ul className="list-none p-0 m-0 flex flex-col gap-[0.625rem] flex-1">
         {sku.deliverables.map((item) => (
           <li
             key={item}
-            style={{
-              display: "flex",
-              gap: "0.625rem",
-              fontSize: "0.875rem",
-              color: "var(--color-fg-dim)",
-              lineHeight: 1.55,
-            }}
+            className="flex gap-[0.625rem] text-sm text-fg-dim leading-[1.55]"
           >
             <span
               aria-hidden="true"
-              style={{
-                color: "var(--color-accent)",
-                flexShrink: 0,
-                fontWeight: 600,
-                fontSize: "0.75rem",
-                marginTop: "0.15rem",
-              }}
+              className="text-accent shrink-0 font-semibold text-xs mt-[0.15rem]"
             >
               ✓
             </span>
@@ -307,40 +221,17 @@ function SkuCard({ sku }: { sku: SkuData }) {
 
       {/* Retainer tiers */}
       {sku.tiers && (
-        <div
-          style={{
-            borderTop: "1px solid var(--color-border)",
-            paddingTop: "1rem",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "0.75rem",
-              color: "var(--color-fg-mute)",
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              marginBottom: "0.5rem",
-              fontWeight: 500,
-            }}
-          >
+        <div className="border-t border-border pt-4">
+          <p className="text-xs text-fg-mute uppercase tracking-[0.08em] mb-2 font-medium">
             Two tiers
           </p>
-          <ul
-            style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.25rem",
-            }}
-          >
+          <ul className="list-none p-0 m-0 flex flex-col gap-1">
             {sku.tiers.map((tier) => (
               <li
                 key={tier.price}
-                style={{ fontSize: "0.8125rem", color: "var(--color-fg-dim)" }}
+                className="text-[0.8125rem] text-fg-dim"
               >
-                <strong style={{ color: "var(--color-fg)" }}>{tier.price}:</strong>{" "}
+                <strong className="text-fg">{tier.price}:</strong>{" "}
                 {tier.description}
               </li>
             ))}
@@ -350,12 +241,6 @@ function SkuCard({ sku }: { sku: SkuData }) {
     </div>
   );
 }
-
-const bodyTextStyle: React.CSSProperties = {
-  color: "var(--color-fg-dim)",
-  fontSize: "1.0625rem",
-  lineHeight: 1.7,
-};
 
 export default function Consulting() {
   useEffect(() => {
@@ -372,37 +257,12 @@ export default function Consulting() {
   return (
     <>
       {/* Hero */}
-      <section style={{ paddingTop: "5rem", paddingBottom: "3rem" }}>
-        <div
-          style={{
-            maxWidth: "48rem",
-            margin: "0 auto",
-            padding: "0 2rem",
-            textAlign: "center",
-          }}
-        >
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 300,
-              fontSize: "clamp(2.5rem, 6vw, 4rem)",
-              color: "var(--color-fg)",
-              marginBottom: "1.5rem",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-            }}
-          >
+      <section className="pt-20 pb-12">
+        <div className="max-w-3xl mx-auto px-8 text-center">
+          <h1 className="font-display font-light text-[clamp(2.5rem,6vw,4rem)] text-fg mb-6 tracking-[-0.03em] leading-[1.1]">
             Work with the creator of GAIA
           </h1>
-          <p
-            style={{
-              fontSize: "clamp(1rem, 2vw, 1.1875rem)",
-              color: "var(--color-fg-dim)",
-              lineHeight: 1.65,
-              maxWidth: "38rem",
-              margin: "0 auto",
-            }}
-          >
+          <p className="text-[clamp(1rem,2vw,1.1875rem)] text-fg-dim leading-[1.65] max-w-[38rem] mx-auto">
             I built the GAIA Flash Framework in the 2000s, which was used to build 100k+ sites and by
             every major digital agency worldwide. GAIA React carries the same
             automation philosophy into the AI-native era.
@@ -413,19 +273,19 @@ export default function Consulting() {
       </section>
 
       {/* Skip to pricing — doubles as visual break between hero and pitch */}
-      <div style={{ textAlign: "center", padding: "0 2rem" }}>
+      <div className="text-center px-8">
         <CtaButton href="#pricing">See engagement options ↓</CtaButton>
       </div>
 
       {/* Lead-in */}
       <Section id="intro">
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-          <p style={bodyTextStyle}>
+        <div className="flex flex-col gap-5">
+          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
             Your team started using Claude Code. Now everyone's doing it differently:
             inconsistent patterns, ballooning token costs, and AI-generated problems
             that shouldn't exist, caught in code review, or worse, production.
           </p>
-          <p style={bodyTextStyle}>
+          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
             Without guardrails, this compounds into technical debt and bugs
             that ship. I help teams and individuals fix the workflow before it gets there.
           </p>
@@ -435,42 +295,16 @@ export default function Consulting() {
       {/* SKU cards */}
       <section
         id="pricing"
-        style={{
-          paddingTop: "1rem",
-          paddingBottom: "4rem",
-          scrollMarginTop: "5rem",
-        }}
+        className="pt-4 pb-16 scroll-mt-20"
       >
-        <div
-          style={{
-            maxWidth: "72rem",
-            margin: "0 auto",
-            padding: "0 2rem",
-          }}
-        >
-          <div
-            className="sku-grid"
-            style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
-          >
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="flex flex-col gap-6 md:grid md:grid-cols-2">
             {SKUS.map((sku) => (
               <SkuCard key={sku.title} sku={sku} />
             ))}
           </div>
         </div>
       </section>
-
-
-      <style>{`
-        @media (min-width: 768px) {
-          .sku-grid {
-            display: grid !important;
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        .consulting-cta:hover {
-          background-color: var(--color-accent-2) !important;
-        }
-      `}</style>
     </>
   );
 }

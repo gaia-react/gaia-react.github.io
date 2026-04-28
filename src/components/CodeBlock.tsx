@@ -6,34 +6,10 @@ type CodeBlockProps = {
 
 export function CodeBlock({ title, language: _language, children }: CodeBlockProps) {
   return (
-    <div
-      style={{
-        borderRadius: "0.5rem",
-        border: "1px solid var(--color-border)",
-        overflow: "hidden",
-        marginBottom: "1.5rem",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "var(--color-bg-elev-2)",
-          padding: "0.5rem 1rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "0.5rem",
-          borderBottom: "1px solid var(--color-border)",
-          minHeight: "2.25rem",
-        }}
-      >
+    <div className="rounded-lg border border-border overflow-hidden mb-6">
+      <div className="bg-bg-elev-2 py-2 px-4 flex items-center gap-2 border-b border-border min-h-[2.25rem]">
         {title ? (
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.75rem",
-              color: "var(--color-fg-dim)",
-              letterSpacing: "0.05em",
-            }}
-          >
+          <span className="font-mono text-xs text-fg-dim tracking-[0.05em]">
             {title}
           </span>
         ) : (
@@ -44,19 +20,7 @@ export function CodeBlock({ title, language: _language, children }: CodeBlockPro
           </>
         )}
       </div>
-      <pre
-        style={{
-          backgroundColor: "var(--color-bg-elev)",
-          color: "var(--color-fg)",
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.8125rem",
-          lineHeight: 1.65,
-          padding: "1.25rem 1.5rem",
-          margin: 0,
-          overflowX: "auto",
-          whiteSpace: "pre",
-        }}
-      >
+      <pre className="bg-bg-elev text-fg font-mono text-[0.8125rem] leading-[1.65] py-5 px-6 m-0 overflow-x-auto whitespace-pre">
         <code>{children}</code>
       </pre>
     </div>

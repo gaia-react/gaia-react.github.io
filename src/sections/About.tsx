@@ -1,4 +1,3 @@
-import type React from "react";
 import { Section } from "../components/Section";
 
 type WorkItem = {
@@ -60,75 +59,26 @@ const LINKS = [
   { label: "Email", href: "mailto:stevensacks@gmail.com", icon: EmailIcon },
 ];
 
-const bodyTextStyle: React.CSSProperties = {
-  color: "var(--color-fg-dim)",
-  fontSize: "1.0625rem",
-  lineHeight: 1.7,
-};
-
 export default function About() {
   return (
     <>
       {/* Hero */}
-      <section style={{ paddingTop: "5rem", paddingBottom: "1.5rem" }}>
-        <div
-          style={{
-            maxWidth: "48rem",
-            margin: "0 auto",
-            padding: "0 2rem",
-            textAlign: "center",
-          }}
-        >
+      <section className="pt-20 pb-6">
+        <div className="max-w-3xl mx-auto px-8 text-center">
           <img
             src="/steven.jpg"
             alt="Portrait of Steven Sacks"
             width={144}
             height={144}
-            style={{
-              width: "9rem",
-              height: "9rem",
-              borderRadius: "50%",
-              objectFit: "cover",
-              margin: "0 auto 2rem",
-              border: "1px solid var(--color-border)",
-              boxShadow: "0 0 0 6px var(--color-bg-elev)",
-            }}
+            className="w-36 h-36 rounded-full object-cover mx-auto mb-8 border border-border shadow-[0_0_0_6px_var(--color-bg-elev)]"
           />
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 300,
-              fontSize: "clamp(2.5rem, 6vw, 4rem)",
-              color: "var(--color-fg)",
-              marginBottom: "1.5rem",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-            }}
-          >
+          <h1 className="font-display font-light text-[clamp(2.5rem,6vw,4rem)] text-fg mb-6 tracking-[-0.03em] leading-[1.1]">
             Steven Sacks
           </h1>
-          <p
-            style={{
-              fontSize: "clamp(1rem, 2vw, 1.1875rem)",
-              color: "var(--color-fg-dim)",
-              lineHeight: 1.65,
-              maxWidth: "38rem",
-              margin: "0 auto 1.75rem",
-            }}
-          >
+          <p className="text-[clamp(1rem,2vw,1.1875rem)] text-fg-dim leading-[1.65] max-w-[38rem] mx-auto mb-7">
             I build production software with AI agents.
           </p>
-          <ul
-            style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              display: "flex",
-              gap: "1.5rem",
-              flexWrap: "wrap",
-              justifyContent: "center",
-            }}
-          >
+          <ul className="list-none p-0 m-0 flex gap-6 flex-wrap justify-center">
             {LINKS.map((link) => {
               const external = link.href.startsWith("http");
               return (
@@ -137,18 +87,7 @@ export default function About() {
                     href={link.href}
                     target={external ? "_blank" : undefined}
                     rel={external ? "noopener noreferrer" : undefined}
-                    style={{
-                      color: "var(--color-fg-dim)",
-                      textDecoration: "none",
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.9375rem",
-                      letterSpacing: "0.02em",
-                      transition: "color 0.15s ease",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.4375rem",
-                    }}
-                    className="about-link"
+                    className="text-fg-dim no-underline font-body text-[0.9375rem] tracking-[0.02em] transition-colors duration-150 inline-flex items-center gap-[0.4375rem] hover:text-accent"
                   >
                     {link.icon}
                     {link.label}
@@ -162,8 +101,8 @@ export default function About() {
 
       {/* Throughline */}
       <Section id="background" paddingTop="3rem" paddingBottom="3rem">
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-          <p style={bodyTextStyle}>
+        <div className="flex flex-col gap-5">
+          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
             I've been building for the web since Flash was king. In the 2000s I
             authored the GAIA Flash Framework, the most popular open source
             Flash framework of its era, used to build over 100,000 websites and
@@ -172,7 +111,7 @@ export default function About() {
             setup, and a library of powerful, easy-to-use solutions for the
             problems every Flash developer ran into.
           </p>
-          <p style={bodyTextStyle}>
+          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
             Now I'm doing it again with AI agents. GAIA React is the spiritual successor
             to GAIA Flash: a comprehensive starting point for professional
             React projects with Claude Code integration built in. Same
@@ -183,55 +122,21 @@ export default function About() {
 
       {/* Selected work */}
       <Section id="work" title="Selected work" paddingTop="3rem" paddingBottom="3rem">
-        <ul
-          style={{
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
-            display: "flex",
-            flexDirection: "column",
-            gap: "1.75rem",
-          }}
-        >
+        <ul className="list-none p-0 m-0 flex flex-col gap-7">
           {SELECTED_WORK.map((item) => (
             <li key={`${item.company}-${item.period}`}>
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  alignItems: "baseline",
-                  gap: "0.5rem 0.875rem",
-                  marginBottom: "0.4rem",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.8125rem",
-                    color: "var(--color-fg-mute)",
-                    letterSpacing: "0.04em",
-                    textTransform: "uppercase",
-                  }}
-                >
+              <div className="flex flex-wrap items-baseline gap-y-2 gap-x-[0.875rem] mb-[0.4rem]">
+                <span className="font-body text-[0.8125rem] text-fg-mute tracking-[0.04em] uppercase">
                   {item.period}
                 </span>
-                <span
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 400,
-                    fontSize: "1.25rem",
-                    color: "var(--color-fg)",
-                    letterSpacing: "-0.01em",
-                    lineHeight: 1.25,
-                  }}
-                >
+                <span className="font-display font-normal text-xl text-fg tracking-[-0.01em] leading-tight">
                   {item.role},{" "}
-                  <span style={{ color: "var(--color-accent)" }}>
+                  <span className="text-accent">
                     {item.company}
                   </span>
                 </span>
               </div>
-              <p style={{ ...bodyTextStyle, fontSize: "1rem" }}>{item.note}</p>
+              <p className="text-fg-dim text-base leading-[1.7]">{item.note}</p>
             </li>
           ))}
         </ul>
@@ -239,13 +144,13 @@ export default function About() {
 
       {/* Why this, now */}
       <Section id="why-now" title="Why this, now" paddingTop="3rem" paddingBottom="3rem">
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-          <p style={bodyTextStyle}>
+        <div className="flex flex-col gap-5">
+          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
             The AI tooling landscape today looks like Flash development before
             the framework era: powerful tools, no shared structure, every team
             reinventing the same patterns.
           </p>
-          <p style={bodyTextStyle}>
+          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
             I've been here before. The fix the first time was structure: a
             framework that codified the patterns worth keeping and made the
             rest unnecessary. GAIA React is that, applied to Claude Code. The
@@ -257,44 +162,16 @@ export default function About() {
       </Section>
 
       {/* CTA */}
-      <section style={{ paddingTop: "1rem", paddingBottom: "5rem" }}>
-        <div
-          style={{
-            maxWidth: "48rem",
-            margin: "0 auto",
-            padding: "0 2rem",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+      <section className="pt-4 pb-20">
+        <div className="max-w-3xl mx-auto px-8 flex justify-center">
           <a
             href="/consulting/"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              backgroundColor: "var(--color-accent)",
-              color: "var(--color-bg)",
-              textDecoration: "none",
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              fontWeight: 500,
-              padding: "0.6875rem 1.25rem",
-              borderRadius: "0.5rem",
-              letterSpacing: "0.01em",
-              transition: "background-color 0.15s ease",
-              whiteSpace: "nowrap",
-            }}
-            className="about-cta"
+            className="inline-flex items-center bg-accent text-bg no-underline font-body text-[0.9375rem] font-medium py-[0.6875rem] px-5 rounded-lg tracking-[0.01em] transition-colors duration-150 whitespace-nowrap hover:bg-accent-2"
           >
             See engagement options →
           </a>
         </div>
       </section>
-
-      <style>{`
-        .about-link:hover { color: var(--color-accent) !important; }
-        .about-cta:hover { background-color: var(--color-accent-2) !important; }
-      `}</style>
     </>
   );
 }

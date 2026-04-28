@@ -20,37 +20,17 @@ export function Section({ id, title, children, className, paddingTop = "4rem", p
     >
       <div
         id={id}
-        style={{
-          scrollMarginTop: "5rem",
-          maxWidth: "48rem",
-          margin: "0 auto",
-          padding: "0 2rem",
-        }}
+        className="[scroll-margin-top:5rem] max-w-[48rem] mx-auto px-8"
       >
         {title && (
           <h2
-            className="group"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 300,
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              color: "var(--color-fg)",
-              marginBottom: "2.5rem",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.15,
-            }}
+            className="group font-display font-light text-[clamp(2rem,4vw,3rem)] text-fg mb-10 tracking-[-0.02em] leading-[1.15]"
           >
-            <a href={`#${id}`} style={{ color: "inherit", textDecoration: "none" }}>
+            <a href={`#${id}`} className="text-inherit no-underline">
               {title}
               <span
                 aria-hidden="true"
-                className="opacity-0 group-hover:opacity-40"
-                style={{
-                  marginLeft: "0.4em",
-                  fontSize: "0.6em",
-                  transition: "opacity 0.15s",
-                  userSelect: "none",
-                }}
+                className="opacity-0 group-hover:opacity-40 ml-[0.4em] text-[0.6em] transition-opacity duration-150 select-none"
               >
                 #
               </span>
