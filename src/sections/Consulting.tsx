@@ -37,6 +37,15 @@ const AuditIcon = (
   </svg>
 );
 
+const MigrateIcon = (
+  <svg {...iconBaseProps}>
+    <path d="m16 3 4 4-4 4" />
+    <path d="M20 7H4" />
+    <path d="m8 21-4-4 4-4" />
+    <path d="M4 17h16" />
+  </svg>
+);
+
 const FoundationIcon = (
   <svg {...iconBaseProps}>
     <path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2" />
@@ -72,15 +81,29 @@ const SKUS: SkuData[] = [
   {
     title: "Foundation",
     icon: FoundationIcon,
-    tagline: "Full GAIA setup for your team",
+    tagline: "Full GAIA setup for you",
     price: "$25,000",
     priceDetail: "2 weeks · 2–3 live sessions",
     deliverables: [
       "GAIA installed and customized for your repo: rules, hooks, skills, wiki templates matched to your stack",
       "Integration with your existing tooling (Sentry, Linear, etc.)",
       "2–3 live sessions: kickoff, mid-foundation demo, handoff training (all recorded)",
-      "Written runbook customized to your team",
+      "Written runbook customized to you",
       "30 days of post-delivery email support",
+    ],
+  },
+  {
+    title: "Migrate",
+    icon: MigrateIcon,
+    tagline: "Take one messy repo from AI sprawl to GAIA-ready",
+    price: "From $35,000",
+    priceDetail: "3–4 weeks · async-first · scope-variable",
+    deliverables: [
+      "Hands-on refactor of one repo: pattern consolidation, AI-debt cleanup, type tightening",
+      "GAIA installed on the refactored codebase: rules, hooks, skills, wiki templates",
+      "Commit-by-commit migration log so you can review the cleanup",
+      "Written remediation report: what was changed, why, and what to watch for",
+      "Optional 30-minute handoff call within 2 weeks of delivery",
     ],
   },
   {
@@ -107,12 +130,10 @@ const SKUS: SkuData[] = [
 function CtaButton({
   href,
   children,
-  large,
   fullWidth,
 }: {
   href: string;
   children: React.ReactNode;
-  large?: boolean;
   fullWidth?: boolean;
 }) {
   return (
@@ -127,17 +148,16 @@ function CtaButton({
         color: "var(--color-bg)",
         textDecoration: "none",
         fontFamily: "var(--font-body)",
-        fontSize: large ? "1rem" : "0.9375rem",
+        fontSize: "0.9375rem",
         fontWeight: 500,
-        padding: large ? "0.75rem 1.5rem" : "0.6875rem 1.25rem",
+        padding: "0.6875rem 1.25rem",
         borderRadius: "0.5rem",
         transition: "background-color 0.15s ease",
         letterSpacing: "0.01em",
-        whiteSpace: large ? "normal" : "nowrap",
-        textAlign: large ? "center" : undefined,
+        whiteSpace: "nowrap",
         boxSizing: "border-box",
       }}
-      className="teams-cta"
+      className="consulting-cta"
     >
       {children}
     </a>
@@ -213,7 +233,7 @@ function SkuCard({ sku }: { sku: SkuData }) {
 
       {/* CTA — above the feature list */}
       <CtaButton href={CAL_URL} fullWidth>
-        Book intro call →
+        Book free intro call →
       </CtaButton>
 
       {/* Divider */}
@@ -314,7 +334,7 @@ const bodyTextStyle: React.CSSProperties = {
   lineHeight: 1.7,
 };
 
-export default function Teams() {
+export default function Consulting() {
   return (
     <>
       {/* Hero */}
@@ -346,37 +366,47 @@ export default function Teams() {
               color: "var(--color-fg-dim)",
               lineHeight: 1.65,
               maxWidth: "38rem",
-              margin: "0 auto 2.5rem",
+              margin: "0 auto",
             }}
           >
-            I built the GAIA Flash Framework in the 2000s, used to build 100k+ sites and by
-            every major digital agency worldwide. GAIA React carries that automation
-            philosophy into the AI-native era. Now I help teams adopt it.
+            I built the GAIA Flash Framework in the 2000s, which was used to build 100k+ sites and by
+            every major digital agency worldwide. GAIA React carries the same
+            automation philosophy into the AI-native era.
+              <br/><br/>
+              Now, I help teams and individuals adopt it.
           </p>
-          <CtaButton href={CAL_URL} large>
-            Book a free 20-minute intro call →
-          </CtaButton>
         </div>
       </section>
+
+      {/* Skip to pricing — doubles as visual break between hero and pitch */}
+      <div style={{ textAlign: "center", padding: "0 2rem" }}>
+        <CtaButton href="#pricing">See engagement options ↓</CtaButton>
+      </div>
 
       {/* Lead-in */}
       <Section id="intro">
         <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
           <p style={bodyTextStyle}>
-            Your team adopted Claude Code. Now everyone's using it differently:
-            inconsistent patterns, ballooning token costs, code review catching
-            AI-generated problems that shouldn't exist.
+            Your team started using Claude Code. Now everyone's doing it differently:
+            inconsistent patterns, ballooning token costs, and AI-generated problems
+            that shouldn't exist, caught in code review, or worse, production.
           </p>
-          <p style={bodyTextStyle}>GAIA fixes the workflow. I help you adopt it.</p>
           <p style={bodyTextStyle}>
-            Three engagement types, all async-first. No calendar hostage
-            situations.
+            Without guardrails, this compounds into technical debt and bugs
+            that ship. I help teams and individuals fix the workflow before it gets there.
           </p>
         </div>
       </Section>
 
       {/* SKU cards */}
-      <section style={{ paddingTop: "1rem", paddingBottom: "4rem" }}>
+      <section
+        id="pricing"
+        style={{
+          paddingTop: "1rem",
+          paddingBottom: "4rem",
+          scrollMarginTop: "5rem",
+        }}
+      >
         <div
           style={{
             maxWidth: "72rem",
@@ -400,10 +430,10 @@ export default function Teams() {
         @media (min-width: 768px) {
           .sku-grid {
             display: grid !important;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
           }
         }
-        .teams-cta:hover {
+        .consulting-cta:hover {
           background-color: var(--color-accent-2) !important;
         }
       `}</style>

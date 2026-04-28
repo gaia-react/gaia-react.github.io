@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Layout } from './components/Layout';
-import Teams from './sections/Teams';
+import Consulting from './sections/Consulting';
 
-export default function TeamsApp() {
+export default function ConsultingApp() {
   useEffect(() => {
     const { hash } = window.location;
     if (hash) {
@@ -13,7 +13,7 @@ export default function TeamsApp() {
 
   return (
     <Layout>
-      <Teams />
+      <Consulting />
     </Layout>
   );
 }
