@@ -6,6 +6,7 @@ import Rules from './sections/Rules';
 import Agents from './sections/Agents';
 import Skills from './sections/Skills';
 import Hooks from './sections/Hooks';
+import Statusline from './sections/Statusline';
 
 export default function DocsApp() {
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function DocsApp() {
       <Agents />
       <Skills />
       <Hooks />
+      <Statusline />
     </Layout>
   );
 }
