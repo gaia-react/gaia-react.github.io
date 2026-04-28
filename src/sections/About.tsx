@@ -56,7 +56,7 @@ const EmailIcon = (
 const LINKS = [
   { label: "GitHub", href: "https://github.com/stevensacks", icon: GitHubIcon },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/stevensacks/", icon: LinkedInIcon },
-  { label: "Email", href: "mailto:stevensacks@gmail.com", icon: EmailIcon },
+  { label: "Email", href: "mailto:steven@gaiareact.com", icon: EmailIcon },
 ];
 
 export default function About() {
@@ -160,18 +160,6 @@ export default function About() {
           </p>
         </div>
       </Section>
-
-      {/* CTA */}
-      <section className="pt-4 pb-20">
-        <div className="max-w-3xl mx-auto px-8 flex justify-center">
-          <a
-            href="/consulting/"
-            className="inline-flex items-center bg-accent text-bg no-underline font-body text-[0.9375rem] font-medium py-[0.6875rem] px-5 rounded-lg tracking-[0.01em] transition-colors duration-150 whitespace-nowrap hover:bg-accent-2"
-          >
-            See engagement options →
-          </a>
-        </div>
-      </section>
     </>
   );
 }

@@ -309,7 +309,7 @@ export default function Consulting() {
           <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom integrations, or scope I haven&apos;t named here.{" "}
             <a
-              href="mailto:stevensacks@gmail.com"
+              href="mailto:steven@gaiareact.com"
               className="text-accent hover:text-accent-2 transition-colors duration-150 underline underline-offset-4 decoration-accent/40 hover:decoration-accent-2"
             >
               Get in touch
