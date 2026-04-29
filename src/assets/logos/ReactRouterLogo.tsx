@@ -1,12 +1,15 @@
 import type {FC, SVGProps} from 'react';
 
-type ReactRouterLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type ReactRouterLogoProperties = Omit<
+  SVGProps<SVGSVGElement>,
+  'height' | 'width'
+> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const ReactRouterLogo: FC<ReactRouterLogoProps> = ({
+const ReactRouterLogo: FC<ReactRouterLogoProperties> = ({
   height,
   width,
-  ...props
+  ...properties
 }) => {
   const adjustedWidth = height ? height * (602 / 360) : (width ?? 602);
   const adjustedHeight = width ? width * (360 / 602) : (height ?? 360);
@@ -17,7 +20,7 @@ const ReactRouterLogo: FC<ReactRouterLogoProps> = ({
       version="1.1"
       viewBox="0 0 602 360"
       width={adjustedWidth}
-      {...props}
+      {...properties}
     >
       <path
         d="M481.36 180C481.36 196.572 474.639 211.572 463.757 222.42C452.875 233.28 437.845 240 421.24 240C404.635 240 389.605 246.708 378.735 257.568C367.853 268.428 361.12 283.428 361.12 300C361.12 316.572 354.399 331.572 343.517 342.42C332.635 353.28 317.605 360 301 360C284.395 360 269.365 353.28 258.495 342.42C247.613 331.572 240.88 316.572 240.88 300C240.88 283.428 247.613 268.428 258.495 257.568C269.365 246.708 284.395 240 301 240C317.605 240 332.635 233.28 343.517 222.42C354.399 211.572 361.12 196.572 361.12 180C361.12 146.856 334.21 120 301 120C284.395 120 269.365 113.28 258.495 102.42C247.613 91.572 240.88 76.572 240.88 60C240.88 43.428 247.613 28.428 258.495 17.568C269.365 6.708 284.395 0 301 0C334.21 0 361.12 26.856 361.12 60C361.12 76.572 367.853 91.572 378.735 102.42C389.605 113.28 404.635 120 421.24 120C454.45 120 481.36 146.856 481.36 180Z"

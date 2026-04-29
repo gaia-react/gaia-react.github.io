@@ -1,9 +1,9 @@
 import type {FC, SVGProps} from 'react';
 
-type MSWLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type MSWLogoProperties = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const MSWLogo: FC<MSWLogoProps> = ({height, width, ...props}) => {
+const MSWLogo: FC<MSWLogoProperties> = ({height, width, ...properties}) => {
   const adjustedWidth = height ?? width ?? 122;
   const adjustedHeight = width ?? height ?? 122;
 
@@ -14,7 +14,7 @@ const MSWLogo: FC<MSWLogoProps> = ({height, width, ...props}) => {
       viewBox="0 0 122 122"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
         <g

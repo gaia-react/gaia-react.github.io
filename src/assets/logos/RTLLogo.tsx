@@ -1,9 +1,9 @@
 import type {FC, SVGProps} from 'react';
 
-type RTLLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type RTLLogoProperties = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const RTLLogo: FC<RTLLogoProps> = ({height, width, ...props}) => {
+const RTLLogo: FC<RTLLogoProperties> = ({height, width, ...properties}) => {
   const adjustedWidth = height ?? width ?? 256;
   const adjustedHeight = width ?? height ?? 256;
 
@@ -13,7 +13,7 @@ const RTLLogo: FC<RTLLogoProps> = ({height, width, ...props}) => {
       viewBox="0 0 256 256"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <defs>
         <radialGradient

@@ -1,9 +1,13 @@
 import type {FC, SVGProps} from 'react';
 
-type VitestLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type VitestLogoProperties = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const VitestLogo: FC<VitestLogoProps> = ({height, width, ...props}) => {
+const VitestLogo: FC<VitestLogoProperties> = ({
+  height,
+  width,
+  ...properties
+}) => {
   const adjustedWidth = height ?? width ?? 165;
   const adjustedHeight = width ?? height ?? 165;
 
@@ -14,7 +18,7 @@ const VitestLogo: FC<VitestLogoProps> = ({height, width, ...props}) => {
       viewBox="0 0 165 165"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <path
         d="M120.831 57.2543L84.693 109.505C84.3099 110.059 83.7558 110.474 83.1148 110.687C82.4738 110.9 81.7809 110.898 81.1412 110.684C80.5015 110.469 79.95 110.052 79.5702 109.497C79.1905 108.941 79.0032 108.277 79.037 107.606L80.4833 78.7582L57.1343 73.8064C56.6353 73.7007 56.1704 73.474 55.7807 73.1465C55.391 72.8191 55.0885 72.4009 54.9001 71.929C54.7117 71.4571 54.6432 70.9461 54.7006 70.4412C54.758 69.9364 54.9395 69.4532 55.2291 69.0345L91.3675 16.7837C91.7507 16.2294 92.3048 15.8145 92.9458 15.6018C93.5869 15.3891 94.2798 15.3902 94.9196 15.6051C95.5593 15.8199 96.1109 16.2367 96.4906 16.7923C96.8703 17.3478 97.0575 18.0117 97.0236 18.6833L95.5773 47.5314L118.926 52.4828C119.425 52.5885 119.89 52.8152 120.28 53.1426C120.67 53.4701 120.972 53.8883 121.16 54.3602C121.349 54.8321 121.417 55.3431 121.36 55.8479C121.303 56.3528 121.121 56.836 120.831 57.2547L120.831 57.2543Z"

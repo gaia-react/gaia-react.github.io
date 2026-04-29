@@ -1,9 +1,16 @@
 import type {FC, SVGProps} from 'react';
 
-type StylelintLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type StylelintLogoProperties = Omit<
+  SVGProps<SVGSVGElement>,
+  'height' | 'width'
+> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const StylelintLogo: FC<StylelintLogoProps> = ({height, width, ...props}) => {
+const StylelintLogo: FC<StylelintLogoProperties> = ({
+  height,
+  width,
+  ...properties
+}) => {
   const adjustedWidth = height ?? width ?? 256;
   const adjustedHeight = width ?? height ?? 256;
 
@@ -15,7 +22,7 @@ const StylelintLogo: FC<StylelintLogoProps> = ({height, width, ...props}) => {
       viewBox="0 -5.5 256 256"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <g>
         <path

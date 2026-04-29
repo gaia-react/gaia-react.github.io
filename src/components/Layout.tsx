@@ -1,17 +1,15 @@
-import type { ReactNode } from "react";
-import { Footer } from "./Footer";
-import { Header } from "./Header";
+import type {ReactNode} from 'react';
+import {Footer} from './Footer';
+import {Header} from './Header';
 
-type LayoutProps = {
+type LayoutProperties = {
   children: ReactNode;
 };
 
-export function Layout({ children }: LayoutProps) {
-  return (
-    <div className="flex flex-col min-h-screen bg-bg text-fg">
-      <Header />
-      <main className="flex-1">{children}</main>
-      <Footer />
-    </div>
-  );
-}
+export const Layout = ({children}: LayoutProperties) => (
+  <div className="bg-canvas text-ink flex min-h-screen flex-col">
+    <Header />
+    <main className="flex-1">{children}</main>
+    <Footer />
+  </div>
+);

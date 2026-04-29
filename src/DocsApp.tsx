@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
-import { Layout } from './components/Layout';
-import Commands from './sections/Commands';
-import Rules from './sections/Rules';
-import Agents from './sections/Agents';
-import Skills from './sections/Skills';
-import Hooks from './sections/Hooks';
-import Statusline from './sections/Statusline';
-import GitHub from './sections/GitHub';
+import {useEffect} from 'react';
+import {Layout} from './components/Layout';
+import Agents from './sections/docs/Agents';
+import Commands from './sections/docs/Commands';
+import GitHub from './sections/docs/GitHub';
+import Hooks from './sections/docs/Hooks';
+import Rules from './sections/docs/Rules';
+import Skills from './sections/docs/Skills';
+import Statusline from './sections/docs/Statusline';
 
-export default function DocsApp() {
+const DocsApp = () => {
   useEffect(() => {
-    const { hash } = window.location;
+    const {hash} = window.location;
+
     if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+      const element = document.querySelector(hash);
+      if (element)
+        element.scrollIntoView({behavior: 'instant' as ScrollBehavior});
     }
   }, []);
 
@@ -28,4 +30,6 @@ export default function DocsApp() {
       <GitHub />
     </Layout>
   );
-}
+};
+
+export default DocsApp;

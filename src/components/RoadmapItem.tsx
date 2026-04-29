@@ -1,33 +1,35 @@
-type RoadmapState = 'shipped' | 'coming' | 'future';
+import {twJoin} from 'tailwind-merge';
 
-type RoadmapItemProps = {
-  state: RoadmapState;
-  label: string;
+type RoadmapItemProperties = {
   badge?: string;
+  label: string;
+  state: RoadmapState;
 };
+
+type RoadmapState = 'coming' | 'future' | 'shipped';
 
 const stateConfig: Record<
   RoadmapState,
-  { dotClass: string; defaultBadge: string; badgeClass: string }
+  {badgeClass: string; defaultBadge: string; dotClass: string}
 > = {
-  shipped: {
-    dotClass: 'bg-secondary',
-    defaultBadge: 'Shipped',
-    badgeClass: 'bg-secondary/15 text-secondary-soft border-secondary-2',
-  },
   coming: {
-    dotClass: 'bg-warn',
-    defaultBadge: 'Coming soon',
     badgeClass: 'bg-warn/15 text-warn-soft border-warn-2',
+    defaultBadge: 'Coming soon',
+    dotClass: 'bg-warn',
   },
   future: {
-    dotClass: 'bg-fg-mute',
+    badgeClass: 'bg-surface-raised text-muted border-line',
     defaultBadge: 'Future',
-    badgeClass: 'bg-bg-elev-2 text-fg-mute border-border',
+    dotClass: 'bg-muted',
+  },
+  shipped: {
+    badgeClass: 'bg-secondary/15 text-secondary-soft border-secondary-2',
+    defaultBadge: 'Shipped',
+    dotClass: 'bg-secondary',
   },
 };
 
-export function RoadmapItem({ state, label, badge }: RoadmapItemProps) {
+export const RoadmapItem = ({badge, label, state}: RoadmapItemProperties) => {
   const config = stateConfig[state];
   const badgeText = badge ?? config.defaultBadge;
 
@@ -35,14 +37,17 @@ export function RoadmapItem({ state, label, badge }: RoadmapItemProps) {
     <div className="flex items-center gap-3 py-2">
       <span
         aria-hidden="true"
-        className={`w-[10px] h-[10px] rounded-full shrink-0 ${config.dotClass}`}
+        className={twJoin('size-2.5 shrink-0 rounded-full', config.dotClass)}
       />
-      <span className="text-fg flex-1">{label}</span>
+      <span className="text-ink flex-1">{label}</span>
       <span
-        className={`font-mono uppercase text-[0.65rem] tracking-[0.15em] px-2 py-[0.2rem] rounded border ${config.badgeClass}`}
+        className={twJoin(
+          'rounded-sm border px-2 py-[0.2rem] font-mono text-[0.65rem] tracking-[0.15em] uppercase',
+          config.badgeClass
+        )}
       >
         {badgeText}
       </span>
     </div>
   );
-}
+};

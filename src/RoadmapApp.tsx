@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
-import { Layout } from './components/Layout';
-import Roadmap from './sections/Roadmap';
+import {useEffect} from 'react';
+import {Layout} from './components/Layout';
+import Roadmap from './sections/roadmap/Roadmap';
 
-export default function RoadmapApp() {
+const RoadmapApp = () => {
   useEffect(() => {
-    const { hash } = window.location;
+    const {hash} = window.location;
+
     if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+      const element = document.querySelector(hash);
+      if (element)
+        element.scrollIntoView({behavior: 'instant' as ScrollBehavior});
     }
   }, []);
 
@@ -16,4 +18,6 @@ export default function RoadmapApp() {
       <Roadmap />
     </Layout>
   );
-}
+};
+
+export default RoadmapApp;

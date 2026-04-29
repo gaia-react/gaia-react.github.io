@@ -1,42 +1,46 @@
-import type { ReactNode } from 'react';
+import type {ReactNode} from 'react';
 
-type CalloutProps = {
-  variant?: 'info' | 'warn' | 'note';
-  title?: string;
+type CalloutProperties = {
   children: ReactNode;
+  title?: string;
+  variant?: 'info' | 'note' | 'warn';
 };
 
-export function Callout({ variant = 'info', title, children }: CalloutProps) {
+export const Callout = ({
+  children,
+  title,
+  variant = 'info',
+}: CalloutProperties) => {
   const styles = {
     info: {
-      stripe: 'border-l-secondary',
       bg: 'bg-secondary/8',
+      stripe: 'border-l-secondary',
       title: 'text-secondary-soft',
     },
-    warn: {
-      stripe: 'border-l-warn',
-      bg: 'bg-warn/8',
-      title: 'text-warn-soft',
-    },
     note: {
+      bg: 'bg-surface',
       stripe: 'border-l-border',
-      bg: 'bg-bg-elev',
-      title: 'text-fg-dim',
+      title: 'text-ink-dim',
+    },
+    warn: {
+      bg: 'bg-warn/8',
+      stripe: 'border-l-warn',
+      title: 'text-warn-soft',
     },
   }[variant];
 
   return (
     <div
-      className={`${styles.bg} ${styles.stripe} border-l-[3px] rounded p-4`}
+      className={`${styles.bg} ${styles.stripe} rounded-sm border-l-[0.1875rem] p-4`}
     >
       {title && (
         <div
-          className={`font-display font-light text-[1rem] ${styles.title} mb-1 tracking-[-0.02em]`}
+          className={`font-display text-[1rem] font-light ${styles.title} mb-1 tracking-[-0.02em]`}
         >
           {title}
         </div>
       )}
-      <div className="text-fg-dim text-[0.9rem] leading-[1.6]">{children}</div>
+      <div className="text-ink-dim text-[0.9rem] leading-[1.6]">{children}</div>
     </div>
   );
-}
+};

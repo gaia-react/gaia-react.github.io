@@ -1,12 +1,12 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --color-bg: #141413;
-  --color-bg-elev: #1f1e1d;
-  --color-bg-elev-2: #262624;
-  --color-fg: #faf9f5;
-  --color-fg-dim: #b0aea5;
-  --color-fg-mute: #87867f;
+  --color-canvas: #141413;
+  --color-surface: #1f1e1d;
+  --color-surface-raised: #262624;
+  --color-ink: #faf9f5;
+  --color-ink-dim: #b0aea5;
+  --color-muted: #87867f;
   --color-accent: #d97757;
   --color-accent-2: #c96442;
   --color-accent-soft: #efa58e;
@@ -16,19 +16,19 @@
   --color-warn: #d9a857;
   --color-warn-2: #b88a3f;
   --color-warn-soft: #ecc781;
-  --color-bg-tint: #181c1e;
-  --color-border: #3d3d3a;
-  --color-border-soft: #2e2e2b;
+  --color-tint: #181c1e;
+  --color-line: #3d3d3a;
+  --color-line-soft: #2e2e2b;
 
-  --font-display: "Fraunces", Georgia, serif;
+  --font-display: 'Fraunces', Georgia, serif;
   --font-body: ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--color-bg);
-  color: var(--color-fg);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   font-family: var(--font-body);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
@@ -36,14 +36,14 @@ html {
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-fg);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   font-family: var(--font-body);
   position: relative;
 }
 
 body::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -81,15 +81,27 @@ samp {
 }
 
 @keyframes gaia-drift-a {
-  0%   { transform: translate3d(0, 0, 0); }
-  50%  { transform: translate3d(40px, -25px, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(40px, -25px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes gaia-drift-b {
-  0%   { transform: translate3d(0, 0, 0); }
-  50%  { transform: translate3d(-35px, 30px, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-35px, 30px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .gaia-drift-orb-a {
@@ -105,6 +117,23 @@ samp {
 @media (prefers-reduced-motion: reduce) {
   .gaia-drift-orb-a,
   .gaia-drift-orb-b {
+    animation: none;
+  }
+}
+
+@keyframes stackrow-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.stackrow-marquee-track {
+  animation: stackrow-scroll 40s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stackrow-marquee-track {
     animation: none;
   }
 }

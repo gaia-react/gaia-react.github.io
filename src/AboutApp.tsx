@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
-import { Layout } from './components/Layout';
-import About from './sections/About';
+import {useEffect} from 'react';
+import {Layout} from './components/Layout';
+import About from './sections/about/About';
 
-export default function AboutApp() {
+const AboutApp = () => {
   useEffect(() => {
-    const { hash } = window.location;
+    const {hash} = window.location;
+
     if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+      const element = document.querySelector(hash);
+      if (element)
+        element.scrollIntoView({behavior: 'instant' as ScrollBehavior});
     }
   }, []);
 
@@ -16,4 +18,6 @@ export default function AboutApp() {
       <About />
     </Layout>
   );
-}
+};
+
+export default AboutApp;
