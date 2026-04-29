@@ -71,13 +71,15 @@ const rows: ComparisonRow[] = [
     values: { gaia: check, epic: dash, t3: dash, redwood: dash },
   },
   {
-    feature: 'Lint rules*',
+    feature: 'Lint rules',
     values: {
       gaia: value('1,592'),
       epic: value('748'),
       t3: value('637'),
       redwood: value('626'),
     },
+    mobileLabel: (cell) =>
+      cell?.kind === 'value' ? `${cell.label} lint rules` : 'Lint rules',
   },
 ];
 
@@ -99,7 +101,6 @@ export default function FrameworkComparison() {
         <ComparisonTable columns={columns} rows={rows} />
 
         <p className="text-fg-dim text-base mt-8 leading-relaxed text-pretty">
-          <span aria-hidden="true" className="text-fg-mute mr-1">*</span>
           Every lint rule is a check Claude has to clear, and GAIA has more
           than twice as many as any other starter, including 85 Stylelint
           rules none of the others ship at all. The extras cover the patterns

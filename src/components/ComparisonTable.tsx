@@ -13,6 +13,7 @@ type ComparisonColumn = {
 type ComparisonRow = {
   feature: string;
   values: Record<string, ComparisonCell>;
+  mobileLabel?: (cell: ComparisonCell | undefined) => string;
 };
 
 type ComparisonTableProps = {
@@ -88,12 +89,13 @@ function MobileCard({
               ? 'bg-secondary/30 text-fg border border-secondary-2'
               : 'bg-secondary/15 text-fg-dim border border-secondary-2/60'
             : 'bg-transparent text-fg-mute/70 border border-border-soft line-through';
+          const label = row.mobileLabel ? row.mobileLabel(cell) : row.feature;
           return (
             <li
               key={row.feature}
               className={`text-[0.75rem] px-2 py-1 rounded ${pillClass}`}
             >
-              {row.feature}
+              {label}
             </li>
           );
         })}
