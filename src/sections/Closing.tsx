@@ -19,13 +19,8 @@ export default function Closing() {
         <h2 className="text-4xl md:text-6xl font-bold mb-3 text-fg">
           Spend your time on the product, not the workflow
         </h2>
-        <p className="text-lg md:text-2xl text-accent-soft italic mb-6 md:mb-8">
+        <p className="text-lg md:text-2xl text-accent-soft italic mb-10 md:mb-12">
           Pair-programming, not babysitting
-        </p>
-        <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed text-pretty">
-          GAIA's stack is curated to help Claude write better code. The conventions are battle-tested
-          and enforced. The gates catch bad patterns before every commit. The wiki keeps
-          token costs under control as the project grows. Your time and energy go into the product.
         </p>
         <div className="flex justify-center">
           <a
