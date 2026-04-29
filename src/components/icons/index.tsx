@@ -54,31 +54,13 @@ export function ReflectionIcon({ className, size = 24 }: IconProps) {
   );
 }
 
-// ReAct. Eye with an arrow exiting — observe, then act
-export function ReActIcon({ className, size = 24 }: IconProps) {
+// Memory. Stacked tiers
+export function MemoryIcon({ className, size = 24 }: IconProps) {
   return (
     <svg {...svgProps(size, className)}>
-      <path d="M3 12.2c2-3.6 5.2-5.4 8.6-5.4 3 0 5.6 1.4 7.6 4.2" />
-      <circle cx="11.6" cy="11.4" r="2.2" />
-      <path d="M14.6 15.6h6" />
-      <path d="m17.6 12.8 3 2.8-3 2.8" />
-    </svg>
-  );
-}
-
-// Planning. Tree structure — orchestrator drives focused subagents
-export function PlanIcon({ className, size = 24 }: IconProps) {
-  return (
-    <svg {...svgProps(size, className)}>
-      <rect x="3" y="10" width="4.5" height="4" rx="0.6" />
-      <rect x="16.5" y="4" width="4.5" height="4" rx="0.6" />
-      <rect x="16.5" y="10" width="4.5" height="4" rx="0.6" />
-      <rect x="16.5" y="16" width="4.5" height="4" rx="0.6" />
-      <path d="M7.5 12h3" />
-      <path d="M10.5 6h3" />
-      <path d="M10.5 18h3" />
-      <path d="M10.5 6v12" />
-      <path d="M13.5 12h3" />
+      <rect x="3.6" y="4.8" width="16.8" height="3.4" rx="0.6" />
+      <rect x="3.6" y="10.3" width="16.8" height="3.4" rx="0.6" />
+      <rect x="3.6" y="15.8" width="16.8" height="3.4" rx="0.6" />
     </svg>
   );
 }
