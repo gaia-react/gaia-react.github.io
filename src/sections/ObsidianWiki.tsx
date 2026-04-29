@@ -1,53 +1,55 @@
 import { Section } from '@/components/Section';
+import wikiVaultDiagram from '../assets/wiki-vault-diagram.svg';
+import ClaudeLogo from '../assets/logos/ClaudeLogo';
+import ObsidianLogo from '../assets/logos/ObsidianLogo';
 
 export default function ObsidianWiki() {
   return (
     <Section id="wiki" title="A second brain for Claude">
-      <div className="space-y-4 text-fg">
-        <p>
-          With an Obsidian wiki, Claude understands what you are actually building, not just the
-          code in front of it. Product features, user flows, design rationale, business decisions,
-          architecture, and dependencies all live as focused markdown pages committed to git, not
-          chat history, not machine-local memory.
-        </p>
+      <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-12 items-start">
+        <div className="space-y-4 text-fg order-2 md:order-1">
+          <p>
+            The wiki saves Claude tokens. Architecture, flows, and decisions live as committed
+            markdown Claude reads on demand, so it never re-infers them from source code.
+          </p>
 
-        <p>
-          GAIA ships with the{' '}
-          <a
-            href="https://github.com/AgriciDaniel/claude-obsidian"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent hover:underline"
-          >
-            claude-obsidian
-          </a>{' '}
-          integration wired up. The vault structure, the ingestion commands, and the maintenance
-          skills are configured before you write your first page.
-        </p>
+          <p>
+            Onboarding stops being a multi-week ramp. Context stops getting lost between sessions.
+          </p>
 
-        <p>
-          On top of the integration, GAIA layers project-specific commands and hooks that turn the
-          wiki into a self-maintaining knowledge base. Duplicates, conflicts, and stale information
-          get pruned, so the vault stays clean as the project grows.
-        </p>
+          <p>
+            The vault stays yours. Plain markdown in your repo, not a vendor's database, not chat
+            history.
+          </p>
 
-        <p>
-          Token costs do not balloon as the wiki gets richer. Claude only reads the specific
-          information a task needs, so a project with 1,000 pages of context is no more expensive
-          to work in than one with 10.
-        </p>
+          <p>
+            <a href="/features/#wiki" className="text-accent hover:underline">
+              Learn more →
+            </a>
+          </p>
+        </div>
 
-        <p>
-          <strong>Why Obsidian?</strong> A local markdown vault means the project's knowledge
-          persists, compounds, and stays yours, not held in a vendor's database or trapped in
-          chat history.
-        </p>
-
-        <p>
-          <strong>Domain isolation is mandatory.</strong> Technical, branding, and business
-          knowledge are kept siloed, and Claude does not cross-load between them unless a task
-          genuinely spans more than one.
-        </p>
+        <div className="order-1 md:order-2 flex justify-center">
+          <div className="relative w-full max-w-[360px] aspect-square">
+            <img
+              src={wikiVaultDiagram}
+              alt="Wiki vault structure: agents, architecture, flows"
+              className="w-full h-full"
+            />
+            <ObsidianLogo
+              aria-hidden="true"
+              height={36}
+              className="absolute opacity-60"
+              style={{ left: '8%', top: '60%' }}
+            />
+            <ClaudeLogo
+              aria-hidden="true"
+              height={32}
+              className="absolute opacity-70"
+              style={{ left: '82%', top: '30%' }}
+            />
+          </div>
+        </div>
       </div>
     </Section>
   );

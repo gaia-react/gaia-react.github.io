@@ -7,3 +7,7 @@ dist
 !.env.example
 .idea
 .claude
+.playwright-cli
+.review
+CLAUDE.md
+DESIGN.md

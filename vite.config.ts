@@ -11,7 +11,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
+        features: resolve(import.meta.dirname, 'features/index.html'),
         docs: resolve(import.meta.dirname, 'docs/index.html'),
+        getStarted: resolve(import.meta.dirname, 'get-started/index.html'),
         roadmap: resolve(import.meta.dirname, 'roadmap/index.html'),
         about: resolve(import.meta.dirname, 'about/index.html'),
         consulting: resolve(import.meta.dirname, 'consulting/index.html'),

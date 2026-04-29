@@ -2,7 +2,7 @@ import { Section } from '@/components/Section';
 
 export default function Commands() {
   return (
-    <Section id="commands" title="Commands">
+    <Section id="commands" title="Commands" paddingTop="2rem">
       <p className="mb-6 text-fg-dim">
         Slash commands for scaffolding, quality, session management, and project lifecycle.
       </p>
