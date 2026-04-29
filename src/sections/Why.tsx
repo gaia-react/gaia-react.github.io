@@ -5,9 +5,9 @@ import { ShieldCheckIcon, WaveIcon } from '@/components/icons';
 export default function Why() {
   return (
     <Section id="why" title="Why GAIA">
-      <p className="text-fg-dim mb-8">
-        Two failure modes break Claude on a real project: unpredictable output and runaway token
-        costs. GAIA fixes both.
+      <p className="text-fg-dim text-lg mb-8">
+        Two things break Claude on real projects: output you can't trust, and quality that drops
+        as the project grows. <span className="text-fg">GAIA fixes both.</span>
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -17,8 +17,8 @@ export default function Why() {
           title="Trustworthy by default"
         >
           <p>
-            Conventions are enforced and code-review audits block bad patterns before they reach a
-            commit. What Claude writes is production-grade, ready to ship.
+            Every change matches your team's standards. Built-in reviews catch problems before code
+            ships, so the code your team merges is code you can trust.
           </p>
         </Card>
 
@@ -28,8 +28,8 @@ export default function Why() {
           title="Sharp at any scale"
         >
           <p>
-            A focused Obsidian wiki and scoped rules replace sprawling CLAUDE.md files. Claude
-            loads only what the task needs, so context costs do not compound as the codebase grows.
+            Output stays sharp as your codebase grows. Claude only sees what each task needs, so
+            quality holds up and costs stay predictable.
           </p>
         </Card>
       </div>
