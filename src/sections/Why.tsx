@@ -1,6 +1,6 @@
 import { Section } from '@/components/Section';
 import { Card } from '@/components/Card';
-import { ShieldCheckIcon, WaveIcon } from '@/components/icons';
+import { BullseyeIcon, ShieldCheckIcon } from '@/components/icons';
 
 export default function Why() {
   return (
@@ -17,19 +17,19 @@ export default function Why() {
           title="Trustworthy by default"
         >
           <p>
-            Every change matches your team's standards. Built-in reviews catch problems before code
-            ships, so the code your team merges is code you can trust.
+            GAIA enforces high standards on every commit, so the code your team merges is code
+            you can trust.
           </p>
         </Card>
 
         <Card
-          icon={<WaveIcon size={32} />}
+          icon={<BullseyeIcon size={32} />}
           iconColor="accent"
-          title="Sharp at any scale"
+          title="Disciplined at scale"
         >
           <p>
-            Output stays sharp as your codebase grows. Claude only sees what each task needs, so
-            quality holds up and costs stay predictable.
+            GAIA gives Claude only what each task needs, so quality and costs stay predictable
+            as your codebase grows.
           </p>
         </Card>
       </div>
