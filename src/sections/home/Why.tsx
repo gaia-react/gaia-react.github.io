@@ -4,10 +4,10 @@ import {Section} from '@/components/Section';
 
 const Why = () => (
   <Section id="why" title="Why GAIA">
-    <p className="text-fg-dim mb-8 text-lg">
+    <p className="text-ink-dim mb-8 text-lg">
       Two things break Claude on real projects: output you can’t trust, and
       quality that drops as the project grows.{' '}
-      <span className="text-fg">GAIA fixes both.</span>
+      <span className="text-ink">GAIA fixes both.</span>
     </p>
 
     <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">

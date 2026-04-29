@@ -1,12 +1,12 @@
 import {useEffect} from 'react';
 import {Layout} from './components/Layout';
-import AgenticDesignDetail from './sections/AgenticDesignDetail';
-import ClaudeMdDetail from './sections/ClaudeMdDetail';
 import Closing from './sections/Closing';
-import ObsidianWikiDetail from './sections/ObsidianWikiDetail';
-import Stack from './sections/Stack';
-import TokenEconomics from './sections/TokenEconomics';
-import Trust from './sections/Trust';
+import AgenticDesignDetail from './sections/features/AgenticDesignDetail';
+import ClaudeMdDetail from './sections/features/ClaudeMdDetail';
+import ObsidianWikiDetail from './sections/features/ObsidianWikiDetail';
+import Stack from './sections/features/Stack';
+import TokenEconomics from './sections/features/TokenEconomics';
+import Trust from './sections/features/Trust';
 
 const FeaturesApp = () => {
   useEffect(() => {

@@ -39,7 +39,7 @@ const DesktopCell = ({cell}: {cell: ComparisonCell | undefined}) => {
     return (
       <span
         aria-label="no"
-        className="text-fg-mute text-lg leading-none font-bold"
+        className="text-muted text-lg leading-none font-bold"
       >
         ✕
       </span>
@@ -59,7 +59,7 @@ const DesktopCell = ({cell}: {cell: ComparisonCell | undefined}) => {
 
   if (cell.kind === 'dash') {
     return (
-      <span aria-label="no" className="text-fg-mute/50 text-xs">
+      <span aria-label="no" className="text-muted/50 text-xs">
         ✕
       </span>
     );
@@ -74,7 +74,7 @@ const DesktopCell = ({cell}: {cell: ComparisonCell | undefined}) => {
   }
 
   return (
-    <span aria-label={cell.label} className="text-fg">
+    <span aria-label={cell.label} className="text-ink">
       {cell.label}
     </span>
   );
@@ -91,12 +91,12 @@ const MobileCard = ({
 }) => {
   const cardClass =
     isHero ?
-      'bg-bg-tint rounded-lg border-t-2 border-t-secondary p-5'
-    : 'bg-bg-elev rounded-lg p-5 border border-border-soft';
+      'bg-tint rounded-lg border-t-2 border-t-secondary p-5'
+    : 'bg-surface rounded-lg p-5 border border-line-soft';
   const titleClass =
     isHero ?
-      'font-display font-light text-2xl text-fg mb-4 tracking-[-0.02em]'
-    : 'font-body font-medium text-lg text-fg-dim mb-4 tracking-normal';
+      'font-display font-light text-2xl text-ink mb-4 tracking-[-0.02em]'
+    : 'font-body font-medium text-lg text-ink-dim mb-4 tracking-normal';
 
   return (
     <div className={cardClass}>
@@ -107,9 +107,9 @@ const MobileCard = ({
           const positive = isPositive(cell);
           const pillClass =
             positive ?
-              isHero ? 'bg-secondary/30 text-fg border border-secondary-2'
-              : 'bg-secondary/15 text-fg-dim border border-secondary-2/60'
-            : 'bg-transparent text-fg-mute/70 border border-border-soft line-through';
+              isHero ? 'bg-secondary/30 text-ink border border-secondary-2'
+              : 'bg-secondary/15 text-ink-dim border border-secondary-2/60'
+            : 'bg-transparent text-muted/70 border border-line-soft line-through';
           const label = row.mobileLabel ? row.mobileLabel(cell) : row.feature;
 
           return (
@@ -142,14 +142,14 @@ export const ComparisonTable = ({
           <table className="w-full border-collapse">
             <thead>
               <tr>
-                <th className="border-border-soft border-b p-3 text-left" />
+                <th className="border-line-soft border-b p-3 text-left" />
                 {columns.map(({isHero, key, label}) => (
                   <th
                     key={key}
-                    className={`border-border-soft border-b p-3 text-left align-bottom ${
+                    className={`border-line-soft border-b p-3 text-left align-bottom ${
                       isHero ?
-                        'bg-bg-tint border-t-secondary font-display text-fg border-t-2 text-lg font-light tracking-[-0.02em]'
-                      : 'font-body text-fg-dim text-base font-medium tracking-normal'
+                        'bg-tint border-t-secondary font-display text-ink border-t-2 text-lg font-light tracking-[-0.02em]'
+                      : 'font-body text-ink-dim text-base font-medium tracking-normal'
                     }`}
                   >
                     {label}
@@ -161,7 +161,7 @@ export const ComparisonTable = ({
               {rows.map((row) => (
                 <tr key={row.feature}>
                   <th
-                    className="border-border-soft text-fg-dim border-b p-3 text-left font-normal"
+                    className="border-line-soft text-ink-dim border-b p-3 text-left font-normal"
                     scope="row"
                   >
                     {row.feature}
@@ -169,8 +169,8 @@ export const ComparisonTable = ({
                   {columns.map((col) => (
                     <td
                       key={col.key}
-                      className={`border-border-soft border-b p-3 ${
-                        col.isHero ? 'bg-bg-tint' : ''
+                      className={`border-line-soft border-b p-3 ${
+                        col.isHero ? 'bg-tint' : ''
                       }`}
                     >
                       <DesktopCell cell={row.values[col.key]} />
@@ -182,7 +182,7 @@ export const ComparisonTable = ({
           </table>
         </div>
         {summary && (
-          <p className="text-fg-dim font-display mt-6 text-center font-light italic">
+          <p className="text-ink-dim font-display mt-6 text-center font-light italic">
             {summary}
           </p>
         )}
@@ -197,7 +197,7 @@ export const ComparisonTable = ({
           <MobileCard key={col.key} column={col} rows={rows} />
         ))}
         {summary && (
-          <p className="text-fg-dim font-display text-center font-light italic">
+          <p className="text-ink-dim font-display text-center font-light italic">
             {summary}
           </p>
         )}

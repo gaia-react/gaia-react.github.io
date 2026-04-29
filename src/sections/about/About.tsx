@@ -1,4 +1,4 @@
-import {Section} from '../components/Section';
+import {Section} from '../../components/Section';
 
 type WorkItem = {
   company: string;
@@ -88,15 +88,15 @@ const About = () => (
       <div className="mx-auto max-w-3xl px-8 text-center">
         <img
           alt="Portrait of Steven Sacks"
-          className="border-border mx-auto mb-8 size-36 rounded-full border object-cover shadow-[0_0_0_6px_var(--color-bg-elev)]"
+          className="border-line mx-auto mb-8 size-36 rounded-full border object-cover shadow-[0_0_0_6px_var(--color-surface)]"
           height={144}
           src="/steven.jpg"
           width={144}
         />
-        <h1 className="font-display text-fg mb-6 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
+        <h1 className="font-display text-ink mb-6 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
           Steven Sacks
         </h1>
-        <p className="text-fg-dim mx-auto mb-7 max-w-152 text-[clamp(1rem,2vw,1.1875rem)] leading-[1.65]">
+        <p className="text-ink-dim mx-auto mb-7 max-w-152 text-[clamp(1rem,2vw,1.1875rem)] leading-[1.65]">
           I build production software with AI agents.
         </p>
         <ul className="m-0 flex list-none flex-wrap justify-center gap-6 p-0">
@@ -106,7 +106,7 @@ const About = () => (
             return (
               <li key={link.href}>
                 <a
-                  className="text-fg-dim font-body hover:text-accent inline-flex items-center gap-1.75 text-[0.9375rem] tracking-[0.02em] no-underline transition-colors duration-150"
+                  className="text-ink-dim font-body hover:text-accent inline-flex items-center gap-1.75 text-[0.9375rem] tracking-[0.02em] no-underline transition-colors duration-150"
                   href={link.href}
                   rel={external ? 'noopener noreferrer' : undefined}
                   target={external ? '_blank' : undefined}
@@ -124,7 +124,7 @@ const About = () => (
     {/* Throughline */}
     <Section id="background" paddingBottom="3rem" paddingTop="3rem">
       <div className="flex flex-col gap-5">
-        <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
+        <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
           I’ve been building for the web since Flash was king. In the 2000s I
           authored the GAIA Flash Framework, the most popular open source Flash
           framework of its era, used to build over 100,000 websites and adopted
@@ -133,7 +133,7 @@ const About = () => (
           library of powerful, easy-to-use solutions for the problems every
           Flash developer ran into.
         </p>
-        <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
+        <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
           Now I’m doing it again with AI agents. GAIA React is the spiritual
           successor to GAIA Flash: a comprehensive starting point for
           professional React projects with Claude Code integration built in.
@@ -153,14 +153,14 @@ const About = () => (
         {SELECTED_WORK.map((item) => (
           <li key={`${item.company}-${item.period}`}>
             <div className="mb-[0.4rem] flex flex-wrap items-baseline gap-x-3.5 gap-y-2">
-              <span className="font-body text-fg-mute text-[0.8125rem] tracking-[0.04em] uppercase">
+              <span className="font-body text-muted text-[0.8125rem] tracking-[0.04em] uppercase">
                 {item.period}
               </span>
-              <span className="font-display text-fg text-xl/tight font-normal tracking-[-0.01em]">
+              <span className="font-display text-ink text-xl/tight font-normal tracking-[-0.01em]">
                 {item.role}, <span className="text-accent">{item.company}</span>
               </span>
             </div>
-            <p className="text-fg-dim text-base leading-[1.7]">{item.note}</p>
+            <p className="text-ink-dim text-base leading-[1.7]">{item.note}</p>
           </li>
         ))}
       </ul>
@@ -174,12 +174,12 @@ const About = () => (
       title="Why this, now"
     >
       <div className="flex flex-col gap-5">
-        <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
+        <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
           The AI tooling landscape today looks like Flash development before the
           framework era: powerful tools, no shared structure, every team
           reinventing the same patterns.
         </p>
-        <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
+        <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
           I’ve been here before. The fix the first time was structure: a
           framework that codified the patterns worth keeping and made the rest
           unnecessary. GAIA React is that, applied to Claude Code. The goal is

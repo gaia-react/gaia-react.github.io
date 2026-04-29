@@ -48,7 +48,7 @@ const GROUPS: Group[] = [
       {
         description: (
           <>
-            <code className="bg-bg-elev rounded-sm px-2 py-1 text-sm">
+            <code className="bg-surface rounded-sm px-2 py-1 text-sm">
               npx create-gaia
             </code>{' '}
             walks you through React Router, Next.js, Astro, and TanStack Start
@@ -78,7 +78,7 @@ const GROUPS: Group[] = [
     label: 'Planned',
   },
   {
-    color: 'var(--color-fg-mute)',
+    color: 'var(--color-muted)',
     id: 'vision',
     items: [
       {
@@ -128,7 +128,7 @@ const StatusGroup = ({group}: {group: Group}) => (
         className="inline-block size-2.5 shrink-0 -translate-y-px rounded-full"
         style={{backgroundColor: group.color}}
       />
-      <h3 className="group font-display text-fg m-0 text-[clamp(1.5rem,2.5vw,2rem)] font-light tracking-[-0.02em]">
+      <h3 className="group font-display text-ink m-0 text-[clamp(1.5rem,2.5vw,2rem)] font-light tracking-[-0.02em]">
         <a className="text-inherit no-underline" href={`#${group.id}`}>
           {group.label}
           <span
@@ -143,10 +143,10 @@ const StatusGroup = ({group}: {group: Group}) => (
     <ul className="m-0 mt-6 list-none space-y-5 p-0">
       {group.items.map((item) => (
         <li key={item.title}>
-          <h4 className="text-fg font-body mb-1 text-base font-semibold">
+          <h4 className="text-ink font-body mb-1 text-base font-semibold">
             {item.title}
           </h4>
-          <p className="text-fg-dim m-0 leading-relaxed">{item.description}</p>
+          <p className="text-ink-dim m-0 leading-relaxed">{item.description}</p>
         </li>
       ))}
     </ul>
@@ -156,11 +156,11 @@ const StatusGroup = ({group}: {group: Group}) => (
 const Roadmap = () => (
   <section className="pt-8 pb-24">
     <div className="mx-auto max-w-3xl scroll-mt-20 px-8" id="roadmap">
-      <h2 className="font-display text-fg mb-2 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
+      <h2 className="font-display text-ink mb-2 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
         Roadmap
       </h2>
-      <p className="text-fg-mute mb-8 text-sm">Last updated: 2026-04-28</p>
-      <p className="text-fg-dim mb-12">
+      <p className="text-muted mb-8 text-sm">Last updated: 2026-04-28</p>
+      <p className="text-ink-dim mb-12">
         Where GAIA stands today, and where it’s going. A Claude-native React
         workflow, sharpening with every release into a leaner, more reliable way
         to ship production-quality apps.

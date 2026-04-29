@@ -1,12 +1,12 @@
 import {useEffect} from 'react';
 import {Layout} from './components/Layout';
-import Agents from './sections/Agents';
-import Commands from './sections/Commands';
-import GitHub from './sections/GitHub';
-import Hooks from './sections/Hooks';
-import Rules from './sections/Rules';
-import Skills from './sections/Skills';
-import Statusline from './sections/Statusline';
+import Agents from './sections/docs/Agents';
+import Commands from './sections/docs/Commands';
+import GitHub from './sections/docs/GitHub';
+import Hooks from './sections/docs/Hooks';
+import Rules from './sections/docs/Rules';
+import Skills from './sections/docs/Skills';
+import Statusline from './sections/docs/Statusline';
 
 const DocsApp = () => {
   useEffect(() => {

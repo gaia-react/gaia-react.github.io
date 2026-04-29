@@ -19,25 +19,25 @@ const StatuslineLeft = ({
     <span className="font-bold" style={{color: '#5b8ffe'}}>
       app
     </span>
-    <span className="text-fg-mute mx-[0.6rem]">|</span>
+    <span className="text-muted mx-[0.6rem]">|</span>
     <span className="font-bold" style={{color: '#6ec56b'}}>
       {branch}
     </span>
-    <span className="text-fg-mute mx-[0.6rem]">|</span>
+    <span className="text-muted mx-[0.6rem]">|</span>
     <span className="font-bold" style={{color: '#4dd0e1'}}>
       {model}
     </span>
-    <span className="text-fg-mute mx-[0.6rem]">|</span>
+    <span className="text-muted mx-[0.6rem]">|</span>
     <span className="font-bold" style={{color: contextColor}}>
       {contextBar}
     </span>
-    <span className="text-fg-dim ml-1">{contextPct}%</span>
+    <span className="text-ink-dim ml-1">{contextPct}%</span>
   </div>
 );
 
 const Statusline = () => (
   <Section id="statusline" title="Statusline">
-    <p className="text-fg mb-6">
+    <p className="text-ink mb-6">
       GAIA ships with a custom Claude Code statusline. The left side shows basic
       information and the right side conditionally shows when updates are
       available for your project.
@@ -49,20 +49,20 @@ const Statusline = () => (
       <br />
       The right side only works in GAIA projects and does not modify your
       existing statusline configuration. During{' '}
-      <code className="text-fg bg-bg-elev rounded-sm px-1 font-mono text-sm">
+      <code className="text-ink bg-surface rounded-sm px-1 font-mono text-sm">
         /init
       </code>
       , a live preview is shown before any changes are made.
     </p>
 
-    <div className="border-border mb-6 overflow-hidden rounded-lg border">
-      <div className="bg-bg-elev-2 border-border flex min-h-9 items-center border-b px-4 py-2">
-        <span className="text-fg-dim font-mono text-xs tracking-wider">
+    <div className="border-line mb-6 overflow-hidden rounded-lg border">
+      <div className="bg-surface-raised border-line flex min-h-9 items-center border-b px-4 py-2">
+        <span className="text-ink-dim font-mono text-xs tracking-wider">
           Claude Code
         </span>
       </div>
 
-      <div className="bg-bg-elev overflow-x-auto px-4 py-2 font-mono text-[0.8125rem]">
+      <div className="bg-surface overflow-x-auto px-4 py-2 font-mono text-[0.8125rem]">
         <StatuslineLeft
           branch="main"
           contextBar="▓▓▓▓░░░░░░"
@@ -72,9 +72,9 @@ const Statusline = () => (
         />
       </div>
 
-      <div className="border-border/40 border-t" />
+      <div className="border-line/40 border-t" />
 
-      <div className="bg-bg-elev overflow-x-auto px-4 py-2 font-mono text-[0.8125rem]">
+      <div className="bg-surface overflow-x-auto px-4 py-2 font-mono text-[0.8125rem]">
         <div className="flex min-w-max items-center gap-8">
           <StatuslineLeft
             branch="main"
@@ -92,9 +92,9 @@ const Statusline = () => (
         </div>
       </div>
 
-      <div className="border-border/40 border-t" />
+      <div className="border-line/40 border-t" />
 
-      <div className="bg-bg-elev overflow-x-auto px-4 py-2 font-mono text-[0.8125rem]">
+      <div className="bg-surface overflow-x-auto px-4 py-2 font-mono text-[0.8125rem]">
         <div className="flex min-w-max items-center gap-8">
           <StatuslineLeft
             branch="main"
@@ -113,7 +113,7 @@ const Statusline = () => (
       </div>
     </div>
 
-    <table className="text-fg mb-6 border-collapse text-sm">
+    <table className="text-ink mb-6 border-collapse text-sm">
       <thead className="sr-only">
         <tr>
           <th scope="col">Token</th>
@@ -128,7 +128,7 @@ const Statusline = () => (
           >
             app
           </td>
-          <td className="text-fg py-1 align-top">
+          <td className="text-ink py-1 align-top">
             current project folder (git root name)
           </td>
         </tr>
@@ -139,7 +139,7 @@ const Statusline = () => (
           >
             main
           </td>
-          <td className="text-fg py-1 align-top">active git branch</td>
+          <td className="text-ink py-1 align-top">active git branch</td>
         </tr>
         <tr>
           <td
@@ -148,7 +148,7 @@ const Statusline = () => (
           >
             Sonnet 4.6
           </td>
-          <td className="text-fg py-1 align-top">active Claude model</td>
+          <td className="text-ink py-1 align-top">active Claude model</td>
         </tr>
         <tr>
           <td
@@ -157,7 +157,7 @@ const Statusline = () => (
           >
             ▓▓▓▓░░░░░░ 42%
           </td>
-          <td className="text-fg py-1 align-top">context window usage</td>
+          <td className="text-ink py-1 align-top">context window usage</td>
         </tr>
         <tr>
           <td
@@ -166,7 +166,7 @@ const Statusline = () => (
           >
             Run /update-deps
           </td>
-          <td className="text-fg py-1 align-top">
+          <td className="text-ink py-1 align-top">
             shown when there are outdated packages
           </td>
         </tr>
@@ -177,7 +177,7 @@ const Statusline = () => (
           >
             Run /update-gaia
           </td>
-          <td className="text-fg py-1 align-top">
+          <td className="text-ink py-1 align-top">
             shown when a new GAIA release is available
           </td>
         </tr>

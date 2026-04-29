@@ -2,7 +2,7 @@ import {Section} from '@/components/Section';
 
 const GitHub = () => (
   <Section id="github" title="Source code">
-    <div className="text-fg space-y-4">
+    <div className="text-ink space-y-4">
       <p>
         GAIA is open source under the MIT license. Browse the code, file issues,
         and follow development on GitHub.
@@ -10,7 +10,7 @@ const GitHub = () => (
 
       <div>
         <a
-          className="border-accent-soft text-fg hover:bg-bg-elev inline-flex items-center gap-2 rounded-sm border px-5 py-2.5 font-semibold transition-colors"
+          className="border-accent-soft text-ink hover:bg-surface inline-flex items-center gap-2 rounded-sm border px-5 py-2.5 font-semibold transition-colors"
           href="https://github.com/gaia-react/gaia"
           rel="noopener noreferrer"
           target="_blank"

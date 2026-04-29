@@ -9,7 +9,7 @@ import {Section} from '@/components/Section';
 
 const AgenticDesign = () => (
   <Section id="agentic-design" title="Agentic design">
-    <p className="text-fg-dim mb-8">
+    <p className="text-ink-dim mb-8">
       GAIA wires agentic behavior into the project itself, not the prompt. The
       four patterns below run the same way every session, every engineer, every
       model variant.
@@ -64,7 +64,7 @@ const AgenticDesign = () => (
       </Card>
     </div>
 
-    <p className="text-fg-dim mt-8 text-sm">
+    <p className="text-ink-dim mt-8 text-sm">
       GAIA wires in 12 of the 29 canonical agentic design patterns structurally.
       See the full breakdown on the{' '}
       <a

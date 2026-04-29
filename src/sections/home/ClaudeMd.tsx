@@ -1,3 +1,4 @@
+import {twJoin} from 'tailwind-merge';
 import {Section, SectionHeading} from '@/components/Section';
 
 const ACTIVE_TIERS = [
@@ -20,20 +21,24 @@ const ActiveTriptych = () => (
     {ACTIVE_TIERS.map((t) => (
       <div
         key={t.eyebrow}
-        className={`bg-bg-elev rounded-lg border p-5 ${
-          t.accent ? 'border-accent/60' : 'border-border'
-        }`}
+        className={twJoin(
+          'bg-surface rounded-lg border p-5',
+          t.accent ? 'border-accent/60' : 'border-line'
+        )}
       >
         <div className="mb-1 flex items-baseline justify-between">
-          <span className="font-display text-fg-dim text-xs tracking-[0.2em]">
+          <span className="font-display text-ink-dim text-xs tracking-[0.2em]">
             {t.eyebrow}
           </span>
-          <span className="text-fg-mute font-mono text-[0.6rem] tracking-[0.16em] uppercase">
+          <span className="text-muted font-mono text-[0.6rem] tracking-[0.16em] uppercase">
             {t.caption}
           </span>
         </div>
         <div
-          className={`font-mono text-base ${t.accent ? 'text-accent' : 'text-fg'}`}
+          className={twJoin(
+            'font-mono text-base',
+            t.accent ? 'text-accent' : 'text-ink'
+          )}
         >
           {t.name}
         </div>
@@ -43,34 +48,41 @@ const ActiveTriptych = () => (
 );
 
 const MatchLedger = () => (
-  <div className="border-border bg-bg-elev overflow-hidden rounded-lg border">
-    <div className="bg-bg-elev-2 border-border flex items-center justify-between border-b px-4 py-2">
-      <span className="text-fg-dim font-mono text-xs tracking-wider">
+  <div className="border-line bg-surface overflow-hidden rounded-lg border">
+    <div className="bg-surface-raised border-line flex items-center justify-between border-b px-4 py-2">
+      <span className="text-ink-dim font-mono text-xs tracking-wider">
         .claude/rules/
       </span>
-      <span className="text-fg-mute font-mono text-[0.6rem] tracking-[0.16em] uppercase">
+      <span className="text-muted font-mono text-[0.6rem] tracking-[0.16em] uppercase">
         on match
       </span>
     </div>
-    <div className="divide-border-soft divide-y">
+    <div className="divide-line-soft divide-y">
       {RULE_ROWS.map((r) => (
         <div
           key={r.pattern}
-          className={`flex items-center border-l-2 px-4 py-2.5 ${
+          className={twJoin(
+            'flex items-center border-l-2 px-4 py-2.5',
             r.active ? 'bg-accent/5 border-l-accent' : 'border-l-transparent'
-          }`}
+          )}
         >
           <div className="flex-1">
             <code
-              className={`font-mono text-xs ${r.active ? 'text-accent-soft' : 'text-fg-mute'}`}
+              className={twJoin(
+                'font-mono text-xs',
+                r.active ? 'text-accent-soft' : 'text-muted'
+              )}
             >
               {r.pattern}
             </code>
           </div>
-          <div className="text-fg-mute px-3 text-xs">→</div>
+          <div className="text-muted px-3 text-xs">→</div>
           <div className="flex-1 text-right">
             <code
-              className={`font-mono text-xs ${r.active ? 'text-fg' : 'text-fg-dim'}`}
+              className={twJoin(
+                'font-mono text-xs',
+                r.active ? 'text-ink' : 'text-ink-dim'
+              )}
             >
               {r.rule}
             </code>
@@ -85,7 +97,7 @@ const ClaudeMd = () => (
   <>
     <Section id="claude-md">
       <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1fr_1fr]">
-        <div className="text-fg order-2 space-y-4 md:order-2">
+        <div className="text-ink order-2 space-y-4 md:order-2">
           <SectionHeading id="claude-md">
             Claude Code, configured
           </SectionHeading>
@@ -124,7 +136,7 @@ const ClaudeMd = () => (
 
     <Section id="conventions">
       <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1fr_1fr]">
-        <div className="text-fg order-2 space-y-4 md:order-1">
+        <div className="text-ink order-2 space-y-4 md:order-1">
           <SectionHeading id="conventions">
             Claude Code, calibrated
           </SectionHeading>

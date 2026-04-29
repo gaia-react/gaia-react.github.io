@@ -16,12 +16,12 @@ export const StatCallout = ({
 
   return (
     <div
-      className={`bg-bg-elev-2 rounded-sm border-l-[3px] p-4 ${stripeClass}`}
+      className={`bg-surface-raised rounded-sm border-l-[0.1875rem] p-4 ${stripeClass}`}
     >
-      <div className="font-display text-fg text-[1.6rem] leading-[1.1] font-light tracking-[-0.02em]">
+      <div className="font-display text-ink text-[1.6rem] leading-[1.1] font-light tracking-[-0.02em]">
         {value}
       </div>
-      <div className="text-fg-mute mt-1 font-mono text-[0.7rem] tracking-[0.15em] uppercase">
+      <div className="text-muted mt-1 font-mono text-[0.7rem] tracking-[0.15em] uppercase">
         {label}
       </div>
     </div>

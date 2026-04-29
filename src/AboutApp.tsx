@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {Layout} from './components/Layout';
-import About from './sections/About';
+import About from './sections/about/About';
 
 const AboutApp = () => {
   useEffect(() => {

@@ -7,7 +7,7 @@ type LayoutProperties = {
 };
 
 export const Layout = ({children}: LayoutProperties) => (
-  <div className="bg-bg text-fg flex min-h-screen flex-col">
+  <div className="bg-canvas text-ink flex min-h-screen flex-col">
     <Header />
     <main className="flex-1">{children}</main>
     <Footer />

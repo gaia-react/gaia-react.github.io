@@ -18,9 +18,9 @@ export const Callout = ({
       title: 'text-secondary-soft',
     },
     note: {
-      bg: 'bg-bg-elev',
+      bg: 'bg-surface',
       stripe: 'border-l-border',
-      title: 'text-fg-dim',
+      title: 'text-ink-dim',
     },
     warn: {
       bg: 'bg-warn/8',
@@ -31,7 +31,7 @@ export const Callout = ({
 
   return (
     <div
-      className={`${styles.bg} ${styles.stripe} rounded-sm border-l-[3px] p-4`}
+      className={`${styles.bg} ${styles.stripe} rounded-sm border-l-[0.1875rem] p-4`}
     >
       {title && (
         <div
@@ -40,7 +40,7 @@ export const Callout = ({
           {title}
         </div>
       )}
-      <div className="text-fg-dim text-[0.9rem] leading-[1.6]">{children}</div>
+      <div className="text-ink-dim text-[0.9rem] leading-[1.6]">{children}</div>
     </div>
   );
 };

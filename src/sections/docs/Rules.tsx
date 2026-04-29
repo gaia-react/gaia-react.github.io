@@ -2,7 +2,7 @@ import {Section} from '@/components/Section';
 
 const Rules = () => (
   <Section id="rules" title="Rules">
-    <p className="text-fg-dim mb-6">
+    <p className="text-ink-dim mb-6">
       Project rules live in <code className="text-accent">.claude/rules/</code>{' '}
       and only load into Claude’s context when it’s working in matching file
       paths. They encode project conventions (coding style, API patterns,
@@ -10,7 +10,7 @@ const Rules = () => (
       session.
     </p>
 
-    <div className="text-fg space-y-3">
+    <div className="text-ink space-y-3">
       <div>
         <span className="text-accent font-semibold">Accessibility</span> - ARIA
         attributes, semantic HTML, keyboard navigation, color contrast

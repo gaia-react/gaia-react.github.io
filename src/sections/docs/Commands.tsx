@@ -2,13 +2,13 @@ import {Section} from '@/components/Section';
 
 const Commands = () => (
   <Section id="commands" paddingTop="2rem" title="Commands">
-    <p className="text-fg-dim mb-6">
+    <p className="text-ink-dim mb-6">
       Slash commands for scaffolding, quality, session management, and project
       lifecycle.
     </p>
 
-    <h3 className="text-fg mb-3 text-lg font-semibold">Project Lifecycle</h3>
-    <ul className="text-fg mb-6 space-y-2">
+    <h3 className="text-ink mb-3 text-lg font-semibold">Project Lifecycle</h3>
+    <ul className="text-ink mb-6 space-y-2">
       <li>
         <code className="text-accent">/init</code> - Initializes a new GAIA
         project
@@ -23,8 +23,8 @@ const Commands = () => (
       </li>
     </ul>
 
-    <h3 className="text-fg mb-3 text-lg font-semibold">Authoring</h3>
-    <ul className="text-fg mb-6 space-y-2">
+    <h3 className="text-ink mb-3 text-lg font-semibold">Authoring</h3>
+    <ul className="text-ink mb-6 space-y-2">
       <li>
         <code className="text-accent">/orchestrate</code> - Plan a complex
         feature. Claude structures the work, you approve, then an orchestrator
@@ -48,8 +48,8 @@ const Commands = () => (
       </li>
     </ul>
 
-    <h3 className="text-fg mb-3 text-lg font-semibold">Quality</h3>
-    <ul className="text-fg mb-6 space-y-2">
+    <h3 className="text-ink mb-3 text-lg font-semibold">Quality</h3>
+    <ul className="text-ink mb-6 space-y-2">
       <li>
         <code className="text-accent">/audit-code</code> - Run the quality gate:
         simplify code, typecheck, lint, and run tests
@@ -61,8 +61,8 @@ const Commands = () => (
       </li>
     </ul>
 
-    <h3 className="text-fg mb-3 text-lg font-semibold">Session</h3>
-    <ul className="text-fg mb-6 space-y-2">
+    <h3 className="text-ink mb-3 text-lg font-semibold">Session</h3>
+    <ul className="text-ink mb-6 space-y-2">
       <li>
         <code className="text-accent">/handoff</code> - Generate a session
         handoff document so you can clear context without losing anything

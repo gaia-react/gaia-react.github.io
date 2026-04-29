@@ -1,12 +1,12 @@
 import {Section, SectionHeading} from '@/components/Section';
-import ClaudeLogo from '../assets/logos/ClaudeLogo';
-import ObsidianLogo from '../assets/logos/ObsidianLogo';
-import wikiVaultDiagram from '../assets/wiki-vault-diagram.svg';
+import ClaudeLogo from '../../assets/logos/ClaudeLogo';
+import ObsidianLogo from '../../assets/logos/ObsidianLogo';
+import wikiVaultDiagram from '../../assets/wiki-vault-diagram.svg';
 
 const ObsidianWiki = () => (
   <Section id="wiki">
     <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1.2fr_1fr]">
-      <div className="text-fg order-2 space-y-4 md:order-1">
+      <div className="text-ink order-2 space-y-4 md:order-1">
         <SectionHeading id="wiki">A second brain for Claude</SectionHeading>
         <p>
           GAIA’s wiki saves Claude tokens. Architecture, flows, and decisions
@@ -32,7 +32,7 @@ const ObsidianWiki = () => (
       </div>
 
       <div className="order-1 flex justify-center md:order-2">
-        <div className="relative aspect-square w-full max-w-[360px]">
+        <div className="relative aspect-square w-full max-w-90">
           <img
             alt="Wiki vault structure: agents, architecture, flows"
             className="size-full"

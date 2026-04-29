@@ -4,7 +4,7 @@ import {Section} from '@/components/Section';
 const GetStarted = () => (
   <Section id="get-started" paddingTop="2rem" title="Get Started with GAIA">
     <div className="space-y-6">
-      <p className="text-fg">Two commands and you’re initialized.</p>
+      <p className="text-ink">Two commands and you’re initialized.</p>
 
       <div className="space-y-4">
         <CodeBlock language="bash" title="terminal">
@@ -16,7 +16,7 @@ const GetStarted = () => (
         </CodeBlock>
       </div>
 
-      <p className="text-fg-dim text-sm">
+      <p className="text-ink-dim text-sm">
         The first command pulls the latest release and git-inits your project.
         The second initializes GAIA’s Claude setup, including installing skills
         and plugins. See the{' '}

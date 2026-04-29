@@ -2,7 +2,7 @@ import {Section} from '@/components/Section';
 
 const Skills = () => (
   <Section id="skills" title="Skills">
-    <p className="text-fg-dim mb-6">
+    <p className="text-ink-dim mb-6">
       Skills live in <code className="text-accent">.claude/skills/</code> and
       are loaded on demand when Claude detects a matching pattern in the task.
       They encode project-specific conventions and patterns so Claude applies
@@ -10,7 +10,7 @@ const Skills = () => (
       skills ship with GAIA.
     </p>
 
-    <div className="text-fg space-y-3">
+    <div className="text-ink space-y-3">
       <div>
         <span className="text-accent font-semibold">typescript</span> - naming
         identifiers, type-only imports, Zod schemas, avoiding enums and switch

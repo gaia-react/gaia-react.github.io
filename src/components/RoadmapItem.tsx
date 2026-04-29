@@ -1,3 +1,5 @@
+import {twJoin} from 'tailwind-merge';
+
 type RoadmapItemProperties = {
   badge?: string;
   label: string;
@@ -16,9 +18,9 @@ const stateConfig: Record<
     dotClass: 'bg-warn',
   },
   future: {
-    badgeClass: 'bg-bg-elev-2 text-fg-mute border-border',
+    badgeClass: 'bg-surface-raised text-muted border-line',
     defaultBadge: 'Future',
-    dotClass: 'bg-fg-mute',
+    dotClass: 'bg-muted',
   },
   shipped: {
     badgeClass: 'bg-secondary/15 text-secondary-soft border-secondary-2',
@@ -35,11 +37,14 @@ export const RoadmapItem = ({badge, label, state}: RoadmapItemProperties) => {
     <div className="flex items-center gap-3 py-2">
       <span
         aria-hidden="true"
-        className={`size-[10px] shrink-0 rounded-full ${config.dotClass}`}
+        className={twJoin('size-2.5 shrink-0 rounded-full', config.dotClass)}
       />
-      <span className="text-fg flex-1">{label}</span>
+      <span className="text-ink flex-1">{label}</span>
       <span
-        className={`rounded-sm border px-2 py-[0.2rem] font-mono text-[0.65rem] tracking-[0.15em] uppercase ${config.badgeClass}`}
+        className={twJoin(
+          'rounded-sm border px-2 py-[0.2rem] font-mono text-[0.65rem] tracking-[0.15em] uppercase',
+          config.badgeClass
+        )}
       >
         {badgeText}
       </span>

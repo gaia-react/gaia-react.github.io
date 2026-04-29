@@ -31,7 +31,7 @@ export const Header = () => {
   return (
     <header
       ref={headerReference}
-      className="border-border sticky top-0 z-50 border-b bg-[rgba(20,20,19,0.85)] backdrop-blur-md"
+      className="border-line sticky top-0 z-50 border-b bg-[rgba(20,20,19,0.85)] backdrop-blur-md"
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-8 px-8">
         <a
@@ -49,14 +49,14 @@ export const Header = () => {
           {NAV_DESKTOP.map((item) => (
             <a
               key={item.href}
-              className="text-fg-dim font-body hover:text-accent rounded-sm px-2.5 py-1.5 text-[0.8125rem] tracking-[0.02em] whitespace-nowrap no-underline transition-colors duration-150"
+              className="text-ink-dim font-body hover:text-accent rounded-sm px-2.5 py-1.5 text-[0.8125rem] tracking-[0.02em] whitespace-nowrap no-underline transition-colors duration-150"
               href={item.href}
             >
               {item.label}
             </a>
           ))}
           <a
-            className="bg-accent text-bg hover:bg-accent-2 ml-2 rounded-sm px-3.5 py-1.75 text-[0.8125rem] font-semibold tracking-[0.02em] whitespace-nowrap transition-colors duration-150"
+            className="bg-accent text-canvas hover:bg-accent-2 ml-2 rounded-sm px-3.5 py-1.75 text-[0.8125rem] font-semibold tracking-[0.02em] whitespace-nowrap transition-colors duration-150"
             href="/get-started/"
           >
             Get Started
@@ -66,7 +66,7 @@ export const Header = () => {
         <button
           aria-expanded={menuOpen}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          className="text-fg-dim flex cursor-pointer border-none bg-transparent p-2 leading-none md:hidden"
+          className="text-ink-dim flex cursor-pointer border-none bg-transparent p-2 leading-none md:hidden"
           onClick={() => setMenuOpen((open) => !open)}
           type="button"
         >
@@ -86,11 +86,11 @@ export const Header = () => {
       </div>
 
       {menuOpen && (
-        <div className="bg-bg-elev-2 border-border absolute inset-x-0 top-full flex flex-col gap-1 border-b px-8 py-4">
+        <div className="bg-surface-raised border-line absolute inset-x-0 top-full flex flex-col gap-1 border-b px-8 py-4">
           {NAV_DESKTOP.map((item) => (
             <a
               key={item.href}
-              className="text-fg-dim font-body border-border hover:text-accent border-b px-0 py-2.5 text-base no-underline transition-colors duration-150"
+              className="text-ink-dim font-body border-line hover:text-accent border-b px-0 py-2.5 text-base no-underline transition-colors duration-150"
               href={item.href}
               onClick={() => setMenuOpen(false)}
             >
@@ -98,7 +98,7 @@ export const Header = () => {
             </a>
           ))}
           <a
-            className="bg-accent text-bg hover:bg-accent-2 mt-3 rounded-sm px-5 py-3 text-center font-semibold transition-colors duration-150"
+            className="bg-accent text-canvas hover:bg-accent-2 mt-3 rounded-sm px-5 py-3 text-center font-semibold transition-colors duration-150"
             href="/get-started/"
             onClick={() => setMenuOpen(false)}
           >

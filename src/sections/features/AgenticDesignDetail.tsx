@@ -1,3 +1,4 @@
+import {twJoin} from 'tailwind-merge';
 import {Section} from '@/components/Section';
 
 type Pattern = {
@@ -79,19 +80,21 @@ const PatternGroup = ({accent, items, label}: GroupProperties) => {
 
   return (
     <div className="space-y-3">
-      <h3 className="text-fg-dim text-xs font-semibold tracking-widest uppercase">
+      <h3 className="text-ink-dim text-xs font-semibold tracking-widest uppercase">
         {label}
       </h3>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {items.map(({body, name}) => (
           <div
             key={name}
-            className="bg-bg-elev border-border rounded-lg border px-4 py-3"
+            className="bg-surface border-line rounded-lg border px-4 py-3"
           >
-            <span className={`mb-1 block text-sm font-semibold ${nameColor}`}>
+            <span
+              className={twJoin('mb-1 block text-sm font-semibold', nameColor)}
+            >
               {name}
             </span>
-            <span className="text-fg text-sm leading-[1.55]">{body}</span>
+            <span className="text-ink text-sm leading-[1.55]">{body}</span>
           </div>
         ))}
       </div>
@@ -101,7 +104,7 @@ const PatternGroup = ({accent, items, label}: GroupProperties) => {
 
 const AgenticDesignDetail = () => (
   <Section id="agentic-design" title="Agentic design">
-    <p className="text-fg-dim mb-8">
+    <p className="text-ink-dim mb-8">
       The{' '}
       <a
         className="text-accent hover:underline"
@@ -112,7 +115,7 @@ const AgenticDesignDetail = () => (
         canonical taxonomy
       </a>{' '}
       catalogs 29 agentic design patterns. GAIA implements{' '}
-      <strong className="text-fg font-semibold">
+      <strong className="text-ink font-semibold">
         12 of those 29 structurally
       </strong>
       : wired in through hooks, agents, rules, commands, and wiki conventions,

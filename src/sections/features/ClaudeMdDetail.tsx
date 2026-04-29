@@ -47,7 +47,7 @@ const BENEFITS = [
 
 const ClaudeMdDetail = () => (
   <Section id="claude-md" title="A Karpathy-style CLAUDE.md">
-    <div className="text-fg space-y-6">
+    <div className="text-ink space-y-6">
       <p>
         A Karpathy-style CLAUDE.md is wiki-first, don’t-preload, lazy-fetch. It
         tells Claude where to look, not to load everything upfront. See{' '}
@@ -71,8 +71,8 @@ const ClaudeMdDetail = () => (
         {KARPATHY.map(({desc, name}) => (
           <li key={name} className="flex gap-3">
             <span className="text-accent mt-0.5 shrink-0">•</span>
-            <span className="text-fg-dim">
-              <strong className="text-fg">{name} - </strong>
+            <span className="text-ink-dim">
+              <strong className="text-ink">{name} - </strong>
               {desc}
             </span>
           </li>
@@ -85,8 +85,8 @@ const ClaudeMdDetail = () => (
         {PRINCIPLES.map(({desc, name}) => (
           <li key={name} className="flex gap-3">
             <span className="text-accent mt-0.5 shrink-0">•</span>
-            <span className="text-fg-dim">
-              <strong className="text-fg">{name} - </strong>
+            <span className="text-ink-dim">
+              <strong className="text-ink">{name} - </strong>
               {desc}
             </span>
           </li>
@@ -96,7 +96,7 @@ const ClaudeMdDetail = () => (
       <p>
         GAIA’s variant also adds three wiki habits on top of Karpathy’s framing.{' '}
         <strong>Domain isolation</strong> means technical work fetches only from{' '}
-        <code className="bg-bg-elev rounded-sm px-2 py-1 text-sm">
+        <code className="bg-surface rounded-sm px-2 py-1 text-sm">
           wiki/app/
         </code>
         , brand work from its own domain. <strong>wiki/hot.md auto-load</strong>{' '}
@@ -104,20 +104,20 @@ const ClaudeMdDetail = () => (
         surface work-in-progress. <strong>Memory discipline</strong> keeps
         machine-local memory for personal preferences only. Durable knowledge
         lives in the wiki or{' '}
-        <code className="bg-bg-elev rounded-sm px-2 py-1 text-sm">
+        <code className="bg-surface rounded-sm px-2 py-1 text-sm">
           .claude/rules/
         </code>
         .
       </p>
 
-      <h3 className="text-fg pt-2 font-semibold">Three concrete benefits</h3>
+      <h3 className="text-ink pt-2 font-semibold">Three concrete benefits</h3>
 
       <ul className="space-y-3">
         {BENEFITS.map(({desc, name}) => (
           <li key={name} className="flex gap-3">
             <span className="text-accent mt-0.5 shrink-0">•</span>
-            <span className="text-fg-dim">
-              <strong className="text-fg">{name}.</strong> {desc}
+            <span className="text-ink-dim">
+              <strong className="text-ink">{name}.</strong> {desc}
             </span>
           </li>
         ))}

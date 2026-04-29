@@ -85,43 +85,43 @@ const rows: ComparisonRow[] = [
 
 const FrameworkComparison = () => (
   <section
-    className="border-fg/4 border-b"
+    className="border-ink/4 border-b"
     style={{paddingBottom: '4rem', paddingTop: '4rem'}}
   >
     <div
       className="mx-auto max-w-6xl scroll-mt-20 px-8"
       id="framework-comparison"
     >
-      <h2 className="font-display text-fg mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
+      <h2 className="font-display text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
         How the major React starters stack up
       </h2>
-      <p className="text-fg-dim mb-10 text-lg/relaxed text-pretty">
+      <p className="text-ink-dim mb-10 text-lg/relaxed text-pretty">
         GAIA’s stack is the most complete. Fewer gaps means fewer decisions
         Claude has to invent on its own.
       </p>
 
       <ComparisonTable columns={columns} rows={rows} />
 
-      <p className="text-fg-dim mt-8 text-base/relaxed text-pretty">
+      <p className="text-ink-dim mt-8 text-base/relaxed text-pretty">
         Every lint rule is a check Claude has to clear, and GAIA has more than
         twice as many as any other starter, including 85 Stylelint rules none of
         the others ship at all. The extras cover the patterns Claude drifts into
         first: complexity creep, architectural shortcuts, mismatched filenames,
         broken CSS.{' '}
-        <span className="text-fg">
+        <span className="text-ink">
           In GAIA, the code Claude writes matches high standards because every
           commit enforces them.
         </span>
       </p>
-      <div className="border-border-soft mt-10 grid grid-cols-1 overflow-hidden rounded-lg border md:grid-cols-[4fr_3fr]">
-        <div className="border-border-soft border-b px-6 py-7 [background:linear-gradient(to_bottom,rgba(217,119,87,0.22),rgba(217,119,87,0.08))] md:border-r md:border-b-0 md:px-8 md:py-9 md:[background:linear-gradient(to_right,rgba(217,119,87,0.22),rgba(217,119,87,0.08))]">
+      <div className="border-line-soft mt-10 grid grid-cols-1 overflow-hidden rounded-lg border md:grid-cols-[4fr_3fr]">
+        <div className="border-line-soft border-b px-6 py-7 [background:linear-gradient(to_bottom,rgba(217,119,87,0.22),rgba(217,119,87,0.08))] md:border-r md:border-b-0 md:px-8 md:py-9 md:[background:linear-gradient(to_right,rgba(217,119,87,0.22),rgba(217,119,87,0.08))]">
           <p className="text-accent-soft mb-3 font-mono text-[0.7rem] tracking-[0.2em] uppercase">
             Order and focus
           </p>
-          <h3 className="font-display text-fg mb-4 text-2xl leading-[1.2] font-light tracking-[-0.02em] md:text-3xl">
+          <h3 className="font-display text-ink mb-4 text-2xl leading-[1.2] font-light tracking-[-0.02em] md:text-3xl">
             Only GAIA is built for Claude.
           </h3>
-          <p className="text-fg-dim leading-relaxed text-pretty">
+          <p className="text-ink-dim leading-relaxed text-pretty">
             GAIA was strict long before Claude existed. That same discipline is
             what keeps Claude’s code clean now. Claude thrives with enforced
             standards, and GAIA’s were already battle-tested.
@@ -131,10 +131,10 @@ const FrameworkComparison = () => (
           <p className="text-secondary-soft mb-3 font-mono text-[0.7rem] tracking-[0.2em] uppercase">
             Ship features
           </p>
-          <h3 className="font-display text-fg mb-4 text-2xl leading-[1.2] font-light tracking-[-0.02em] md:text-3xl">
+          <h3 className="font-display text-ink mb-4 text-2xl leading-[1.2] font-light tracking-[-0.02em] md:text-3xl">
             Set the goal. Trust the diff.
           </h3>
-          <p className="text-fg-dim leading-relaxed text-pretty">
+          <p className="text-ink-dim leading-relaxed text-pretty">
             You describe what you want. Claude works inside the guardrails. Code
             review stops being a hunt for surprises, and you get back to
             shipping.

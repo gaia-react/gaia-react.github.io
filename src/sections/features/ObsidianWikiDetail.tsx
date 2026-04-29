@@ -2,7 +2,7 @@ import {Section} from '@/components/Section';
 
 const ObsidianWikiDetail = () => (
   <Section id="wiki" title="A second brain for Claude">
-    <div className="text-fg space-y-4">
+    <div className="text-ink space-y-4">
       <p>
         With an Obsidian wiki, Claude understands what you are actually
         building, not just the code in front of it. Product features, user

@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {Layout} from './components/Layout';
-import Consulting from './sections/Consulting';
+import Consulting from './sections/consulting/Consulting';
 
 const ConsultingApp = () => {
   useEffect(() => {

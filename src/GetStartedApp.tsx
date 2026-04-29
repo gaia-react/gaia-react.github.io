@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {Layout} from './components/Layout';
-import GetStarted from './sections/GetStarted';
+import GetStarted from './sections/get-started/GetStarted';
 
 const GetStartedApp = () => {
   useEffect(() => {

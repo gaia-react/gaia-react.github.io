@@ -1,12 +1,12 @@
 import {useEffect} from 'react';
 import {Layout} from './components/Layout';
-import AgenticDesign from './sections/AgenticDesign';
-import ClaudeMd from './sections/ClaudeMd';
 import Closing from './sections/Closing';
-import FrameworkComparison from './sections/FrameworkComparison';
-import Hero from './sections/Hero';
-import ObsidianWiki from './sections/ObsidianWiki';
-import Why from './sections/Why';
+import AgenticDesign from './sections/home/AgenticDesign';
+import ClaudeMd from './sections/home/ClaudeMd';
+import FrameworkComparison from './sections/home/FrameworkComparison';
+import Hero from './sections/home/Hero';
+import ObsidianWiki from './sections/home/ObsidianWiki';
+import Why from './sections/home/Why';
 
 const App = () => {
   useEffect(() => {

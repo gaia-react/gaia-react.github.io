@@ -33,7 +33,7 @@ const POINTS = [
 
 const Trust = () => (
   <Section id="trust" paddingTop="2rem" title="Trust">
-    <div className="text-fg space-y-6">
+    <div className="text-ink space-y-6">
       <p>
         You can’t manage an engineer you can’t predict. Without enforceable
         conventions, Claude reverts to its training distribution, an average of
@@ -43,7 +43,7 @@ const Trust = () => (
         doesn’t.
       </p>
 
-      <h3 className="text-fg pt-2 text-xl font-semibold">
+      <h3 className="text-ink pt-2 text-xl font-semibold">
         How GAIA makes Claude trustworthy
       </h3>
 
@@ -51,8 +51,8 @@ const Trust = () => (
         {POINTS.map(({desc, name}) => (
           <li key={name} className="flex gap-3">
             <span className="text-accent mt-0.5 shrink-0">•</span>
-            <span className="text-fg-dim">
-              <strong className="text-fg">{name}.</strong> {desc}
+            <span className="text-ink-dim">
+              <strong className="text-ink">{name}.</strong> {desc}
             </span>
           </li>
         ))}

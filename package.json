@@ -16,7 +16,8 @@
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@gaia-react/lint": "^1.1.1",

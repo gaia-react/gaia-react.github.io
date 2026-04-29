@@ -1,7 +1,8 @@
 import type React from 'react';
 import {useEffect} from 'react';
 import {getCalApi} from '@calcom/embed-react';
-import {Section} from '../components/Section';
+import {twJoin} from 'tailwind-merge';
+import {Section} from '../../components/Section';
 
 const CAL_USERNAME = 'stevensacks';
 const CAL_NAMESPACE = 'consulting';
@@ -24,7 +25,7 @@ const iconBaseProperties = {
   className: 'block mb-[0.875rem]',
   fill: 'none',
   height: 36,
-  stroke: 'var(--color-fg-dim)',
+  stroke: 'var(--color-ink-dim)',
   strokeLinecap: 'round' as const,
   strokeLinejoin: 'round' as const,
   strokeWidth: 1.5,
@@ -146,12 +147,15 @@ const CtaButton = ({
   href?: string;
   isFullWidth?: boolean;
 }) => {
-  const baseClass = `${isFullWidth ? 'flex w-full justify-center' : 'inline-flex'} items-center bg-accent text-bg no-underline font-body text-[0.9375rem] font-medium py-[0.6875rem] px-5 rounded-lg transition-colors duration-150 tracking-[0.01em] whitespace-nowrap hover:bg-accent-2`;
+  const baseClass = twJoin(
+    isFullWidth ? 'flex w-full justify-center' : 'inline-flex',
+    'bg-accent text-canvas font-body hover:bg-accent-2 items-center rounded-lg px-5 py-2.75 text-[0.9375rem] font-medium tracking-[0.01em] whitespace-nowrap no-underline transition-colors duration-150'
+  );
 
   if (calLink) {
     return (
       <button
-        className={`${baseClass} cursor-pointer border-none`}
+        className={twJoin(baseClass, 'cursor-pointer border-none')}
         data-cal-config='{"layout":"month_view"}'
         data-cal-link={`${CAL_USERNAME}/${calLink}`}
         data-cal-namespace={CAL_NAMESPACE}
@@ -170,26 +174,24 @@ const CtaButton = ({
 };
 
 const SkuCard = ({sku}: {sku: SkuData}) => (
-  <div className="bg-bg-elev border-border flex flex-col gap-5 rounded-xl border p-7">
+  <div className="bg-surface border-line flex flex-col gap-5 rounded-xl border p-7">
     {/* Title + tagline */}
     <div>
       {sku.icon}
-      <h2 className="font-display text-fg mb-1.5 text-[1.75rem] leading-[1.15] font-light tracking-[-0.02em]">
+      <h2 className="font-display text-ink mb-1.5 text-[1.75rem] leading-[1.15] font-light tracking-[-0.02em]">
         {sku.title}
       </h2>
-      <p className="text-fg-dim min-h-[calc(0.875rem*1.5*2)] text-sm/normal">
+      <p className="text-ink-dim min-h-[calc(0.875rem*1.5*2)] text-sm/normal">
         {sku.tagline}
       </p>
     </div>
 
     {/* Price */}
     <div>
-      <p className="font-display text-fg mb-1 text-[2rem] leading-[1.1] font-light tracking-[-0.02em]">
+      <p className="font-display text-ink mb-1 text-[2rem] leading-[1.1] font-light tracking-[-0.02em]">
         {sku.price}
       </p>
-      <p className="font-body text-fg-mute text-[0.8125rem]">
-        {sku.priceDetail}
-      </p>
+      <p className="font-body text-muted text-[0.8125rem]">{sku.priceDetail}</p>
     </div>
 
     {/* CTA above the feature list */}
@@ -198,14 +200,14 @@ const SkuCard = ({sku}: {sku: SkuData}) => (
     </CtaButton>
 
     {/* Divider */}
-    <div aria-hidden="true" className="border-border border-t" />
+    <div aria-hidden="true" className="border-line border-t" />
 
     {/* Feature list */}
     <ul className="m-0 flex flex-1 list-none flex-col gap-2.5 p-0">
       {sku.deliverables.map((item) => (
         <li
           key={item}
-          className="text-fg-dim flex gap-2.5 text-sm leading-[1.55]"
+          className="text-ink-dim flex gap-2.5 text-sm leading-[1.55]"
         >
           <span
             aria-hidden="true"
@@ -220,14 +222,14 @@ const SkuCard = ({sku}: {sku: SkuData}) => (
 
     {/* Retainer tiers */}
     {sku.tiers && (
-      <div className="border-border border-t pt-4">
-        <p className="text-fg-mute mb-2 text-xs font-medium tracking-[0.08em] uppercase">
+      <div className="border-line border-t pt-4">
+        <p className="text-muted mb-2 text-xs font-medium tracking-[0.08em] uppercase">
           Two tiers
         </p>
         <ul className="m-0 flex list-none flex-col gap-1 p-0">
           {sku.tiers.map((tier) => (
-            <li key={tier.price} className="text-fg-dim text-[0.8125rem]">
-              <strong className="text-fg">{tier.price}:</strong>{' '}
+            <li key={tier.price} className="text-ink-dim text-[0.8125rem]">
+              <strong className="text-ink">{tier.price}:</strong>{' '}
               {tier.description}
             </li>
           ))}
@@ -254,10 +256,10 @@ const Consulting = () => {
       {/* Hero */}
       <section className="pt-20 pb-12">
         <div className="mx-auto max-w-3xl px-8 text-center">
-          <h1 className="font-display text-fg mb-6 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
+          <h1 className="font-display text-ink mb-6 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
             Work with the creator of GAIA
           </h1>
-          <p className="text-fg-dim mx-auto max-w-152 text-[clamp(1rem,2vw,1.1875rem)] leading-[1.65]">
+          <p className="text-ink-dim mx-auto max-w-152 text-[clamp(1rem,2vw,1.1875rem)] leading-[1.65]">
             I built the GAIA Flash Framework in the 2000s, which was used to
             build 100k+ sites and by every major digital agency worldwide. GAIA
             React carries the same automation philosophy into the AI-native era.
@@ -276,13 +278,13 @@ const Consulting = () => {
       {/* Lead-in */}
       <Section id="intro">
         <div className="flex flex-col gap-5">
-          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
+          <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Your team started using Claude Code. Now everyone’s doing it
             differently: inconsistent patterns, ballooning token costs, and
             AI-generated problems that shouldn’t exist, caught in code review,
             or worse, production.
           </p>
-          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
+          <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Without guardrails, this compounds into technical debt and bugs that
             ship. I help teams and individuals fix the workflow before it gets
             there.
@@ -304,7 +306,7 @@ const Consulting = () => {
       {/* Custom inquiries */}
       <section className="scroll-mt-20 pb-20" id="custom">
         <div className="mx-auto max-w-3xl px-8 text-center">
-          <p className="text-fg-dim text-[1.0625rem] leading-[1.7]">
+          <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom
             integrations, or scope I haven’t named here.{' '}
             <a

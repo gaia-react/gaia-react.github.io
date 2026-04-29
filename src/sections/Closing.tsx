@@ -7,11 +7,11 @@ const Closing = () => (
   >
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[420px] w-[560px] -translate-1/2 rounded-full bg-[rgba(217,119,87,0.18)] blur-[90px]"
+      className="bg-accent/18 pointer-events-none absolute top-1/2 left-1/2 z-0 h-105 w-140 -translate-1/2 rounded-full blur-[5.625rem]"
     />
     <div className="relative z-10 mx-auto max-w-2xl text-center">
       <img alt="GAIA" className="mx-auto mb-6 w-40 md:w-52" src={gaiaLogo} />
-      <h2 className="text-fg mb-3 text-4xl font-bold md:text-6xl">
+      <h2 className="text-ink mb-3 text-4xl font-bold md:text-6xl">
         Spend your time on the product, not the workflow
       </h2>
       <p className="text-accent-soft mb-10 text-lg italic md:mb-12 md:text-2xl">
@@ -19,7 +19,7 @@ const Closing = () => (
       </p>
       <div className="flex justify-center">
         <a
-          className="bg-accent text-bg hover:bg-accent-2 rounded-sm px-8 py-3 font-semibold transition-colors"
+          className="bg-accent text-canvas hover:bg-accent-2 rounded-sm px-8 py-3 font-semibold transition-colors"
           href="/get-started/"
         >
           Get Started

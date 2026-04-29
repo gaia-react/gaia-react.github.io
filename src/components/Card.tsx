@@ -26,16 +26,18 @@ export const Card = ({
     : 'text-accent-soft hover:text-accent';
 
   return (
-    <div className={`bg-bg-elev rounded-lg border-l-[3px] p-6 ${stripeClass}`}>
+    <div
+      className={`bg-surface rounded-lg border-l-[0.1875rem] p-6 ${stripeClass}`}
+    >
       {icon && (
         <div aria-hidden="true" className={`${iconClass} mb-4`}>
           {icon}
         </div>
       )}
-      <h3 className="font-display text-fg mb-2 text-xl leading-[1.15] font-light tracking-[-0.02em]">
+      <h3 className="font-display text-ink mb-2 text-xl leading-[1.15] font-light tracking-[-0.02em]">
         {title}
       </h3>
-      <div className="text-fg-dim leading-[1.6]">{children}</div>
+      <div className="text-ink-dim leading-[1.6]">{children}</div>
       {href && (
         <a
           className={`mt-4 inline-flex items-center gap-1 ${linkClass} transition-colors`}

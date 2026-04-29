@@ -19,10 +19,10 @@ export const CodeBlock = ({
   language: _language,
   title,
 }: CodeBlockProperties) => (
-  <div className="border-border mb-6 overflow-hidden rounded-lg border">
-    <div className="bg-bg-elev-2 border-border flex min-h-9 items-center gap-2 border-b px-4 py-2">
+  <div className="border-line mb-6 overflow-hidden rounded-lg border">
+    <div className="bg-surface-raised border-line flex min-h-9 items-center gap-2 border-b px-4 py-2">
       {title ?
-        <span className="text-fg-dim font-mono text-xs tracking-wider">
+        <span className="text-ink-dim font-mono text-xs tracking-wider">
           {title}
         </span>
       : <>
@@ -32,7 +32,7 @@ export const CodeBlock = ({
         </>
       }
     </div>
-    <pre className="bg-bg-elev text-fg m-0 overflow-x-auto px-3 py-5 font-mono text-[0.7rem] leading-[1.65] whitespace-pre md:px-6 md:text-[0.8125rem]">
+    <pre className="bg-surface text-ink m-0 overflow-x-auto px-3 py-5 font-mono text-[0.7rem] leading-[1.65] whitespace-pre md:px-6 md:text-[0.8125rem]">
       <code>{children}</code>
     </pre>
   </div>

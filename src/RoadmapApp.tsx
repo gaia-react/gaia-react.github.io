@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {Layout} from './components/Layout';
-import Roadmap from './sections/Roadmap';
+import Roadmap from './sections/roadmap/Roadmap';
 
 const RoadmapApp = () => {
   useEffect(() => {

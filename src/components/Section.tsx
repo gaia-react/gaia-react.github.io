@@ -16,7 +16,7 @@ export const SectionHeading = ({
   children: ReactNode;
   id: string;
 }) => (
-  <h2 className="group font-display text-fg mb-10 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
+  <h2 className="group font-display text-ink mb-10 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
     <a className="text-inherit no-underline" href={`#${id}`}>
       {children}
       <span
@@ -38,7 +38,7 @@ export const Section = ({
   title,
 }: SectionProperties) => (
   <section
-    className={`border-fg/4 border-b ${className ?? ''}`}
+    className={`border-ink/4 border-b ${className ?? ''}`}
     style={{
       paddingBottom,
       paddingTop,

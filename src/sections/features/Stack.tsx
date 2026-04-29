@@ -1,3 +1,4 @@
+import {twJoin} from 'tailwind-merge';
 import ChromaticLogo from '@/assets/logos/ChromaticLogo';
 import ClaudeLogo from '@/assets/logos/ClaudeLogo';
 import ConformLogo from '@/assets/logos/ConformLogo';
@@ -114,13 +115,16 @@ const CODE_QUALITY: LogoEntry[] = [
 const LogoCard = ({component, href, isWide, name}: LogoEntry) => (
   <a
     aria-label={name}
-    className={`bg-bg-elev border-border flex min-h-22 flex-col items-center justify-center gap-2 rounded-lg border px-3 py-5 no-underline transition-[border-color,transform] duration-150 hover:border-accent-soft${isWide ? 'col-span-2' : ''}`}
+    className={twJoin(
+      'bg-surface border-line hover:border-accent-soft flex min-h-22 flex-col items-center justify-center gap-2 rounded-lg border px-3 py-5 no-underline transition-[border-color,transform] duration-150',
+      isWide && 'col-span-2'
+    )}
     href={href}
     rel="noreferrer"
     target="_blank"
   >
     <div className="flex h-10 items-center justify-center">{component}</div>
-    <span className="text-fg-dim text-center text-xs/tight">{name}</span>
+    <span className="text-ink-dim text-center text-xs/tight">{name}</span>
   </a>
 );
 
@@ -131,7 +135,7 @@ type GroupProperties = {
 
 const LogoGroup = ({items, label}: GroupProperties) => (
   <div className="space-y-3">
-    <h3 className="text-fg-dim text-xs font-semibold tracking-widest uppercase">
+    <h3 className="text-ink-dim text-xs font-semibold tracking-widest uppercase">
       {label}
     </h3>
     <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
@@ -144,7 +148,7 @@ const LogoGroup = ({items, label}: GroupProperties) => (
 
 const Stack = () => (
   <Section id="stack" title="The stack">
-    <p className="text-fg-dim mb-8">
+    <p className="text-ink-dim mb-8">
       20+ ESLint plugins, four testing layers (unit, integration, E2E, visual)
       with mocking, i18n, dark mode, forms with validation, and Storybook. All
       pre-configured and documented for Claude.
