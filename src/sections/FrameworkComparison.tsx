@@ -83,7 +83,7 @@ const rows: ComparisonRow[] = [
 
 export default function FrameworkComparison() {
   return (
-    <section style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
+    <section className="border-b border-fg/[0.04]" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
       <div
         id="framework-comparison"
         className="max-w-[72rem] mx-auto px-8 [scroll-margin-top:5rem]"

@@ -12,7 +12,7 @@ type SectionProps = {
 export function Section({ id, title, children, className, paddingTop = "4rem", paddingBottom = "4rem" }: SectionProps) {
   return (
     <section
-      className={className}
+      className={`border-b border-fg/[0.04] ${className ?? ""}`}
       style={{
         paddingTop,
         paddingBottom,
