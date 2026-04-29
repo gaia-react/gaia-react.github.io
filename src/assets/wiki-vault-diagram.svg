@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="360" height="360" role="img" aria-label="Wiki vault structure: agents, architecture, flows">
+  <defs>
+    <style>
+      .card-fill { fill: #1f1e1d; }
+      .card-stroke { stroke: #3d3d3a; stroke-width: 1; fill: none; }
+      .card-stroke-accent { stroke: #d97757; stroke-width: 1.25; fill: none; }
+      .label { fill: #b0aea5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; letter-spacing: 0.04em; }
+      .tab { fill: #262624; }
+      .orbit { fill: none; stroke: #5b8a8a; stroke-width: 1.25; stroke-dasharray: 3 5; opacity: 0.7; }
+      .claude { fill: #d97757; opacity: 0.55; }
+      .ghost-ring { fill: none; stroke: #5b8a8a; stroke-width: 0.75; opacity: 0.25; }
+    </style>
+  </defs>
+
+  <!-- Outer ghost ring -->
+  <circle class="ghost-ring" cx="180" cy="180" r="158"/>
+
+  <!-- Orbital path (dotted, slate) -->
+  <ellipse class="orbit" cx="180" cy="180" rx="142" ry="138"/>
+
+  <!-- Card 3: flows/ (back) -->
+  <g transform="translate(96 196)">
+    <rect class="card-fill" x="0" y="0" width="168" height="56" rx="6"/>
+    <rect class="card-stroke" x="0.5" y="0.5" width="167" height="55" rx="6"/>
+    <rect class="tab" x="10" y="-6" width="44" height="10" rx="2"/>
+    <text class="label" x="18" y="34">flows/</text>
+    <line x1="18" y1="42" x2="120" y2="42" stroke="#2e2e2b" stroke-width="1"/>
+  </g>
+
+  <!-- Card 2: architecture/ (middle, accent stroke) -->
+  <g transform="translate(86 142)">
+    <rect class="card-fill" x="0" y="0" width="188" height="56" rx="6"/>
+    <rect class="card-stroke-accent" x="0.5" y="0.5" width="187" height="55" rx="6"/>
+    <rect class="tab" x="10" y="-6" width="74" height="10" rx="2"/>
+    <text class="label" x="18" y="34">architecture/</text>
+    <line x1="18" y1="42" x2="140" y2="42" stroke="#2e2e2b" stroke-width="1"/>
+  </g>
+
+  <!-- Card 1: agents/ (front) -->
+  <g transform="translate(96 88)">
+    <rect class="card-fill" x="0" y="0" width="168" height="56" rx="6"/>
+    <rect class="card-stroke" x="0.5" y="0.5" width="167" height="55" rx="6"/>
+    <rect class="tab" x="10" y="-6" width="50" height="10" rx="2"/>
+    <text class="label" x="18" y="34">agents/</text>
+    <line x1="18" y1="42" x2="120" y2="42" stroke="#2e2e2b" stroke-width="1"/>
+  </g>
+
+  <!-- Eyebrow caption -->
+  <text class="label" x="180" y="338" text-anchor="middle" style="font-size: 11px; fill: #87867f; letter-spacing: 0.16em;">YOUR PROJECT, REMEMBERED</text>
+</svg>

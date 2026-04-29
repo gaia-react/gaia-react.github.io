@@ -20,7 +20,7 @@ export function CodeBlock({ title, language: _language, children }: CodeBlockPro
           </>
         )}
       </div>
-      <pre className="bg-bg-elev text-fg font-mono text-[0.8125rem] leading-[1.65] py-5 px-6 m-0 overflow-x-auto whitespace-pre">
+      <pre className="bg-bg-elev text-fg font-mono text-[0.7rem] md:text-[0.8125rem] leading-[1.65] py-5 px-3 md:px-6 m-0 overflow-x-auto whitespace-pre">
         <code>{children}</code>
       </pre>
     </div>

@@ -193,7 +193,7 @@ function SkuCard({ sku }: { sku: SkuData }) {
         </p>
       </div>
 
-      {/* CTA — above the feature list */}
+      {/* CTA above the feature list */}
       <CtaButton calLink={sku.calEvent} fullWidth>
         Book free intro call →
       </CtaButton>
@@ -272,7 +272,7 @@ export default function Consulting() {
         </div>
       </section>
 
-      {/* Skip to pricing — doubles as visual break between hero and pitch */}
+      {/* Skip to pricing. Doubles as visual break between hero and pitch */}
       <div className="text-center px-8">
         <CtaButton href="#pricing">See engagement options ↓</CtaButton>
       </div>
