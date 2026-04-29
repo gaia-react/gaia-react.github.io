@@ -1,23 +1,23 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-import { resolve } from 'node:path';
+import react from '@vitejs/plugin-react';
+import {defineConfig} from 'vite';
+import path from 'node:path';
 
 export default defineConfig({
   base: '/',
-  plugins: [react(), tailwindcss()],
-  resolve: { alias: { '@': '/src' } },
   build: {
     rollupOptions: {
       input: {
-        main: resolve(import.meta.dirname, 'index.html'),
-        features: resolve(import.meta.dirname, 'features/index.html'),
-        docs: resolve(import.meta.dirname, 'docs/index.html'),
-        getStarted: resolve(import.meta.dirname, 'get-started/index.html'),
-        roadmap: resolve(import.meta.dirname, 'roadmap/index.html'),
-        about: resolve(import.meta.dirname, 'about/index.html'),
-        consulting: resolve(import.meta.dirname, 'consulting/index.html'),
+        about: path.resolve(import.meta.dirname, 'about/index.html'),
+        consulting: path.resolve(import.meta.dirname, 'consulting/index.html'),
+        docs: path.resolve(import.meta.dirname, 'docs/index.html'),
+        features: path.resolve(import.meta.dirname, 'features/index.html'),
+        getStarted: path.resolve(import.meta.dirname, 'get-started/index.html'),
+        main: path.resolve(import.meta.dirname, 'index.html'),
+        roadmap: path.resolve(import.meta.dirname, 'roadmap/index.html'),
       },
     },
   },
+  plugins: [react(), tailwindcss()],
+  resolve: {alias: {'@': '/src'}},
 });

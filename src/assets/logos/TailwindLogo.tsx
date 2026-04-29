@@ -1,10 +1,17 @@
 import type {FC, SVGProps} from 'react';
 import {useId} from 'react';
 
-type TailwindLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type TailwindLogoProperties = Omit<
+  SVGProps<SVGSVGElement>,
+  'height' | 'width'
+> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const TailwindLogo: FC<TailwindLogoProps> = ({height, width, ...props}) => {
+const TailwindLogo: FC<TailwindLogoProperties> = ({
+  height,
+  width,
+  ...properties
+}) => {
   const id = useId();
   const adjustedWidth = height ? height * (54 / 33) : (width ?? 54);
   const adjustedHeight = width ? width * (33 / 54) : (height ?? 33);
@@ -17,7 +24,7 @@ const TailwindLogo: FC<TailwindLogoProps> = ({height, width, ...props}) => {
       viewBox="0 0 54 33"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <g clipPath={`url(#${id})`}>
         <path

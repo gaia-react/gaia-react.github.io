@@ -1,9 +1,16 @@
 import type {FC, SVGProps} from 'react';
 
-type ChromaticLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type ChromaticLogoProperties = Omit<
+  SVGProps<SVGSVGElement>,
+  'height' | 'width'
+> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const ChromaticLogo: FC<ChromaticLogoProps> = ({height, width, ...props}) => {
+const ChromaticLogo: FC<ChromaticLogoProperties> = ({
+  height,
+  width,
+  ...properties
+}) => {
   const adjustedWidth = height ?? width ?? 256;
   const adjustedHeight = width ?? height ?? 256;
 
@@ -14,7 +21,7 @@ const ChromaticLogo: FC<ChromaticLogoProps> = ({height, width, ...props}) => {
       viewBox="0 0 256 256"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <g>
         <circle cx="128" cy="128" fill="#FC521F" r="128" />

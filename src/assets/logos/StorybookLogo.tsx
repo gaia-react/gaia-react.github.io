@@ -1,13 +1,16 @@
 import type {FC, SVGProps} from 'react';
 
-type StorybookLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type StorybookLogoProperties = Omit<
+  SVGProps<SVGSVGElement>,
+  'height' | 'width'
+> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const StorybookLogo: FC<StorybookLogoProps> = ({
+const StorybookLogo: FC<StorybookLogoProperties> = ({
   className,
   height,
   width,
-  ...props
+  ...properties
 }) => {
   const adjustedWidth = height ? height * (52 / 64) : (width ?? 52);
   const adjustedHeight = width ? width * (64 / 52) : (height ?? 64);
@@ -19,7 +22,7 @@ const StorybookLogo: FC<StorybookLogoProps> = ({
       viewBox="0 0 52 64"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <defs>
         <path

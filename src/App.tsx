@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
-import { Layout } from './components/Layout';
-import Hero from './sections/Hero';
-import Why from './sections/Why';
-import FrameworkComparison from './sections/FrameworkComparison';
+import {useEffect} from 'react';
+import {Layout} from './components/Layout';
 import AgenticDesign from './sections/AgenticDesign';
-import ObsidianWiki from './sections/ObsidianWiki';
 import ClaudeMd from './sections/ClaudeMd';
 import Closing from './sections/Closing';
+import FrameworkComparison from './sections/FrameworkComparison';
+import Hero from './sections/Hero';
+import ObsidianWiki from './sections/ObsidianWiki';
+import Why from './sections/Why';
 
-export default function App() {
+const App = () => {
   useEffect(() => {
-    const { hash } = window.location;
+    const {hash} = window.location;
+
     if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+      const element = document.querySelector(hash);
+      if (element)
+        element.scrollIntoView({behavior: 'instant' as ScrollBehavior});
     }
   }, []);
 
@@ -28,4 +30,6 @@ export default function App() {
       <Closing />
     </Layout>
   );
-}
+};
+
+export default App;

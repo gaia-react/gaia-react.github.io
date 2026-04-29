@@ -1,9 +1,9 @@
 import type {FC, SVGProps} from 'react';
 
-type TSLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type TSLogoProperties = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const TSLogo: FC<TSLogoProps> = ({height, width, ...props}) => {
+const TSLogo: FC<TSLogoProperties> = ({height, width, ...properties}) => {
   const adjustedWidth = height ?? width ?? 512;
   const adjustedHeight = width ?? height ?? 512;
 
@@ -14,7 +14,7 @@ const TSLogo: FC<TSLogoProps> = ({height, width, ...props}) => {
       viewBox="0 0 512 512"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <rect fill="#3178c6" height="512" rx="50" width="512" />
       <rect fill="#3178c6" height="512" rx="50" width="512" />

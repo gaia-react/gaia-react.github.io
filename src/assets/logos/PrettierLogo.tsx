@@ -1,9 +1,16 @@
 import type {FC, SVGProps} from 'react';
 
-type PrettierLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type PrettierLogoProperties = Omit<
+  SVGProps<SVGSVGElement>,
+  'height' | 'width'
+> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const PrettierLogo: FC<PrettierLogoProps> = ({height, width, ...props}) => {
+const PrettierLogo: FC<PrettierLogoProperties> = ({
+  height,
+  width,
+  ...properties
+}) => {
   const adjustedWidth = height ?? width ?? 210;
   const adjustedHeight = width ?? height ?? 210;
 
@@ -13,7 +20,7 @@ const PrettierLogo: FC<PrettierLogoProps> = ({height, width, ...props}) => {
       viewBox="0 0 210 210"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <g>
         <g>

@@ -1,31 +1,32 @@
-import { Section } from '@/components/Section';
-import { CodeBlock } from '@/components/CodeBlock';
+import {CodeBlock} from '@/components/CodeBlock';
+import {Section} from '@/components/Section';
 
-export default function GetStarted() {
-  return (
-    <Section id="get-started" title="Get Started with GAIA" paddingTop="2rem">
-      <div className="space-y-6">
-        <p className="text-fg">Two commands and you're initialized.</p>
+const GetStarted = () => (
+  <Section id="get-started" paddingTop="2rem" title="Get Started with GAIA">
+    <div className="space-y-6">
+      <p className="text-fg">Two commands and you’re initialized.</p>
 
-        <div className="space-y-4">
-          <CodeBlock title="terminal" language="bash">
-            npx create-gaia my-app
-          </CodeBlock>
+      <div className="space-y-4">
+        <CodeBlock language="bash" title="terminal">
+          npx create-gaia my-app
+        </CodeBlock>
 
-          <CodeBlock title="Claude Code" language="">
-            /init
-          </CodeBlock>
-        </div>
-
-        <p className="text-fg-dim text-sm">
-          The first command pulls the latest release and git-inits your project. The second
-          initializes GAIA's Claude setup, including installing skills and plugins. See the{' '}
-          <a href="/docs/#commands" className="text-accent hover:underline">
-            commands section
-          </a>{' '}
-          in the docs for more information.
-        </p>
+        <CodeBlock language="" title="Claude Code">
+          /init
+        </CodeBlock>
       </div>
-    </Section>
-  );
-}
+
+      <p className="text-fg-dim text-sm">
+        The first command pulls the latest release and git-inits your project.
+        The second initializes GAIA’s Claude setup, including installing skills
+        and plugins. See the{' '}
+        <a className="text-accent hover:underline" href="/docs/#commands">
+          commands section
+        </a>{' '}
+        in the docs for more information.
+      </p>
+    </div>
+  </Section>
+);
+
+export default GetStarted;

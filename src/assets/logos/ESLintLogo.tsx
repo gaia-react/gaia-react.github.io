@@ -1,13 +1,13 @@
 import type {FC, SVGProps} from 'react';
 
-type ESLintLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type ESLintLogoProperties = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const ESLintLogo: FC<ESLintLogoProps> = ({
+const ESLintLogo: FC<ESLintLogoProperties> = ({
   className,
   height,
   width,
-  ...props
+  ...properties
 }) => {
   const adjustedWidth =
     height ? height * (323.999_73 / 285.096_01) : (width ?? 323.999_73);
@@ -20,7 +20,7 @@ const ESLintLogo: FC<ESLintLogoProps> = ({
       viewBox="0 0 323.99971 285.09601"
       width={adjustedWidth}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...properties}
     >
       <g transform="matrix(1.2548929 0 0 1.2548929 -22.9868 -19.949332)">
         <path

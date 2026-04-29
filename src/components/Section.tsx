@@ -1,46 +1,52 @@
-import type { ReactNode } from "react";
+import type {ReactNode} from 'react';
 
-type SectionProps = {
-  id: string;
-  title?: string;
+type SectionProperties = {
   children: ReactNode;
   className?: string;
-  paddingTop?: string;
+  id: string;
   paddingBottom?: string;
+  paddingTop?: string;
+  title?: string;
 };
 
-export function Section({ id, title, children, className, paddingTop = "4rem", paddingBottom = "4rem" }: SectionProps) {
-  return (
-    <section
-      className={`border-b border-fg/[0.04] ${className ?? ""}`}
-      style={{
-        paddingTop,
-        paddingBottom,
-      }}
-    >
-      <div
-        id={id}
-        className="[scroll-margin-top:5rem] max-w-[48rem] mx-auto px-8"
+export const SectionHeading = ({
+  children,
+  id,
+}: {
+  children: ReactNode;
+  id: string;
+}) => (
+  <h2 className="group font-display text-fg mb-10 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
+    <a className="text-inherit no-underline" href={`#${id}`}>
+      {children}
+      <span
+        aria-hidden="true"
+        className="ml-[0.4em] text-[0.6em] opacity-0 transition-opacity duration-150 select-none group-hover:opacity-40"
       >
-        {title && <SectionHeading id={id}>{title}</SectionHeading>}
-        {children}
-      </div>
-    </section>
-  );
-}
+        #
+      </span>
+    </a>
+  </h2>
+);
 
-export function SectionHeading({ id, children }: { id: string; children: ReactNode }) {
-  return (
-    <h2 className="group font-display font-light text-[clamp(2rem,4vw,3rem)] text-fg mb-10 tracking-[-0.02em] leading-[1.15]">
-      <a href={`#${id}`} className="text-inherit no-underline">
-        {children}
-        <span
-          aria-hidden="true"
-          className="opacity-0 group-hover:opacity-40 ml-[0.4em] text-[0.6em] transition-opacity duration-150 select-none"
-        >
-          #
-        </span>
-      </a>
-    </h2>
-  );
-}
+export const Section = ({
+  children,
+  className,
+  id,
+  paddingBottom = '4rem',
+  paddingTop = '4rem',
+  title,
+}: SectionProperties) => (
+  <section
+    className={`border-fg/4 border-b ${className ?? ''}`}
+    style={{
+      paddingBottom,
+      paddingTop,
+    }}
+  >
+    <div className="mx-auto max-w-3xl scroll-mt-20 px-8" id={id}>
+      {title && <SectionHeading id={id}>{title}</SectionHeading>}
+      {children}
+    </div>
+  </section>
+);

@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
-import { Layout } from './components/Layout';
+import {useEffect} from 'react';
+import {Layout} from './components/Layout';
 import GetStarted from './sections/GetStarted';
 
-export default function GetStartedApp() {
+const GetStartedApp = () => {
   useEffect(() => {
-    const { hash } = window.location;
+    const {hash} = window.location;
+
     if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+      const element = document.querySelector(hash);
+      if (element)
+        element.scrollIntoView({behavior: 'instant' as ScrollBehavior});
     }
   }, []);
 
@@ -16,4 +18,6 @@ export default function GetStartedApp() {
       <GetStarted />
     </Layout>
   );
-}
+};
+
+export default GetStartedApp;

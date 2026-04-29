@@ -1,17 +1,17 @@
-export function Footer() {
+export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border py-6 px-8 flex items-center justify-between gap-4 text-fg-dim text-sm font-body">
+    <footer className="border-border text-fg-dim font-body flex items-center justify-between gap-4 border-t px-8 py-6 text-sm">
       <span>© {year} GAIA</span>
       <a
+        className="text-fg-dim hover:text-accent no-underline transition-colors duration-150"
         href="https://github.com/gaia-react/gaia/blob/main/LICENSE"
-        target="_blank"
         rel="noopener noreferrer"
-        className="text-fg-dim no-underline transition-colors duration-150 hover:text-accent"
+        target="_blank"
       >
         MIT License
       </a>
     </footer>
   );
-}
+};

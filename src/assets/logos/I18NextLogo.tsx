@@ -1,13 +1,13 @@
 import type {FC, SVGProps} from 'react';
 
-type I18NextLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+type I18NextLogoProperties = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
   ({height?: never; width?: number} | {height?: number; width?: never});
 
-const I18NextLogo: FC<I18NextLogoProps> = ({
+const I18NextLogo: FC<I18NextLogoProperties> = ({
   className,
   height,
   width,
-  ...props
+  ...properties
 }) => {
   const adjustedWidth = height ?? width ?? 64;
   const adjustedHeight = width ?? height ?? 64;
@@ -18,7 +18,7 @@ const I18NextLogo: FC<I18NextLogoProps> = ({
       version="1.1"
       viewBox="0 0 64 64"
       width={adjustedWidth}
-      {...props}
+      {...properties}
     >
       <defs />
       <g transform="matrix(0.29266863,0,0,0.29266863,8.3334108,-12.320112)">
