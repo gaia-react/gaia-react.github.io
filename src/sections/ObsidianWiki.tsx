@@ -1,15 +1,16 @@
-import { Section } from '@/components/Section';
+import { Section, SectionHeading } from '@/components/Section';
 import wikiVaultDiagram from '../assets/wiki-vault-diagram.svg';
 import ClaudeLogo from '../assets/logos/ClaudeLogo';
 import ObsidianLogo from '../assets/logos/ObsidianLogo';
 
 export default function ObsidianWiki() {
   return (
-    <Section id="wiki" title="A second brain for Claude">
+    <Section id="wiki">
       <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-12 items-start">
         <div className="space-y-4 text-fg order-2 md:order-1">
+          <SectionHeading id="wiki">A second brain for Claude</SectionHeading>
           <p>
-            The wiki saves Claude tokens. Architecture, flows, and decisions live as committed
+            GAIA's wiki saves Claude tokens. Architecture, flows, and decisions live as committed
             markdown Claude reads on demand, so it never re-infers them from source code.
           </p>
 

@@ -23,9 +23,9 @@ export default function Closing() {
           Pair-programming, not babysitting
         </p>
         <p className="text-lg md:text-xl text-fg-dim mb-10 md:mb-12 leading-relaxed text-pretty">
-          The stack is curated to help Claude write better code. The conventions are battle-tested
+          GAIA's stack is curated to help Claude write better code. The conventions are battle-tested
           and enforced. The gates catch bad patterns before every commit. The wiki keeps
-          token costs under control as the project grows. Your time goes into the product.
+          token costs under control as the project grows. Your time and energy go into the product.
         </p>
         <div className="flex justify-center">
           <a
