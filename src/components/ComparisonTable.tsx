@@ -32,30 +32,21 @@ function isPositive(cell: ComparisonCell): boolean {
   return cell.kind === 'check' || cell.kind === 'value';
 }
 
-function countPositives(row: ComparisonRow, columnKey: string): number {
-  const cell = row.values[columnKey];
-  return cell && isPositive(cell) ? 1 : 0;
-}
-
-function scoreFor(rows: ComparisonRow[], columnKey: string): number {
-  return rows.reduce((sum, row) => sum + countPositives(row, columnKey), 0);
-}
-
 function DesktopCell({ cell }: { cell: ComparisonCell | undefined }) {
   if (!cell) {
-    return <span className="text-fg-mute" aria-label="no">–</span>;
+    return <span className="text-fg-mute text-lg font-bold leading-none" aria-label="no">✕</span>;
   }
   if (cell.kind === 'check') {
     return (
-      <span className="text-secondary text-base" aria-label="yes">
+      <span className="text-secondary-soft text-xl font-bold leading-none" aria-label="yes">
         ✓
       </span>
     );
   }
   if (cell.kind === 'dash') {
     return (
-      <span className="text-fg-mute" aria-label="no">
-        –
+      <span className="text-fg-mute/50 text-xs" aria-label="no">
+        ✕
       </span>
     );
   }
@@ -69,8 +60,49 @@ function DesktopCell({ cell }: { cell: ComparisonCell | undefined }) {
   return <span className="text-fg" aria-label={cell.label}>{cell.label}</span>;
 }
 
+function MobileCard({
+  column,
+  rows,
+  isHero,
+}: {
+  column: ComparisonColumn;
+  rows: ComparisonRow[];
+  isHero?: boolean;
+}) {
+  const cardClass = isHero
+    ? 'bg-bg-tint rounded-lg border-t-2 border-t-secondary p-5'
+    : 'bg-bg-elev rounded-lg p-5 border border-border-soft';
+  const titleClass = isHero
+    ? 'font-display font-light text-2xl text-fg mb-4 tracking-[-0.02em]'
+    : 'font-body font-medium text-lg text-fg-dim mb-4 tracking-normal';
+
+  return (
+    <div className={cardClass}>
+      <h3 className={titleClass}>{column.label}</h3>
+      <ul className="flex flex-wrap gap-2">
+        {rows.map((row) => {
+          const cell = row.values[column.key];
+          const positive = cell ? isPositive(cell) : false;
+          const pillClass = positive
+            ? isHero
+              ? 'bg-secondary/30 text-fg border border-secondary-2'
+              : 'bg-secondary/15 text-fg-dim border border-secondary-2/60'
+            : 'bg-transparent text-fg-mute/70 border border-border-soft line-through';
+          return (
+            <li
+              key={row.feature}
+              className={`text-[0.75rem] px-2 py-1 rounded ${pillClass}`}
+            >
+              {row.feature}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
 export function ComparisonTable({ columns, rows, summary }: ComparisonTableProps) {
-  const totalRows = rows.length;
   const heroColumn = columns.find((c) => c.isHero);
   const otherColumns = columns.filter((c) => !c.isHero);
 
@@ -91,7 +123,7 @@ export function ComparisonTable({ columns, rows, summary }: ComparisonTableProps
                       className={`text-left p-3 align-bottom border-b border-border-soft ${
                         isHero
                           ? 'bg-bg-tint border-t-2 border-t-secondary font-display font-light text-fg text-lg tracking-[-0.02em]'
-                          : 'font-mono uppercase text-[0.7rem] tracking-[0.15em] text-fg-mute'
+                          : 'font-body font-medium text-fg-dim text-base tracking-normal'
                       }`}
                     >
                       {col.label}
@@ -133,81 +165,10 @@ export function ComparisonTable({ columns, rows, summary }: ComparisonTableProps
 
       {/* Mobile card stack */}
       <div className="md:hidden space-y-6">
-        {heroColumn && (
-          <div className="bg-bg-tint rounded-lg border-t-2 border-t-secondary p-5">
-            <div className="font-mono uppercase text-[0.65rem] tracking-[0.15em] text-secondary-soft mb-2">
-              {totalRows} / {totalRows} decisions made
-            </div>
-            <h3 className="font-display font-light text-2xl text-fg mb-4 tracking-[-0.02em]">
-              {heroColumn.label}
-            </h3>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
-              {rows.map((row) => {
-                const cell = row.values[heroColumn.key];
-                const positive = cell && isPositive(cell);
-                return (
-                  <li
-                    key={row.feature}
-                    className="flex items-start gap-2 text-[0.875rem]"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className={positive ? 'text-secondary' : 'text-fg-mute'}
-                    >
-                      {positive ? '✓' : '–'}
-                    </span>
-                    <span className="text-fg-dim">{row.feature}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
-
-        {otherColumns.map((col) => {
-          const score = scoreFor(rows, col.key);
-          return (
-            <div
-              key={col.key}
-              className="bg-bg-elev rounded-lg p-5 border border-border-soft"
-            >
-              <div className="flex items-baseline justify-between mb-3">
-                <h3 className="font-display font-light text-xl text-fg tracking-[-0.02em]">
-                  {col.label}
-                </h3>
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.15em] text-fg-mute">
-                  {score} / {totalRows}
-                </span>
-              </div>
-              <ul className="flex flex-wrap gap-2">
-                {rows.map((row) => {
-                  const cell = row.values[col.key];
-                  const kind = cell?.kind ?? 'dash';
-                  const label =
-                    cell && cell.kind === 'value'
-                      ? `${row.feature}: ${cell.label}`
-                      : cell && cell.kind === 'partial' && cell.label
-                        ? `${row.feature}: ${cell.label}`
-                        : row.feature;
-                  const pillClass =
-                    kind === 'check' || kind === 'value'
-                      ? 'bg-secondary/25 text-fg border border-secondary-2'
-                      : kind === 'partial'
-                        ? 'bg-warn/10 text-warn-soft border border-warn-2'
-                        : 'bg-transparent text-fg-mute line-through';
-                  return (
-                    <li
-                      key={row.feature}
-                      className={`text-[0.75rem] px-2 py-1 rounded ${pillClass}`}
-                    >
-                      {label}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          );
-        })}
+        {heroColumn && <MobileCard column={heroColumn} rows={rows} isHero />}
+        {otherColumns.map((col) => (
+          <MobileCard key={col.key} column={col} rows={rows} />
+        ))}
         {summary && (
           <p className="italic text-fg-dim text-center font-display font-light">
             {summary}

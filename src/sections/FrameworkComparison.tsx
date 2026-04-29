@@ -18,10 +18,6 @@ const columns: ComparisonColumn[] = [
 
 const rows: ComparisonRow[] = [
   {
-    feature: 'TypeScript',
-    values: { gaia: check, epic: check, t3: check, redwood: check },
-  },
-  {
     feature: 'Routing',
     values: {
       gaia: value('React Router 7'),
@@ -31,8 +27,28 @@ const rows: ComparisonRow[] = [
     },
   },
   {
+    feature: 'TypeScript',
+    values: { gaia: check, epic: check, t3: check, redwood: check },
+  },
+  {
     feature: 'Tailwind',
     values: { gaia: check, epic: check, t3: check, redwood: dash },
+  },
+  {
+    feature: 'Unit / integration tests',
+    values: { gaia: check, epic: check, t3: dash, redwood: check },
+  },
+  {
+    feature: 'E2E tests',
+    values: { gaia: check, epic: check, t3: dash, redwood: dash },
+  },
+  {
+    feature: 'Storybook',
+    values: { gaia: check, epic: dash, t3: dash, redwood: check },
+  },
+  {
+    feature: 'Visual regression tests',
+    values: { gaia: check, epic: dash, t3: dash, redwood: dash },
   },
   {
     feature: 'Dark mode',
@@ -43,48 +59,25 @@ const rows: ComparisonRow[] = [
     values: { gaia: check, epic: dash, t3: dash, redwood: dash },
   },
   {
-    feature: 'Unit / integration tests',
-    values: {
-      gaia: value('Vitest'),
-      epic: value('Vitest'),
-      t3: dash,
-      redwood: value('Jest'),
-    },
-  },
-  {
-    feature: 'Component testing',
-    values: {
-      gaia: value('Storybook + Chromatic'),
-      epic: dash,
-      t3: dash,
-      redwood: value('Storybook only'),
-    },
-  },
-  {
-    feature: 'E2E tests',
-    values: {
-      gaia: value('Playwright'),
-      epic: value('Playwright'),
-      t3: dash,
-      redwood: dash,
-    },
-  },
-  {
     feature: 'Mock API',
-    values: { gaia: value('MSW'), epic: dash, t3: dash, redwood: dash },
+    values: { gaia: check, epic: dash, t3: dash, redwood: dash },
   },
   {
     feature: 'Forms',
-    values: {
-      gaia: value('Conform + Zod'),
-      epic: dash,
-      t3: dash,
-      redwood: dash,
-    },
+    values: { gaia: check, epic: dash, t3: dash, redwood: dash },
   },
   {
     feature: 'Accessibility guardrails',
     values: { gaia: check, epic: dash, t3: dash, redwood: dash },
+  },
+  {
+    feature: 'Lint rules*',
+    values: {
+      gaia: value('1,592'),
+      epic: value('748'),
+      t3: value('637'),
+      redwood: value('626'),
+    },
   },
 ];
 
@@ -95,55 +88,54 @@ export default function FrameworkComparison() {
         id="framework-comparison"
         className="max-w-[72rem] mx-auto px-8 [scroll-margin-top:5rem]"
       >
-        <p className="text-secondary-soft font-mono uppercase text-[0.7rem] tracking-[0.2em] mb-3">
-          Foundation
-        </p>
         <h2 className="font-display font-light text-[clamp(2rem,4vw,3rem)] text-fg mb-4 tracking-[-0.02em] leading-[1.15]">
           How the major React starters stack up
         </h2>
         <p className="text-fg-dim text-lg mb-10 leading-relaxed text-pretty">
-          Every core feature a serious React stack needs, all wired up and
-          documented. Claude ships features from day one instead of spending
-          weeks discovering the codebase.
+          GAIA's stack is the most complete. Fewer gaps means fewer
+          decisions Claude has to invent on its own.
         </p>
 
         <ComparisonTable columns={columns} rows={rows} />
 
+        <p className="text-fg-dim text-base mt-8 leading-relaxed text-pretty">
+          <span aria-hidden="true" className="text-fg-mute mr-1">*</span>
+          Every lint rule is a check Claude has to clear, and GAIA has more
+          than twice as many as any other starter, including 85 Stylelint
+          rules none of the others ship at all. The extras cover the patterns
+          Claude drifts into first: complexity creep, architectural
+          shortcuts, mismatched filenames, broken CSS.{' '}
+          <span className="text-fg">
+            In GAIA, the code Claude writes matches high standards because
+            every commit enforces them.
+          </span>
+        </p>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-[4fr_3fr] rounded-lg overflow-hidden border border-border-soft">
-          <div
-            className="px-6 py-7 md:px-8 md:py-9 border-b md:border-b-0 md:border-r border-border-soft"
-            style={{
-              background:
-                'linear-gradient(to right, rgba(217,119,87,0.22), rgba(217,119,87,0.10))',
-            }}
-          >
+          <div className="px-6 py-7 md:px-8 md:py-9 border-b md:border-b-0 md:border-r border-border-soft [background:linear-gradient(to_bottom,rgba(217,119,87,0.22),rgba(217,119,87,0.08))] md:[background:linear-gradient(to_right,rgba(217,119,87,0.22),rgba(217,119,87,0.08))]">
             <p className="font-mono uppercase text-[0.7rem] tracking-[0.2em] text-accent-soft mb-3">
-              Built for Claude
+              Order and focus
             </p>
             <h3 className="font-display font-light text-2xl md:text-3xl text-fg tracking-[-0.02em] leading-[1.2] mb-4">
               Only GAIA is built for Claude.
             </h3>
             <p className="text-fg-dim leading-relaxed text-pretty">
-              Every layer is shaped for how Claude works. Tight context,
-              strict patterns, docs Claude actually reads.
+              GAIA was strict long before Claude existed. That same
+              discipline is what keeps Claude's code clean now. Claude
+              thrives with enforced standards, and GAIA's were already
+              battle-tested.
             </p>
           </div>
-          <div
-            className="px-6 py-7 md:px-8 md:py-9"
-            style={{
-              background:
-                'linear-gradient(to right, rgba(91,138,138,0.10), rgba(91,138,138,0.22))',
-            }}
-          >
+          <div className="px-6 py-7 md:px-8 md:py-9 [background:linear-gradient(to_bottom,rgba(91,138,138,0.08),rgba(91,138,138,0.22))] md:[background:linear-gradient(to_right,rgba(91,138,138,0.08),rgba(91,138,138,0.22))]">
             <p className="font-mono uppercase text-[0.7rem] tracking-[0.2em] text-secondary-soft mb-3">
-              Wired in
+              Ship features
             </p>
             <h3 className="font-display font-light text-2xl md:text-3xl text-fg tracking-[-0.02em] leading-[1.2] mb-4">
-              Every feedback loop Claude needs.
+              Set the goal. Trust the diff.
             </h3>
             <p className="text-fg-dim leading-relaxed text-pretty">
-              Linting on every save. Gates at every commit. Code review on
-              every diff. A wiki on demand.
+              You describe what you want. Claude works inside the guardrails.
+              Code review stops being a hunt for surprises, and you get
+              back to shipping.
             </p>
           </div>
         </div>
