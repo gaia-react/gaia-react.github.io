@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
-import {Layout} from './components/Layout';
-import GetStarted from './sections/get-started/GetStarted';
+import {Layout} from '@/components/Layout';
+import Consulting from './sections/Consulting';
 
-const GetStartedApp = () => {
+const App = () => {
   useEffect(() => {
     const {hash} = window.location;
 
@@ -15,9 +15,9 @@ const GetStartedApp = () => {
 
   return (
     <Layout>
-      <GetStarted />
+      <Consulting />
     </Layout>
   );
 };
 
-export default GetStartedApp;
+export default App;

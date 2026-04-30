@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
-import {Layout} from './components/Layout';
-import Consulting from './sections/consulting/Consulting';
+import {Layout} from '@/components/Layout';
+import About from './sections/About';
 
-const ConsultingApp = () => {
+const App = () => {
   useEffect(() => {
     const {hash} = window.location;
 
@@ -15,9 +15,9 @@ const ConsultingApp = () => {
 
   return (
     <Layout>
-      <Consulting />
+      <About />
     </Layout>
   );
 };
 
-export default ConsultingApp;
+export default App;

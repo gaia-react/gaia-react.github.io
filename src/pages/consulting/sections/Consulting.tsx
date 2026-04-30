@@ -2,7 +2,7 @@ import type React from 'react';
 import {useEffect} from 'react';
 import {getCalApi} from '@calcom/embed-react';
 import {twJoin} from 'tailwind-merge';
-import {Section} from '../../components/Section';
+import {Section} from '@/components/Section';
 
 const CAL_USERNAME = 'stevensacks';
 const CAL_NAMESPACE = 'consulting';

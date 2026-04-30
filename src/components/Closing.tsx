@@ -1,4 +1,4 @@
-import gaiaLogo from '../assets/gaia-logo.svg';
+import gaiaLogo from '@/assets/gaia-logo.svg';
 
 const Closing = () => (
   <section

@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
-import {Layout} from './components/Layout';
-import Roadmap from './sections/roadmap/Roadmap';
+import {Layout} from '@/components/Layout';
+import Roadmap from './sections/Roadmap';
 
-const RoadmapApp = () => {
+const App = () => {
   useEffect(() => {
     const {hash} = window.location;
 
@@ -20,4 +20,4 @@ const RoadmapApp = () => {
   );
 };
 
-export default RoadmapApp;
+export default App;
