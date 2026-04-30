@@ -34,6 +34,44 @@
       rel="stylesheet"
     />
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6f7c78ef42fc47e59eea029941f332b3"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Service",
+            "@id": "https://gaiareact.com/consulting/#service",
+            "name": "GAIA Consulting",
+            "url": "https://gaiareact.com/consulting/",
+            "description": "Consulting services for teams and individuals adopting GAIA React and Claude Code.",
+            "provider": {"@id": "https://gaiareact.com/#person"},
+            "serviceType": "Software engineering consulting",
+            "areaServed": "Worldwide"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://gaiareact.com/#person",
+            "name": "Steven Sacks",
+            "url": "https://gaiareact.com/about/",
+            "image": "https://gaiareact.com/steven.jpg",
+            "jobTitle": "Principal Frontend Engineer",
+            "sameAs": [
+              "https://github.com/stevensacks",
+              "https://www.linkedin.com/in/stevensacks/"
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://gaiareact.com/consulting/#breadcrumb",
+            "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaiareact.com/"},
+              {"@type": "ListItem", "position": 2, "name": "Consulting", "item": "https://gaiareact.com/consulting/"}
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

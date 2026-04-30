@@ -34,6 +34,45 @@
       rel="stylesheet"
     />
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6f7c78ef42fc47e59eea029941f332b3"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "AboutPage",
+            "@id": "https://gaiareact.com/about/#page",
+            "url": "https://gaiareact.com/about/",
+            "name": "About Steven Sacks",
+            "description": "About Steven Sacks. Creator of GAIA React and the original GAIA Flash Framework, building production software with AI agents.",
+            "isPartOf": {"@id": "https://gaiareact.com/#website"},
+            "about": {"@id": "https://gaiareact.com/#person"},
+            "breadcrumb": {"@id": "https://gaiareact.com/about/#breadcrumb"}
+          },
+          {
+            "@type": "Person",
+            "@id": "https://gaiareact.com/#person",
+            "name": "Steven Sacks",
+            "url": "https://gaiareact.com/about/",
+            "image": "https://gaiareact.com/steven.jpg",
+            "jobTitle": "Principal Frontend Engineer",
+            "description": "Creator of GAIA React and the original GAIA Flash Framework. Founder of Plug DJ. Principal Frontend Engineer at Trek10.",
+            "sameAs": [
+              "https://github.com/stevensacks",
+              "https://www.linkedin.com/in/stevensacks/"
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://gaiareact.com/about/#breadcrumb",
+            "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaiareact.com/"},
+              {"@type": "ListItem", "position": 2, "name": "About", "item": "https://gaiareact.com/about/"}
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
