@@ -38,21 +38,12 @@ const StatuslineLeft = ({
 const Statusline = () => (
   <Section id="statusline" title="Statusline">
     <p className="text-ink mb-6">
-      GAIA ships with a custom Claude Code statusline. The left side shows basic
-      information and the right side conditionally shows when updates are
-      available for your project.
-      <br />
-      <br />
-      The left side is optional during setup. You can choose not to use it if
-      you have your own.
-      <br />
-      <br />
-      The right side only works in GAIA projects and does not modify your
-      existing statusline configuration. During{' '}
+      GAIA ships with an optional custom Claude Code statusline. During{' '}
       <code className="text-ink bg-surface rounded-sm px-1 font-mono text-sm">
         /init
       </code>
-      , a live preview is shown before any changes are made.
+      , a live preview is shown and you can choose to install it globally, only
+      in the current project, or skip it entirely.
     </p>
 
     <div className="border-line mb-6 overflow-hidden rounded-lg border">
@@ -70,46 +61,6 @@ const Statusline = () => (
           contextPct={42}
           model="Opus 4.7 (1M context)"
         />
-      </div>
-
-      <div className="border-line/40 border-t" />
-
-      <div className="bg-surface overflow-x-auto px-4 py-2 font-mono text-[0.8125rem]">
-        <div className="flex min-w-max items-center gap-8">
-          <StatuslineLeft
-            branch="main"
-            contextBar="▓▓▓▓▓▓▓░░░"
-            contextColor="#ffd54f"
-            contextPct={65}
-            model="Sonnet 4.6"
-          />
-          <span
-            className="font-bold whitespace-nowrap"
-            style={{color: '#ffd54f'}}
-          >
-            Run /update-deps (3 outdated)
-          </span>
-        </div>
-      </div>
-
-      <div className="border-line/40 border-t" />
-
-      <div className="bg-surface overflow-x-auto px-4 py-2 font-mono text-[0.8125rem]">
-        <div className="flex min-w-max items-center gap-8">
-          <StatuslineLeft
-            branch="main"
-            contextBar="▓▓▓▓▓▓▓▓░░"
-            contextColor="#f07070"
-            contextPct={84}
-            model="Haiku 4.6"
-          />
-          <span
-            className="font-bold whitespace-nowrap"
-            style={{color: '#4dd0e1'}}
-          >
-            Run /update-gaia (GAIA 1.2.0 available)
-          </span>
-        </div>
       </div>
     </div>
 
@@ -158,28 +109,6 @@ const Statusline = () => (
             ▓▓▓▓░░░░░░ 42%
           </td>
           <td className="text-ink py-1 align-top">context window usage</td>
-        </tr>
-        <tr>
-          <td
-            className="py-1 pr-6 align-top font-mono font-bold whitespace-nowrap"
-            style={{color: '#ffd54f'}}
-          >
-            Run /update-deps
-          </td>
-          <td className="text-ink py-1 align-top">
-            shown when there are outdated packages
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="py-1 pr-6 align-top font-mono font-bold whitespace-nowrap"
-            style={{color: '#4dd0e1'}}
-          >
-            Run /update-gaia
-          </td>
-          <td className="text-ink py-1 align-top">
-            shown when a new GAIA release is available
-          </td>
         </tr>
       </tbody>
     </table>
