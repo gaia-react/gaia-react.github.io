@@ -69,11 +69,6 @@ const GROUPS: Group[] = [
           'Wire it up during create or run a command later when you decide to go live. Pick from popular targets with the tradeoffs explained, or bring your own, and walk away with the build, environment variables, and CI/CD configured for you.',
         title: 'Deployment whenever you are ready',
       },
-      {
-        description:
-          'Snyk runs against every change before it merges, catching vulnerabilities and performance regressions while they are still cheap to fix. Staying secure stops being a thing you have to remember.',
-        title: 'Security and performance scanning on every PR',
-      },
     ],
     label: 'Planned',
   },
