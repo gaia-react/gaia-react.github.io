@@ -2,7 +2,7 @@ import {twJoin} from 'tailwind-merge';
 import {Section, SectionHeading} from '@/components/Section';
 
 const ACTIVE_TIERS = [
-  {accent: true, caption: 'you invoke', eyebrow: 'SLASH', name: '/orchestrate'},
+  {accent: true, caption: 'you invoke', eyebrow: 'SLASH', name: '/gaia plan'},
   {caption: 'fires automatically', eyebrow: 'HOOK', name: 'pre-commit'},
   {caption: 'gates every merge', eyebrow: 'AGENT', name: 'code-review-audit'},
 ];
@@ -97,20 +97,20 @@ const ClaudeMd = () => (
   <>
     <Section id="claude-md">
       <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1fr_1fr]">
-        <div className="text-ink order-2 space-y-4 md:order-2">
+        <div className="text-ink-dim order-2 space-y-4 md:order-2">
           <SectionHeading id="claude-md">
             Claude Code, configured
           </SectionHeading>
-          <p>
-            Commands you invoke, hooks that fire, an agent that reviews. The
+          <p className="-mt-4">
+            Commands you invoke, hooks that control, an agent that reviews. The
             active layer of GAIA’s Claude Code integration.
           </p>
 
           <p>
-            <code className="text-accent">/orchestrate</code> plans complex
-            features through specialist subagents.{' '}
-            <code className="text-accent">/handoff</code> and{' '}
-            <code className="text-accent">/pickup</code> let you clear context
+            <code className="text-accent">/gaia plan</code> plans complex
+            features through specialist subagents.<br/>
+            <code className="text-accent">/gaia handoff</code> and{' '}
+            <code className="text-accent">/gaia pickup</code> let you clear context
             without losing state.
           </p>
 
@@ -136,11 +136,11 @@ const ClaudeMd = () => (
 
     <Section id="conventions">
       <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1fr_1fr]">
-        <div className="text-ink order-2 space-y-4 md:order-1">
+        <div className="text-ink-dim order-2 space-y-4 md:order-1">
           <SectionHeading id="conventions">
             Claude Code, calibrated
           </SectionHeading>
-          <p>
+          <p className="-mt-4">
             Project rules and skills load only when Claude is doing matching
             work, so they never bloat the context window. The passive layer.
           </p>

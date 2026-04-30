@@ -93,7 +93,7 @@ const FrameworkComparison = () => (
       id="framework-comparison"
     >
       <h2 className="font-display text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
-        How the major React starters stack up
+        How the major React starters compare
       </h2>
       <p className="text-ink-dim mb-10 text-lg/relaxed text-pretty">
         GAIA’s stack is the most complete. Fewer gaps means fewer decisions
@@ -113,7 +113,7 @@ const FrameworkComparison = () => (
           commit enforces them.
         </span>
       </p>
-      <div className="border-line-soft mt-10 grid grid-cols-1 overflow-hidden rounded-lg border md:grid-cols-[4fr_3fr]">
+      <div className="border-line-soft mt-10 grid grid-cols-1 overflow-hidden rounded-lg border md:grid-cols-2">
         <div className="border-line-soft border-b px-6 py-7 [background:linear-gradient(to_bottom,rgba(217,119,87,0.22),rgba(217,119,87,0.08))] md:border-r md:border-b-0 md:px-8 md:py-9 md:[background:linear-gradient(to_right,rgba(217,119,87,0.22),rgba(217,119,87,0.08))]">
           <p className="text-accent-soft mb-3 font-mono text-[0.7rem] tracking-[0.2em] uppercase">
             Order and focus
