@@ -1,5 +1,5 @@
-import {useEffect} from 'react';
 import {Layout} from '@/components/Layout';
+import {useScrollToHash} from '@/hooks/useScrollToHash';
 import Agents from './sections/Agents';
 import Commands from './sections/Commands';
 import GitHub from './sections/GitHub';
@@ -9,15 +9,7 @@ import Skills from './sections/Skills';
 import Statusline from './sections/Statusline';
 
 const App = () => {
-  useEffect(() => {
-    const {hash} = window.location;
-
-    if (hash) {
-      const element = document.querySelector(hash);
-      if (element)
-        element.scrollIntoView({behavior: 'instant' as ScrollBehavior});
-    }
-  }, []);
+  useScrollToHash();
 
   return (
     <Layout>
