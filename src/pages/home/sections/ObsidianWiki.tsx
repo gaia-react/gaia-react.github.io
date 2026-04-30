@@ -1,7 +1,7 @@
+import ClaudeLogo from '@/assets/logos/ClaudeLogo';
+import ObsidianLogo from '@/assets/logos/ObsidianLogo';
+import wikiVaultDiagram from '@/assets/wiki-vault-diagram.svg';
 import {Section, SectionHeading} from '@/components/Section';
-import ClaudeLogo from '../../assets/logos/ClaudeLogo';
-import ObsidianLogo from '../../assets/logos/ObsidianLogo';
-import wikiVaultDiagram from '../../assets/wiki-vault-diagram.svg';
 
 const ObsidianWiki = () => (
   <Section id="wiki">

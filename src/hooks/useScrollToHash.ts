@@ -1,8 +1,6 @@
 import {useEffect} from 'react';
-import {Layout} from './components/Layout';
-import Roadmap from './sections/roadmap/Roadmap';
 
-const RoadmapApp = () => {
+export const useScrollToHash = () => {
   useEffect(() => {
     const {hash} = window.location;
 
@@ -12,12 +10,4 @@ const RoadmapApp = () => {
         element.scrollIntoView({behavior: 'instant' as ScrollBehavior});
     }
   }, []);
-
-  return (
-    <Layout>
-      <Roadmap />
-    </Layout>
-  );
 };
-
-export default RoadmapApp;
