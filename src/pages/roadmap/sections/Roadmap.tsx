@@ -49,9 +49,9 @@ const GROUPS: Group[] = [
         description: (
           <>
             <code className="bg-surface rounded-sm px-2 py-1 text-sm">
-              npx create-gaia
+              /init
             </code>{' '}
-            walks you through React Router, Next.js, Astro, and TanStack Start
+            walks you through choosing React Router, Next.js, Astro, or TanStack Start
             with a short Q&amp;A that recommends the right foundation for the
             project you have in mind. No more spending a weekend comparing docs
             before you write your first component.
@@ -61,8 +61,8 @@ const GROUPS: Group[] = [
       },
       {
         description:
-          'Get a project already wired to use them. The defaults match the app you plan to build, not a generic template you have to rip out.',
-        title: 'Choose component library and icons up front',
+          'Get a project already wired up. The defaults match the app you plan to build, not a generic template you have to rip out.',
+        title: 'Choose component library up front',
       },
       {
         description:
