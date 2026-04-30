@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
+    "build:no-prerender": "tsc -b && vite build",
     "preview": "vite preview",
+    "prerender": "node scripts/prerender.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --fix --max-warnings=0 --cache --cache-location ./node_modules/.cache/eslint .",
     "lint-dry": "eslint --max-warnings=0 .",
@@ -29,6 +31,7 @@
     "eslint": "^9.39.4",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.7.3",
+    "puppeteer": "^24.42.0",
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.0",
@@ -37,5 +40,10 @@
   "engines": {
     "node": ">=22.19.0"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "puppeteer"
+    ]
+  }
 }

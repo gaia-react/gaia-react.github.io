@@ -34,6 +34,57 @@
       rel="stylesheet"
     />
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6f7c78ef42fc47e59eea029941f332b3"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "@id": "https://gaiareact.com/get-started/#article",
+            "headline": "Get Started with GAIA",
+            "name": "Get Started with GAIA",
+            "url": "https://gaiareact.com/get-started/",
+            "description": "Get started with GAIA. Two commands to scaffold a new project and initialize the Claude workflow.",
+            "author": {"@id": "https://gaiareact.com/#person"},
+            "publisher": {"@id": "https://gaiareact.com/#organization"},
+            "isPartOf": {"@id": "https://gaiareact.com/#website"},
+            "about": {"@id": "https://gaiareact.com/#software"},
+            "breadcrumb": {"@id": "https://gaiareact.com/get-started/#breadcrumb"},
+            "proficiencyLevel": "Beginner",
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://gaiareact.com/#person",
+            "name": "Steven Sacks",
+            "url": "https://gaiareact.com/about/"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://gaiareact.com/#organization",
+            "name": "GAIA",
+            "url": "https://gaiareact.com/",
+            "logo": "https://gaiareact.com/og-image.png"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://gaiareact.com/#software",
+            "name": "GAIA React",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://gaiareact.com/get-started/#breadcrumb",
+            "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaiareact.com/"},
+              {"@type": "ListItem", "position": 2, "name": "Get Started", "item": "https://gaiareact.com/get-started/"}
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

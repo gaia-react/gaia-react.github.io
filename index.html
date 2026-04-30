@@ -49,6 +49,60 @@
       data-cf-beacon='{"token": "6f7c78ef42fc47e59eea029941f332b3"}'
     ></script>
     <!-- End Cloudflare Web Analytics -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://gaiareact.com/#website",
+            "url": "https://gaiareact.com/",
+            "name": "GAIA",
+            "description": "The React workflow for Claude.",
+            "inLanguage": "en-US",
+            "publisher": {"@id": "https://gaiareact.com/#organization"}
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://gaiareact.com/#organization",
+            "name": "GAIA",
+            "url": "https://gaiareact.com/",
+            "logo": "https://gaiareact.com/og-image.png",
+            "founder": {"@id": "https://gaiareact.com/#person"}
+          },
+          {
+            "@type": "Person",
+            "@id": "https://gaiareact.com/#person",
+            "name": "Steven Sacks",
+            "url": "https://gaiareact.com/about/",
+            "image": "https://gaiareact.com/steven.jpg",
+            "jobTitle": "Principal Frontend Engineer",
+            "sameAs": [
+              "https://github.com/stevensacks",
+              "https://www.linkedin.com/in/stevensacks/"
+            ]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://gaiareact.com/#software",
+            "name": "GAIA React",
+            "alternateName": "GAIA",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform",
+            "description": "A React workflow that makes Claude trustworthy enough to own features end to end, and sharp at any scale.",
+            "url": "https://gaiareact.com/",
+            "author": {"@id": "https://gaiareact.com/#person"},
+            "publisher": {"@id": "https://gaiareact.com/#organization"},
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
