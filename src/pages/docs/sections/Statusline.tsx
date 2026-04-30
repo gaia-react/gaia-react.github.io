@@ -37,7 +37,7 @@ const StatuslineLeft = ({
 
 const Statusline = () => (
   <Section id="statusline" title="Statusline">
-    <p className="text-ink mb-6">
+    <p className="text-ink-dim mb-6">
       GAIA ships with an optional custom Claude Code statusline. During{' '}
       <code className="text-ink bg-surface rounded-sm px-1 font-mono text-sm">
         /init
@@ -59,7 +59,7 @@ const Statusline = () => (
           contextBar="▓▓▓▓░░░░░░"
           contextColor="#6ec56b"
           contextPct={42}
-          model="Opus 4.7 (1M context)"
+          model="Sonnet 4.6"
         />
       </div>
     </div>
