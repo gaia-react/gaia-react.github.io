@@ -1,86 +1,16 @@
-import {ComparisonTable} from '@/components/ComparisonTable';
-import type {
-  ComparisonCell,
-  ComparisonColumn,
-  ComparisonRow,
-} from '@/components/ComparisonTable';
-
-const check: ComparisonCell = {kind: 'check'};
-const dash: ComparisonCell = {kind: 'dash'};
-const value = (label: string): ComparisonCell => ({kind: 'value', label});
-
-const columns: ComparisonColumn[] = [
-  {isHero: true, key: 'gaia', label: 'GAIA'},
-  {key: 'epic', label: 'Epic Stack'},
-  {key: 't3', label: 'create-t3-app'},
-  {key: 'redwood', label: 'RedwoodJS'},
-];
-
-const rows: ComparisonRow[] = [
-  {
-    feature: 'Routing',
-    values: {
-      epic: value('React Router 7'),
-      gaia: value('React Router 7'),
-      redwood: value('@redwoodjs/router'),
-      t3: value('Next.js'),
-    },
-  },
-  {
-    feature: 'TypeScript',
-    values: {epic: check, gaia: check, redwood: check, t3: check},
-  },
-  {
-    feature: 'Tailwind',
-    values: {epic: check, gaia: check, redwood: dash, t3: check},
-  },
-  {
-    feature: 'Unit / integration tests',
-    values: {epic: check, gaia: check, redwood: check, t3: dash},
-  },
-  {
-    feature: 'E2E tests',
-    values: {epic: check, gaia: check, redwood: dash, t3: dash},
-  },
-  {
-    feature: 'Storybook',
-    values: {epic: dash, gaia: check, redwood: check, t3: dash},
-  },
-  {
-    feature: 'Visual regression tests',
-    values: {epic: dash, gaia: check, redwood: dash, t3: dash},
-  },
-  {
-    feature: 'Dark mode',
-    values: {epic: check, gaia: check, redwood: dash, t3: dash},
-  },
-  {
-    feature: 'i18n',
-    values: {epic: dash, gaia: check, redwood: dash, t3: dash},
-  },
-  {
-    feature: 'Mock API',
-    values: {epic: dash, gaia: check, redwood: dash, t3: dash},
-  },
-  {
-    feature: 'Forms',
-    values: {epic: dash, gaia: check, redwood: dash, t3: dash},
-  },
-  {
-    feature: 'Accessibility guardrails',
-    values: {epic: dash, gaia: check, redwood: dash, t3: dash},
-  },
-  {
-    feature: 'Lint rules',
-    mobileLabel: (cell) =>
-      cell?.kind === 'value' ? `${cell.label} lint rules` : 'Lint rules',
-    values: {
-      epic: value('748'),
-      gaia: value('1,592'),
-      redwood: value('626'),
-      t3: value('637'),
-    },
-  },
+const features = [
+  'React Router 7',
+  'TypeScript',
+  'Tailwind CSS',
+  'Unit + integration tests',
+  'End-to-end tests',
+  'Storybook',
+  'Visual regression tests',
+  'Dark mode',
+  'i18n',
+  'Mock API',
+  'Form validation',
+  'Accessibility guardrails',
 ];
 
 const FrameworkComparison = () => (
@@ -88,24 +18,35 @@ const FrameworkComparison = () => (
     className="border-ink/4 border-b"
     style={{paddingBottom: '4rem', paddingTop: '4rem'}}
   >
-    <div
-      className="mx-auto max-w-6xl scroll-mt-20 px-8"
-      id="framework-comparison"
-    >
+    <div className="mx-auto max-w-6xl scroll-mt-20 px-8" id="gaia-features">
       <h2 className="font-display text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
-        How the major React starters compare
+        The full stack, no gaps.
       </h2>
-      <p className="text-ink-dim mb-10 text-lg/relaxed text-pretty">
-        GAIA’s stack is the most complete. Fewer gaps means fewer decisions
-        Claude has to invent on its own.
+      <p className="text-ink-dim mb-8 text-lg/relaxed text-pretty">
+        Fewer gaps in the stack means fewer decisions Claude has to invent on
+        its own.
       </p>
 
-      <ComparisonTable columns={columns} rows={rows} />
+      <ul className="mb-0 flex flex-wrap gap-2">
+        {features.map((feature) => (
+          <li
+            key={feature}
+            className="border-secondary/25 bg-secondary/10 text-ink-dim flex items-center gap-2 rounded-sm border px-3 py-1.5 text-sm"
+          >
+            <span
+              aria-hidden="true"
+              className="text-secondary-soft text-base leading-none font-bold"
+            >
+              ✓
+            </span>
+            {feature}
+          </li>
+        ))}
+      </ul>
 
       <p className="text-ink-dim mt-8 text-base/relaxed text-pretty">
-        Every lint rule is a check Claude has to clear, and GAIA has more than
-        twice as many as any other starter, including 85 Stylelint rules none of
-        the others ship at all. The extras cover the patterns Claude drifts into
+        Every lint rule is a check Claude has to clear. GAIA ships 1,592 —
+        including 85 Stylelint rules covering the patterns Claude drifts into
         first: complexity creep, architectural shortcuts, mismatched filenames,
         broken CSS.{' '}
         <span className="text-ink">
@@ -119,12 +60,12 @@ const FrameworkComparison = () => (
             Order and focus
           </p>
           <h3 className="font-display text-ink mb-4 text-2xl leading-[1.2] font-light tracking-[-0.02em] md:text-3xl">
-            Only GAIA is built for Claude.
+            GAIA is built for Claude.
           </h3>
           <p className="text-ink-dim leading-relaxed text-pretty">
-            GAIA was strict long before Claude existed. That same discipline is
-            what keeps Claude’s code clean now. Claude thrives with enforced
-            standards, and GAIA’s were already battle-tested.
+            Claude writes cleaner code when standards are enforced, not
+            suggested. GAIA&apos;s are strict, battle-tested, and wired in from
+            the first commit.
           </p>
         </div>
         <div className="px-6 py-7 [background:linear-gradient(to_bottom,rgba(91,138,138,0.08),rgba(91,138,138,0.22))] md:px-8 md:py-9 md:[background:linear-gradient(to_right,rgba(91,138,138,0.08),rgba(91,138,138,0.22))]">
