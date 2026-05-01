@@ -38,12 +38,9 @@ const StatuslineLeft = ({
 const Statusline = () => (
   <Section id="statusline" title="Statusline">
     <p className="text-ink-dim mb-6">
-      GAIA ships with an optional custom Claude Code statusline. During{' '}
-      <code className="text-ink bg-surface rounded-sm px-1 font-mono text-sm">
-        /init
-      </code>
-      , a live preview is shown and you can choose to install it globally, only
-      in the current project, or skip it entirely.
+      GAIA ships with an optional custom Claude Code statusline. During setup, a
+      live preview is shown and you can choose to install it globally, only in
+      the current project, or skip it entirely.
     </p>
 
     <div className="border-line mb-6 overflow-hidden rounded-lg border">

@@ -118,9 +118,9 @@ const ClaudeBanner = () => (
     aria-hidden={true}
     className="gs-term__banner flex items-center gap-4 py-3"
   >
-    <pre className="gs-term__art text-accent-soft m-0 font-mono text-[0.95em] leading-[1.05] whitespace-pre">{` ▌▛███▖▐
+    <pre className="gs-term__art text-accent m-0 font-mono text-[0.95em] leading-[1.05] whitespace-pre">{` ▐▛███▜▌ 
 ▝▜█████▛▘
-  ▘▘ ▝▝`}</pre>
+  ▘▘ ▝▝  `}</pre>
     <div className="flex flex-col gap-0.5 font-mono text-[0.95em]">
       <div className="flex items-baseline gap-2">
         <span className="text-ink font-medium">Claude Code</span>
@@ -139,14 +139,14 @@ const ClaudeInputBar = () => {
 
   return (
     <div aria-hidden={true} className="mt-4 font-mono">
-      <div className="gs-inputbar__rule text-line font-mono text-[0.92em]">
+      <div className="gs-inputbar__rule text-line overflow-hidden font-mono text-[0.92em]">
         {rule}
       </div>
       <div className="flex items-center gap-2 py-2">
         <span className="text-muted">&gt;</span>
-        <span className="gs-term__caret bg-accent-soft ml-0.5 inline-block h-[1.05em] w-[0.55em] rounded-sm align-[-0.18em]" />
+        <span className="gs-term__caret bg-accent-soft ml-0.5 inline-block h-[1.05em] w-[0.55em] align-[-0.18em]" />
       </div>
-      <div className="gs-inputbar__rule text-line font-mono text-[0.92em]">
+      <div className="gs-inputbar__rule text-line overflow-hidden font-mono text-[0.92em]">
         {rule}
       </div>
     </div>
@@ -345,6 +345,9 @@ const AnimatedTerminal = ({isLarge = false}: AnimatedTerminalProperties) => {
     const element = bodyReference.current;
     if (!element) return;
     element.scrollTop = element.scrollHeight;
+    const overflow =
+      element.getBoundingClientRect().bottom - window.innerHeight + 10;
+    if (overflow > 0) window.scrollBy({behavior: 'instant', top: overflow});
   }, [emitted, progress, typing]);
 
   const clsMap: Record<string, string> = {
@@ -377,12 +380,29 @@ const AnimatedTerminal = ({isLarge = false}: AnimatedTerminalProperties) => {
         ref={bodyReference}
         className={`gs-term__body text-ink font-mono leading-[1.55] ${
           isLarge ?
-            'px-9 pt-8 pb-9 text-[1rem]'
+            'px-4 pt-5 pb-6 text-[0.82rem] sm:px-9 sm:pt-8 sm:pb-9 sm:text-[1rem]'
           : 'px-6 pt-5 pb-6 text-[0.95rem]'
         }`}
       >
         {emitted.map((item) => {
           if (item.kind === 'cmd') {
+            if (item.frame) {
+              return (
+                <div key={item.id} className="mt-4 font-mono">
+                  <div className="gs-inputbar__rule text-line invisible overflow-hidden text-[0.92em]">
+                    {'-'.repeat(220)}
+                  </div>
+                  <div className="flex items-center gap-2 py-2">
+                    <span className="text-muted">{item.prompt}</span>
+                    <span className="whitespace-pre-wrap">{item.text}</span>
+                  </div>
+                  <div className="gs-inputbar__rule text-line invisible overflow-hidden text-[0.92em]">
+                    {'-'.repeat(220)}
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <div
                 key={item.id}
@@ -426,7 +446,7 @@ const AnimatedTerminal = ({isLarge = false}: AnimatedTerminalProperties) => {
         {typing &&
           (typing.frame ?
             <div className="mt-4 font-mono">
-              <div className="gs-inputbar__rule text-line text-[0.92em]">
+              <div className="gs-inputbar__rule text-line overflow-hidden text-[0.92em]">
                 {'-'.repeat(220)}
               </div>
               <div className="flex items-center gap-2 py-2">
@@ -434,10 +454,10 @@ const AnimatedTerminal = ({isLarge = false}: AnimatedTerminalProperties) => {
                 <span className="whitespace-pre-wrap">{typing.shown}</span>
                 <span
                   aria-hidden={true}
-                  className="gs-term__caret bg-accent-soft ml-0.5 inline-block h-[1.05em] w-[0.55em] rounded-sm align-[-0.18em]"
+                  className="gs-term__caret bg-accent-soft ml-0.5 inline-block h-[1.05em] w-[0.55em] align-[-0.18em]"
                 />
               </div>
-              <div className="gs-inputbar__rule text-line text-[0.92em]">
+              <div className="gs-inputbar__rule text-line overflow-hidden text-[0.92em]">
                 {'-'.repeat(220)}
               </div>
             </div>
@@ -448,7 +468,7 @@ const AnimatedTerminal = ({isLarge = false}: AnimatedTerminalProperties) => {
               <span className="whitespace-pre-wrap">{typing.shown}</span>
               <span
                 aria-hidden={true}
-                className="gs-term__caret bg-accent-soft ml-0.5 inline-block h-[1.05em] w-[0.55em] rounded-sm align-[-0.18em]"
+                className="gs-term__caret bg-accent-soft ml-0.5 inline-block h-[1.05em] w-[0.55em] align-[-0.18em]"
               />
             </div>)}
       </div>
@@ -506,7 +526,7 @@ const GetStartedHero = ({
   playToken,
 }: HeroProperties) => (
   <section
-    className="relative overflow-visible px-4 pt-24 pb-20 text-center sm:px-8"
+    className="relative overflow-x-clip px-4 pt-24 pb-20 text-center sm:px-8"
     id="install"
   >
     <div
@@ -557,7 +577,7 @@ const GetStartedHero = ({
       </h1>
 
       <div
-        className="relative mx-auto max-w-[880px]"
+        className="relative mx-auto max-w-220"
         data-reveal={true}
         style={{'--reveal-delay': '160ms'} as React.CSSProperties}
       >
@@ -587,12 +607,12 @@ const GetStartedHero = ({
       </div>
 
       <div
-        className="text-muted mx-auto mt-9 inline-flex max-w-[640px] flex-wrap items-baseline justify-center gap-2 text-[0.92rem]"
+        className="text-muted mx-auto mt-9 inline-flex max-w-160 flex-wrap items-baseline justify-center gap-2 text-[0.92rem]"
         data-reveal={true}
         style={{'--reveal-delay': '240ms'} as React.CSSProperties}
       >
         <span className="text-secondary-soft font-mono text-[0.68rem] tracking-[0.18em] uppercase">
-          Prereq
+          Prerequisite
         </span>
         <span className="text-line">·</span>
         <span>
@@ -711,7 +731,7 @@ const WhatHappenedSection = () => (
         data-reveal={true}
       >
         <p className="font-display text-ink-dim max-w-[50ch] text-[1.2rem] font-light italic">
-          That&apos;s the substrate. Now go build something.
+          That&apos;s it. Now go build something.
         </p>
         <a
           className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"
@@ -731,7 +751,10 @@ const GetStarted = () => {
   const [playToken, setPlayToken] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
 
-  const onReplay = () => setPlayToken((token) => token + 1);
+  const onReplay = () => {
+    window.scrollTo({behavior: 'instant', top: 0});
+    setPlayToken((token) => token + 1);
+  };
 
   const onCopy = async () => {
     await navigator.clipboard.writeText('npx create-gaia my-app');
