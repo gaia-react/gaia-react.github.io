@@ -302,7 +302,7 @@ const Hero = () => (
         >
           {STATS.map((stat) => (
             <div key={stat.label}>
-              <strong className="font-display text-ink block text-[1.75rem] leading-none font-light tracking-[-0.02em]">
+              <strong className="text-ink block font-mono text-[0.9rem] leading-none font-normal tracking-[0.12em] uppercase">
                 {stat.value}
               </strong>
               <span className="text-muted font-mono text-[0.7rem] tracking-[0.18em] uppercase">
