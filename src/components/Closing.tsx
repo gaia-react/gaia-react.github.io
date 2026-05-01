@@ -16,7 +16,7 @@ const Closing = () => (
         }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-8">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
         <div
           aria-hidden={true}
           className="mb-8 flex items-center justify-center gap-2"

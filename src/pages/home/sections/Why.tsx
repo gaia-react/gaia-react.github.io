@@ -41,7 +41,7 @@ const ICON_STYLES = {
 
 const Why = () => (
   <section className="py-20" id="why">
-    <div className="mx-auto max-w-6xl px-8">
+    <div className="mx-auto max-w-6xl px-4 sm:px-8">
       <div className="mb-12 max-w-[720px]" data-reveal={true}>
         <div className="mb-4 inline-flex items-center gap-2">
           <span

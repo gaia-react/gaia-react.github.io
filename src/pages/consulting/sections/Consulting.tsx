@@ -255,7 +255,7 @@ const Consulting = () => {
     <>
       {/* Hero */}
       <section className="pt-20 pb-12">
-        <div className="mx-auto max-w-3xl px-8 text-center">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-8">
           <h1 className="font-display text-ink mb-6 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
             Work with the creator of GAIA
           </h1>
@@ -271,7 +271,7 @@ const Consulting = () => {
       </section>
 
       {/* Skip to pricing. Doubles as visual break between hero and pitch */}
-      <div className="px-8 text-center">
+      <div className="px-4 text-center sm:px-8">
         <CtaButton href="#pricing">See engagement options ↓</CtaButton>
       </div>
 
@@ -294,7 +294,7 @@ const Consulting = () => {
 
       {/* SKU cards */}
       <section className="scroll-mt-20 pt-4 pb-16" id="pricing">
-        <div className="mx-auto max-w-6xl px-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-8">
           <div className="flex flex-col gap-6 md:grid md:grid-cols-2">
             {SKUS.map((sku) => (
               <SkuCard key={sku.title} sku={sku} />
@@ -305,7 +305,7 @@ const Consulting = () => {
 
       {/* Custom inquiries */}
       <section className="scroll-mt-20 pb-20" id="custom">
-        <div className="mx-auto max-w-3xl px-8 text-center">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-8">
           <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom
             integrations, or scope I haven’t named here.{' '}

@@ -38,7 +38,7 @@ const TIER_STYLES = {
 
 const ObsidianWiki = () => (
   <section className="py-20" id="memory">
-    <div className="mx-auto max-w-6xl px-8">
+    <div className="mx-auto max-w-6xl px-4 sm:px-8">
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <div

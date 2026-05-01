@@ -146,7 +146,7 @@ const StatusGroup = ({group}: {group: Group}) => (
 
 const Roadmap = () => (
   <section className="pt-8 pb-24">
-    <div className="mx-auto max-w-3xl scroll-mt-20 px-8" id="roadmap">
+    <div className="mx-auto max-w-3xl scroll-mt-20 px-4 sm:px-8" id="roadmap">
       <h2 className="font-display text-ink mb-2 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
         Roadmap
       </h2>

@@ -85,7 +85,7 @@ const About = () => (
   <>
     {/* Hero */}
     <section className="pt-20 pb-6">
-      <div className="mx-auto max-w-3xl px-8 text-center">
+      <div className="mx-auto max-w-3xl px-4 text-center sm:px-8">
         <img
           alt="Portrait of Steven Sacks"
           className="border-line mx-auto mb-8 size-36 rounded-full border object-cover shadow-[0_0_0_6px_var(--color-surface)]"
