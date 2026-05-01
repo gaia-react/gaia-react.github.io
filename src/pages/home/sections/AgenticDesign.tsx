@@ -10,9 +10,11 @@ import {Section} from '@/components/Section';
 const AgenticDesign = () => (
   <Section id="agentic-design" title="Agentic design">
     <p className="text-ink-dim mb-8 text-lg">
-      <span className="text-ink">GAIA wires agentic behavior into the project itself, not the prompt.</span> The
-      four patterns below run the same way every session, every engineer, every
-      model variant.
+      <span className="text-ink">
+        GAIA wires agentic behavior into the project itself, not the prompt.
+      </span>{' '}
+      The four patterns below run the same way every session, every engineer,
+      every model variant.
     </p>
 
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

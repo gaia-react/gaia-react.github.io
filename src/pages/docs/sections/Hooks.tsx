@@ -56,6 +56,16 @@ const Hooks = () => (
         plugin
       </li>
     </ul>
+
+    <h3 className="text-ink mb-3 text-lg font-semibold">Session</h3>
+    <p className="text-ink mb-2">Prompt useful actions at session start:</p>
+    <ul className="text-ink mb-6 ml-4 space-y-1">
+      <li>
+        <span className="font-semibold">Update notifications</span> - At session
+        start, GAIA checks for new releases and surfaces any available updates
+        as an optional action
+      </li>
+    </ul>
   </Section>
 );
 

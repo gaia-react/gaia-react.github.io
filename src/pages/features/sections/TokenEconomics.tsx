@@ -18,8 +18,12 @@ const POINTS = [
     name: 'Periodic knowledge audit',
   },
   {
-    desc: '/handoff and /pickup replace re-briefing Claude from scratch at every session start.',
+    desc: '/gaia handoff and /gaia pickup replace re-briefing Claude from scratch at every session start.',
     name: 'Session continuity',
+  },
+  {
+    desc: '/gaia plan spawns each phase as a focused subagent with only the context it needs. No accumulated history, no stale assumptions — each agent starts fresh and stays cheap.',
+    name: 'Task orchestration in clean subagent contexts',
   },
 ];
 

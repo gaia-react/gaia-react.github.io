@@ -6,12 +6,12 @@ import {Section, SectionHeading} from '@/components/Section';
 const ObsidianWiki = () => (
   <Section id="wiki">
     <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1.2fr_1fr]">
-      <div className="text-ink order-2 space-y-4 md:order-1 text-ink-dim">
+      <div className="text-ink-dim order-2 space-y-4 md:order-1">
         <SectionHeading id="wiki">A second brain for Claude</SectionHeading>
         <p className="-mt-4">
-          <span className="text-ink">GAIA’s wiki saves Claude tokens.</span> Architecture, flows, and decisions
-          live as committed markdown Claude reads on demand, so it never
-          re-infers them from source code.
+          <span className="text-ink">GAIA’s wiki saves Claude tokens.</span>{' '}
+          Architecture, flows, and decisions live as committed markdown Claude
+          reads on demand, so it never re-infers them from source code.
         </p>
 
         <p>

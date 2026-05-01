@@ -108,10 +108,11 @@ const ClaudeMd = () => (
 
           <p>
             <code className="text-accent">/gaia plan</code> plans complex
-            features through specialist subagents.<br/>
+            features through specialist subagents.
+            <br />
             <code className="text-accent">/gaia handoff</code> and{' '}
-            <code className="text-accent">/gaia pickup</code> let you clear context
-            without losing state.
+            <code className="text-accent">/gaia pickup</code> let you clear
+            context without losing state.
           </p>
 
           <p>
