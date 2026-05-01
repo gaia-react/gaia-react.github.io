@@ -89,7 +89,7 @@ const FrameworkComparison = () => (
       </div>
 
       <p
-        className="text-ink-dim mt-10 max-w-[720px] text-[0.95rem] leading-relaxed"
+        className="text-ink-dim mt-10 text-[0.95rem] leading-relaxed"
         data-reveal={true}
       >
         Every lint rule is a check Claude has to clear. GAIA ships 1,592 —
