@@ -518,7 +518,7 @@ type CommandBarProperties = {
 };
 
 const CommandBar = ({isCopied, onCopy}: CommandBarProperties) => (
-  <div className="mb-5 flex items-center gap-3 rounded-lg bg-[#0e0e0d] px-4 py-3.5 sm:px-6 sm:py-4 max-w-104 mx-auto">
+  <div className="mx-auto mb-5 flex max-w-104 items-center gap-3 rounded-lg bg-[#0e0e0d] px-4 py-3.5 sm:px-6 sm:py-4">
     <span className="text-accent-soft shrink-0 font-mono text-[0.82rem] sm:text-[1rem]">
       $
     </span>

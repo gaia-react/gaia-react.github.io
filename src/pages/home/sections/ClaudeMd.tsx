@@ -93,8 +93,11 @@ const MatchLedger = () => (
 );
 
 const ClaudeMd = () => (
-  <section className="border-line-soft bg-tint border-y py-20" id="claude-code">
-    <div className="mx-auto max-w-6xl px-4 sm:px-8">
+  <section
+    className="border-line-soft bg-tint border-y px-4 py-20 sm:px-8"
+    id="claude-code"
+  >
+    <div className="mx-auto max-w-6xl">
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <div

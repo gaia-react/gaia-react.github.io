@@ -1,7 +1,7 @@
 import type React from 'react';
 
 const Closing = () => (
-  <section className="relative z-10 overflow-hidden" id="closing">
+  <section className="relative z-10 overflow-hidden px-4 sm:px-8" id="closing">
     <div
       className="border-line-soft relative border-t py-24 text-center"
       data-reveal={true}
@@ -15,7 +15,7 @@ const Closing = () => (
         }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
+      <div className="relative mx-auto max-w-6xl">
         <div
           aria-hidden={true}
           className="mb-8 flex items-center justify-center gap-2"

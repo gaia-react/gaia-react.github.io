@@ -31,8 +31,8 @@ const STACK_GROUPS = [
 ];
 
 const TheStack = () => (
-  <section className="py-20" id="stack">
-    <div className="mx-auto max-w-6xl px-4 sm:px-8">
+  <section className="px-4 py-20 sm:px-8" id="stack">
+    <div className="mx-auto max-w-6xl">
       <div className="mb-8 max-w-180" data-reveal={true}>
         <div className="mb-4 inline-flex items-center gap-2">
           <span
