@@ -160,13 +160,10 @@ const ProductWindow = () => (
       </span>
     </div>
 
-    <div
-      className="grid min-h-[380px]"
-      style={{gridTemplateColumns: '200px 1fr'}}
-    >
+    <div className="grid min-h-[380px] grid-cols-1 md:grid-cols-[200px_1fr]">
       <nav
         aria-hidden={true}
-        className="border-line-soft flex flex-col gap-0.5 border-r bg-black/10 p-2"
+        className="border-line-soft hidden flex-col gap-0.5 border-r bg-black/10 p-2 md:flex"
       >
         <div className="text-muted px-3 pt-2 pb-1 font-mono text-[0.65rem] tracking-[0.18em] uppercase">
           Project
