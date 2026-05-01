@@ -244,7 +244,7 @@ const STATS = [
 ];
 
 const Hero = () => (
-  <section className="relative px-8 pt-24 pb-20" id="hero">
+  <section className="relative overflow-x-clip px-8 pt-24 pb-20" id="hero">
     <Orbs />
     <div className="relative z-10 mx-auto max-w-6xl">
       <div className="max-w-[1080px]">

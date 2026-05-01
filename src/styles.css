@@ -132,6 +132,10 @@ samp {
 @utility gaia-drift-orb-a {
   animation: gaia-drift-a 28s ease-in-out infinite;
   will-change: transform;
+  @media (max-width: 1023px) {
+    scale: 0.55;
+    transform-origin: top left;
+  }
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
@@ -140,6 +144,10 @@ samp {
 @utility gaia-drift-orb-b {
   animation: gaia-drift-b 34s ease-in-out infinite;
   will-change: transform;
+  @media (max-width: 1023px) {
+    scale: 0.5;
+    transform-origin: top right;
+  }
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
