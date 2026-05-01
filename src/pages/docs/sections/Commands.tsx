@@ -8,14 +8,6 @@ const Commands = () => (
       automatically.
     </p>
 
-    <h3 className="text-ink mb-3 text-lg font-semibold">Project Lifecycle</h3>
-    <ul className="text-ink mb-6 space-y-2">
-      <li>
-        <code className="text-accent">/init</code> - Initializes a new GAIA
-        project
-      </li>
-    </ul>
-
     <h3 className="text-ink mb-3 text-lg font-semibold">Workflows</h3>
     <ul className="text-ink mb-6 space-y-2">
       <li>
@@ -33,8 +25,7 @@ const Commands = () => (
       </li>
       <li>
         <code className="text-accent">/gaia audit</code> - Audit memory, wiki,
-        and auto-loaded context for duplication and load cost. Pass{' '}
-        <code className="text-accent">--apply</code> to fix found issues
+        and auto-loaded context for duplication and load cost.
       </li>
     </ul>
   </Section>

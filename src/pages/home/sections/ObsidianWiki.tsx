@@ -1,59 +1,117 @@
-import ClaudeLogo from '@/assets/logos/ClaudeLogo';
-import ObsidianLogo from '@/assets/logos/ObsidianLogo';
-import wikiVaultDiagram from '@/assets/wiki-vault-diagram.svg';
-import {Section, SectionHeading} from '@/components/Section';
+import type React from 'react';
+import {ArrowRightIcon} from '@/components/icons';
+
+const TIERS = [
+  {
+    color: 'accent' as const,
+    desc: 'Architecture, flows, decisions. Markdown the team owns.',
+    name: 'wiki',
+    scope: 'repo',
+  },
+  {
+    color: 'teal' as const,
+    desc: 'What Claude touched this hour. Fast, scoped, evictable.',
+    name: 'hot cache',
+    scope: 'session',
+  },
+  {
+    desc: 'Compact session state for /handoff and /pickup.',
+    name: 'handoff',
+    scope: 'cross-session',
+  },
+  {
+    desc: "Each subagent's own scratchpad — durable inside its lane.",
+    name: 'agent memory',
+    scope: 'per-agent',
+  },
+  {
+    desc: 'Your preferences, your style, your defaults.',
+    name: 'user memory',
+    scope: 'global',
+  },
+];
+
+const TIER_STYLES = {
+  accent: 'border-l-[3px] border-l-accent',
+  teal: 'border-l-[3px] border-l-secondary',
+};
 
 const ObsidianWiki = () => (
-  <Section id="wiki">
-    <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1.2fr_1fr]">
-      <div className="text-ink-dim order-2 space-y-4 md:order-1">
-        <SectionHeading id="wiki">A second brain for Claude</SectionHeading>
-        <p className="-mt-4">
-          <span className="text-ink">GAIA’s wiki saves Claude tokens.</span>{' '}
-          Architecture, flows, and decisions live as committed markdown Claude
-          reads on demand, so it never re-infers them from source code.
-        </p>
-
-        <p>
-          Onboarding stops being a multi-week ramp. Context stops getting lost
-          between sessions.
-        </p>
-
-        <p>
-          The vault stays yours. Plain markdown in your repo, not a vendor’s
-          database, not chat history.
-        </p>
-
-        <p>
-          <a className="text-accent hover:underline" href="/features/#wiki">
-            Learn more →
+  <section className="px-4 py-20 sm:px-8" id="memory">
+    <div className="mx-auto max-w-6xl">
+      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <div
+            className="mb-4 inline-flex items-center gap-2"
+            data-reveal={true}
+          >
+            <span
+              aria-hidden={true}
+              className="bg-accent-soft size-1.5 rounded-full"
+            />
+            <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
+              Second brain
+            </span>
+          </div>
+          <h2
+            className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]"
+            data-reveal={true}
+            style={{'--reveal-delay': '60ms'} as React.CSSProperties}
+          >
+            Memory that survives a session restart.
+          </h2>
+          <p
+            className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]"
+            data-reveal={true}
+            style={{'--reveal-delay': '120ms'} as React.CSSProperties}
+          >
+            <span className="text-ink">
+              GAIA&apos;s wiki saves Claude tokens.
+            </span>{' '}
+            Architecture, flows, and decisions live as committed markdown that
+            Claude reads on demand, so it never re-infers them from source.
+          </p>
+          <p
+            className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
+            data-reveal={true}
+            style={{'--reveal-delay': '180ms'} as React.CSSProperties}
+          >
+            Context stops getting lost between sessions. Tokens stop getting
+            wasted. The vault stays yours. Plain markdown in your repo, not a
+            vendor&apos;s database.
+          </p>
+          <a
+            className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
+            data-reveal={true}
+            href="/features/#wiki"
+            style={{'--reveal-delay': '240ms'} as React.CSSProperties}
+          >
+            How the wiki works
+            <ArrowRightIcon size={14} />
           </a>
-        </p>
-      </div>
+        </div>
 
-      <div className="order-1 flex justify-center md:order-2">
-        <div className="relative aspect-square w-full max-w-90">
-          <img
-            alt="Wiki vault structure: agents, architecture, flows"
-            className="size-full"
-            src={wikiVaultDiagram}
-          />
-          <ObsidianLogo
-            aria-hidden="true"
-            className="absolute opacity-60"
-            height={36}
-            style={{left: '8%', top: '60%'}}
-          />
-          <ClaudeLogo
-            aria-hidden="true"
-            className="absolute opacity-70"
-            height={32}
-            style={{left: '82%', top: '30%'}}
-          />
+        <div className="flex flex-col gap-2" data-stagger={true}>
+          {TIERS.map((tier) => (
+            <div
+              key={tier.name}
+              className={`bg-surface border-line-soft grid items-center gap-4 rounded-lg border px-4 py-3.5 text-[0.88rem] sm:grid-cols-[90px_1fr_auto] ${
+                tier.color ? TIER_STYLES[tier.color] : ''
+              }`}
+            >
+              <span className="text-ink font-mono text-[0.78rem] tracking-[0.04em]">
+                {tier.name}
+              </span>
+              <span className="text-ink-dim text-[0.85rem]">{tier.desc}</span>
+              <span className="text-muted font-mono text-[0.68rem] tracking-[0.14em] uppercase">
+                {tier.scope}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  </Section>
+  </section>
 );
 
 export default ObsidianWiki;

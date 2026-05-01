@@ -23,6 +23,9 @@
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --shadow-card:
+    0 1px 0 rgba(255, 255, 255, 0.02) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 html {
@@ -48,8 +51,9 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   background-size: 160px 160px;
 }
 
@@ -80,12 +84,18 @@ samp {
   box-sizing: border-box;
 }
 
+/* ============================================================
+   Orb drift animations
+   ============================================================ */
 @keyframes gaia-drift-a {
   0% {
     transform: translate3d(0, 0, 0);
   }
-  50% {
-    transform: translate3d(40px, -25px, 0);
+  33% {
+    transform: translate3d(60px, -40px, 0);
+  }
+  66% {
+    transform: translate3d(-30px, 50px, 0);
   }
   100% {
     transform: translate3d(0, 0, 0);
@@ -96,31 +106,64 @@ samp {
   0% {
     transform: translate3d(0, 0, 0);
   }
-  50% {
-    transform: translate3d(-35px, 30px, 0);
+  33% {
+    transform: translate3d(-50px, 55px, 0);
+  }
+  66% {
+    transform: translate3d(40px, -25px, 0);
   }
   100% {
     transform: translate3d(0, 0, 0);
   }
 }
 
-.gaia-drift-orb-a {
-  animation: gaia-drift-a 34s ease-in-out infinite;
-  will-change: transform;
+@keyframes gaia-drift-c {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(35px, 55px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-.gaia-drift-orb-b {
-  animation: gaia-drift-b 38s ease-in-out infinite;
+@utility gaia-drift-orb-a {
+  animation: gaia-drift-a 28s ease-in-out infinite;
   will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .gaia-drift-orb-a,
-  .gaia-drift-orb-b {
+  @media (max-width: 1023px) {
+    scale: 0.55;
+    transform-origin: top left;
+  }
+  @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
 }
 
+@utility gaia-drift-orb-b {
+  animation: gaia-drift-b 34s ease-in-out infinite;
+  will-change: transform;
+  @media (max-width: 1023px) {
+    scale: 0.5;
+    transform-origin: top right;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility gaia-drift-orb-c {
+  animation: gaia-drift-c 24s ease-in-out infinite;
+  will-change: transform;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Stack marquee
+   ============================================================ */
 @keyframes stackrow-scroll {
   from {
     transform: translateX(0);
@@ -129,11 +172,169 @@ samp {
     transform: translateX(-50%);
   }
 }
-.stackrow-marquee-track {
+
+@utility stackrow-marquee-track {
   animation: stackrow-scroll 40s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .stackrow-marquee-track {
+  @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
+}
+
+/* ============================================================
+   Scroll-reveal animations
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 720ms cubic-bezier(0.2, 0.6, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 720ms cubic-bezier(0.2, 0.6, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 600ms cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+[data-stagger].is-in > *:nth-child(1) {
+  transition-delay: 0ms;
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-stagger].is-in > *:nth-child(2) {
+  transition-delay: 90ms;
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-stagger].is-in > *:nth-child(3) {
+  transition-delay: 180ms;
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-stagger].is-in > *:nth-child(4) {
+  transition-delay: 270ms;
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-stagger].is-in > *:nth-child(5) {
+  transition-delay: 360ms;
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-stagger].is-in > *:nth-child(6) {
+  transition-delay: 450ms;
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-stagger].is-in > *:nth-child(7) {
+  transition-delay: 540ms;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+   Animated terminal keyframes (Get Started page)
+   ============================================================ */
+@keyframes gs-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes gs-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes gs-banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes gs-think-glyph {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.25) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+@utility gs-term__body {
+  max-height: 460px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-soft) transparent;
+}
+
+@utility gs-term__caret {
+  animation: gs-caret 0.9s steps(2) infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility gs-term__out {
+  animation: gs-fadein 0.22s ease both;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility gs-term__banner {
+  animation: gs-banner-in 0.55s ease both;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Rule line: overflow hidden clips the repeated dash string to column width */
+@utility gs-inputbar__rule {
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+  line-height: 1;
+}
+
+@utility gs-thinking__star {
+  animation: gs-think-glyph 0.88s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility gs-term__art {
+  text-shadow: 0 0 18px rgba(217, 119, 87, 0.35);
 }

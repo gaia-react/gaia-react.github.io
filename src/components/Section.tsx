@@ -44,7 +44,7 @@ export const Section = ({
       paddingTop,
     }}
   >
-    <div className="mx-auto max-w-3xl scroll-mt-20 px-8" id={id}>
+    <div className="mx-auto max-w-3xl scroll-mt-20 px-4 sm:px-8" id={id}>
       {title && <SectionHeading id={id}>{title}</SectionHeading>}
       {children}
     </div>

@@ -1,4 +1,3 @@
-import Closing from '@/components/Closing';
 import {Layout} from '@/components/Layout';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesignDetail from './sections/AgenticDesignDetail';
@@ -19,7 +18,6 @@ const App = () => {
       <ObsidianWikiDetail />
       <ClaudeMdDetail />
       <Stack />
-      <Closing />
     </Layout>
   );
 };

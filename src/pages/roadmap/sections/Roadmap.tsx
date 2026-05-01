@@ -19,8 +19,8 @@ const GROUPS: Group[] = [
     items: [
       {
         description:
-          'GAIA v1.0.0 released 2026-04-30. The inaugural public release ships the full Claude integration surface, React Router 7 app skeleton, wiki vault, quality gate, and release tooling.',
-        title: '1.0 Release',
+          'The full Claude integration and React stack.',
+        title: 'GAIA Core',
       },
     ],
     label: 'Shipped',
@@ -41,25 +41,6 @@ const GROUPS: Group[] = [
     color: '#c8a96a',
     id: 'planned',
     items: [
-      {
-        description: (
-          <>
-            <code className="bg-surface rounded-sm px-2 py-1 text-sm">
-              /init
-            </code>{' '}
-            walks you through choosing React Router, Next.js, Astro, or TanStack
-            Start with a short Q&amp;A that recommends the right foundation for
-            the project you have in mind. No more spending a weekend comparing
-            docs before you write your first component.
-          </>
-        ),
-        title: 'Pick your framework at create time',
-      },
-      {
-        description:
-          'Get a project already wired up. The defaults match the app you plan to build, not a generic template you have to rip out.',
-        title: 'Choose component library up front',
-      },
       {
         description:
           'Wire it up during create or run a command later when you decide to go live. Pick from popular targets with the tradeoffs explained, or bring your own, and walk away with the build, environment variables, and CI/CD configured for you.',
@@ -146,7 +127,7 @@ const StatusGroup = ({group}: {group: Group}) => (
 
 const Roadmap = () => (
   <section className="pt-8 pb-24">
-    <div className="mx-auto max-w-3xl scroll-mt-20 px-8" id="roadmap">
+    <div className="mx-auto max-w-3xl scroll-mt-20 px-4 sm:px-8" id="roadmap">
       <h2 className="font-display text-ink mb-2 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
         Roadmap
       </h2>
