@@ -691,7 +691,7 @@ const SCAFFOLD = [
 const WhatHappenedSection = () => (
   <section className="pb-20 sm:pt-8" id="what-happened">
     <div className="mx-auto max-w-6xl px-4 sm:px-8">
-      <div className="mb-12 max-w-180" data-reveal={true}>
+      <div className="mb-12" data-reveal={true}>
         <div className="mb-4 inline-flex items-center gap-2">
           <span
             aria-hidden={true}
@@ -711,7 +711,7 @@ const WhatHappenedSection = () => (
             create-gaia
           </code>{' '}
           doesn&apos;t just spin up a starter. It wires in the full stack, the
-          guardrails, and the briefing Claude needs to work inside them.
+          guardrails, and the knowledge Claude needs to get work done.
         </p>
       </div>
 
