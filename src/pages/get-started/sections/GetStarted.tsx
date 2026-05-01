@@ -510,6 +510,35 @@ const ReplayIcon = ({size = 24}: {size?: number}) => (
   </svg>
 );
 
+// ── Command bar ────────────────────────────────────────────────────────────
+
+type CommandBarProperties = {
+  isCopied: boolean;
+  onCopy: () => void;
+};
+
+const CommandBar = ({isCopied, onCopy}: CommandBarProperties) => (
+  <div className="mb-5 flex items-center gap-3 rounded-lg bg-[#0e0e0d] px-4 py-3.5 sm:px-6 sm:py-4 max-w-104 mx-auto">
+    <span className="text-accent-soft shrink-0 font-mono text-[0.82rem] sm:text-[1rem]">
+      $
+    </span>
+    <code className="text-ink flex-1 text-left font-mono text-[0.82rem] tracking-[0.02em] sm:text-[1rem]">
+      npx create-gaia my-app
+    </code>
+    <button
+      aria-label="Copy command"
+      className="border-line-soft text-ink-dim hover:text-ink hover:border-line inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full border bg-transparent px-3 py-1.5 font-mono text-[0.68rem] tracking-[0.06em] uppercase transition-colors duration-150 sm:px-3.5 sm:text-[0.72rem]"
+      onClick={onCopy}
+      type="button"
+    >
+      {isCopied ?
+        <CheckIcon size={13} />
+      : <CopyIcon size={13} />}
+      {isCopied ? 'Copied' : 'Copy'}
+    </button>
+  </div>
+);
+
 // ── Hero ───────────────────────────────────────────────────────────────────
 
 type HeroProperties = {
@@ -526,7 +555,7 @@ const GetStartedHero = ({
   playToken,
 }: HeroProperties) => (
   <section
-    className="relative overflow-x-clip px-4 pt-24 pb-20 text-center sm:px-8"
+    className="relative overflow-x-clip px-4 pt-14 pb-20 text-center sm:px-8 sm:pt-24"
     id="install"
   >
     <div
@@ -572,8 +601,9 @@ const GetStartedHero = ({
         data-reveal={true}
         style={{'--reveal-delay': '80ms'} as React.CSSProperties}
       >
-        One command and you&apos;re{' '}
-        <em className="text-accent-soft font-light italic">shipping.</em>
+        One command is
+        <br />
+        <em className="text-accent-soft font-light italic">all you need.</em>
       </h1>
 
       <div
@@ -581,19 +611,9 @@ const GetStartedHero = ({
         data-reveal={true}
         style={{'--reveal-delay': '160ms'} as React.CSSProperties}
       >
+        <CommandBar isCopied={isCopied} onCopy={onCopy} />
         <AnimatedTerminal key={playToken} isLarge={true} />
         <div className="mt-3 inline-flex justify-center gap-2">
-          <button
-            aria-label="Copy command"
-            className="border-line-soft text-ink-dim hover:text-ink hover:border-line inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-transparent px-3.5 py-1.5 font-mono text-[0.72rem] tracking-[0.06em] uppercase transition-colors duration-150"
-            onClick={onCopy}
-            type="button"
-          >
-            {isCopied ?
-              <CheckIcon size={14} />
-            : <CopyIcon size={14} />}
-            {isCopied ? 'Copied' : 'Copy'}
-          </button>
           <button
             aria-label="Replay animation"
             className="border-line-soft text-ink-dim hover:text-ink hover:border-line inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-transparent px-3.5 py-1.5 font-mono text-[0.72rem] tracking-[0.06em] uppercase transition-colors duration-150"
@@ -669,7 +689,7 @@ const SCAFFOLD = [
 ];
 
 const WhatHappenedSection = () => (
-  <section className="py-20" id="what-happened">
+  <section className="pb-20 sm:pt-8" id="what-happened">
     <div className="mx-auto max-w-6xl px-4 sm:px-8">
       <div className="mb-12 max-w-180" data-reveal={true}>
         <div className="mb-4 inline-flex items-center gap-2">
