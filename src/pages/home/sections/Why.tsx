@@ -1,23 +1,17 @@
-import {BullseyeIcon, MemoryIcon, ShieldCheckIcon} from '@/components/icons';
+import {BullseyeIcon, ShieldCheckIcon} from '@/components/icons';
 
 const CARDS = [
   {
-    color: 'accent' as const,
-    copy: 'GAIA gives Claude only what each task needs, so quality and costs stay predictable as your codebase grows past 10k files.',
-    Icon: BullseyeIcon,
-    title: 'Disciplined at scale',
-  },
-  {
     color: 'secondary' as const,
-    copy: 'The Quality Gate runs typecheck, lint, tests, and a code-review audit before merge. The code your team ships is code you can trust.',
+    copy: 'GAIA enforces high standards on every commit, so the code your team merges is code you can trust.',
     Icon: ShieldCheckIcon,
     title: 'Trustworthy by default',
   },
   {
-    color: 'warn' as const,
-    copy: 'Five tiers of structured memory move project knowledge from chat scrollback into a queryable wiki. Sessions end, context doesn&apos;t.',
-    Icon: MemoryIcon,
-    title: 'Memory that survives',
+    color: 'accent' as const,
+    copy: 'GAIA gives Claude only what each task needs, so quality and costs stay predictable as your codebase grows.',
+    Icon: BullseyeIcon,
+    title: 'Disciplined at scale',
   },
 ];
 
@@ -42,7 +36,7 @@ const ICON_STYLES = {
 const Why = () => (
   <section className="py-20" id="why">
     <div className="mx-auto max-w-6xl px-4 sm:px-8">
-      <div className="mb-12 max-w-[720px]" data-reveal={true}>
+      <div className="mb-12 max-w-180" data-reveal={true}>
         <div className="mb-4 inline-flex items-center gap-2">
           <span
             aria-hidden={true}
@@ -61,14 +55,14 @@ const Why = () => (
             /init
           </code>
           , let Claude set up a CLAUDE.md, and hope the model figures out the
-          rest. Two things break Claude on real projects: output you can&apos;t
+          rest.<br/><br/>Two things break Claude on real projects: output you can&apos;t
           trust, and quality that drops as the project grows.{' '}
           <span className="text-ink">GAIA fixes both.</span>
         </p>
       </div>
 
       <div
-        className="grid grid-cols-1 gap-4 md:grid-cols-3"
+        className="grid grid-cols-1 gap-4 md:grid-cols-2"
         data-stagger={true}
       >
         {CARDS.map((card) => {
@@ -87,9 +81,7 @@ const Why = () => (
               <h3 className="text-ink mb-2 text-[1.25rem] font-light tracking-[-0.01em]">
                 {card.title}
               </h3>
-              <p className="text-ink-dim text-[0.95rem] leading-[1.6]">
-                {card.copy}
-              </p>
+              <p className="text-ink-dim text-[0.95rem] leading-[1.6]" dangerouslySetInnerHTML={{__html: card.copy}}/>
             </article>
           );
         })}

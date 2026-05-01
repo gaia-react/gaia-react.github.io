@@ -160,7 +160,7 @@ const ProductWindow = () => (
       </span>
     </div>
 
-    <div className="grid min-h-[380px] grid-cols-1 md:grid-cols-[200px_1fr]">
+    <div className="grid min-h-95 grid-cols-1 md:grid-cols-[200px_1fr]">
       <nav
         aria-hidden={true}
         className="border-line-soft hidden flex-col gap-0.5 border-r bg-black/10 p-2 md:flex"
@@ -226,7 +226,7 @@ const ProductWindow = () => (
                 </span>
               </span>
               <StatusPill variant={issue.status} />
-              <span className="bg-surface-raised border-line text-ink-dim inline-flex size-6 items-center justify-center rounded-full border font-mono text-[0.62rem]">
+              <span className="bg-surface-raised border-line text-ink-dim hidden size-6 items-center justify-center rounded-full border font-mono text-[0.62rem] lg:inline-flex">
                 {issue.assignee}
               </span>
             </div>
@@ -238,7 +238,7 @@ const ProductWindow = () => (
 );
 
 const STATS = [
-  {label: 'Agentic patterns wired', value: '12 / 29'},
+  {label: 'Agentic patterns wired', value: '22 / 29'},
   {label: 'Memory system', value: '5 tiers'},
   {label: 'Lint rules enforced', value: '1,592'},
 ];
@@ -250,7 +250,7 @@ const Hero = () => (
   >
     <Orbs />
     <div className="relative z-10 mx-auto max-w-6xl">
-      <div className="max-w-[1080px]">
+      <div className="max-w-270">
         <div className="mb-4 inline-flex items-center gap-2" data-reveal={true}>
           <span
             aria-hidden={true}
@@ -279,9 +279,9 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          A React project template engineered for Claude Code. GAIA wires twelve
-          agentic patterns into the project itself, not the prompt, so every
-          engineer, every session, every model gets the same disciplined loop.
+          A React project engineered for Claude Code. GAIA wires
+          agentic design patterns into the project itself, so every
+          agent, every model, every session gets the same disciplined loop.
         </p>
 
         <div

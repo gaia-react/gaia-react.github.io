@@ -14,26 +14,26 @@ const STACK_GROUPS = [
     items: [
       {kind: 'Unit tests', name: 'Vitest + RTL'},
       {kind: 'E2E tests', name: 'Playwright'},
-      {kind: 'Visual regression', name: 'Chromatic'},
-      {kind: 'Accessibility', name: 'A11y guardrails'},
+      {kind: 'Visual tests', name: 'Chromatic'},
+      {kind: 'Mock API', name: 'MSW'},
     ],
-    label: 'Quality',
+    label: 'Testing',
   },
   {
     items: [
       {kind: 'Components', name: 'Storybook'},
-      {kind: 'Theme', name: 'Dark mode'},
+      {kind: 'Accessibility', name: 'A11y guardrails'},
       {kind: 'Localization', name: 'i18next'},
-      {kind: 'Mock API', name: 'MSW'},
+      {kind: 'Theme', name: 'Dark mode'},
     ],
-    label: 'Experience',
+    label: 'Quality',
   },
 ];
 
-const FrameworkComparison = () => (
+const TheStack = () => (
   <section className="py-20" id="stack">
     <div className="mx-auto max-w-6xl px-4 sm:px-8">
-      <div className="mb-12 max-w-[720px]" data-reveal={true}>
+      <div className="mb-8 max-w-180" data-reveal={true}>
         <div className="mb-4 inline-flex items-center gap-2">
           <span
             aria-hidden={true}
@@ -92,7 +92,7 @@ const FrameworkComparison = () => (
         className="text-ink-dim mt-10 text-[0.95rem] leading-relaxed"
         data-reveal={true}
       >
-        Every lint rule is a check Claude has to clear. GAIA ships 1,592 —
+        Every lint rule is a check Claude has to clear. GAIA ships 1,592,
         including 85 Stylelint rules covering the patterns Claude drifts into
         first: complexity creep, architectural shortcuts, mismatched filenames,
         broken CSS.{' '}
@@ -138,4 +138,4 @@ const FrameworkComparison = () => (
   </section>
 );
 
-export default FrameworkComparison;
+export default TheStack;

@@ -1,6 +1,5 @@
 import type React from 'react';
 import {
-  ArrowRightIcon,
   MemoryIcon,
   MultiAgentIcon,
   ReflectionIcon,
@@ -9,26 +8,26 @@ import {
 
 const BLOCKS = [
   {
-    color: 'accent' as const,
+    color: 'teal' as const,
     copy: 'Pre-tool-use hooks block destructive git, watch-mode tests, force-pushes to main, and eslint-config edits before they happen.',
     Icon: ShieldCheckIcon,
     title: "Claude can't ship broken code",
   },
   {
-    color: 'teal' as const,
-    copy: 'The audit tiers findings as Critical, Important, and Suggestions — and blocks the merge until they&apos;re fixed.',
+    color: 'warn' as const,
+    copy: 'The Quality Gate runs typecheck, lint, tests, and build on every commit. The code-review audit tiers findings as Critical, Important, and Suggestions, and blocks the merge until fixed.',
     Icon: ReflectionIcon,
-    title: 'Quality gates every merge',
+    title: 'Quality ensured before merge',
   },
   {
-    color: 'warn' as const,
-    copy: 'Wiki, hot cache, session handoff, agent memory, user memory. Each tier has a scope and a maintenance loop.',
+    color: 'accent' as const,
+    copy: 'Wiki, hot cache, session handoff, agent memory, user memory. Each tier has a scope and a maintenance loop so Claude stops relearning your codebase every session.',
     Icon: MemoryIcon,
     title: 'Five tiers of memory',
   },
   {
     color: 'accent' as const,
-    copy: 'React patterns, TypeScript and architecture, translation, react-doctor — dispatched in parallel from a single tool call.',
+    copy: 'The audit dispatches React Patterns, TypeScript and Architecture, Translation, and react-doctor specialists in parallel from a single tool call.',
     Icon: MultiAgentIcon,
     title: 'A specialist for every concern',
   },
@@ -65,7 +64,7 @@ const AgenticDesign = () => (
             data-reveal={true}
             style={{'--reveal-delay': '60ms'} as React.CSSProperties}
           >
-            Twelve patterns Claude doesn&apos;t have to remember.
+            Design patterns Claude doesn&apos;t have to remember.
           </h2>
           <p
             className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]"
@@ -73,7 +72,7 @@ const AgenticDesign = () => (
             style={{'--reveal-delay': '120ms'} as React.CSSProperties}
           >
             GAIA wires agentic behavior into the project itself, not the prompt.
-            The patterns below run the same way every session, every engineer,
+            The patterns run the same way every session, every engineer,
             every model variant.
           </p>
           <p
@@ -91,8 +90,7 @@ const AgenticDesign = () => (
             href="/features/#agentic-design"
             style={{'--reveal-delay': '240ms'} as React.CSSProperties}
           >
-            See all twelve patterns
-            <ArrowRightIcon size={14} />
+            Learn more →
           </a>
         </div>
 

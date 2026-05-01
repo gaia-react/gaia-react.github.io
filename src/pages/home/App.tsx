@@ -4,7 +4,7 @@ import {useScrollReveal} from '@/hooks/useScrollReveal';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesign from './sections/AgenticDesign';
 import ClaudeMd from './sections/ClaudeMd';
-import FrameworkComparison from './sections/FrameworkComparison';
+import TheStack from './sections/TheStack.tsx';
 import Hero from './sections/Hero';
 import ObsidianWiki from './sections/ObsidianWiki';
 import Why from './sections/Why';
@@ -20,7 +20,7 @@ const App = () => {
       <AgenticDesign />
       <ObsidianWiki />
       <ClaudeMd />
-      <FrameworkComparison />
+      <TheStack />
       <Closing />
     </Layout>
   );

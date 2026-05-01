@@ -1,6 +1,5 @@
 import type React from 'react';
 import {twJoin} from 'tailwind-merge';
-import {ArrowRightIcon} from '@/components/icons';
 
 const ACTIVE_TIERS = [
   {accent: true, caption: 'you invoke', eyebrow: 'SLASH', name: '/gaia plan'},
@@ -122,7 +121,7 @@ const ClaudeMd = () => (
             data-reveal={true}
             style={{'--reveal-delay': '120ms'} as React.CSSProperties}
           >
-            The active layer of GAIA&apos;s Claude Code integration.{' '}
+            The active layer of GAIA&apos;s Claude Code integration.{' '}<br/><br/>
             <code className="text-accent">/gaia plan</code> plans complex
             features through specialist subagents.{' '}
             <code className="text-accent">/gaia handoff</code> and{' '}
@@ -138,14 +137,22 @@ const ClaudeMd = () => (
             <code className="text-accent">code-review-audit</code> agent gates
             every PR with security, performance, and architecture checks.
           </p>
+          <p
+              className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
+              data-reveal={true}
+              style={{'--reveal-delay': '180ms'} as React.CSSProperties}
+          >
+            Scoped rules guide coding practices, accessibility, testing, API patterns.{' '}
+            <a className="text-accent" href="https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md" target="_blank" rel="noreferrer">Karpathy&apos;s</a>
+            {' '}coding principles are wired in. Skills activate when needed.
+          </p>
           <a
             className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
             data-reveal={true}
             href="/docs/#commands"
             style={{'--reveal-delay': '240ms'} as React.CSSProperties}
           >
-            Read the docs
-            <ArrowRightIcon size={14} />
+            Learn more →
           </a>
         </div>
 

@@ -41,7 +41,8 @@ const Closing = () => (
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
           Spend your time on the
-          <br />
+          <br className="hidden sm:inline" />
+          <span className="inline sm:hidden">{' '}</span>
           <em className="text-accent-soft font-light italic">
             product, not the workflow.
           </em>
