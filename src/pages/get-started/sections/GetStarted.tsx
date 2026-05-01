@@ -220,14 +220,19 @@ const randomTypingDelay = (): number => {
 
 type AnimatedTerminalProperties = {
   isLarge?: boolean;
+  onDone?: () => void;
 };
 
-const AnimatedTerminal = ({isLarge = false}: AnimatedTerminalProperties) => {
+const AnimatedTerminal = ({
+  isLarge = false,
+  onDone,
+}: AnimatedTerminalProperties) => {
   const [emitted, setEmitted] = useState<EmittedItem[]>([]);
   const [typing, setTyping] = useState<null | TypingState>(null);
   const [progress, setProgress] = useState<null | ProgressState>(null);
   const timersReference = useRef<ReturnType<typeof setTimeout>[]>([]);
   const bodyReference = useRef<HTMLDivElement | null>(null);
+  const onDoneReference = useRef(onDone);
 
   useEffect(() => {
     const queue = (delay: number, function_: () => void) => {
@@ -318,12 +323,13 @@ const AnimatedTerminal = ({isLarge = false}: AnimatedTerminalProperties) => {
         );
       } else if (step.type === 'inputbar') {
         t += 200;
-        queue(t, () =>
+        queue(t, () => {
           setEmitted((previous) => [
             ...previous,
             {id: previous.length, kind: 'inputbar'},
-          ])
-        );
+          ]);
+          onDoneReference.current?.();
+        });
       } else {
         t += 280;
         queue(t, () =>
@@ -544,6 +550,7 @@ const CommandBar = ({isCopied, onCopy}: CommandBarProperties) => (
 type HeroProperties = {
   isCopied: boolean;
   onCopy: () => void;
+  onDone: () => void;
   onReplay: () => void;
   playToken: number;
 };
@@ -551,6 +558,7 @@ type HeroProperties = {
 const GetStartedHero = ({
   isCopied,
   onCopy,
+  onDone,
   onReplay,
   playToken,
 }: HeroProperties) => (
@@ -612,7 +620,7 @@ const GetStartedHero = ({
         style={{'--reveal-delay': '160ms'} as React.CSSProperties}
       >
         <CommandBar isCopied={isCopied} onCopy={onCopy} />
-        <AnimatedTerminal key={playToken} isLarge={true} />
+        <AnimatedTerminal key={playToken} isLarge={true} onDone={onDone} />
         <div className="mt-3 inline-flex justify-center gap-2">
           <button
             aria-label="Replay animation"
@@ -770,11 +778,46 @@ const WhatHappenedSection = () => (
 const GetStarted = () => {
   const [playToken, setPlayToken] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
+  const scrollTimerReference = useRef<null | ReturnType<typeof setTimeout>>(
+    null
+  );
 
   const onReplay = () => {
+    if (scrollTimerReference.current !== null) {
+      clearTimeout(scrollTimerReference.current);
+      scrollTimerReference.current = null;
+    }
     window.scrollTo({behavior: 'instant', top: 0});
     setPlayToken((token) => token + 1);
   };
+
+  const onDone = () => {
+    scrollTimerReference.current = setTimeout(() => {
+      if (window.innerWidth < 768) {
+        const section = document.querySelector('#what-happened');
+
+        if (section) {
+          const headerHeight =
+            document.querySelector('header')?.getBoundingClientRect().height ??
+            64;
+          const top =
+            section.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
+          window.scrollTo({behavior: 'smooth', top});
+        }
+      } else {
+        window.scrollTo({behavior: 'smooth', top: document.body.scrollHeight});
+      }
+    }, 3000);
+  };
+
+  useEffect(
+    () => () => {
+      if (scrollTimerReference.current !== null) {
+        clearTimeout(scrollTimerReference.current);
+      }
+    },
+    []
+  );
 
   const onCopy = async () => {
     await navigator.clipboard.writeText('npx create-gaia my-app');
@@ -787,6 +830,7 @@ const GetStarted = () => {
       <GetStartedHero
         isCopied={isCopied}
         onCopy={onCopy}
+        onDone={onDone}
         onReplay={onReplay}
         playToken={playToken}
       />

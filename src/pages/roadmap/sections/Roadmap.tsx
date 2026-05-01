@@ -18,8 +18,7 @@ const GROUPS: Group[] = [
     id: 'shipped',
     items: [
       {
-        description:
-          'The full Claude integration and React stack.',
+        description: 'The full Claude integration and React stack.',
         title: 'GAIA Core',
       },
     ],
