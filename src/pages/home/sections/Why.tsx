@@ -55,8 +55,11 @@ const Why = () => (
             /init
           </code>
           , let Claude set up a CLAUDE.md, and hope the model figures out the
-          rest.<br/><br/>Two things break Claude on real projects: output you can&apos;t
-          trust, and quality that drops as the project grows.{' '}
+          rest.
+          <br />
+          <br />
+          Two things break Claude on real projects: output you can&apos;t trust,
+          and quality that drops as the project grows.{' '}
           <span className="text-ink">GAIA fixes both.</span>
         </p>
       </div>
@@ -81,7 +84,10 @@ const Why = () => (
               <h3 className="text-ink mb-2 text-[1.25rem] font-light tracking-[-0.01em]">
                 {card.title}
               </h3>
-              <p className="text-ink-dim text-[0.95rem] leading-[1.6]" dangerouslySetInnerHTML={{__html: card.copy}}/>
+              <p
+                className="text-ink-dim text-[0.95rem] leading-[1.6]"
+                dangerouslySetInnerHTML={{__html: card.copy}}
+              />
             </article>
           );
         })}

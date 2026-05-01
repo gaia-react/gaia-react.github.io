@@ -76,8 +76,9 @@ const ObsidianWiki = () => (
             data-reveal={true}
             style={{'--reveal-delay': '180ms'} as React.CSSProperties}
           >
-            Context stops getting lost between sessions. Tokens stop getting wasted.
-            The vault stays yours. Plain markdown in your repo, not a vendor&apos;s database.
+            Context stops getting lost between sessions. Tokens stop getting
+            wasted. The vault stays yours. Plain markdown in your repo, not a
+            vendor&apos;s database.
           </p>
           <a
             className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"

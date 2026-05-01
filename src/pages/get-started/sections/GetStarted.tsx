@@ -630,12 +630,20 @@ const SCAFFOLD = [
     kind: 'Foundation',
   },
   {
-    items: ['Vitest + RTL', 'Playwright', 'Chromatic', '1,592 lint rules'],
+    items: ['Vitest + RTL', 'Playwright', 'Chromatic', 'MSW'],
+    kind: 'Testing',
+  },
+  {
+    items: ['Storybook', 'Linting', 'i18next', 'Accessibility'],
     kind: 'Quality',
   },
-  {items: ['Storybook', 'Dark mode', 'i18next', 'MSW'], kind: 'Experience'},
   {
-    items: ['CLAUDE.md', 'Pre-commit hooks', 'Sub-agents', 'Architecture docs'],
+    items: [
+      'CLAUDE.md',
+      'Hooks, Rules, Skills',
+      'Code Review Agent',
+      'Obsidian Wiki',
+    ],
     kind: 'For Claude',
   },
 ];
@@ -643,7 +651,7 @@ const SCAFFOLD = [
 const WhatHappenedSection = () => (
   <section className="py-20" id="what-happened">
     <div className="mx-auto max-w-6xl px-4 sm:px-8">
-      <div className="mb-12 max-w-[720px]" data-reveal={true}>
+      <div className="mb-12 max-w-180" data-reveal={true}>
         <div className="mb-4 inline-flex items-center gap-2">
           <span
             aria-hidden={true}

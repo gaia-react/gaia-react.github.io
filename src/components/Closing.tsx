@@ -1,5 +1,4 @@
 import type React from 'react';
-import {ArrowRightIcon} from '@/components/icons';
 
 const Closing = () => (
   <section className="relative z-10 overflow-hidden" id="closing">
@@ -42,7 +41,7 @@ const Closing = () => (
         >
           Spend your time on the
           <br className="hidden sm:inline" />
-          <span className="inline sm:hidden">{' '}</span>
+          <span className="inline sm:hidden"> </span>
           <em className="text-accent-soft font-light italic">
             product, not the workflow.
           </em>
@@ -52,8 +51,7 @@ const Closing = () => (
           className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"
           href="/get-started/"
         >
-          Get Started
-          <ArrowRightIcon size={14} />
+          Get Started →
         </a>
       </div>
     </div>

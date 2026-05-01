@@ -33,7 +33,7 @@ export const Header = () => {
       ref={headerReference}
       className="border-line sticky top-0 z-50 border-b bg-[rgba(20,20,19,0.85)] backdrop-blur-md"
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-8 px-4 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-306 items-center justify-between gap-8 px-4 sm:px-8">
         <a
           aria-label="GAIA, home"
           className="flex shrink-0 items-center"
