@@ -238,9 +238,9 @@ const ProductWindow = () => (
 );
 
 const STATS = [
-  {label: 'Agentic patterns wired', value: '22 / 29'},
+  {label: 'Agentic patterns', value: '22 / 29'},
   {label: 'Memory system', value: '5 tiers'},
-  {label: 'Lint rules enforced', value: '1,592'},
+  {label: 'Lint rules', value: '1,592'},
 ];
 
 const Hero = () => (
