@@ -5,8 +5,13 @@ import {Section} from '@/components/Section';
 const Why = () => (
   <Section id="why" title="Why GAIA">
     <p className="text-ink-dim mb-8 text-lg">
-        Most setups treat Claude as a tool you hold. You run <code className="text-ink bg-surface rounded-sm px-1 font-mono text-sm">/init</code>, let Claude set up a CLAUDE.md and hope the model figures out the rest.<br/><br/>
-
+      Most setups treat Claude as a tool you hold. You run{' '}
+      <code className="text-ink bg-surface rounded-sm px-1 font-mono text-sm">
+        /init
+      </code>
+      , let Claude set up a CLAUDE.md and hope the model figures out the rest.
+      <br />
+      <br />
       Two things break Claude on real projects: output you can’t trust, and
       quality that drops as the project grows.{' '}
       <span className="text-ink">GAIA fixes both.</span>

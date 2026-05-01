@@ -18,11 +18,12 @@ const GROUPS: Group[] = [
     id: 'shipped',
     items: [
       {
-        description: 'GAIA is currently in development.',
+        description:
+          'GAIA v1.0.0 released 2026-04-30. The inaugural public release ships the full Claude integration surface, React Router 7 app skeleton, wiki vault, quality gate, and release tooling.',
         title: '1.0 Release',
       },
     ],
-    label: 'Coming soon',
+    label: 'Shipped',
   },
   {
     color: 'var(--color-accent)',
@@ -30,12 +31,7 @@ const GROUPS: Group[] = [
     items: [
       {
         description:
-          'Testing, refinement, and cleanup ahead of the 1.0 release. Every command, hook, and skill gets exercised, edge cases caught, and rough surfaces smoothed before launch.',
-        title: 'Pre-1.0 hardening',
-      },
-      {
-        description:
-          'The site you are reading. Growing into a full reference ahead of 1.0.',
+          'The site you are reading. Growing into a full reference as the project matures.',
         title: 'Documentation',
       },
     ],
@@ -51,10 +47,10 @@ const GROUPS: Group[] = [
             <code className="bg-surface rounded-sm px-2 py-1 text-sm">
               /init
             </code>{' '}
-            walks you through choosing React Router, Next.js, Astro, or TanStack Start
-            with a short Q&amp;A that recommends the right foundation for the
-            project you have in mind. No more spending a weekend comparing docs
-            before you write your first component.
+            walks you through choosing React Router, Next.js, Astro, or TanStack
+            Start with a short Q&amp;A that recommends the right foundation for
+            the project you have in mind. No more spending a weekend comparing
+            docs before you write your first component.
           </>
         ),
         title: 'Pick your framework at create time',
@@ -154,7 +150,7 @@ const Roadmap = () => (
       <h2 className="font-display text-ink mb-2 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
         Roadmap
       </h2>
-      <p className="text-muted mb-8 text-sm">Last updated: 2026-04-28</p>
+      <p className="text-muted mb-8 text-sm">Last updated: 2026-05-01</p>
       <p className="text-ink-dim mb-12">
         Where GAIA stands today, and where it’s going. A Claude-native React
         workflow, sharpening with every release into a leaner, more reliable way

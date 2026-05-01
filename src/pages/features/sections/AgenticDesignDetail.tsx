@@ -16,7 +16,7 @@ const HEADLINE: Pattern[] = [
     name: 'Reflection',
   },
   {
-    body: 'Five tiers so Claude stops relearning your codebase. Wiki for long-term, hot cache for session start, /handoff and /pickup for episodic, agent memory across reviews, user memory across projects. /audit-knowledge sweeps for duplication and bloat.',
+    body: 'Five tiers so Claude stops relearning your codebase. Wiki for long-term, hot cache for session start, /gaia handoff and /gaia pickup for episodic, agent memory across reviews, user memory across projects. /gaia audit sweeps for duplication and bloat.',
     name: 'Memory Management',
   },
   {
@@ -31,15 +31,15 @@ const SUPPLEMENTARY: Pattern[] = [
     name: 'Routing',
   },
   {
-    body: 'Cost and quality discipline wired in. /audit-knowledge runs research on Opus with ultrathink and the mechanical apply step on Sonnet. The code-review audit declares model: sonnet for structured review, leaving Opus for harder reasoning.',
+    body: 'Cost and quality discipline wired in. /gaia audit runs both the research and apply steps on Sonnet, scoped to mechanical work that does not need heavy reasoning. The code-review audit declares model: sonnet for structured review, leaving Opus for harder reasoning.',
     name: 'Resource-Aware Optimization',
   },
   {
-    body: 'Plans are durable artifacts requiring user approval. /orchestrate writes per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt to .claude/plans/. The plan never executes until you say go.',
+    body: 'Plans are durable artifacts requiring user approval. /gaia plan writes per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt to .claude/plans/. The plan never executes until you say go.',
     name: 'Planning',
   },
   {
-    body: "Sub-agents run in fresh contexts so shared state can't corrupt their work. Each task doc is self-contained for a fresh-context sub-agent. /orchestrate offers a git-worktree branch for filesystem-level isolation.",
+    body: "Sub-agents run in fresh contexts so shared state can't corrupt their work. Each task doc is self-contained for a fresh-context sub-agent. /gaia plan offers a git-worktree branch for filesystem-level isolation.",
     name: 'Session Isolation',
   },
 ];
