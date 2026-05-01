@@ -1,5 +1,6 @@
+import type React from 'react';
 import {twJoin} from 'tailwind-merge';
-import {Section, SectionHeading} from '@/components/Section';
+import {ArrowRightIcon} from '@/components/icons';
 
 const ACTIVE_TIERS = [
   {accent: true, caption: 'you invoke', eyebrow: 'SLASH', name: '/gaia plan'},
@@ -12,7 +13,6 @@ const RULE_ROWS = [
   {active: true, pattern: '**/*.ts', rule: 'typescript'},
   {pattern: '**/api/**', rule: 'api-service'},
   {pattern: '**/*.test.tsx', rule: 'component-testing'},
-  {pattern: '**/*.stories.tsx', rule: 'storybook'},
   {pattern: '**/i18n/**', rule: 'i18n'},
 ];
 
@@ -27,7 +27,7 @@ const ActiveTriptych = () => (
         )}
       >
         <div className="mb-1 flex items-baseline justify-between">
-          <span className="font-display text-ink-dim text-xs tracking-[0.2em]">
+          <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase">
             {t.eyebrow}
           </span>
           <span className="text-muted font-mono text-[0.6rem] tracking-[0.16em] uppercase">
@@ -48,7 +48,7 @@ const ActiveTriptych = () => (
 );
 
 const MatchLedger = () => (
-  <div className="border-line bg-surface overflow-hidden rounded-lg border">
+  <div className="border-line bg-surface mt-4 overflow-hidden rounded-lg border">
     <div className="bg-surface-raised border-line flex items-center justify-between border-b px-4 py-2">
       <span className="text-ink-dim font-mono text-xs tracking-wider">
         .claude/rules/
@@ -94,89 +94,68 @@ const MatchLedger = () => (
 );
 
 const ClaudeMd = () => (
-  <>
-    <Section id="claude-md">
-      <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1fr_1fr]">
-        <div className="text-ink-dim order-2 space-y-4 md:order-2">
-          <SectionHeading id="claude-md">
-            Claude Code, configured
-          </SectionHeading>
-          <p className="-mt-4">
-            Commands you invoke, hooks that control, an agent that reviews. The
-            active layer of GAIA’s Claude Code integration.
-          </p>
-
-          <p>
+  <section className="border-line-soft bg-tint border-y py-20" id="claude-code">
+    <div className="mx-auto max-w-6xl px-8">
+      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <div
+            className="mb-4 inline-flex items-center gap-2"
+            data-reveal={true}
+          >
+            <span
+              aria-hidden={true}
+              className="bg-secondary-soft size-1.5 rounded-full"
+            />
+            <span className="text-secondary-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
+              Claude Code, configured
+            </span>
+          </div>
+          <h2
+            className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]"
+            data-reveal={true}
+            style={{'--reveal-delay': '60ms'} as React.CSSProperties}
+          >
+            Commands you invoke. Hooks that control. An agent that reviews.
+          </h2>
+          <p
+            className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]"
+            data-reveal={true}
+            style={{'--reveal-delay': '120ms'} as React.CSSProperties}
+          >
+            The active layer of GAIA&apos;s Claude Code integration.{' '}
             <code className="text-accent">/gaia plan</code> plans complex
-            features through specialist subagents.
-            <br />
+            features through specialist subagents.{' '}
             <code className="text-accent">/gaia handoff</code> and{' '}
             <code className="text-accent">/gaia pickup</code> let you clear
             context without losing state.
           </p>
-
-          <p>
-            Hooks protect main, prevent technical debt, and keep commits clean.
-            The <code className="text-accent">code-review-audit</code> agent
-            gates every PR merge with security, performance, and architecture
-            checks.
+          <p
+            className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
+            data-reveal={true}
+            style={{'--reveal-delay': '180ms'} as React.CSSProperties}
+          >
+            Hooks protect main, prevent tech debt, and keep commits clean. The{' '}
+            <code className="text-accent">code-review-audit</code> agent gates
+            every PR with security, performance, and architecture checks.
           </p>
-
-          <p>
-            <a className="text-accent hover:underline" href="/docs/#commands">
-              Learn more →
-            </a>
-          </p>
+          <a
+            className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
+            data-reveal={true}
+            href="/docs/#commands"
+            style={{'--reveal-delay': '240ms'} as React.CSSProperties}
+          >
+            Read the docs
+            <ArrowRightIcon size={14} />
+          </a>
         </div>
 
-        <div className="order-1 md:order-1">
+        <div data-stagger={true}>
           <ActiveTriptych />
-        </div>
-      </div>
-    </Section>
-
-    <Section id="conventions">
-      <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[1fr_1fr]">
-        <div className="text-ink-dim order-2 space-y-4 md:order-1">
-          <SectionHeading id="conventions">
-            Claude Code, calibrated
-          </SectionHeading>
-          <p className="-mt-4">
-            Project rules and skills load only when Claude is doing matching
-            work, so they never bloat the context window. The passive layer.
-          </p>
-
-          <p>
-            Rules guide coding practices, accessibility, testing, API patterns.{' '}
-            <a
-              className="text-accent hover:underline"
-              href="https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Karpathy’s
-            </a>{' '}
-            coding principles are wired in.
-          </p>
-
-          <p>
-            Skills activate when needed: TypeScript naming, TDD discipline,
-            React patterns, Tailwind conventions.
-          </p>
-
-          <p>
-            <a className="text-accent hover:underline" href="/docs/#rules">
-              Learn more →
-            </a>
-          </p>
-        </div>
-
-        <div className="order-1 md:order-2">
           <MatchLedger />
         </div>
       </div>
-    </Section>
-  </>
+    </div>
+  </section>
 );
 
 export default ClaudeMd;

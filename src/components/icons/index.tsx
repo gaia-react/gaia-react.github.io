@@ -94,3 +94,10 @@ export const TildeIcon = ({className, size = 24}: IconProperties) => (
     <path d="M4.5 13.5c1.6-3.4 3.6-3.4 5.4-1.6 1.8 1.8 3.6 1.8 5.4-.6 1-1.4 2.2-1.8 3.2-1" />
   </svg>
 );
+
+export const RuleIcon = ({className, size = 24}: IconProperties) => (
+  <svg {...svgProperties(size, className)}>
+    <path d="M4 5h16M4 12h10M4 19h16" />
+    <circle cx="18" cy="12" r="2" />
+  </svg>
+);
