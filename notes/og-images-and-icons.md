@@ -52,7 +52,7 @@ Create `public/manifest.webmanifest`:
 }
 ```
 
-Replace placeholder colors with final brand tokens from `~/Development/gaia-react/branding/DESIGN.md`.
+Replace placeholder colors with final brand tokens from `~/Development/gaia-react/studio/branding/DESIGN.md`.
 
 Add to each HTML shell:
 - `<link rel="manifest" href="/manifest.webmanifest">`
