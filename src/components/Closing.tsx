@@ -31,7 +31,7 @@ const Closing = () => (
             className="bg-accent-soft size-1.5 rounded-full"
           />
           <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-            Pair-programming, not babysitting
+            The AI is the engineer. You own the product.
           </span>
         </div>
 

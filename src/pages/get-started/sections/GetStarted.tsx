@@ -801,7 +801,10 @@ const GetStarted = () => {
             document.querySelector('header')?.getBoundingClientRect().height ??
             64;
           const top =
-            section.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
+            section.getBoundingClientRect().top +
+            window.scrollY -
+            headerHeight -
+            10;
           window.scrollTo({behavior: 'smooth', top});
         }
       } else {

@@ -137,7 +137,7 @@ const About = () => (
           Now I’m doing it again with AI agents. GAIA React is the spiritual
           successor to GAIA Flash: a comprehensive starting point for
           professional React projects with Claude Code integration built in.
-          Same philosophy, new substrate.
+          Same philosophy, new stack.
         </p>
       </div>
     </Section>

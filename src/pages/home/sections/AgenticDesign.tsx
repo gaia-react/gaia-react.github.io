@@ -72,8 +72,8 @@ const AgenticDesign = () => (
             style={{'--reveal-delay': '120ms'} as React.CSSProperties}
           >
             GAIA wires agentic behavior into the project itself, not the prompt.
-            The patterns run the same way every session, every engineer, every
-            model variant.
+            The patterns run the same way every session, every task, every model
+            variant.
           </p>
           <p
             className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"

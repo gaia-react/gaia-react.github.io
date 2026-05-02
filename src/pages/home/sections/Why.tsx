@@ -3,7 +3,7 @@ import {BullseyeIcon, ShieldCheckIcon} from '@/components/icons';
 const CARDS = [
   {
     color: 'secondary' as const,
-    copy: 'GAIA enforces high standards on every commit, so the code your team merges is code you can trust.',
+    copy: 'GAIA enforces high standards on every commit, so every line Claude writes is code you can ship.',
     Icon: ShieldCheckIcon,
     title: 'Trustworthy by default',
   },
@@ -47,7 +47,7 @@ const Why = () => (
           </span>
         </div>
         <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
-          The substrate, not the prompt.
+          The system, not the prompt.
         </h2>
         <p className="text-ink-dim text-[1.125rem]">
           Most setups treat Claude as a tool you hold. You run{' '}
