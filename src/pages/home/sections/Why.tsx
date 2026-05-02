@@ -3,7 +3,7 @@ import {BullseyeIcon, ShieldCheckIcon} from '@/components/icons';
 const CARDS = [
   {
     color: 'secondary' as const,
-    copy: 'GAIA enforces high standards on every commit, so the code your team merges is code you can trust.',
+    copy: 'GAIA enforces high standards on every commit, so every line Claude writes is code you can ship.',
     Icon: ShieldCheckIcon,
     title: 'Trustworthy by default',
   },
