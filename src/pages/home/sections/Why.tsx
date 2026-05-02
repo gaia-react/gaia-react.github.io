@@ -47,7 +47,7 @@ const Why = () => (
           </span>
         </div>
         <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
-          The substrate, not the prompt.
+          The system, not the prompt.
         </h2>
         <p className="text-ink-dim text-[1.125rem]">
           Most setups treat Claude as a tool you hold. You run{' '}
