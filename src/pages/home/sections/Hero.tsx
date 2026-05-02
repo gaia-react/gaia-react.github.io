@@ -45,9 +45,9 @@ const Orbs = () => (
 );
 
 const STATS = [
-  {label: 'Agentic patterns', value: '22'},
   {label: 'Lint rules', value: '1,592'},
-  {label: 'Code review', value: '4 specialists'},
+  {label: 'Merge audit', value: '4 specialists'},
+  {label: 'Warnings allowed', value: 'Zero'},
 ];
 
 const Hero = () => (
@@ -83,13 +83,22 @@ const Hero = () => (
         </h1>
 
         <p
-          className="text-ink-dim mb-8 max-w-[56ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55]"
+          className="text-ink-dim mb-4 max-w-[56ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55]"
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          A React project engineered for Claude Code. GAIA wires agentic design
-          patterns into the project itself, so every agent, every model, every
-          session gets the same disciplined loop.
+          A React workflow engineered for Claude Code. AI ships faster than
+          ever. GAIA keeps it production-grade. Conventions enforced in code,
+          shortcuts blocked at the source, every PR audited before merge.
+        </p>
+
+        <p
+          className="text-muted mb-8 text-[0.85rem] italic leading-[1.5]"
+          data-reveal={true}
+          style={{'--reveal-delay': '260ms'} as React.CSSProperties}
+        >
+          Built by Steven Sacks, creator of the original GAIA framework (used
+          on 100,000+ sites).
         </p>
 
         <div

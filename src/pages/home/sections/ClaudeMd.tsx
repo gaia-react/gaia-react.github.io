@@ -61,8 +61,8 @@ const MatchLedger = () => (
         <div
           key={r.pattern}
           className={twJoin(
-            'flex items-center border-l-2 px-4 py-2.5',
-            r.active ? 'bg-accent/5 border-l-accent' : 'border-l-transparent'
+            'flex items-center px-4 py-2.5',
+            r.active && 'bg-accent/5'
           )}
         >
           <div className="flex-1">

@@ -71,8 +71,8 @@ const AgenticDesign = () => (
             data-reveal={true}
             style={{'--reveal-delay': '120ms'} as React.CSSProperties}
           >
-            GAIA wires agentic behavior into the project itself, not the prompt.
-            The patterns run the same way every session, every task, every model
+            GAIA wires these patterns into the project itself, not the prompt.
+            They run the same way every session, every task, every model
             variant.
           </p>
           <p
@@ -80,9 +80,9 @@ const AgenticDesign = () => (
             data-reveal={true}
             style={{'--reveal-delay': '180ms'} as React.CSSProperties}
           >
-            Reflection, multi-agent orchestration, planning, tool-use,
-            retrieval, evaluation. They run because the project is shaped that
-            way, not because the prompt asked nicely.
+            Reflection, orchestration, planning, tool-use, retrieval,
+            evaluation. They run because the project is shaped that way, not
+            because the prompt asked nicely.
           </p>
           <a
             className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
