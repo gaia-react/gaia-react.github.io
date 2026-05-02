@@ -3,13 +3,11 @@ import {ArrowRightIcon} from '@/components/icons';
 
 const TIERS = [
   {
-    color: 'accent' as const,
     desc: 'Architecture, flows, decisions. Markdown the team owns.',
     name: 'wiki',
     scope: 'repo',
   },
   {
-    color: 'teal' as const,
     desc: 'What Claude touched this hour. Fast, scoped, evictable.',
     name: 'hot cache',
     scope: 'session',
@@ -20,7 +18,7 @@ const TIERS = [
     scope: 'cross-session',
   },
   {
-    desc: "Each subagent's own scratchpad — durable inside its lane.",
+    desc: "Each subagent's own scratchpad, durable inside its lane.",
     name: 'agent memory',
     scope: 'per-agent',
   },
@@ -30,11 +28,6 @@ const TIERS = [
     scope: 'global',
   },
 ];
-
-const TIER_STYLES = {
-  accent: 'border-l-[3px] border-l-accent',
-  teal: 'border-l-[3px] border-l-secondary',
-};
 
 const ObsidianWiki = () => (
   <section className="px-4 py-20 sm:px-8" id="memory">
@@ -95,9 +88,7 @@ const ObsidianWiki = () => (
           {TIERS.map((tier) => (
             <div
               key={tier.name}
-              className={`bg-surface border-line-soft grid items-center gap-4 rounded-lg border px-4 py-3.5 text-[0.88rem] sm:grid-cols-[90px_1fr_auto] ${
-                tier.color ? TIER_STYLES[tier.color] : ''
-              }`}
+              className="bg-surface border-line-soft grid items-center gap-4 rounded-lg border px-4 py-3.5 text-[0.88rem] sm:grid-cols-[90px_1fr_auto]"
             >
               <span className="text-ink font-mono text-[0.78rem] tracking-[0.04em]">
                 {tier.name}

@@ -16,21 +16,9 @@ const CARDS = [
 ];
 
 const ICON_STYLES = {
-  accent: {
-    bg: 'bg-accent/8',
-    border: 'border-l-accent',
-    icon: 'text-accent',
-  },
-  secondary: {
-    bg: 'bg-secondary/10',
-    border: 'border-l-secondary',
-    icon: 'text-secondary',
-  },
-  warn: {
-    bg: 'bg-warn/10',
-    border: 'border-l-warn',
-    icon: 'text-warn',
-  },
+  accent: {bg: 'bg-accent/8', icon: 'text-accent'},
+  secondary: {bg: 'bg-secondary/10', icon: 'text-secondary'},
+  warn: {bg: 'bg-warn/10', icon: 'text-warn'},
 };
 
 const Why = () => (
@@ -74,7 +62,7 @@ const Why = () => (
           return (
             <article
               key={card.title}
-              className={`bg-surface border-line-soft hover:border-line rounded-lg border border-l-[3px] p-6 transition-colors duration-150 ${s.border}`}
+              className="bg-surface border-line-soft hover:border-line rounded-lg border p-6 transition-colors duration-150"
             >
               <div
                 className={`mb-4 inline-flex size-10 items-center justify-center rounded-sm ${s.bg} ${s.icon}`}
