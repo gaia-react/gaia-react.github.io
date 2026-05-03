@@ -31,7 +31,7 @@ type TypingState = {
 // ── Terminal script ────────────────────────────────────────────────────────
 
 const TERM_SCRIPT: TermStep[] = [
-  {prompt: '$', text: 'npx create-gaia my-app', type: 'type'},
+  {prompt: '$', text: 'npx create-gaia@latest my-app', type: 'type'},
   {ms: 380, type: 'pause'},
   {cls: 'dim', text: 'Need to install the following packages:', type: 'line'},
   {cls: 'dim', text: '  create-gaia@1.1.0', type: 'line'},
@@ -529,7 +529,7 @@ const CommandBar = ({isCopied, onCopy}: CommandBarProperties) => (
       $
     </span>
     <code className="text-ink flex-1 text-left font-mono text-[0.82rem] tracking-[0.02em] sm:text-[1rem]">
-      npx create-gaia my-app
+      npx create-gaia@latest my-app
     </code>
     <button
       aria-label="Copy command"
@@ -823,7 +823,7 @@ const GetStarted = () => {
   );
 
   const onCopy = async () => {
-    await navigator.clipboard.writeText('npx create-gaia my-app');
+    await navigator.clipboard.writeText('npx create-gaia@latest my-app');
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 1600);
   };
