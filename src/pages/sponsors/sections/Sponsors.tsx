@@ -41,7 +41,8 @@ const TIERS: Tier[] = [
       '"Powering" credit on relevant pages',
       'Direct email priority',
     ],
-    description: 'For companies that have adopted GAIA. Everything above, plus:',
+    description:
+      'For companies that have adopted GAIA. Everything above, plus:',
     name: 'Company Sponsor',
     price: '$100 / month',
   },
@@ -49,13 +50,13 @@ const TIERS: Tier[] = [
 
 const SHOW_CURRENT_SPONSORS = false;
 
-const TierCard = ({tier, delay}: {delay: string; tier: Tier}) => (
+const TierCard = ({delay, tier}: {delay: string; tier: Tier}) => (
   <article
     className="bg-surface border-line-soft hover:border-line flex flex-col rounded-lg border p-6 transition-colors duration-150"
     style={{'--reveal-delay': delay} as React.CSSProperties}
   >
     <div className="mb-5">
-      <p className="text-muted font-mono text-[0.72rem] tracking-[0.14em] uppercase mb-1">
+      <p className="text-muted mb-1 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
         {tier.price}
       </p>
       <h3 className="text-ink mb-2 text-[1.25rem] font-light tracking-[-0.01em]">
@@ -72,7 +73,7 @@ const TierCard = ({tier, delay}: {delay: string; tier: Tier}) => (
             <span className="text-accent mt-0.5 shrink-0">
               <CheckIcon size={14} />
             </span>
-            <span className="text-ink-dim text-[0.88rem] leading-[1.5]">
+            <span className="text-ink-dim text-[0.88rem] leading-normal">
               {benefit}
             </span>
           </li>
@@ -92,10 +93,12 @@ const TierCard = ({tier, delay}: {delay: string; tier: Tier}) => (
 
 const EmptySlot = ({label}: {label: string}) => (
   <div className="bg-surface border-line-soft rounded-lg border px-6 py-8">
-    <p className="text-muted font-mono text-[0.72rem] tracking-[0.14em] uppercase mb-4">
+    <p className="text-muted mb-4 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
       {label}
     </p>
-    <p className="text-muted text-[0.82rem] italic">First sponsors land here.</p>
+    <p className="text-muted text-[0.82rem] italic">
+      First sponsors land here.
+    </p>
   </div>
 );
 
@@ -179,12 +182,8 @@ const Sponsors = () => (
           className="grid grid-cols-1 gap-4 md:grid-cols-3"
           data-stagger={true}
         >
-          {TIERS.map((tier, i) => (
-            <TierCard
-              key={tier.name}
-              delay={`${i * 80}ms`}
-              tier={tier}
-            />
+          {TIERS.map((tier, index) => (
+            <TierCard key={tier.name} delay={`${index * 80}ms`} tier={tier} />
           ))}
         </div>
       </div>
@@ -192,63 +191,63 @@ const Sponsors = () => (
 
     {/* Current sponsors. Hidden until first sponsor lands. Flip SHOW_CURRENT_SPONSORS to true when ready. */}
     {SHOW_CURRENT_SPONSORS && (
-    <section className="px-4 py-20 sm:px-8" id="current-sponsors">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-12 max-w-180" data-reveal={true}>
-          <div className="mb-4 inline-flex items-center gap-2">
-            <span
-              aria-hidden={true}
-              className="bg-accent-soft size-1.5 rounded-full"
-            />
-            <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-              Current sponsors
-            </span>
-          </div>
-          <h2 className="text-ink text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
-            The people keeping this alive.
-          </h2>
-        </div>
-
-        <div className="space-y-10" data-stagger={true}>
-          {/* Company sponsors */}
-          <div>
-            <p className="text-muted font-mono text-[0.72rem] tracking-[0.14em] uppercase mb-4">
-              Company Sponsors
-            </p>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-              <EmptySlot label="Logo slot" />
-              <EmptySlot label="Logo slot" />
-              <EmptySlot label="Logo slot" />
-              <EmptySlot label="Logo slot" />
+      <section className="px-4 py-20 sm:px-8" id="current-sponsors">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 max-w-180" data-reveal={true}>
+            <div className="mb-4 inline-flex items-center gap-2">
+              <span
+                aria-hidden={true}
+                className="bg-accent-soft size-1.5 rounded-full"
+              />
+              <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
+                Current sponsors
+              </span>
             </div>
+            <h2 className="text-ink text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
+              The people keeping this alive.
+            </h2>
           </div>
 
-          {/* Team supporters */}
-          <div>
-            <p className="text-muted font-mono text-[0.72rem] tracking-[0.14em] uppercase mb-4">
-              Team Supporters
-            </p>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              <EmptySlot label="Team name" />
-              <EmptySlot label="Team name" />
-              <EmptySlot label="Team name" />
-            </div>
-          </div>
-
-          {/* Personal supporters */}
-          <div>
-            <p className="text-muted font-mono text-[0.72rem] tracking-[0.14em] uppercase mb-4">
-              Personal Supporters
-            </p>
-            <div className="bg-surface border-line-soft rounded-lg border px-6 py-8">
-              <p className="text-muted text-[0.82rem] italic">
-                First sponsors land here.
+          <div className="space-y-10" data-stagger={true}>
+            {/* Company sponsors */}
+            <div>
+              <p className="text-muted mb-4 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
+                Company Sponsors
               </p>
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                <EmptySlot label="Logo slot" />
+                <EmptySlot label="Logo slot" />
+                <EmptySlot label="Logo slot" />
+                <EmptySlot label="Logo slot" />
+              </div>
+            </div>
+
+            {/* Team supporters */}
+            <div>
+              <p className="text-muted mb-4 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
+                Team Supporters
+              </p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <EmptySlot label="Team name" />
+                <EmptySlot label="Team name" />
+                <EmptySlot label="Team name" />
+              </div>
+            </div>
+
+            {/* Personal supporters */}
+            <div>
+              <p className="text-muted mb-4 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
+                Personal Supporters
+              </p>
+              <div className="bg-surface border-line-soft rounded-lg border px-6 py-8">
+                <p className="text-muted text-[0.82rem] italic">
+                  First sponsors land here.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     )}
 
     {/* Closing CTA */}
@@ -278,7 +277,7 @@ const Sponsors = () => (
             <span className="to-line h-px w-20 bg-linear-to-l from-transparent" />
           </div>
           <p
-            className="text-ink-dim mb-8 max-w-[46ch] mx-auto text-[1.05rem] leading-[1.65]"
+            className="text-ink-dim mx-auto mb-8 max-w-[46ch] text-[1.05rem] leading-[1.65]"
             data-reveal={true}
             style={{'--reveal-delay': '80ms'} as React.CSSProperties}
           >

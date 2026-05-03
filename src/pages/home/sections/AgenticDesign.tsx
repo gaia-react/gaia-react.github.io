@@ -80,9 +80,9 @@ const AgenticDesign = () => (
             data-reveal={true}
             style={{'--reveal-delay': '180ms'} as React.CSSProperties}
           >
-            Memory that persists. Planning that runs before code changes.
-            Hooks that verify after. Reviews that catch what slips through.
-            Built into the project — not into a prompt.
+            Memory that persists. Planning that runs before code changes. Hooks
+            that verify after. Reviews that catch what slips through. Built into
+            the project — not into a prompt.
           </p>
           <a
             className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"

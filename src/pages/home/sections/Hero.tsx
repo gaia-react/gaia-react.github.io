@@ -52,7 +52,7 @@ const STATS = [
 
 const Hero = () => (
   <section
-    className="relative overflow-x-clip px-4 pt-4 sm:pt-24 pb-20 sm:px-8"
+    className="relative overflow-x-clip px-4 pt-4 pb-20 sm:px-8 sm:pt-24"
     id="hero"
   >
     <Orbs />
@@ -93,12 +93,12 @@ const Hero = () => (
         </p>
 
         <p
-          className="text-muted mb-8 text-[0.85rem] italic leading-[1.5]"
+          className="text-muted mb-8 text-[0.85rem] leading-normal italic"
           data-reveal={true}
           style={{'--reveal-delay': '260ms'} as React.CSSProperties}
         >
-          Built by Steven Sacks, creator of the original GAIA framework (used
-          on 100,000+ sites).
+          Built by Steven Sacks, creator of the original GAIA framework (used on
+          100,000+ sites).
         </p>
 
         <div
