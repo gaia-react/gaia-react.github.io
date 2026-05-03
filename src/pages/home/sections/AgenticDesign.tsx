@@ -9,7 +9,7 @@ import {
 const BLOCKS = [
   {
     color: 'teal' as const,
-    copy: 'Pre-tool-use hooks block destructive git, watch-mode tests, force-pushes to main, and eslint-config edits before they happen.',
+    copy: "Typecheck, lint, tests, and build are gates, not suggestions. Every commit clears them. Claude can't merge code that doesn't.",
     Icon: ShieldCheckIcon,
     title: "Claude can't ship broken code",
   },
@@ -27,7 +27,7 @@ const BLOCKS = [
   },
   {
     color: 'accent' as const,
-    copy: 'The audit dispatches React Patterns, TypeScript and Architecture, Translation, and react-doctor specialists in parallel from a single tool call.',
+    copy: 'One merge audit. Four specialists run in parallel: React patterns, TypeScript and architecture, translations, and component health. Critical findings block the merge. Suggestions land in a review comment.',
     Icon: MultiAgentIcon,
     title: 'A specialist for every concern',
   },
@@ -56,7 +56,7 @@ const AgenticDesign = () => (
               className="bg-secondary-soft size-1.5 rounded-full"
             />
             <span className="text-secondary-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-              Agentic design
+              How GAIA works
             </span>
           </div>
           <h2
@@ -80,9 +80,9 @@ const AgenticDesign = () => (
             data-reveal={true}
             style={{'--reveal-delay': '180ms'} as React.CSSProperties}
           >
-            Reflection, orchestration, planning, tool-use, retrieval,
-            evaluation. They run because the project is shaped that way, not
-            because the prompt asked nicely.
+            Memory that persists. Planning that runs before code changes.
+            Hooks that verify after. Reviews that catch what slips through.
+            Built into the project — not into a prompt.
           </p>
           <a
             className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"

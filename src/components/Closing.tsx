@@ -25,10 +25,10 @@ const Closing = () => (
           <span className="to-line h-px w-20 bg-linear-to-l from-transparent" />
         </div>
 
-        <div className="mb-4 inline-flex items-center gap-2">
+        <div className="mx-auto mb-4 flex w-fit items-start gap-2">
           <span
             aria-hidden={true}
-            className="bg-accent-soft size-1.5 rounded-full"
+            className="bg-accent-soft mt-[0.35em] size-1.5 shrink-0 rounded-full"
           />
           <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
             The AI is the engineer. You own the product.

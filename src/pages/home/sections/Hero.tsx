@@ -52,7 +52,7 @@ const STATS = [
 
 const Hero = () => (
   <section
-    className="relative overflow-x-clip px-4 pt-24 pb-20 sm:px-8"
+    className="relative overflow-x-clip px-4 pt-4 sm:pt-24 pb-20 sm:px-8"
     id="hero"
   >
     <Orbs />
