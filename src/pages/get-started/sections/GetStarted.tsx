@@ -524,11 +524,11 @@ type CommandBarProperties = {
 };
 
 const CommandBar = ({isCopied, onCopy}: CommandBarProperties) => (
-  <div className="mx-auto mb-5 flex max-w-104 items-center gap-3 rounded-lg bg-[#0e0e0d] px-4 py-3.5 sm:px-6 sm:py-4">
+  <div className="mx-auto mb-5 flex max-w-120 items-center gap-3 rounded-lg bg-[#0e0e0d] px-4 py-3.5 sm:px-6 sm:py-4">
     <span className="text-accent-soft shrink-0 font-mono text-[0.82rem] sm:text-[1rem]">
       $
     </span>
-    <code className="text-ink flex-1 text-left font-mono text-[0.82rem] tracking-[0.02em] sm:text-[1rem]">
+    <code className="text-ink flex-1 text-left font-mono text-[0.7rem] tracking-[0.02em] sm:text-[1rem]">
       npx create-gaia@latest my-app
     </code>
     <button
