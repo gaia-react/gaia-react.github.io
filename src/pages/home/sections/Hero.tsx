@@ -88,8 +88,9 @@ const Hero = () => (
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
           A React workflow engineered for Claude Code. AI ships faster than
-          ever. GAIA keeps it production-grade. Conventions enforced in code,
-          shortcuts blocked at the source, every PR audited before merge.
+          ever. GAIA keeps it production-grade by enforcing quality at
+          write-time and commit-time. Conventions enforced in code, shortcuts
+          blocked at the source, every merge audited before it lands.
         </p>
 
         <p
