@@ -4,6 +4,7 @@ import ClaudeLogo from '@/assets/logos/ClaudeLogo';
 import ConformLogo from '@/assets/logos/ConformLogo';
 import ESLintLogo from '@/assets/logos/ESLintLogo';
 import I18NextLogo from '@/assets/logos/I18NextLogo';
+import KnipLogo from '@/assets/logos/KnipLogo';
 import MSWLogo from '@/assets/logos/MSWLogo';
 import ObsidianLogo from '@/assets/logos/ObsidianLogo';
 import PlaywrightLogo from '@/assets/logos/PlaywrightLogo';
@@ -109,6 +110,11 @@ const CODE_QUALITY: LogoEntry[] = [
     component: <StylelintLogo height={36} />,
     href: 'https://stylelint.io/',
     name: 'Stylelint',
+  },
+  {
+    component: <KnipLogo height={36} />,
+    href: 'https://knip.dev/',
+    name: 'Knip',
   },
 ];
 
