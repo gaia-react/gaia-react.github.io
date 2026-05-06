@@ -2,7 +2,7 @@ import type React from 'react';
 import {twJoin} from 'tailwind-merge';
 
 const ACTIVE_TIERS = [
-  {accent: true, caption: 'you invoke', eyebrow: 'SLASH', name: '/gaia plan'},
+  {accent: true, caption: 'you invoke', eyebrow: 'COMMAND', name: '/gaia spec'},
   {caption: 'fires automatically', eyebrow: 'HOOK', name: 'pre-commit'},
   {caption: 'gates every merge', eyebrow: 'AGENT', name: 'code-review-audit'},
 ];
@@ -126,8 +126,11 @@ const ClaudeMd = () => (
           >
             The active layer of GAIA&apos;s Claude Code integration. <br />
             <br />
-            <code className="text-accent">/gaia plan</code> plans complex
-            features through specialist subagents.{' '}
+            <code className="text-accent">/gaia spec</code> walks you through
+            what you want to build, one focused question at a time, and turns
+            the conversation into a locked-in spec that{' '}
+            <code className="text-accent">/gaia plan</code> hands off to Claude
+            as ready-to-execute work.{' '}
             <code className="text-accent">/gaia handoff</code> and{' '}
             <code className="text-accent">/gaia pickup</code> let you clear
             context without losing state.

@@ -35,7 +35,7 @@ const SUPPLEMENTARY: Pattern[] = [
     name: 'Resource-Aware Optimization',
   },
   {
-    body: 'Plans are durable artifacts requiring user approval. /gaia plan writes per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt to .claude/plans/. The plan never executes until you say go.',
+    body: 'Plans are durable artifacts requiring user approval. /gaia spec runs Socratic discovery and authors an immutable SPEC artifact, then chains into /gaia plan. /gaia plan writes per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt to .claude/plans/. The plan never executes until you say go.',
     name: 'Planning',
   },
   {
@@ -46,7 +46,7 @@ const SUPPLEMENTARY: Pattern[] = [
 
 const ROUND_OUT: Pattern[] = [
   {
-    body: 'A curated React-specific tool surface. ESLint with 20+ plugins, TypeScript, Vitest with React Testing Library, Playwright, Storybook with Chromatic, MSW, the gh CLI, react-doctor, the Obsidian wiki, and typescript-lsp.',
+    body: 'A curated React-specific tool surface. ESLint with 20+ plugins, TypeScript, Vitest with React Testing Library, Playwright, Storybook with Chromatic, MSW, the gh CLI, react-doctor, the Obsidian wiki, typescript-lsp, and Serena MCP for LSP-backed code intelligence.',
     name: 'Tool Use',
   },
   {

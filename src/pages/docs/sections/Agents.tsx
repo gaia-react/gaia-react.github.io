@@ -11,7 +11,9 @@ const Agents = () => (
       <p className="text-ink mb-3">
         Audits your branch’s changes: security vulnerabilities, performance
         bottlenecks, code smells, anti-patterns, accessibility issues, and
-        refactoring opportunities. Dispatches specialist subagents alongside{' '}
+        refactoring opportunities. Dispatches four specialists in parallel from
+        a single tool call: React Patterns, TypeScript and Architecture,
+        Translation, and{' '}
         <a
           className="text-accent hover:underline"
           href="https://github.com/millionco/react-doctor"
@@ -21,8 +23,8 @@ const Agents = () => (
           React Doctor
         </a>{' '}
         (47+ React-specific checks for security, performance, correctness, and
-        architecture) in parallel, then merges findings into a single report.
-        Goes beyond linting and type-checking to reason about data flow,
+        architecture). Findings are merged into a single tiered report. Goes
+        beyond linting and type-checking to reason about data flow,
         architecture, and intent.
       </p>
       <p className="text-ink mb-3">

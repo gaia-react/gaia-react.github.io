@@ -65,13 +65,22 @@ const ObsidianWiki = () => (
             Claude reads on demand, so it never re-infers them from source.
           </p>
           <p
-            className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
+            className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]"
             data-reveal={true}
             style={{'--reveal-delay': '180ms'} as React.CSSProperties}
           >
             Context stops getting lost between sessions. Tokens stop getting
             wasted. The vault stays yours. Plain markdown in your repo, not a
             vendor&apos;s database.
+          </p>
+          <p
+            className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
+            data-reveal={true}
+            style={{'--reveal-delay': '220ms'} as React.CSSProperties}
+          >
+            As your team ships features, GAIA writes what changed into the wiki
+            and clears out anything that&apos;s gone stale or duplicated. The
+            wiki keeps up with the project without anyone having to maintain it.
           </p>
           <a
             className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"

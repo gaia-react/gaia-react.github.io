@@ -27,9 +27,14 @@ const ObsidianWikiDetail = () => (
 
       <p>
         On top of the integration, GAIA layers project-specific commands and
-        hooks that turn the wiki into a self-maintaining knowledge base.
-        Duplicates, conflicts, and stale information get pruned, so the vault
-        stays clean as the project grows.
+        hooks that turn the wiki into a self-maintaining knowledge base. Every
+        commit is evaluated for wiki-worthy content and synced automatically.
+        When a SPEC lands and its PR merges, GAIA promotes the SPEC outcomes
+        directly into the wiki. When a domain accumulates enough pages, a
+        gate-triggered consolidation pass detects supersession, redundancy,
+        reversed decisions, and near-collision slugs before they compound. A
+        lint pass then flags orphan pages, dead links, and drift. None of this
+        is a feature you invoke. It is a discipline you get.
       </p>
 
       <p>

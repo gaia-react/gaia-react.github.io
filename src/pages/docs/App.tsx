@@ -4,6 +4,7 @@ import Agents from './sections/Agents';
 import Commands from './sections/Commands';
 import GitHub from './sections/GitHub';
 import Hooks from './sections/Hooks';
+import Mcp from './sections/Mcp';
 import Rules from './sections/Rules';
 import Skills from './sections/Skills';
 import Statusline from './sections/Statusline';
@@ -16,6 +17,7 @@ const App = () => {
       <Commands />
       <Rules />
       <Agents />
+      <Mcp />
       <Skills />
       <Hooks />
       <Statusline />

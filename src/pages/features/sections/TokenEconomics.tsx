@@ -22,8 +22,16 @@ const POINTS = [
     name: 'Session continuity',
   },
   {
-    desc: '/gaia plan spawns each phase as a focused subagent with only the context it needs. No accumulated history, no stale assumptions — each agent starts fresh and stays cheap.',
+    desc: '/gaia plan spawns each phase as a focused subagent with only the context it needs. No accumulated history, no stale assumptions. Each agent starts fresh and stays cheap.',
     name: 'Task orchestration in clean subagent contexts',
+  },
+  {
+    desc: '/gaia spec runs the entire discovery and artifact-authoring flow in its own context, separate from implementation. The SPEC artifact is the handoff, not accumulated session state.',
+    name: 'Spec discovery in isolated context',
+  },
+  {
+    desc: 'Serena MCP gives Claude LSP-backed symbol search, references, and types. A symbol query returns the one definition, not every line that mentions the name. The grep-and-read tax disappears.',
+    name: 'Symbol-aware code intelligence over grep',
   },
 ];
 
