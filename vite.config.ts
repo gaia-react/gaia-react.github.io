@@ -14,6 +14,7 @@ export default defineConfig({
         features: path.resolve(import.meta.dirname, 'features/index.html'),
         getStarted: path.resolve(import.meta.dirname, 'get-started/index.html'),
         main: path.resolve(import.meta.dirname, 'index.html'),
+        mentorship: path.resolve(import.meta.dirname, 'mentorship/index.html'),
         roadmap: path.resolve(import.meta.dirname, 'roadmap/index.html'),
         sponsors: path.resolve(import.meta.dirname, 'sponsors/index.html'),
       },

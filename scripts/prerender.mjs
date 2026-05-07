@@ -14,6 +14,7 @@ const ROUTES = [
   {url: '/docs/', out: 'docs/index.html'},
   {url: '/features/', out: 'features/index.html'},
   {url: '/get-started/', out: 'get-started/index.html'},
+  {url: '/mentorship/', out: 'mentorship/index.html'},
   {url: '/roadmap/', out: 'roadmap/index.html'},
 ];
 
