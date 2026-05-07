@@ -6,71 +6,91 @@ type Pattern = {
   name: string;
 };
 
-const HEADLINE: Pattern[] = [
+const QUALITY: Pattern[] = [
   {
     body: "Claude can't ship broken code. Pre-tool-use hooks block destructive git, watch-mode tests, force-pushes to main, and eslint-config edits before they happen. Pre-commit hooks gate every commit on typecheck, lint, tests, and build.",
     name: 'The Stop Hook',
   },
   {
-    body: 'Two blocking review layers before merge. The Quality Gate (typecheck, lint, test, build) loops until clean. The code-review audit tiers findings as Critical, Important, and Suggestions and blocks every merge.',
+    body: 'Two blocking review layers before merge. The Quality Gate runs typecheck, lint, tests, and build. The code-review audit tiers findings as Critical, Important, and Suggestions, and blocks the merge.',
     name: 'Reflection',
   },
   {
-    body: 'Five tiers so Claude stops relearning your codebase. Wiki for long-term, hot cache for session start, /gaia handoff and /gaia pickup for episodic, agent memory across reviews, user memory across projects. /gaia audit sweeps for duplication and bloat.',
-    name: 'Memory Management',
+    body: 'A specialist for every concern, dispatched in parallel. The code-review audit fans out to four specialists: React patterns, TypeScript and architecture, translations, and component health. Findings merge into one tiered report.',
+    name: 'Multi-Agent Collaboration',
   },
   {
-    body: 'A specialist for every concern, dispatched in parallel. The code-review audit dispatches React Patterns, TypeScript and Architecture, Translation, and react-doctor specialists from a single tool call. Extension files inject library-specific rules into the right specialist at runtime.',
-    name: 'Multi-Agent Collaboration',
+    body: 'Specs become tests before code is written. UATs the PO authors in plain English compile into red-state Playwright e2e specs before the implementer writes a line of source. The first task is turning red green.',
+    name: 'Specification-Driven Development',
   },
 ];
 
-const SUPPLEMENTARY: Pattern[] = [
+const WORKFLOW: Pattern[] = [
   {
-    body: 'Constraints route to context, not loaded globally. Path-scoped rules auto-load only when Claude is editing matching files. Conditional Bash hooks route commands to specific scripts based on shape.',
-    name: 'Routing',
-  },
-  {
-    body: 'Cost and quality discipline wired in. /gaia audit runs both the research and apply steps on Sonnet, scoped to mechanical work that does not need heavy reasoning. The code-review audit declares model: sonnet for structured review, leaving Opus for harder reasoning.',
-    name: 'Resource-Aware Optimization',
-  },
-  {
-    body: 'Plans are durable artifacts requiring user approval. /gaia spec runs Socratic discovery and authors an immutable SPEC artifact, then chains into /gaia plan. /gaia plan writes per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt to .claude/plans/. The plan never executes until you say go.',
+    body: 'Plans are durable artifacts requiring user approval. Per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt all land before any work begins. The plan never executes until you say go.',
     name: 'Planning',
   },
   {
-    body: "Sub-agents run in fresh contexts so shared state can't corrupt their work. Each task doc is self-contained for a fresh-context sub-agent. /gaia plan offers a git-worktree branch for filesystem-level isolation.",
+    body: 'Five tiers so Claude stops relearning your codebase. Wiki for long-term knowledge, hot cache, handoff snapshots, per-agent memory, and user memory across projects. The wiki maintains itself, with audits sweeping for duplication and orphans before they compound.',
+    name: 'Memory & Knowledge Base',
+  },
+  {
+    body: 'Cost and quality discipline wired in. Mechanical work runs on Sonnet to keep tokens cheap. Heavier reasoning routes to Opus where it earns the price.',
+    name: 'Resource-Aware Optimization',
+  },
+  {
+    body: "Sub-agents run in fresh contexts so shared state can't corrupt their work. Each task doc is self-contained. Git-worktree branches add filesystem-level isolation when needed.",
     name: 'Session Isolation',
   },
 ];
 
-const ROUND_OUT: Pattern[] = [
+const CONTEXT: Pattern[] = [
   {
-    body: 'A curated React-specific tool surface. ESLint with 20+ plugins, TypeScript, Vitest with React Testing Library, Playwright, Storybook with Chromatic, MSW, the gh CLI, react-doctor, the Obsidian wiki, typescript-lsp, and Serena MCP for LSP-backed code intelligence.',
-    name: 'Tool Use',
+    body: 'Code intelligence runs through LSP semantic queries, not grep. A symbol query returns the one definition Claude asked for, not every line that mentions the name. Grep falls back only for literal strings, log lines, and comments.',
+    name: 'Symbol-Aware Retrieval',
   },
   {
-    body: 'Independent work runs concurrently. The audit dispatches its specialist subagents in a single tool-call message. The orchestrator runs per-phase sub-agents in parallel where dependencies allow.',
-    name: 'Parallelization',
+    body: "Skills load by trigger, not by default. The harness reads each skill's description and fires the matching one when its trigger phrase appears. Hundreds can sit on disk without burning a token until they're needed.",
+    name: 'Skill Activation',
   },
   {
-    body: "Defense in depth, layered from the filesystem up. Filesystem deny list keeps secrets out (.env, credentials, keys). Block hooks reject debt-accumulating patterns at the source. The audit's security dimension covers XSS, SSRF, IDOR, and dependency vulnerabilities.",
+    body: 'Claude pulls facts from the wiki on demand instead of carrying them in context. A hot cache primes at session start. Deeper questions trigger explicit retrieval, with citations attached to the answer.',
+    name: 'Knowledge Retrieval',
+  },
+  {
+    body: 'Constraints route to context, not loaded globally. Path-scoped rules auto-load only when Claude is editing matching files. Conditional hooks route commands to the right gate.',
+    name: 'Routing',
+  },
+];
+
+const TOOLING: Pattern[] = [
+  {
+    body: "Six structurally enforced checkpoints between Claude's intent and impact. Quality Gate, code-review audit, plan approval, phase gates, destructive-command blocking, merge confirmation. None of them can be skipped.",
+    name: 'Human-in-the-Loop',
+  },
+  {
+    body: 'Defense in depth, layered from the filesystem up. Secrets and credentials are blocked from being written. Debt-accumulating patterns are rejected at the source. The audit covers XSS, SSRF, IDOR, and dependency vulnerabilities.',
     name: 'Guardrails & Safety',
   },
   {
-    body: "Six structurally enforced checkpoints between Claude's intent and impact. Quality Gate, code-review audit, plan approval, phase gates, destructive-git hook, PR-merge reminder. The bypass paths are blocked at the hook layer.",
-    name: 'Human-in-the-Loop',
+    body: 'Independent work runs concurrently. Audit specialists fan out from a single dispatch. Plan phases run in parallel where dependencies allow.',
+    name: 'Parallelization',
+  },
+  {
+    body: 'A curated React-specific tool surface. Linting, types, unit and e2e tests, visual regression, mocking, the gh CLI, and the Obsidian wiki.',
+    name: 'Tool Use',
   },
 ];
 
 type GroupProperties = {
-  accent: 'accent' | 'secondary' | 'warn';
+  accent: 'accent' | 'ink-dim' | 'secondary' | 'warn';
   items: Pattern[];
   label: string;
 };
 
 const NAME_COLOR: Record<GroupProperties['accent'], string> = {
   accent: 'text-accent',
+  'ink-dim': 'text-ink-dim',
   secondary: 'text-secondary',
   warn: 'text-warn',
 };
@@ -105,38 +125,32 @@ const PatternGroup = ({accent, items, label}: GroupProperties) => {
 const AgenticDesignDetail = () => (
   <Section id="agentic-design" title="Agentic design">
     <p className="text-ink-dim mb-8">
-      The{' '}
-      <a
-        className="text-accent hover:underline"
-        href="https://zeljkoavramovic.github.io/agentic-design-patterns/"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        canonical taxonomy
-      </a>{' '}
-      catalogs 29 agentic design patterns. GAIA implements{' '}
-      <strong className="text-ink font-semibold">
-        12 of those 29 structurally
-      </strong>
-      : wired in through hooks, agents, rules, commands, and wiki conventions,
-      so each runs the same way every session, every engineer, every model
-      variant. Not as emergent model behavior on top of a vanilla setup.
+      The patterns below are established agent-design vocabulary. GAIA wires
+      each one in through hooks, agents, rules, commands, and wiki conventions,
+      so they run the same way every session, every engineer, every model
+      variant. Not as emergent model behavior on top of a vanilla setup. Not as
+      prompts you have to repeat. The discipline lives in the project.
     </p>
 
     <div className="space-y-8">
       <PatternGroup
         accent="accent"
-        items={HEADLINE}
-        label="Headline patterns"
+        items={QUALITY}
+        label="Quality enforcement"
       />
       <PatternGroup
         accent="secondary"
-        items={SUPPLEMENTARY}
-        label="Tier and isolation"
+        items={WORKFLOW}
+        label="Workflow control"
       />
       <PatternGroup
         accent="warn"
-        items={ROUND_OUT}
+        items={CONTEXT}
+        label="Context engineering"
+      />
+      <PatternGroup
+        accent="ink-dim"
+        items={TOOLING}
         label="Tooling and safety"
       />
     </div>
