@@ -16,7 +16,7 @@ const QUALITY: Pattern[] = [
     name: 'Reflection',
   },
   {
-    body: 'A specialist for every concern, dispatched in parallel. The code-review audit fans out to four specialists: React patterns, TypeScript and architecture, translations, and component health. Findings merge into one tiered report.',
+    body: 'A specialist for every concern, dispatched in parallel. The code-review audit fans four specialists: React patterns, TypeScript and architecture, i18n, and component health. Findings merge into one tiered report.',
     name: 'Multi-Agent Collaboration',
   },
   {
@@ -46,11 +46,11 @@ const WORKFLOW: Pattern[] = [
 
 const CONTEXT: Pattern[] = [
   {
-    body: 'Code intelligence runs through LSP semantic queries, not grep. A symbol query returns the one definition Claude asked for, not every line that mentions the name. Grep falls back only for literal strings, log lines, and comments.',
+    body: 'Code intelligence runs through Serena MCP, an LSP-backed tool registered once and reused across every GAIA project. A symbol query returns the one definition, not every line that mentions the name. The grep-and-read tax disappears.',
     name: 'Symbol-Aware Retrieval',
   },
   {
-    body: "Skills load by trigger, not by default. The harness reads each skill's description and fires the matching one when its trigger phrase appears. Hundreds can sit on disk without burning a token until they're needed.",
+    body: "Skills load by trigger, not by default. The harness reads each skill’s description and fires the matching one when its trigger phrase appears. Hundreds can sit on disk without burning a token until they’re needed.",
     name: 'Skill Activation',
   },
   {

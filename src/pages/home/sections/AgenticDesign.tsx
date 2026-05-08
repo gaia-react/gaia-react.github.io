@@ -27,7 +27,7 @@ const BLOCKS = [
   },
   {
     color: 'accent' as const,
-    copy: 'One merge audit. Four specialists run in parallel: React patterns, TypeScript and architecture, translations, and component health. Critical findings block the merge. Suggestions land in a review comment.',
+    copy: 'One merge audit. Four specialists run in parallel: React patterns, TypeScript and architecture, i18n, and component health. Critical findings block the merge. Suggestions land in a review comment.',
     Icon: MultiAgentIcon,
     title: 'A specialist for every concern',
   },

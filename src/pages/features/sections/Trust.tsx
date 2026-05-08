@@ -18,6 +18,10 @@ const POINTS = [
     name: 'Consistently clean code',
   },
   {
+    desc: 'react-code, typescript, tdd, tailwind, playwright-cli, skeleton-loaders, and eslint-fixes load on demand when Claude edits matching files. They apply project conventions without re-deriving them every session.',
+    name: '1st-party skills wired in for write-time quality',
+  },
+  {
     desc: 'The bundled tdd skill runs a red-green-refactor loop with tests before code, tailored for Vitest, React Testing Library, Storybook composeStory, and MSW.',
     name: 'Test-driven development',
   },
@@ -26,7 +30,7 @@ const POINTS = [
     name: 'Specs that turn into tests',
   },
   {
-    desc: 'A Claude subagent scans the branch diff for security, performance, code smells, and antipatterns, then blocks the merge until the issues are fixed and committed.',
+    desc: 'The code-review-audit agent scans the branch diff for security, performance, architecture, code smells, and antipatterns. Four parallel specialists layer on React patterns, TypeScript, i18n, and component health. Extendable with custom rules. Tiered findings (Critical, Important, Suggestions) gate the merge. Runs locally, optionally in CI.',
     name: 'Code-review audit before every merge',
   },
   {
@@ -39,7 +43,7 @@ const Trust = () => (
   <Section id="trust" paddingTop="2rem" title="Trust">
     <div className="text-ink space-y-6">
       <p>
-        You can’t manage an engineer you can’t predict. Without enforceable
+        You can’t trust output you can’t predict. Without enforceable
         conventions, Claude reverts to its training distribution, an average of
         every codebase on the internet, bad code and all. GAIA’s codebase is
         what you actually want Claude matching. With GAIA, Claude writes code

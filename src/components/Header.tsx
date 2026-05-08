@@ -3,7 +3,7 @@ import gaiaLogo from '../assets/gaia-logo.svg';
 
 const NAV_DESKTOP = [
   {href: '/features/', label: 'Features'},
-  {href: '/docs/', label: 'Docs'},
+  {href: 'https://docs.gaiareact.com/', label: 'Docs'},
   {href: '/roadmap/', label: 'Roadmap'},
   {href: '/about/', label: 'About'},
 ];
@@ -33,7 +33,7 @@ export const Header = () => {
       ref={headerReference}
       className="border-line sticky top-0 z-50 border-b bg-[rgba(20,20,19,0.85)] backdrop-blur-md"
     >
-      <div className="mx-auto flex h-16 max-w-306 items-center justify-between gap-8 px-4 sm:px-8">
+      <div className="mx-auto flex h-16 items-center justify-between gap-8 px-4 sm:px-8">
         <div className="flex items-center gap-6">
           <a
             aria-label="GAIA, home"

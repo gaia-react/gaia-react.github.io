@@ -22,7 +22,7 @@ GAIA is a React workflow + opinionated stack for building production software wi
 
 - [Get Started](https://gaiareact.com/get-started/): Two-command scaffold and setup
 - [Features](https://gaiareact.com/features/): Coding rules, code-review audit, Agentic Design patterns, Obsidian wiki, CLAUDE.md
-- [Docs](https://gaiareact.com/docs/): Commands, rules, agents, skills, hooks, statusline, GitHub integration
+- [Docs](https://docs.gaiareact.com/): Commands, rules, agents, skills, hooks, statusline, GitHub integration
 - [Roadmap](https://gaiareact.com/roadmap/): Coming soon, planned, long-term vision
 
 ## About

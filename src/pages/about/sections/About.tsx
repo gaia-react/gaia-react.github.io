@@ -11,7 +11,7 @@ const SELECTED_WORK: WorkItem[] = [
   {
     company: 'Trek10',
     note: 'Led six engineers rebuilding a financial services platform for one of the world’s largest management consulting firms. Architected a WYSIWYG JSON engine that lets non-engineers configure complex dashboards, and modernized the codebase from React 15 to React 19.',
-    period: '2024–2026',
+    period: '2024–2025',
     role: 'Principal Frontend Engineer',
   },
   {
@@ -130,8 +130,7 @@ const About = () => (
           framework of its era, used to build over 100,000 websites and adopted
           by every major digital agency. It replaced the chaos of Flash
           development with opinionated structure, automated project setup, and a
-          library of powerful, easy-to-use solutions for the problems every
-          Flash developer ran into.
+          library of solutions for the problems every Flash developer ran into.
         </p>
         <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
           Now I’m doing it again with AI agents. GAIA React is the spiritual
@@ -176,7 +175,7 @@ const About = () => (
       <div className="flex flex-col gap-5">
         <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
           The AI tooling landscape today looks like Flash development before the
-          framework era: powerful tools, no shared structure, every team
+          framework era: capable tools, no shared structure, every team
           reinventing the same patterns.
         </p>
         <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">

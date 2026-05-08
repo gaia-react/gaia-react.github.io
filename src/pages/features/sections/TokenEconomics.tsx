@@ -1,6 +1,7 @@
+import type {ReactNode} from 'react';
 import {Section} from '@/components/Section';
 
-const POINTS = [
+const POINTS: {desc: ReactNode; name: string}[] = [
   {
     desc: 'Claude loads the ones that match what it’s editing, nothing else.',
     name: 'Rules are scoped to activate only when needed',
@@ -26,11 +27,37 @@ const POINTS = [
     name: 'Task orchestration in clean subagent contexts',
   },
   {
-    desc: '/gaia spec runs the entire discovery and artifact-authoring flow in its own context, separate from implementation. The SPEC artifact is the handoff, not accumulated session state.',
+    desc: (
+      <>
+        /gaia spec runs in its own context, separate from implementation.
+        GAIA’s Socratic layer wraps{' '}
+        <a
+          href="https://github.com/github/spec-kit"
+          className="text-accent hover:text-accent-soft transition-colors duration-150"
+        >
+          spec-kit
+        </a>
+        : one question at a time, an immutable SPEC artifact, then a chain
+        into /gaia plan. The artifact is the handoff between sessions, not
+        accumulated context.
+      </>
+    ),
     name: 'Spec discovery in isolated context',
   },
   {
-    desc: 'Serena MCP gives Claude LSP-backed symbol search, references, and types. A symbol query returns the one definition, not every line that mentions the name. The grep-and-read tax disappears.',
+    desc: (
+      <>
+        <a
+          href="https://github.com/oraios/serena"
+          className="text-accent hover:text-accent-soft transition-colors duration-150"
+        >
+          Serena MCP
+        </a>{' '}
+        gives Claude LSP-backed symbol search, references, and types. A symbol
+        query returns the one definition, not every line that mentions the
+        name. The grep-and-read tax disappears.
+      </>
+    ),
     name: 'Symbol-aware code intelligence over grep',
   },
 ];
