@@ -18,7 +18,8 @@ const GROUPS: Group[] = [
     id: 'shipped',
     items: [
       {
-        description: 'The full Claude integration and React stack.',
+        description:
+          'The full Claude integration and React stack. Skills, hooks, multi-agent review, and a self-maintaining wiki.',
         title: 'GAIA Core',
       },
     ],
@@ -29,9 +30,18 @@ const GROUPS: Group[] = [
     id: 'in-progress',
     items: [
       {
-        description:
-          'The site you are reading. Growing into a full reference as the project matures.',
+        description: 'Growing into a full reference as the project matures.',
         title: 'Documentation',
+      },
+      {
+        description:
+          'Walkthroughs for starting fresh, integrating GAIA into an existing project, and getting the most from the workflow on real work.',
+        title: 'Tutorials',
+      },
+      {
+        description:
+          'Steady polish between releases. Audit-driven cleanup, hardened guardrails, and rough edges filed down as adopters surface them.',
+        title: 'Refinement',
       },
     ],
     label: 'In Progress',
@@ -40,6 +50,16 @@ const GROUPS: Group[] = [
     color: '#c8a96a',
     id: 'planned',
     items: [
+      {
+        description:
+          'From issue to merge-ready PR with agents doing the work in between. Pick-up, planning, implementation, review, and handback. The human gates the plan and the merge. Everything else runs on its own.',
+        title: 'Autonomous workflow',
+      },
+      {
+        description:
+          'Run GAIA inside Docker or another sandbox. Claude works against the project in an isolated environment, not against your filesystem. Reproducible across machines and safer to leave running.',
+        title: 'Containerized development',
+      },
       {
         description:
           'Wire it up during create or run a command later when you decide to go live. Pick from popular targets with the tradeoffs explained, or bring your own, and walk away with the build, environment variables, and CI/CD configured for you.',
@@ -130,7 +150,7 @@ const Roadmap = () => (
       <h2 className="font-display text-ink mb-2 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
         Roadmap
       </h2>
-      <p className="text-muted mb-8 text-sm">Last updated: 2026-05-01</p>
+      <p className="text-muted mb-8 text-sm">Last updated: 2026-05-09</p>
       <p className="text-ink-dim mb-12">
         Where GAIA stands today, and where it’s going. A Claude-native React
         workflow, sharpening with every release into a leaner, more reliable way
