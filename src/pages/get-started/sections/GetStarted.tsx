@@ -763,7 +763,7 @@ const WhatHappenedSection = () => (
         </p>
         <a
           className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"
-          href="/docs/"
+          href="https://docs.gaiareact.com/"
         >
           Open the docs
           <ArrowRightIcon size={14} />

@@ -72,10 +72,9 @@ const Why = () => (
               <h3 className="text-ink mb-2 text-[1.25rem] font-light tracking-[-0.01em]">
                 {card.title}
               </h3>
-              <p
-                className="text-ink-dim text-[0.95rem] leading-[1.6]"
-                dangerouslySetInnerHTML={{__html: card.copy}}
-              />
+              <p className="text-ink-dim text-[0.95rem] leading-[1.6]">
+                {card.copy}
+              </p>
             </article>
           );
         })}

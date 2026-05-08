@@ -10,7 +10,6 @@ export default defineConfig({
       input: {
         about: path.resolve(import.meta.dirname, 'about/index.html'),
         consulting: path.resolve(import.meta.dirname, 'consulting/index.html'),
-        docs: path.resolve(import.meta.dirname, 'docs/index.html'),
         features: path.resolve(import.meta.dirname, 'features/index.html'),
         getStarted: path.resolve(import.meta.dirname, 'get-started/index.html'),
         main: path.resolve(import.meta.dirname, 'index.html'),

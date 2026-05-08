@@ -8,11 +8,11 @@ const ACTIVE_TIERS = [
 ];
 
 const RULE_ROWS = [
-  {active: true, pattern: '**/*.tsx', rule: 'react-code'},
-  {active: true, pattern: '**/*.ts', rule: 'typescript'},
-  {pattern: '**/api/**', rule: 'api-service'},
-  {pattern: '**/*.test.tsx', rule: 'component-testing'},
+  {active: true, pattern: '**/api/**', rule: 'api-service'},
+  {active: true, pattern: '**/*.tsx', rule: 'tailwind'},
+  {pattern: '**/*.test.{ts,tsx}', rule: 'playwright'},
   {pattern: '**/i18n/**', rule: 'i18n'},
+  {pattern: '**/*.stories.tsx', rule: 'storybook'},
 ];
 
 const ActiveTriptych = () => (
@@ -141,8 +141,11 @@ const ClaudeMd = () => (
             style={{'--reveal-delay': '180ms'} as React.CSSProperties}
           >
             Hooks protect main, prevent tech debt, and keep commits clean. The{' '}
-            <code className="text-accent">code-review-audit</code> agent gates
-            every PR with security, performance, and architecture checks.
+            <code className="text-accent">code-review-audit</code> agent fans
+            four parallel specialists (React patterns, TypeScript, i18n,
+            component health) on top of its checks for security, performance,
+            architecture, code smells, and antipatterns. Extendable with custom
+            rules. Tiered findings gate the merge.
           </p>
           <p
             className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
@@ -164,7 +167,7 @@ const ClaudeMd = () => (
           <a
             className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
             data-reveal={true}
-            href="/docs/#commands"
+            href="https://docs.gaiareact.com/#commands"
             style={{'--reveal-delay': '240ms'} as React.CSSProperties}
           >
             Learn more →
