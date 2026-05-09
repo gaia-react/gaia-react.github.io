@@ -28,11 +28,11 @@ const Mentorship = () => (
     >
       <div className="flex flex-col gap-5">
         <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
-          Every spec I write, every plan I refine, every code review I run
-          goes through GAIA&rsquo;s commands. Each step emits a structured
-          event. Together those events add up to a record of how I actually
-          work: what I do well, where I tend to under-articulate, where I
-          revise after the fact, where I keep getting stuck.
+          Every spec I write, every plan I refine, every code review I run goes
+          through GAIA&rsquo;s commands. Each step emits a structured event.
+          Together those events add up to a record of how I actually work: what
+          I do well, where I tend to under-articulate, where I revise after the
+          fact, where I keep getting stuck.
         </p>
         <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
           That record is the input to a coach that gets sharper as it watches
@@ -67,7 +67,7 @@ const Mentorship = () => (
       <p className="text-ink-dim mb-3 text-[1.0625rem] leading-[1.7]">
         In session, you&rsquo;ll notice:
       </p>
-      <ul className="text-ink-dim mb-5 list-disc pl-6 text-[1.0625rem] leading-[1.7] marker:text-[var(--color-muted)]">
+      <ul className="text-ink-dim marker:text-muted mb-5 list-disc pl-6 text-[1.0625rem] leading-[1.7]">
         <li>Deeper questions where you tend to rush past intent</li>
         <li>More orientation when you&rsquo;re working in unfamiliar code</li>
         <li>Richer code review feedback where your errors cluster</li>
@@ -88,15 +88,15 @@ const Mentorship = () => (
     >
       <p className="text-ink-dim mb-5 text-[1.0625rem] leading-[1.7]">
         Mentorship doesn&rsquo;t read your code. It doesn&rsquo;t store specs,
-        plans, file paths, or commit history. It works on event metadata:
-        which agent ran, what kind of question came back, how many attempts a
-        UAT took. The pattern math doesn&rsquo;t read your identity to begin
-        with. Anything that could identify you stays local.
+        plans, file paths, or commit history. It works on event metadata: which
+        agent ran, what kind of question came back, how many attempts a UAT
+        took. The pattern math doesn&rsquo;t read your identity to begin with.
+        Anything that could identify you stays local.
       </p>
       <p className="text-ink-dim mb-3 text-[1.0625rem] leading-[1.7]">
         Beyond those events, nothing else is observed:
       </p>
-      <ul className="text-ink-dim mb-5 list-disc pl-6 text-[1.0625rem] leading-[1.7] marker:text-[var(--color-muted)]">
+      <ul className="text-ink-dim marker:text-muted mb-5 list-disc pl-6 text-[1.0625rem] leading-[1.7]">
         <li>When you work or how fast you type</li>
         <li>What you read or how long you read it</li>
         <li>Your attention, mood, or biometrics</li>
@@ -108,14 +108,13 @@ const Mentorship = () => (
         <code className="text-ink bg-surface-raised border-line rounded-sm border px-1.5 font-mono text-[0.92em]">
           .gaia/local/profile.md
         </code>{' '}
-        inside your Claude project folder. Read it. Edit it. Delete it. It
-        never enters your repository&rsquo;s git history.
+        inside your Claude project folder. Read it. Edit it. Delete it. It never
+        enters your repository&rsquo;s git history.
       </p>
       <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
         One transparency note. When you amend a spec, GAIA asks why, and your
         typed reason is recorded locally. If your reason includes project
-        detail, it lives in the local file. It still never leaves your
-        machine.
+        detail, it lives in the local file. It still never leaves your machine.
       </p>
     </Section>
 
@@ -127,8 +126,8 @@ const Mentorship = () => (
       title="Opting in and out"
     >
       <p className="text-ink-dim mb-5 text-[1.0625rem] leading-[1.7]">
-        Mentorship is off by default. You can enable it during
-        GAIA&rsquo;s initial setup, or any time afterward.
+        Mentorship is off by default. You can enable it during GAIA&rsquo;s
+        initial setup, or any time afterward.
       </p>
       <CodeBlock language="bash" title="terminal">
         {`gaia mentorship enable      # turn on

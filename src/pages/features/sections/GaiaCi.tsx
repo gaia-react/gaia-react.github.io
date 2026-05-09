@@ -32,9 +32,10 @@ const GaiaCi = () => (
     <div className="text-ink space-y-6">
       <p>
         GAIA CI is the maintenance system built into every GAIA project. Wikis
-        stay in sync with the code. Dependencies stay current and tested. Security
-        findings get patched. Stale branches don’t pile up. The important chores
-        that decay a project when neglected, all running on their own.
+        stay in sync with the code. Dependencies stay current and tested.
+        Security findings get patched. Stale branches don’t pile up. The
+        important chores that decay a project when neglected, all running on
+        their own.
       </p>
 
       <p>

@@ -50,7 +50,7 @@ const CONTEXT: Pattern[] = [
     name: 'Symbol-Aware Retrieval',
   },
   {
-    body: "Skills load by trigger, not by default. The harness reads each skill’s description and fires the matching one when its trigger phrase appears. Hundreds can sit on disk without burning a token until they’re needed.",
+    body: 'Skills load by trigger, not by default. The harness reads each skill’s description and fires the matching one when its trigger phrase appears. Hundreds can sit on disk without burning a token until they’re needed.',
     name: 'Skill Activation',
   },
   {
@@ -143,11 +143,7 @@ const AgenticDesignDetail = () => (
         items={WORKFLOW}
         label="Workflow control"
       />
-      <PatternGroup
-        accent="warn"
-        items={CONTEXT}
-        label="Context engineering"
-      />
+      <PatternGroup accent="warn" items={CONTEXT} label="Context engineering" />
       <PatternGroup
         accent="ink-dim"
         items={TOOLING}

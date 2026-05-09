@@ -26,7 +26,7 @@ const POINTS = [
     name: 'Test-driven development',
   },
   {
-    desc: 'UATs the PO authors in plain English become Playwright e2e specs before the implementer writes a line of source. The implementer\'s first task is turning red tests green. Specs become tests automatically.',
+    desc: "UATs the PO authors in plain English become Playwright e2e specs before the implementer writes a line of source. The implementer's first task is turning red tests green. Specs become tests automatically.",
     name: 'Specs that turn into tests',
   },
   {
