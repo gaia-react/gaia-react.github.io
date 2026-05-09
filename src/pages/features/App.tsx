@@ -3,7 +3,9 @@ import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesignDetail from './sections/AgenticDesignDetail';
 import ClaudeMdDetail from './sections/ClaudeMdDetail';
 import Forensics from './sections/Forensics';
+import GaiaCi from './sections/GaiaCi';
 import ObsidianWikiDetail from './sections/ObsidianWikiDetail';
+import Sharpen from './sections/Sharpen';
 import Stack from './sections/Stack';
 import TokenEconomics from './sections/TokenEconomics';
 import Trust from './sections/Trust';
@@ -19,6 +21,8 @@ const App = () => {
       <AgenticDesignDetail />
       <ObsidianWikiDetail />
       <WikiManagement />
+      <GaiaCi />
+      <Sharpen />
       <ClaudeMdDetail />
       <Forensics />
       <Stack />
