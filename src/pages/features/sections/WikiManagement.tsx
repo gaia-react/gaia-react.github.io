@@ -26,8 +26,8 @@ const WikiManagement = () => (
         The wiki self-maintains. Session hooks fire /gaia wiki sync when the
         wiki drifts from HEAD, and the chain runs from there. The commands are
         also available to run manually when you want to drive an update
-        yourself. Each runs in a fresh subagent context, so large diffs and
-        page walks stay out of your session.
+        yourself. Each runs in a fresh subagent context, so large diffs and page
+        walks stay out of your session.
       </p>
 
       <h3 className="text-ink pt-2 text-xl font-semibold">

@@ -22,6 +22,11 @@ const GROUPS: Group[] = [
           'The full Claude integration and React stack. Skills, hooks, multi-agent review, and a self-maintaining wiki.',
         title: 'GAIA Core',
       },
+      {
+        description:
+          'Maintenance built into every GAIA project. Wiki sync, GAIA Sharpen for dependency upgrades, daily security audit, stale-branch cleanup. AI handles the safe cases on a cron and merges them on green CI. Humans only see what AI can’t recover from.',
+        title: 'GAIA CI',
+      },
     ],
     label: 'Shipped',
   },

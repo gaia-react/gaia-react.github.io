@@ -1,4 +1,8 @@
-import {BullseyeIcon, ShieldCheckIcon} from '@/components/icons';
+import {
+  BullseyeIcon,
+  ReflectionIcon,
+  ShieldCheckIcon,
+} from '@/components/icons';
 
 const CARDS = [
   {
@@ -12,6 +16,12 @@ const CARDS = [
     copy: 'GAIA gives Claude only what each task needs, so quality and costs stay predictable as your codebase grows.',
     Icon: BullseyeIcon,
     title: 'Disciplined at scale',
+  },
+  {
+    color: 'warn' as const,
+    copy: 'GAIA CI handles the chores for you, so dependencies stay current, vulnerabilities stay patched, and stale branches don’t pile up.',
+    Icon: ReflectionIcon,
+    title: 'Automated maintenance',
   },
 ];
 
@@ -46,14 +56,15 @@ const Why = () => (
           rest.
           <br />
           <br />
-          Two things break Claude on real projects: output you can&apos;t trust,
-          and quality that drops as the project grows.{' '}
-          <span className="text-ink">GAIA fixes both.</span>
+          Three things break Claude on real projects: output you can&apos;t
+          trust, quality that drops as the project grows, and important chores
+          that get neglected and pile up while you build.{' '}
+          <span className="text-ink">GAIA fixes all three.</span>
         </p>
       </div>
 
       <div
-        className="grid grid-cols-1 gap-4 md:grid-cols-2"
+        className="grid grid-cols-1 gap-4 md:grid-cols-3"
         data-stagger={true}
       >
         {CARDS.map((card) => {

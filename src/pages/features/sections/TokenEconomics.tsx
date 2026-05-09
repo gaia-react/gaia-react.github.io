@@ -29,16 +29,16 @@ const POINTS: {desc: ReactNode; name: string}[] = [
   {
     desc: (
       <>
-        /gaia spec runs in its own context, separate from implementation.
-        GAIA’s Socratic layer wraps{' '}
+        /gaia spec runs in its own context, separate from implementation. GAIA’s
+        Socratic layer wraps{' '}
         <a
-          href="https://github.com/github/spec-kit"
           className="text-accent hover:text-accent-soft transition-colors duration-150"
+          href="https://github.com/github/spec-kit"
         >
           spec-kit
         </a>
-        : one question at a time, an immutable SPEC artifact, then a chain
-        into /gaia plan. The artifact is the handoff between sessions, not
+        : one question at a time, an immutable SPEC artifact, then a chain into
+        /gaia plan. The artifact is the handoff between sessions, not
         accumulated context.
       </>
     ),
@@ -48,14 +48,14 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     desc: (
       <>
         <a
-          href="https://github.com/oraios/serena"
           className="text-accent hover:text-accent-soft transition-colors duration-150"
+          href="https://github.com/oraios/serena"
         >
           Serena MCP
         </a>{' '}
         gives Claude LSP-backed symbol search, references, and types. A symbol
-        query returns the one definition, not every line that mentions the
-        name. The grep-and-read tax disappears.
+        query returns the one definition, not every line that mentions the name.
+        The grep-and-read tax disappears.
       </>
     ),
     name: 'Symbol-aware code intelligence over grep',

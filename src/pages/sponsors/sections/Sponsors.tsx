@@ -190,6 +190,7 @@ const Sponsors = () => (
     </section>
 
     {/* Current sponsors. Hidden until first sponsor lands. Flip SHOW_CURRENT_SPONSORS to true when ready. */}
+    {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
     {SHOW_CURRENT_SPONSORS && (
       <section className="px-4 py-20 sm:px-8" id="current-sponsors">
         <div className="mx-auto max-w-6xl">
