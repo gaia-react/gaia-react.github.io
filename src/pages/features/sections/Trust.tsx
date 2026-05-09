@@ -19,7 +19,7 @@ const POINTS = [
   },
   {
     desc: 'react-code, typescript, tdd, tailwind, playwright-cli, skeleton-loaders, and eslint-fixes load on demand when Claude edits matching files. They apply project conventions without re-deriving them every session.',
-    name: '1st-party skills wired in for write-time quality',
+    name: 'Bundled skills wired in for write-time quality',
   },
   {
     desc: 'The bundled tdd skill runs a red-green-refactor loop with tests before code, tailored for Vitest, React Testing Library, Storybook composeStory, and MSW.',
