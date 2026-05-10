@@ -41,7 +41,7 @@ const POINTS = [
 
 const Trust = () => (
   <Section id="trust" paddingTop="2rem" title="Trust">
-    <div className="text-ink space-y-6">
+    <div className="text-ink-dim space-y-6">
       <p>
         You can’t trust output you can’t predict. Without enforceable
         conventions, Claude reverts to its training distribution, an average of

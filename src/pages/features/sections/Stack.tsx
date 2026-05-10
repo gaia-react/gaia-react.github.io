@@ -160,9 +160,9 @@ const Stack = () => (
       pre-configured and documented for Claude.
     </p>
     <p className="text-ink-dim mb-8">
-      Installed with pnpm. Faster cold installs. Smaller node_modules via
-      hard-linking. Stricter dependency resolution that blocks phantom imports
-      and closes the easiest path for npm supply-chain attacks.
+      GAIA uses pnpm. Faster installs. Smaller node_modules. Stricter dependency
+      resolution that blocks phantom imports and closes the easiest path for npm
+      supply-chain attacks.
     </p>
     <div className="space-y-8">
       <LogoGroup items={FOUNDATION} label="Foundation" />

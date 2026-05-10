@@ -8,8 +8,8 @@ type Item = {
 
 const FAILURES: Item[] = [
   {
-    desc: 'Claude trained on every codebase on the internet. The good ones, the bad ones, and a much larger set of mediocre ones. Without enforced conventions, the output settles around that average. Internet average is not a codebase you ship.',
-    name: 'Regression to the mean',
+    desc: 'Every session reinvents how the project does things. One file goes one way, the next file goes another. Conventions exist on paper. The model does not read them by default.',
+    name: 'Convention drift',
   },
   {
     desc: 'Without scoped rules, every session reloads everything Claude might need. The CLAUDE.md grows. Token costs balloon. Reasoning thins. The bigger the project, the worse it gets.',
@@ -48,15 +48,11 @@ const OUTCOMES: Item[] = [
   },
   {
     desc: 'Every merge runs a code-review audit with a team of specialist agents. Critical findings block the merge. Things you would notice on a senior engineer’s review, the AI catches first.',
-    name: 'Reviews that catch what you would miss',
+    name: 'Reviews you can trust',
   },
   {
     desc: 'GAIA CI keeps deps current, security patched, branches clean, and the wiki in sync. Patch and minor bumps auto-merge on green. Major changes hold for human review.',
     name: 'Maintenance that runs itself',
-  },
-  {
-    desc: 'Write-time conventions, commit-time gates, and merge-time audits add up to a floor for output quality. Not “fully autonomous.” Trustworthy enough that the engineer directs and the AI implements.',
-    name: 'AI you can trust to own the work',
   },
 ];
 
@@ -74,7 +70,7 @@ const BOUNDARIES: Item[] = [
     name: 'Not just a CLAUDE.md',
   },
   {
-    desc: 'A starter kit hands you boilerplate and walks away. GAIA never walks away. Every tool call hits a hook. Every commit hits a gate. Every merge hits an audit. The project gets stricter the deeper you work in it.',
+    desc: 'A starter kit hands you boilerplate and walks away. GAIA never walks away. Every tool call hits a hook. Every commit hits a gate. Every merge hits an audit. The discipline holds.',
     name: 'Not another starter kit',
   },
 ];
@@ -100,17 +96,8 @@ const ItemList = ({bulletColor, items}: ListProperties) => (
 const TheCase = () => (
   <>
     {/* Hero */}
-    <section className="pt-20 pb-6">
+    <section className="pt-8 pb-6">
       <div className="mx-auto max-w-3xl px-4 sm:px-8">
-        <div className="mb-4 inline-flex items-center gap-2">
-          <span
-            aria-hidden={true}
-            className="bg-accent-soft size-1.5 rounded-full"
-          />
-          <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-            Why GAIA
-          </span>
-        </div>
         <h1 className="font-display text-ink mb-8 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
           The Case
         </h1>
@@ -121,11 +108,11 @@ const TheCase = () => (
           </p>
           <p>
             The bottleneck was never raw capability. It is the absence of
-            structure around the AI.
+            discipline around Claude.
           </p>
           <p className="text-ink">
-            GAIA puts the structure in the project itself, so the AI can be
-            trusted with the work.
+            GAIA is the discipline. Built into the project, so Claude has to
+            follow it.
           </p>
         </div>
       </div>
@@ -133,7 +120,7 @@ const TheCase = () => (
 
     {/* Diagnosis */}
     <Section
-      id="diagnosis"
+      id="failures"
       paddingBottom="3rem"
       paddingTop="3rem"
       title="What is actually breaking"
@@ -150,7 +137,7 @@ const TheCase = () => (
 
     {/* The shift */}
     <Section
-      id="shift"
+      id="discipline"
       paddingBottom="3rem"
       paddingTop="3rem"
       title="What vibe coding is missing"
@@ -170,10 +157,9 @@ const TheCase = () => (
           ever taken. Every bad coding habit.
         </p>
         <p>
-          GAIA provides structure. Hooks intercept every tool call. Rules and
-          Skills guide every line of code written. Quality gates fire on every
-          commit. Audits run on every merge. Discipline is structural, not
-          personal.
+          GAIA provides structure in layers. Hooks own the tool call. Rules and
+          Skills own the writing. Gates own the commit. Audits own the merge.
+          Discipline is structural, not personal.
         </p>
         <p className="text-ink">
           GAIA does not make AI “smarter.” GAIA makes AI{' '}
@@ -185,7 +171,7 @@ const TheCase = () => (
 
     {/* What this gets you */}
     <Section
-      id="changes"
+      id="outcomes"
       paddingBottom="3rem"
       paddingTop="3rem"
       title="What this gets you"
@@ -216,7 +202,7 @@ const TheCase = () => (
     </Section>
 
     {/* CTA */}
-    <section className="px-4 py-20 text-center sm:px-8 sm:py-24" id="cta">
+    <section className="px-4 py-20 text-center sm:px-8 sm:py-24" id="install">
       <div className="mx-auto max-w-2xl" data-reveal={true}>
         <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
           Open source. MIT.
@@ -225,7 +211,7 @@ const TheCase = () => (
           Discipline you can install.
         </h2>
         <p className="text-ink-dim mb-8 text-[1.0625rem] leading-[1.7]">
-          Fully documented. Setup in minutes. No new subscriptions.
+          You direct. Claude implements. GAIA enforces.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-6">
           <a

@@ -4,6 +4,7 @@ import AgenticDesignDetail from './sections/AgenticDesignDetail';
 import ClaudeMdDetail from './sections/ClaudeMdDetail';
 import Forensics from './sections/Forensics';
 import GaiaCi from './sections/GaiaCi';
+import Hero from './sections/Hero';
 import ObsidianWikiDetail from './sections/ObsidianWikiDetail';
 import Stack from './sections/Stack';
 import TokenEconomics from './sections/TokenEconomics';
@@ -15,6 +16,7 @@ const App = () => {
 
   return (
     <Layout>
+      <Hero />
       <Trust />
       <TokenEconomics />
       <AgenticDesignDetail />

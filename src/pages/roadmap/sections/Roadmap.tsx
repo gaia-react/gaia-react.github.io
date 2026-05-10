@@ -152,14 +152,13 @@ const StatusGroup = ({group}: {group: Group}) => (
 const Roadmap = () => (
   <section className="pt-8 pb-24">
     <div className="mx-auto max-w-3xl scroll-mt-20 px-4 sm:px-8" id="roadmap">
-      <h2 className="font-display text-ink mb-2 text-[clamp(2rem,4vw,3rem)] leading-[1.15] font-light tracking-[-0.02em]">
+      <h1 className="font-display text-ink mb-2 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
         Roadmap
-      </h2>
+      </h1>
       <p className="text-muted mb-8 text-sm">Last updated: 2026-05-09</p>
       <p className="text-ink-dim mb-12">
-        Where GAIA stands today, and where it’s going. A Claude-native React
-        workflow, sharpening with every release into a leaner, more reliable way
-        to ship production-quality apps.
+        Where GAIA is today. Where it is going. Every release adds another layer
+        to the discipline.
       </p>
       <div className="space-y-14">
         {GROUPS.map((group) => (
