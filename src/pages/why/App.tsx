@@ -1,7 +1,12 @@
 import {Layout} from '@/components/Layout';
 import {useScrollReveal} from '@/hooks/useScrollReveal';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
-import TheCase from './sections/TheCase';
+import Boundaries from './sections/Boundaries';
+import Closing from './sections/Closing';
+import Diagnosis from './sections/Diagnosis';
+import Discipline from './sections/Discipline';
+import Hero from './sections/Hero';
+import Outcomes from './sections/Outcomes';
 
 const App = () => {
   useScrollToHash();
@@ -9,7 +14,12 @@ const App = () => {
 
   return (
     <Layout>
-      <TheCase />
+      <Hero />
+      <Diagnosis />
+      <Discipline />
+      <Outcomes />
+      <Boundaries />
+      <Closing />
     </Layout>
   );
 };

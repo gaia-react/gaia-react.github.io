@@ -162,6 +162,28 @@ samp {
 }
 
 /* ============================================================
+   Atmospheric haze drift (Why-page hero)
+   Subtle position oscillation on a multi-radial gradient mesh.
+   ============================================================ */
+@keyframes gaia-haze-drift {
+  0%,
+  100% {
+    transform: translate3d(-1.5%, 1%, 0);
+  }
+  50% {
+    transform: translate3d(1.5%, -1%, 0);
+  }
+}
+
+@utility gaia-haze-drift {
+  animation: gaia-haze-drift 42s ease-in-out infinite;
+  will-change: transform;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* ============================================================
    Stack marquee
    ============================================================ */
 @keyframes stackrow-scroll {
