@@ -7,8 +7,8 @@ export type StackItem = {kind: string; name: string};
 export const STACK_GROUPS: StackGroup[] = [
   {
     items: [
-      {kind: 'Routing', name: 'React Router 7'},
-      {kind: 'Language', name: 'TypeScript · Zod'},
+      {kind: 'Foundation', name: 'React Router 7'},
+      {kind: 'Language', name: 'TypeScript'},
       {kind: 'Styling', name: 'Tailwind CSS'},
       {kind: 'Forms', name: 'Conform'},
     ],
@@ -16,19 +16,19 @@ export const STACK_GROUPS: StackGroup[] = [
   },
   {
     items: [
+      {kind: 'Component tests', name: 'Storybook'},
       {kind: 'Unit tests', name: 'Vitest + RTL'},
       {kind: 'E2E tests', name: 'Playwright'},
-      {kind: 'Visual tests', name: 'Chromatic'},
       {kind: 'Mock API', name: 'MSW'},
     ],
     label: 'Testing',
   },
   {
     items: [
-      {kind: 'Components', name: 'Storybook'},
-      {kind: 'Linting', name: 'ESLint + Stylelint'},
+      {kind: 'Type safety', name: 'Strict Mode · Zod'},
+      {kind: 'Discipline', name: 'ESLint + Stylelint'},
+      {kind: 'Clean Code', name: 'Knip'},
       {kind: 'Accessibility', name: 'Axe Core'},
-      {kind: 'Localization', name: 'i18next'},
     ],
     label: 'Quality',
   },

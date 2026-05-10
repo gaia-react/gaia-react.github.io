@@ -14,11 +14,10 @@ const TheStack = () => (
           </span>
         </div>
         <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
-          Professional Frontend stack
+          The frontend, decided.
         </h2>
         <p className="text-ink-dim text-[1.125rem]">
-          Fewer gaps in the stack means fewer decisions Claude has to invent on
-          its own.
+          Fewer gaps in the stack. Fewer decisions Claude has to invent.
         </p>
       </div>
 
