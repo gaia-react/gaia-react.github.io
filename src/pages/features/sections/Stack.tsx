@@ -155,7 +155,7 @@ const LogoGroup = ({items, label}: GroupProperties) => (
 const Stack = () => (
   <Section id="stack" title="The stack">
     <p className="text-ink-dim mb-8">
-      20+ ESLint plugins, four testing layers (unit, integration, E2E, visual)
+      1,314 linting rules, four testing layers (unit, integration, E2E, visual)
       with mocking, i18n, dark mode, forms with validation, and Storybook. All
       pre-configured and documented for Claude.
     </p>

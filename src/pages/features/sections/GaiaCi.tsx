@@ -2,11 +2,11 @@ import {Section} from '@/components/Section';
 
 const POINTS = [
   {
-    desc: 'A smart cron evaluates whether app code has changed since the last sync. If it has, the workflow runs the wiki chain and opens a labeled PR. If it hasn’t, the run exits clean. A run that rewrites more than 25% of the wiki holds for human review instead of auto-merging.',
-    name: 'Wiki sync on a smart cron',
+    desc: 'When app code changes, the workflow runs the wiki chain and opens a labeled PR. When it hasn’t, the run exits clean. A run that rewrites more than 25% of the wiki holds for human review instead of auto-merging.',
+    name: 'Wiki stays in sync with the code',
   },
   {
-    desc: 'GAIA Sharpen runs weekly. Patch and minor dependency bumps auto-merge on green CI. Major bumps split into a separate review-required PR.',
+    desc: 'GAIA Update Deps runs weekly. Patch and minor dependency bumps auto-merge on green CI. Major bumps split into a separate review-required PR.',
     name: 'Dependencies, tested and merged',
   },
   {

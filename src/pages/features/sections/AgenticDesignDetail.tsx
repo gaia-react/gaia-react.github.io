@@ -20,7 +20,7 @@ const QUALITY: Pattern[] = [
     name: 'Multi-Agent Collaboration',
   },
   {
-    body: 'Specs become tests before code is written. UATs the PO authors in plain English compile into red-state Playwright e2e specs before the implementer writes a line of source. The first task is turning red green.',
+    body: 'Specs become tests before code is written. UATs the PO authors in plain English compile into red-state Playwright E2E specs before the implementer writes a line of source. The first task is turning red green.',
     name: 'Specification-Driven Development',
   },
 ];
@@ -77,7 +77,7 @@ const TOOLING: Pattern[] = [
     name: 'Parallelization',
   },
   {
-    body: 'A curated React-specific tool surface. Linting, types, unit and e2e tests, visual regression, mocking, the gh CLI, and the Obsidian wiki.',
+    body: 'A curated React-specific tool surface. Linting, types, unit and E2E tests, visual regression, mocking, the gh CLI, and the Obsidian wiki.',
     name: 'Tool Use',
   },
 ];

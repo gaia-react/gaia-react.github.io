@@ -14,7 +14,7 @@ const POINTS = [
     name: 'Guardrails against technical debt',
   },
   {
-    desc: '20+ ESLint plugins, strict TypeScript, and Prettier enforce style and correctness on every file Claude touches. No negotiation, no drift.',
+    desc: '1,314 linting rules, strict TypeScript, and Prettier enforce style and correctness on every file Claude touches. No negotiation, no drift.',
     name: 'Consistently clean code',
   },
   {
@@ -26,7 +26,7 @@ const POINTS = [
     name: 'Test-driven development',
   },
   {
-    desc: "UATs the PO authors in plain English become Playwright e2e specs before the implementer writes a line of source. The implementer's first task is turning red tests green. Specs become tests automatically.",
+    desc: "UATs the PO authors in plain English become Playwright E2E specs before the implementer writes a line of source. The implementer's first task is turning red tests green. Specs become tests automatically.",
     name: 'Specs that turn into tests',
   },
   {

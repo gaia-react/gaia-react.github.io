@@ -1,6 +1,7 @@
 import type React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import {ArrowRightIcon, CheckIcon} from '@/components/icons';
+import StackGrid from '@/components/StackGrid';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -672,30 +673,6 @@ const GetStartedHero = ({
 
 // ── What happened ──────────────────────────────────────────────────────────
 
-const SCAFFOLD = [
-  {
-    items: ['React Router 7', 'TypeScript', 'Tailwind CSS', 'Conform · Zod'],
-    kind: 'Foundation',
-  },
-  {
-    items: ['Vitest + RTL', 'Playwright', 'Chromatic', 'MSW'],
-    kind: 'Testing',
-  },
-  {
-    items: ['Storybook', 'Linting', 'i18next', 'Accessibility'],
-    kind: 'Quality',
-  },
-  {
-    items: [
-      'CLAUDE.md',
-      'Hooks, Rules, Skills',
-      'Code Review Agent',
-      'Obsidian Wiki',
-    ],
-    kind: 'For Claude',
-  },
-];
-
 const WhatHappenedSection = () => (
   <section className="pb-20 sm:pt-8" id="what-happened">
     <div className="mx-auto max-w-6xl px-4 sm:px-8">
@@ -723,36 +700,7 @@ const WhatHappenedSection = () => (
         </p>
       </div>
 
-      <div
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        data-stagger={true}
-      >
-        {SCAFFOLD.map((group) => (
-          <div
-            key={group.kind}
-            className="bg-surface border-line-soft rounded-lg border px-5 pt-5 pb-3"
-          >
-            <div className="border-line-soft mb-2 border-b pb-3">
-              <span className="text-secondary-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-                {group.kind}
-              </span>
-            </div>
-            <ul className="divide-line-soft divide-y">
-              {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-2 py-2.5 text-[0.95rem]"
-                >
-                  <span className="bg-secondary/12 text-secondary-soft inline-flex size-4.5 shrink-0 items-center justify-center rounded-sm">
-                    <CheckIcon size={12} />
-                  </span>
-                  <span className="text-ink">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      <StackGrid />
 
       <div
         className="border-line-soft mt-12 flex flex-wrap items-center justify-between gap-8 border-t pt-9"

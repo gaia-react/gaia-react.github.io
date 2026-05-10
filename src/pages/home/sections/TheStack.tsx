@@ -1,34 +1,4 @@
-import {CheckIcon} from '@/components/icons';
-
-const STACK_GROUPS = [
-  {
-    items: [
-      {kind: 'Routing', name: 'React Router 7'},
-      {kind: 'Language', name: 'TypeScript'},
-      {kind: 'Styling', name: 'Tailwind CSS'},
-      {kind: 'Forms', name: 'Conform · Zod'},
-    ],
-    label: 'Foundation',
-  },
-  {
-    items: [
-      {kind: 'Unit tests', name: 'Vitest + RTL'},
-      {kind: 'E2E tests', name: 'Playwright'},
-      {kind: 'Visual tests', name: 'Chromatic'},
-      {kind: 'Mock API', name: 'MSW'},
-    ],
-    label: 'Testing',
-  },
-  {
-    items: [
-      {kind: 'Components', name: 'Storybook'},
-      {kind: 'Accessibility', name: 'A11y guardrails'},
-      {kind: 'Localization', name: 'i18next'},
-      {kind: 'Theme', name: 'Dark mode'},
-    ],
-    label: 'Quality',
-  },
-];
+import StackGrid from '@/components/StackGrid';
 
 const TheStack = () => (
   <section className="px-4 py-20 sm:px-8" id="stack">
@@ -40,11 +10,11 @@ const TheStack = () => (
             className="bg-secondary-soft size-1.5 rounded-full"
           />
           <span className="text-secondary-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-            The full stack
+            Tech stack
           </span>
         </div>
         <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
-          The full stack, no gaps.
+          Professional Frontend stack
         </h2>
         <p className="text-ink-dim text-[1.125rem]">
           Fewer gaps in the stack means fewer decisions Claude has to invent on
@@ -52,48 +22,14 @@ const TheStack = () => (
         </p>
       </div>
 
-      <div
-        className="grid grid-cols-1 gap-4 sm:grid-cols-3"
-        data-stagger={true}
-      >
-        {STACK_GROUPS.map((group) => (
-          <div
-            key={group.label}
-            className="bg-surface border-line-soft rounded-lg border px-5 pt-5 pb-3"
-          >
-            <div className="border-line-soft mb-1 border-b pb-3">
-              <span className="text-secondary-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-                {group.label}
-              </span>
-            </div>
-            <ul className="divide-line-soft divide-y">
-              {group.items.map((item) => (
-                <li
-                  key={item.name}
-                  className="flex items-center justify-between gap-4 py-2.5"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <div className="bg-secondary/12 text-secondary-soft inline-flex size-5 shrink-0 items-center justify-center rounded-sm">
-                      <CheckIcon size={12} />
-                    </div>
-                    <span className="text-ink text-[0.95rem]">{item.name}</span>
-                  </div>
-                  <span className="text-muted font-mono text-[0.65rem] tracking-[0.14em] whitespace-nowrap uppercase">
-                    {item.kind}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      <StackGrid />
 
       <p
         className="text-ink-dim mt-10 text-[0.95rem] leading-relaxed"
         data-reveal={true}
       >
-        Every lint rule is a check Claude has to clear. GAIA ships 1,592,
-        including 85 Stylelint rules covering the patterns Claude drifts into
+        Every lint rule is a check Claude has to clear. GAIA ships 1,314,
+        including 82 Stylelint rules covering the patterns Claude drifts into
         first: complexity creep, architectural shortcuts, mismatched filenames,
         broken CSS.{' '}
         <span className="text-ink">

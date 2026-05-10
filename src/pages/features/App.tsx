@@ -5,11 +5,10 @@ import ClaudeMdDetail from './sections/ClaudeMdDetail';
 import Forensics from './sections/Forensics';
 import GaiaCi from './sections/GaiaCi';
 import ObsidianWikiDetail from './sections/ObsidianWikiDetail';
-import Sharpen from './sections/Sharpen';
 import Stack from './sections/Stack';
 import TokenEconomics from './sections/TokenEconomics';
 import Trust from './sections/Trust';
-import WikiManagement from './sections/WikiManagement';
+import UpdateDeps from './sections/UpdateDeps';
 
 const App = () => {
   useScrollToHash();
@@ -20,9 +19,8 @@ const App = () => {
       <TokenEconomics />
       <AgenticDesignDetail />
       <ObsidianWikiDetail />
-      <WikiManagement />
       <GaiaCi />
-      <Sharpen />
+      <UpdateDeps />
       <ClaudeMdDetail />
       <Forensics />
       <Stack />
