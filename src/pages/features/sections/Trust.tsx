@@ -1,6 +1,9 @@
-import {Section} from '@/components/Section';
+import type {ReactNode} from 'react';
+import TrustGraphic from './figures/TrustGraphic';
+import FxSection from './FxSection';
+import PointList from './PointList';
 
-const POINTS = [
+const POINTS: {desc: ReactNode; name: string}[] = [
   {
     desc: 'GAIA’s coding rules embed Karpathy’s four coding principles (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution), plus two of GAIA’s own: Always Use TDD and Always Verify Your Work.',
     name: 'Coding principles',
@@ -26,7 +29,7 @@ const POINTS = [
     name: 'Test-driven development',
   },
   {
-    desc: "UATs the PO authors in plain English become Playwright E2E specs before the implementer writes a line of source. The implementer's first task is turning red tests green. Specs become tests automatically.",
+    desc: 'UATs the PO authors in plain English become Playwright E2E specs before the implementer writes a line of source. The implementer’s first task is turning red tests green. Specs become tests automatically.',
     name: 'Specs that turn into tests',
   },
   {
@@ -34,39 +37,33 @@ const POINTS = [
     name: 'Code-review audit before every merge',
   },
   {
-    desc: 'Typecheck, lint, tests, and build must all pass. Not "mostly clean", actually clean.',
+    desc: 'Typecheck, lint, tests, and build must all pass. Not “mostly clean”, actually clean.',
     name: 'Quality gate before commit',
   },
 ];
 
 const Trust = () => (
-  <Section id="trust" paddingTop="2rem" title="Trust">
-    <div className="text-ink-dim space-y-6">
-      <p>
-        You can’t trust output you can’t predict. Without enforceable
-        conventions, Claude reverts to its training distribution, an average of
-        every codebase on the internet, bad code and all. GAIA’s codebase is
-        what you actually want Claude matching. With GAIA, Claude writes code
-        that follows best practices on day one, and can’t ship code that
-        doesn’t.
-      </p>
-
-      <h3 className="text-ink pt-2 text-xl font-semibold">
-        How GAIA makes Claude trustworthy
-      </h3>
-
-      <ul className="space-y-3">
-        {POINTS.map(({desc, name}) => (
-          <li key={name} className="flex gap-3">
-            <span className="text-accent mt-0.5 shrink-0">•</span>
-            <span className="text-ink-dim">
-              <strong className="text-ink">{name}.</strong> {desc}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </Section>
+  <FxSection
+    id="trust"
+    lead={
+      <>
+        <p>
+          You can&apos;t trust output you can&apos;t predict. Without
+          enforceable conventions, Claude reverts to its training distribution,
+          an average of every codebase on the internet, bad code and all.
+        </p>
+        <p>
+          GAIA&apos;s codebase is what you actually want Claude matching. With
+          GAIA, Claude writes code that follows best practices on day one, and
+          can&apos;t ship code that doesn&apos;t.
+        </p>
+      </>
+    }
+    title="How GAIA makes Claude trustworthy"
+  >
+    <TrustGraphic />
+    <PointList points={POINTS} />
+  </FxSection>
 );
 
 export default Trust;

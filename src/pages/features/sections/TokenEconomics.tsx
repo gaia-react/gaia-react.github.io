@@ -1,9 +1,11 @@
 import type {ReactNode} from 'react';
-import {Section} from '@/components/Section';
+import TokenGraphic from './figures/TokenGraphic';
+import FxSection from './FxSection';
+import PointList from './PointList';
 
 const POINTS: {desc: ReactNode; name: string}[] = [
   {
-    desc: 'Claude loads the ones that match what it’s editing, nothing else.',
+    desc: "Claude loads the ones that match what it's editing, nothing else.",
     name: 'Rules are scoped to activate only when needed',
   },
   {
@@ -11,7 +13,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Obsidian wiki, fetched on demand',
   },
   {
-    desc: 'Session hooks keep Obsidian’s workflow (ingest cadence, cache discipline, link hygiene) aligned with the project’s conventions.',
+    desc: "Session hooks keep Obsidian's workflow (ingest cadence, cache discipline, link hygiene) aligned with the project's conventions.",
     name: 'Wiki behavior tailored to GAIA',
   },
   {
@@ -29,8 +31,8 @@ const POINTS: {desc: ReactNode; name: string}[] = [
   {
     desc: (
       <>
-        /gaia spec runs in its own context, separate from implementation. GAIA’s
-        Socratic layer wraps{' '}
+        /gaia spec runs in its own context, separate from implementation.
+        GAIA&apos;s Socratic layer wraps{' '}
         <a
           className="text-accent hover:text-accent-soft transition-colors duration-150"
           href="https://github.com/github/spec-kit"
@@ -63,31 +65,25 @@ const POINTS: {desc: ReactNode; name: string}[] = [
 ];
 
 const TokenEconomics = () => (
-  <Section id="tokens" title="Token economics">
-    <div className="text-ink space-y-6">
-      <p>
-        Context bloat isn’t just CLAUDE.md sprawl. Instructions get dropped into
-        global memory, forgotten, and accumulate into redundancies and
-        conflicts, an invisible cost that compounds every session. GAIA keeps
-        token usage minimal by design.
-      </p>
-
-      <h3 className="text-ink pt-2 text-xl font-semibold">
-        How GAIA keeps Claude token-efficient
-      </h3>
-
-      <ul className="space-y-3">
-        {POINTS.map(({desc, name}) => (
-          <li key={name} className="flex gap-3">
-            <span className="text-accent mt-0.5 shrink-0">•</span>
-            <span className="text-ink-dim">
-              <strong className="text-ink">{name}.</strong> {desc}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </Section>
+  <FxSection
+    id="tokens"
+    isCool={true}
+    lead={
+      <>
+        <p>
+          Context bloat isn&apos;t just CLAUDE.md sprawl. Instructions get
+          dropped into global memory, forgotten, and accumulate into
+          redundancies and conflicts, an invisible cost that compounds every
+          session.
+        </p>
+        <p>GAIA keeps token usage minimal by design.</p>
+      </>
+    }
+    title="How GAIA keeps Claude token-efficient"
+  >
+    <TokenGraphic />
+    <PointList points={POINTS} />
+  </FxSection>
 );
 
 export default TokenEconomics;

@@ -1,4 +1,4 @@
-import {twJoin} from 'tailwind-merge';
+import type {ReactNode} from 'react';
 import ChromaticLogo from '@/assets/logos/ChromaticLogo';
 import ClaudeLogo from '@/assets/logos/ClaudeLogo';
 import ConformLogo from '@/assets/logos/ConformLogo';
@@ -17,12 +17,11 @@ import TailwindLogo from '@/assets/logos/TailwindLogo';
 import TSLogo from '@/assets/logos/TSLogo';
 import VitestLogo from '@/assets/logos/VitestLogo';
 import ZodLogo from '@/assets/logos/ZodLogo';
-import {Section} from '@/components/Section';
+import FxSection from './FxSection';
 
 type LogoEntry = {
-  component: React.ReactNode;
+  component: ReactNode;
   href: string;
-  isWide?: boolean;
   name: string;
 };
 
@@ -61,7 +60,6 @@ const FOUNDATION: LogoEntry[] = [
   {
     component: <ConformLogo height={28} />,
     href: 'https://conform.guide/',
-    isWide: true,
     name: 'Conform',
   },
 ];
@@ -118,58 +116,100 @@ const CODE_QUALITY: LogoEntry[] = [
   },
 ];
 
-const LogoCard = ({component, href, isWide, name}: LogoEntry) => (
-  <a
-    aria-label={name}
-    className={twJoin(
-      'bg-surface border-line hover:border-accent-soft flex min-h-22 flex-col items-center justify-center gap-2 rounded-lg border px-3 py-5 no-underline transition-[border-color,transform] duration-150',
-      isWide && 'col-span-2'
-    )}
-    href={href}
-    rel="noreferrer"
-    target="_blank"
-  >
-    <div className="flex h-10 items-center justify-center">{component}</div>
-    <span className="text-ink-dim text-center text-xs/tight">{name}</span>
-  </a>
-);
+const MOBILE_COLS = 2;
 
-type GroupProperties = {
-  items: LogoEntry[];
-  label: string;
+const getBorderClasses = (index: number, total: number, cols: number) => {
+  const mobileLastCol = (index + 1) % MOBILE_COLS === 0;
+  const mobileLastRow = index >= total - MOBILE_COLS;
+  const desktopLastCol = (index + 1) % cols === 0;
+  const desktopLastRow = index >= total - cols;
+
+  const classes = ['border-line-soft'];
+
+  if (!mobileLastCol && !desktopLastCol) classes.push('border-r');
+  else if (!mobileLastCol && desktopLastCol) classes.push('border-r sm:border-r-0');
+  else if (mobileLastCol && !desktopLastCol) classes.push('sm:border-r');
+
+  if (!mobileLastRow && !desktopLastRow) classes.push('border-b');
+  else if (!mobileLastRow && desktopLastRow) classes.push('border-b sm:border-b-0');
+  else if (mobileLastRow && !desktopLastRow) classes.push('sm:border-b');
+
+  return classes.join(' ');
 };
 
-const LogoGroup = ({items, label}: GroupProperties) => (
-  <div className="space-y-3">
-    <h3 className="text-ink-dim text-xs font-semibold tracking-widest uppercase">
-      {label}
+type LogoGroupProperties = {
+  cols: number;
+  gridClass: string;
+  items: LogoEntry[];
+  title: string;
+};
+
+const LogoGroup = ({cols, gridClass, items, title}: LogoGroupProperties) => (
+  <div className="mb-10 last:mb-0">
+    <h3 className="font-display text-ink mb-4 text-[1.3rem] font-normal tracking-[-0.015em]">
+      {title}
     </h3>
-    <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
-      {items.map((item) => (
-        <LogoCard key={item.name} {...item} />
+    <div
+      className={`border-line-soft bg-surface grid overflow-hidden rounded-lg border ${gridClass}`}
+    >
+      {items.map(({component, href, name}, index) => (
+        <a
+          key={name}
+          className={`group flex flex-col items-center justify-center gap-[0.6rem] p-[1.4rem_0.75rem_1.2rem] transition-colors duration-150 ${getBorderClasses(index, items.length, cols)}`}
+          href={href}
+          rel="noreferrer"
+          target="_blank"
+        >
+          <div className="flex size-10 items-center justify-center transition-transform duration-150 group-hover:-translate-y-px">
+            {component}
+          </div>
+          <span className="text-ink-dim group-hover:text-ink text-center font-mono text-[0.75rem] tracking-[0.04em] transition-colors duration-150">
+            {name}
+          </span>
+        </a>
       ))}
     </div>
   </div>
 );
 
 const Stack = () => (
-  <Section id="stack" title="The stack">
-    <p className="text-ink-dim mb-8">
-      1,314 linting rules, four testing layers (unit, integration, E2E, visual)
-      with mocking, i18n, dark mode, forms with validation, and Storybook. All
-      pre-configured and documented for Claude.
-    </p>
-    <p className="text-ink-dim mb-8">
-      GAIA uses pnpm. Faster installs. Smaller node_modules. Stricter dependency
-      resolution that blocks phantom imports and closes the easiest path for npm
-      supply-chain attacks.
-    </p>
-    <div className="space-y-8">
-      <LogoGroup items={FOUNDATION} label="Foundation" />
-      <LogoGroup items={TESTING} label="Testing" />
-      <LogoGroup items={CODE_QUALITY} label="Code quality" />
-    </div>
-  </Section>
+  <FxSection
+    id="stack"
+    lead={
+      <>
+        <p>
+          1,314 linting rules, four testing layers (unit, integration, E2E,
+          visual) with mocking, i18n, dark mode, forms with validation, and
+          Storybook. All pre-configured and documented for Claude.
+        </p>
+        <p>
+          GAIA uses pnpm. Faster installs. Smaller node_modules. Stricter
+          dependency resolution that blocks phantom imports and closes the
+          easiest path for npm supply-chain attacks.
+        </p>
+      </>
+    }
+    title="The stack"
+  >
+    <LogoGroup
+      cols={4}
+      gridClass="grid-cols-2 sm:grid-cols-4"
+      items={FOUNDATION}
+      title="Foundation"
+    />
+    <LogoGroup
+      cols={3}
+      gridClass="grid-cols-2 sm:grid-cols-3"
+      items={TESTING}
+      title="Testing"
+    />
+    <LogoGroup
+      cols={4}
+      gridClass="grid-cols-2 sm:grid-cols-4"
+      items={CODE_QUALITY}
+      title="Code quality"
+    />
+  </FxSection>
 );
 
 export default Stack;

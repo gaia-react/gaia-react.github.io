@@ -1,7 +1,9 @@
 import {Layout} from '@/components/Layout';
+import {useScrollReveal} from '@/hooks/useScrollReveal';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesignDetail from './sections/AgenticDesignDetail';
 import ClaudeMdDetail from './sections/ClaudeMdDetail';
+import Closing from './sections/Closing';
 import Forensics from './sections/Forensics';
 import GaiaCi from './sections/GaiaCi';
 import Hero from './sections/Hero';
@@ -13,6 +15,7 @@ import UpdateDeps from './sections/UpdateDeps';
 
 const App = () => {
   useScrollToHash();
+  useScrollReveal();
 
   return (
     <Layout>
@@ -26,6 +29,7 @@ const App = () => {
       <ClaudeMdDetail />
       <Forensics />
       <Stack />
+      <Closing />
     </Layout>
   );
 };
