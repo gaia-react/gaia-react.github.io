@@ -272,6 +272,153 @@ samp {
 }
 
 /* ============================================================
+   Roadmap page — orbs, spine, nodes, item cards
+   ============================================================ */
+[data-group='shipped'] {
+  --group-color: #7ec488;
+  --group-bg-strong: rgba(126, 196, 136, 0.1);
+  --group-glow: rgba(126, 196, 136, 0.35);
+}
+[data-group='in-progress'] {
+  --group-color: #d97757;
+  --group-bg-strong: rgba(217, 119, 87, 0.1);
+  --group-glow: rgba(217, 119, 87, 0.35);
+}
+[data-group='planned'] {
+  --group-color: #d9a857;
+  --group-bg-strong: rgba(217, 168, 87, 0.1);
+  --group-glow: rgba(217, 168, 87, 0.3);
+}
+[data-group='vision'] {
+  --group-color: #8eb4b4;
+  --group-bg-strong: rgba(142, 180, 180, 0.08);
+  --group-glow: rgba(142, 180, 180, 0.25);
+}
+
+@keyframes rm-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(60px, -40px, 0);
+  }
+}
+@keyframes rm-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-50px, 55px, 0);
+  }
+}
+@keyframes rm-drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(40px, 40px, 0);
+  }
+}
+
+@utility rm-drift-shipped {
+  animation: rm-drift-a 32s ease-in-out infinite;
+  will-change: transform;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@utility rm-drift-accent {
+  animation: rm-drift-b 38s ease-in-out infinite;
+  will-change: transform;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@utility rm-drift-warn {
+  animation: rm-drift-c 28s ease-in-out infinite;
+  will-change: transform;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@utility rm-drift-vision {
+  animation: rm-drift-a 44s ease-in-out infinite reverse;
+  will-change: transform;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility rm-spine {
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 1rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent 0,
+      var(--color-line) 4%,
+      var(--color-line) 96%,
+      transparent 100%
+    );
+  }
+}
+
+@utility rm-node {
+  position: absolute;
+  left: -2.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: var(--color-canvas);
+  border: 2px solid var(--group-color, var(--color-muted));
+  box-shadow:
+    0 0 0 4px var(--color-canvas),
+    0 0 24px var(--group-glow, transparent);
+  z-index: 2;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--group-color, var(--color-muted));
+    opacity: 0.85;
+  }
+  @media (max-width: 640px) {
+    left: -2.2rem;
+  }
+}
+
+@utility rm-item {
+  position: relative;
+  padding: 1.25rem 1.4rem 1.4rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--group-bg-strong, transparent) 80%, transparent),
+    color-mix(in oklab, var(--group-bg-strong, transparent) 25%, transparent)
+  );
+  border: 1px solid var(--color-line-soft);
+  border-left: 2px solid var(--group-color, var(--color-muted));
+  border-radius: 4px;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+  &:hover {
+    transform: translateX(3px);
+    border-color: var(--color-line);
+    border-left-color: var(--group-color, var(--color-muted));
+  }
+}
+
+/* ============================================================
    Animated terminal keyframes (Get Started page)
    ============================================================ */
 @keyframes gs-caret {

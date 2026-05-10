@@ -1,20 +1,22 @@
-import type {ReactNode} from 'react';
+import type {CSSProperties, ReactNode} from 'react';
 
 type Group = {
-  color: string;
-  id: string;
+  id: GroupId;
   items: Item[];
   label: string;
 };
+
+type GroupId = 'in-progress' | 'planned' | 'shipped' | 'vision';
 
 type Item = {
   description: ReactNode;
   title: string;
 };
 
+const LAST_UPDATED = '2026-05-09';
+
 const GROUPS: Group[] = [
   {
-    color: '#7ec488',
     id: 'shipped',
     items: [
       {
@@ -31,7 +33,6 @@ const GROUPS: Group[] = [
     label: 'Shipped',
   },
   {
-    color: 'var(--color-accent)',
     id: 'in-progress',
     items: [
       {
@@ -52,7 +53,6 @@ const GROUPS: Group[] = [
     label: 'In Progress',
   },
   {
-    color: '#c8a96a',
     id: 'planned',
     items: [
       {
@@ -74,7 +74,6 @@ const GROUPS: Group[] = [
     label: 'Planned',
   },
   {
-    color: 'var(--color-muted)',
     id: 'vision',
     items: [
       {
@@ -112,61 +111,121 @@ const GROUPS: Group[] = [
   },
 ];
 
-const StatusGroup = ({group}: {group: Group}) => (
+const Orbs = () => (
   <div
-    className="scroll-mt-20 pl-6"
-    id={group.id}
-    style={{borderLeft: `2px solid ${group.color}`}}
+    aria-hidden={true}
+    className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
   >
-    <div className="mb-2 flex items-baseline gap-3">
-      <span
-        aria-hidden="true"
-        className="inline-block size-2.5 shrink-0 -translate-y-px rounded-full"
-        style={{backgroundColor: group.color}}
-      />
-      <h3 className="group font-display text-ink m-0 text-[clamp(1.5rem,2.5vw,2rem)] font-light tracking-[-0.02em]">
-        <a className="text-inherit no-underline" href={`#${group.id}`}>
-          {group.label}
-          <span
-            aria-hidden="true"
-            className="ml-[0.4em] text-[0.6em] opacity-0 transition-opacity duration-150 select-none group-hover:opacity-40"
-          >
-            #
-          </span>
-        </a>
-      </h3>
-    </div>
-    <ul className="m-0 mt-6 list-none space-y-5 p-0">
-      {group.items.map((item) => (
-        <li key={item.title}>
-          <h4 className="text-ink font-body mb-1 text-base font-semibold">
-            {item.title}
-          </h4>
-          <p className="text-ink-dim m-0 leading-relaxed">{item.description}</p>
-        </li>
-      ))}
-    </ul>
+    <div
+      className="rm-drift-shipped absolute size-[540px] rounded-full blur-[2px] sm:size-[720px]"
+      style={{
+        background:
+          'radial-gradient(circle at center, rgba(126,196,136,0.34) 0%, rgba(126,196,136,0.16) 30%, rgba(126,196,136,0.05) 58%, rgba(126,196,136,0) 78%)',
+        left: '-260px',
+        top: '-200px',
+      }}
+    />
+    <div
+      className="rm-drift-accent absolute hidden size-[620px] rounded-full blur-[2px] sm:block"
+      style={{
+        background:
+          'radial-gradient(circle at center, rgba(217,119,87,0.32) 0%, rgba(217,119,87,0.16) 30%, rgba(217,119,87,0.06) 58%, rgba(217,119,87,0) 78%)',
+        right: '-200px',
+        top: '120px',
+      }}
+    />
+    <div
+      className="rm-drift-warn absolute size-[405px] rounded-full blur-[2px] sm:size-[540px]"
+      style={{
+        background:
+          'radial-gradient(circle at center, rgba(217,168,87,0.22) 0%, rgba(217,168,87,0.10) 32%, rgba(217,168,87,0.04) 60%, rgba(217,168,87,0) 80%)',
+        left: '30%',
+        top: '50%',
+      }}
+    />
+    <div
+      className="rm-drift-vision absolute size-[570px] rounded-full blur-[2px] sm:size-[760px]"
+      style={{
+        background:
+          'radial-gradient(circle at center, rgba(91,138,138,0.28) 0%, rgba(91,138,138,0.13) 30%, rgba(91,138,138,0.04) 58%, rgba(91,138,138,0) 78%)',
+        bottom: '-240px',
+        right: '-180px',
+      }}
+    />
   </div>
 );
 
+const Stage = ({group}: {group: Group}) => (
+  <section
+    className="relative py-10 first:pt-2 last:pb-0"
+    data-group={group.id}
+    id={group.id}
+  >
+    <header
+      className="relative mb-6 flex min-h-[1.1rem] items-center gap-3.5"
+      data-reveal={true}
+    >
+      <span aria-hidden={true} className="rm-node" />
+      <h2 className="font-display text-ink m-0 text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.05] font-normal tracking-tight">
+        {group.label}
+      </h2>
+    </header>
+    <ul className="m-0 grid list-none gap-2 p-0">
+      {group.items.map((item, index) => (
+        <li
+          key={item.title}
+          className="rm-item"
+          data-reveal={true}
+          style={{'--reveal-delay': `${index * 60}ms`} as CSSProperties}
+        >
+          <h3 className="font-display text-ink m-0 mb-1.5 text-[1.18rem] font-medium tracking-[-0.015em]">
+            {item.title}
+          </h3>
+          <p className="text-ink-dim m-0 max-w-[64ch] text-[0.98rem] leading-[1.7]">
+            {item.description}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </section>
+);
+
 const Roadmap = () => (
-  <section className="pt-8 pb-24">
-    <div className="mx-auto max-w-3xl scroll-mt-20 px-4 sm:px-8" id="roadmap">
-      <h1 className="font-display text-ink mb-2 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
-        Roadmap
-      </h1>
-      <p className="text-muted mb-8 text-sm">Last updated: 2026-05-09</p>
-      <p className="text-ink-dim mb-12">
-        Where GAIA is today. Where it is going. Every release adds another layer
-        to the discipline.
-      </p>
-      <div className="space-y-14">
+  <div className="relative overflow-x-clip">
+    <Orbs />
+    <header className="relative z-10 px-6 pt-16 pb-12 sm:pt-24">
+      <div className="mx-auto w-full max-w-[880px]">
+        <h1
+          className="font-display text-ink m-0 mb-6 text-[clamp(3rem,7vw,5.25rem)] leading-none font-light tracking-[-0.035em]"
+          data-reveal={true}
+        >
+          Roadmap
+        </h1>
+        <p
+          className="font-display text-ink-dim m-0 mb-5 max-w-[38ch] text-[clamp(1.1rem,2vw,1.35rem)] leading-[1.6]"
+          data-reveal={true}
+          style={{'--reveal-delay': '80ms'} as CSSProperties}
+        >
+          Where GAIA is today. Where it is going. Every release adds another
+          layer to the discipline.
+        </p>
+        <p
+          className="text-muted font-mono text-[0.72rem] tracking-[0.14em] uppercase"
+          data-reveal={true}
+          style={{'--reveal-delay': '160ms'} as CSSProperties}
+        >
+          Last updated · {LAST_UPDATED}
+        </p>
+      </div>
+    </header>
+    <section className="relative z-10 px-6 pt-8 pb-24 sm:pb-24">
+      <div className="rm-spine relative mx-auto w-full max-w-[960px] pl-10 sm:pl-12">
         {GROUPS.map((group) => (
-          <StatusGroup key={group.id} group={group} />
+          <Stage key={group.id} group={group} />
         ))}
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 );
 
 export default Roadmap;
