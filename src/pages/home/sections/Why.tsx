@@ -1,3 +1,4 @@
+import type React from 'react';
 import {
   BullseyeIcon,
   ReflectionIcon,
@@ -61,6 +62,14 @@ const Why = () => (
           that get neglected and pile up while you build.{' '}
           <span className="text-ink">GAIA fixes all three.</span>
         </p>
+        <a
+          className="text-accent hover:text-accent-soft mt-4 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
+          data-reveal={true}
+          href="/why/"
+          style={{'--reveal-delay': '240ms'} as React.CSSProperties}
+        >
+          Learn more →
+        </a>
       </div>
 
       <div

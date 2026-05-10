@@ -46,7 +46,7 @@ const Orbs = () => (
 
 const STATS = [
   {label: 'Lint rules', value: '1,314'},
-  {label: 'Merge audit', value: '4 specialists'},
+  {label: 'Code audit', value: '4 specialists'},
   {label: 'Warnings allowed', value: 'Zero'},
 ];
 

@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from 'react';
 import gaiaLogo from '../assets/gaia-logo.svg';
 
 const NAV_DESKTOP = [
+  {href: '/why/', label: 'Why GAIA'},
   {href: '/features/', label: 'Features'},
   {href: 'https://docs.gaiareact.com/', label: 'Docs'},
   {href: '/roadmap/', label: 'Roadmap'},
