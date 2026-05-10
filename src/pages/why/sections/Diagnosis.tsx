@@ -41,7 +41,7 @@ const Diagnosis = () => (
     id="diagnosis"
   >
     <div className="mx-auto max-w-[1100px]">
-      <div className="mb-10 grid items-start gap-4 lg:grid-cols-[1fr_2fr] lg:gap-12">
+      <div className="mb-10 grid items-start gap-4 lg:grid-cols-[minmax(12rem,1fr)_minmax(0,2.2fr)] lg:gap-8">
         <h2
           className="group text-ink font-display max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.4rem)] font-normal tracking-[-0.02em]"
           data-reveal={true}
