@@ -1,6 +1,9 @@
-import {Section} from '@/components/Section';
+import type {ReactNode} from 'react';
+import ForensicsTriageGraphic from './figures/ForensicsTriageGraphic';
+import FxSection from './FxSection';
+import PointList from './PointList';
 
-const POINTS = [
+const POINTS: {desc: ReactNode; name: string}[] = [
   {
     desc: 'Eight failure classes captured with the specific state files that matter for each (init, update, wiki-sync, quality-gate, hook, scaffold, dev-server, other). Read-only. No remediation, no autofix.',
     name: 'One invocation, complete report',
@@ -20,32 +23,31 @@ const POINTS = [
 ];
 
 const Forensics = () => (
-  <Section id="forensics" title="GAIA forensics">
-    <div className="text-ink space-y-6">
-      <p>
-        When a GAIA workflow misfires, you don’t lose 30 minutes hunting state
-        files. Run /gaia forensics and describe what happened. The skill
-        assembles a redacted, classified, filing-ready report in one run.
-        User-config issues return the fix inline. Probable bugs file to GAIA’s
-        GitHub with one prompt.
-      </p>
-
-      <h3 className="text-ink pt-2 text-xl font-semibold">
-        What forensics does
-      </h3>
-
-      <ul className="space-y-3">
-        {POINTS.map(({desc, name}) => (
-          <li key={name} className="flex gap-3">
-            <span className="text-accent mt-0.5 shrink-0">•</span>
-            <span className="text-ink-dim">
-              <strong className="text-ink">{name}.</strong> {desc}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </Section>
+  <FxSection
+    id="forensics"
+    isCool={true}
+    lead={
+      <>
+        <p>
+          When a GAIA workflow misfires, you don&apos;t lose 30 minutes hunting
+          state files. Run{' '}
+          <code className="bg-surface rounded-sm px-2 py-0.5 text-[0.88em]">
+            /gaia forensics
+          </code>{' '}
+          and describe what happened.
+        </p>
+        <p>
+          The skill assembles a redacted, classified, filing-ready report in one
+          run. User-config issues return the fix inline. Probable bugs file to
+          GAIA&apos;s GitHub with one prompt.
+        </p>
+      </>
+    }
+    title="GAIA Forensics"
+  >
+    <ForensicsTriageGraphic />
+    <PointList points={POINTS} />
+  </FxSection>
 );
 
 export default Forensics;

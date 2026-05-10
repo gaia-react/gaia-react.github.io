@@ -1,8 +1,56 @@
-import {Section} from '@/components/Section';
+import type {ReactNode} from 'react';
+import FxSection from './FxSection';
+import PointList from './PointList';
 
-const POINTS = [
+type LedgerRow = {
+  action: string;
+  tone: 'auto' | 'review';
+  what: string;
+  when: string;
+};
+
+const CI_LEDGER: LedgerRow[] = [
   {
-    desc: 'When app code changes, the workflow runs the wiki chain and opens a labeled PR. When it hasn’t, the run exits clean. A run that rewrites more than 25% of the wiki holds for human review instead of auto-merging.',
+    action: 'auto-merge',
+    tone: 'auto',
+    what: 'Patch / minor dependency bumps',
+    when: 'weekly',
+  },
+  {
+    action: 'review',
+    tone: 'review',
+    what: 'Major dependency bumps',
+    when: 'weekly',
+  },
+  {
+    action: 'auto-merge',
+    tone: 'auto',
+    what: 'High / critical security findings',
+    when: 'daily',
+  },
+  {
+    action: 'auto-merge',
+    tone: 'auto',
+    what: 'Wiki sync on app changes',
+    when: 'on commit',
+  },
+  {
+    action: 'review',
+    tone: 'review',
+    what: 'Wiki rewrite > 25%',
+    when: 'on commit',
+  },
+  {
+    action: 'auto-delete',
+    tone: 'auto',
+    what: 'Stale branches > 30d',
+    when: 'monthly',
+  },
+];
+
+const POINTS: {desc: ReactNode; name: string}[] = [
+  {
+    desc: "When app code changes, the workflow runs the wiki chain and opens a labeled PR. When it hasn't, the run exits clean. A run that rewrites more than 25% of the wiki holds for human review instead of auto-merging.",
     name: 'Wiki stays in sync with the code',
   },
   {
@@ -28,39 +76,60 @@ const POINTS = [
 ];
 
 const GaiaCi = () => (
-  <Section id="gaia-ci" title="GAIA CI">
-    <div className="text-ink space-y-6">
-      <p>
-        GAIA CI is the maintenance system built into every GAIA project. Wikis
-        stay in sync with the code. Dependencies stay current and tested.
-        Security findings get patched. Stale branches don’t pile up. The
-        important chores that decay a project when neglected, all running on
-        their own.
-      </p>
+  <FxSection
+    id="gaia-ci"
+    lead={
+      <>
+        <p>
+          GAIA CI is the maintenance system built into every GAIA project. Wikis
+          stay in sync with the code. Dependencies stay current and tested.
+          Security findings get patched. Stale branches don&apos;t pile up. The
+          important chores that decay a project when neglected, all running on
+          their own.
+        </p>
+        <p>
+          AI handles the safe cases. Humans only see the ones AI can&apos;t
+          recover from. Patch and minor dependency bumps, security patches, and
+          routine wiki updates auto-merge on green CI. Major bumps, large wiki
+          rewrites, and post-revert failures hold for human review.
+        </p>
+      </>
+    }
+    title="GAIA CI"
+  >
+    {/* CI Ledger table */}
+    <div className="bg-surface border-line-soft mb-10 overflow-hidden rounded-lg border font-mono text-[0.8rem]">
+      {/* Header */}
+      <div className="border-line-soft text-muted grid grid-cols-[1fr_auto] border-b bg-black/15 px-[1.1rem] py-[0.6rem] text-[0.65rem] tracking-[0.16em] uppercase sm:grid-cols-[1fr_130px_130px]">
+        <span className="pr-4">What</span>
+        <span className="hidden sm:block">When</span>
+        <span>Action</span>
+      </div>
 
-      <p>
-        AI handles the safe cases. Humans only see the ones AI can’t recover
-        from. Patch and minor dependency bumps, security patches, and routine
-        wiki updates auto-merge on green CI. Major bumps, large wiki rewrites,
-        and post-revert failures hold for human review.
-      </p>
-
-      <h3 className="text-ink pt-2 text-xl font-semibold">
-        Automatic by design
-      </h3>
-
-      <ul className="space-y-3">
-        {POINTS.map(({desc, name}) => (
-          <li key={name} className="flex gap-3">
-            <span className="text-accent mt-0.5 shrink-0">&bull;</span>
-            <span className="text-ink-dim">
-              <strong className="text-ink">{name}.</strong> {desc}
-            </span>
-          </li>
-        ))}
-      </ul>
+      {/* Rows */}
+      {CI_LEDGER.map((row) => (
+        <div
+          key={row.what}
+          className="border-line-soft grid grid-cols-[1fr_auto] items-center border-b px-[1.1rem] py-[0.7rem] last:border-b-0 sm:grid-cols-[1fr_130px_130px]"
+        >
+          <span className="text-ink pr-4 text-[0.8rem]">{row.what}</span>
+          <span className="text-muted hidden text-[0.75rem] sm:block">
+            {row.when}
+          </span>
+          <span
+            className={`inline-flex items-center gap-[0.4rem] text-[0.7rem] tracking-[0.12em] uppercase ${row.tone === 'review' ? 'text-warn-soft' : 'text-secondary-soft'}`}
+          >
+            <span
+              className={`inline-block size-[6px] rounded-full ${row.tone === 'review' ? 'bg-warn' : 'bg-secondary'}`}
+            />
+            {row.action}
+          </span>
+        </div>
+      ))}
     </div>
-  </Section>
+
+    <PointList points={POINTS} />
+  </FxSection>
 );
 
 export default GaiaCi;

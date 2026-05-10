@@ -19,7 +19,7 @@ const Hero = () => (
         className="font-display text-ink text-[clamp(2.6rem,6vw,4.4rem)] leading-[1.05] font-light tracking-[-0.03em]"
         data-reveal={true}
       >
-        The Discipline
+        The Case for GAIA
       </h1>
       <div className="text-ink-dim text-[1.05rem] leading-[1.7]">
         <p
@@ -27,24 +27,24 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
-          Discipline is structural, not personal. Built into the project so
-          Claude has to follow it.
+          The skepticism about AI-built code is fair. Vibe coding ships fast and
+          breaks under load. Tests get skipped. Conventions drift.
         </p>
         <p
           className="mb-4"
           data-reveal={true}
           style={{'--reveal-delay': '160ms'} as React.CSSProperties}
         >
-          Hooks intercept the tool call. Rules shape the writing. Gates hold the
-          commit. Audits guard the merge. CI keeps the project current.
+          The bottleneck was never raw capability. It is the absence of
+          discipline around Claude.
         </p>
         <p
           className="font-display text-ink text-[1.15rem] italic"
           data-reveal={true}
           style={{'--reveal-delay': '240ms'} as React.CSSProperties}
         >
-          Discipline is leverage. Each layer turns Claude&apos;s capability into
-          work that ships.
+          GAIA is the discipline. Built into the project, so Claude has to
+          follow it.
         </p>
       </div>
     </div>
