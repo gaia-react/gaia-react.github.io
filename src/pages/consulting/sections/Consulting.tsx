@@ -2,17 +2,18 @@ import type React from 'react';
 import {useEffect} from 'react';
 import {getCalApi} from '@calcom/embed-react';
 import {twJoin} from 'tailwind-merge';
-import {Section} from '@/components/Section';
 
 const CAL_USERNAME = 'stevensacks';
 const CAL_NAMESPACE = 'consulting';
 
 type SkuData = {
+  anchor: string;
+  cadence: string;
   calEvent: string;
   deliverables: string[];
-  icon: React.ReactNode;
+  pitch: string;
   price: string;
-  priceDetail: string;
+  stage: string;
   tagline: string;
   tiers?: SkuTier[];
   title: string;
@@ -20,223 +21,403 @@ type SkuData = {
 
 type SkuTier = {description: string; price: string};
 
-const iconBaseProperties = {
-  'aria-hidden': true,
-  className: 'block mb-[0.875rem]',
-  fill: 'none',
-  height: 36,
-  stroke: 'var(--color-ink-dim)',
-  strokeLinecap: 'round' as const,
-  strokeLinejoin: 'round' as const,
-  strokeWidth: 1.5,
-  viewBox: '0 0 24 24',
-  width: 36,
-};
-
-const AuditIcon = (
-  <svg {...iconBaseProperties}>
-    <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-    <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-    <circle cx="11.5" cy="14.5" r="2.5" />
-    <path d="M13.3 16.3 15 18" />
-  </svg>
-);
-
-const MigrateIcon = (
-  <svg {...iconBaseProperties}>
-    <path d="m16 3 4 4-4 4" />
-    <path d="M20 7H4" />
-    <path d="m8 21-4-4 4-4" />
-    <path d="M4 17h16" />
-  </svg>
-);
-
-const FoundationIcon = (
-  <svg {...iconBaseProperties}>
-    <path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2" />
-    <rect height="8" rx="1" width="8" x="14" y="2" />
-  </svg>
-);
-
-const RetainerIcon = (
-  <svg {...iconBaseProperties}>
-    <path d="M16 14v2.2l1.6 1" />
-    <path d="M16 2v4" />
-    <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5" />
-    <path d="M3 10h5" />
-    <path d="M8 2v4" />
-    <circle cx="16" cy="16" r="6" />
-  </svg>
-);
-
 const SKUS: SkuData[] = [
   {
+    anchor: 'audit',
+    cadence: '1 week · 100% async',
     calEvent: 'audit-intro',
     deliverables: [
-      'Deep review of one repo: CLAUDE.md, rules, hooks, prompt patterns, last 50 PRs',
-      '15–25 page written report: what’s working, what’s costing you, top 5 fixes ranked by ROI',
-      '20-minute recorded walkthrough video',
-      'Optional 30-minute Q&A call within 2 weeks',
+      'Deep review of one repo. CLAUDE.md, rules, hooks, prompt patterns, last 50 PRs.',
+      'A 15 to 25 page written report. What’s working, what’s costing you, top 5 fixes ranked by ROI.',
+      '20-minute recorded walkthrough video.',
+      'Optional 30-minute Q&A call within 2 weeks.',
     ],
-    icon: AuditIcon,
+    pitch:
+      'An outside opinion on your Claude workflow, delivered as a written report you can act on without scheduling anything else.',
     price: '$5,000',
-    priceDetail: '1 week · 100% async',
-    tagline: 'An outside opinion on your Claude workflow',
+    stage: 'Diagnose',
+    tagline: 'Where the AI debt is, and what it’s costing you',
     title: 'Audit',
   },
   {
+    anchor: 'migrate',
+    cadence: '3 to 4 weeks · async-first · scope-variable',
     calEvent: 'migrate-intro',
     deliverables: [
-      'Hands-on refactor of one repo: pattern consolidation, AI-debt cleanup, type tightening',
-      'GAIA installed on the refactored codebase: rules, hooks, skills, wiki templates',
-      'Commit-by-commit migration log so you can review the cleanup',
-      'Written remediation report: what was changed, why, and what to watch for',
-      'Optional 30-minute handoff call within 2 weeks of delivery',
+      'Hands-on refactor of one repo. Pattern consolidation, AI-debt cleanup, type tightening.',
+      'GAIA installed on the refactored codebase. Rules, hooks, skills, wiki templates.',
+      'Commit-by-commit migration log so you can review the cleanup.',
+      'Written remediation report. What was changed, why, and what to watch for.',
+      'Optional 30-minute handoff call within 2 weeks of delivery.',
     ],
-    icon: MigrateIcon,
+    pitch:
+      'Take one messy repo from AI sprawl to GAIA-ready. The longest engagement, and usually the one with the most ground to recover.',
     price: 'From $35,000',
-    priceDetail: '3–4 weeks · async-first · scope-variable',
-    tagline: 'Take one messy repo from AI sprawl to GAIA-ready',
+    stage: 'Remediate',
+    tagline: 'One repo, taken from AI sprawl to GAIA-ready',
     title: 'Migrate',
   },
   {
+    anchor: 'foundation',
+    cadence: '2 weeks · 2 to 3 live sessions',
     calEvent: 'foundation-intro',
     deliverables: [
-      'GAIA installed and customized for your repo: rules, hooks, skills, wiki templates matched to your stack',
-      'Integration with your existing tooling (Sentry, Linear, etc.)',
-      '2–3 live sessions: kickoff, mid-foundation demo, handoff training (all recorded)',
-      'Written runbook customized to you',
-      '30 days of post-delivery email support',
+      'GAIA installed and customized for your repo. Rules, hooks, skills, wiki templates matched to your stack.',
+      'Integration with your existing tooling (Sentry, Linear, etc.).',
+      'Two to three live sessions. Kickoff, mid-foundation demo, handoff training. All recorded.',
+      'Written runbook customized to you.',
+      '30 days of post-delivery email support.',
     ],
-    icon: FoundationIcon,
+    pitch:
+      'Full GAIA setup, done with you. The greenfield path for teams starting a new Claude-native project the right way.',
     price: '$25,000',
-    priceDetail: '2 weeks · 2–3 live sessions',
-    tagline: 'Full GAIA setup for you',
+    stage: 'Greenfield',
+    tagline: 'Full GAIA setup, done with you',
     title: 'Foundation',
   },
   {
+    anchor: 'retainer',
+    cadence: 'Ongoing · async-first',
     calEvent: 'retainer-intro',
     deliverables: [
-      'Async review of critical PRs (5–10/month)',
-      'Weekly 30-minute office hour (live)',
-      'Slack/Discord access with 24-hour response time',
-      'Quarterly written health-check summary',
-      'First-look access to GAIA roadmap features',
-      '10% discount on additional Foundation or Migration engagements',
+      'Async review of critical PRs (5 to 10 per month).',
+      'Weekly 30-minute office hour, live.',
+      'Slack or Discord access with 24-hour response time.',
+      'Quarterly written health-check summary.',
+      'First-look access to GAIA roadmap features.',
+      '10% discount on additional Foundation or Migration engagements.',
     ],
-    icon: RetainerIcon,
+    pitch:
+      'Ongoing oversight after the cleanup or the setup. The discipline keeps holding because someone outside the team is watching.',
     price: 'From $5,000/mo',
-    priceDetail: 'Ongoing · async-first',
-    tagline: 'Ongoing oversight as your project grows',
+    stage: 'Sustain',
+    tagline: 'Ongoing oversight as the codebase grows',
     tiers: [
-      {description: '8 hours, basic PR review', price: '$5k/mo'},
-      {description: '15 hours, full critical-path PR review', price: '$8k/mo'},
+      {description: '8 hours per month, basic PR review', price: '$5k/mo'},
+      {
+        description: '15 hours per month, full critical-path PR review',
+        price: '$8k/mo',
+      },
     ],
     title: 'Retainer',
   },
 ];
 
-const CtaButton = ({
+const CalButton = ({
   calLink,
   children,
-  href,
-  isFullWidth,
+  variant = 'ghost',
 }: {
-  calLink?: string;
+  calLink: string;
   children: React.ReactNode;
-  href?: string;
-  isFullWidth?: boolean;
-}) => {
-  const baseClass = twJoin(
-    isFullWidth ? 'flex w-full justify-center' : 'inline-flex',
-    'bg-accent text-canvas font-body hover:bg-accent-2 items-center rounded-lg px-5 py-2.75 text-[0.9375rem] font-medium tracking-[0.01em] whitespace-nowrap no-underline transition-colors duration-150'
-  );
+  variant?: 'ghost' | 'solid';
+}) => (
+  <button
+    className={twJoin(
+      'font-body inline-flex h-10 cursor-pointer items-center gap-2 rounded-md px-4 text-[0.875rem] font-medium tracking-[0.01em] whitespace-nowrap no-underline transition-colors duration-150',
+      variant === 'solid' ?
+        'bg-accent text-canvas hover:bg-accent-2 border-none'
+      : 'border-line text-ink hover:border-accent hover:text-accent-soft border bg-transparent'
+    )}
+    data-cal-config='{"layout":"month_view"}'
+    data-cal-link={`${CAL_USERNAME}/${calLink}`}
+    data-cal-namespace={CAL_NAMESPACE}
+    type="button"
+  >
+    {children}
+  </button>
+);
 
-  if (calLink) {
-    return (
-      <button
-        className={twJoin(baseClass, 'cursor-pointer border-none')}
-        data-cal-config='{"layout":"month_view"}'
-        data-cal-link={`${CAL_USERNAME}/${calLink}`}
-        data-cal-namespace={CAL_NAMESPACE}
-        type="button"
-      >
-        {children}
-      </button>
-    );
-  }
+const SpectrumRail = () => (
+  <ol
+    className="relative m-0 grid list-none grid-cols-2 gap-y-10 p-0 md:grid-cols-4 md:gap-y-0"
+    data-reveal={true}
+  >
+    {SKUS.map((sku, index) => {
+      const isLast = index === SKUS.length - 1;
 
-  return (
-    <a className={baseClass} href={href}>
-      {children}
-    </a>
-  );
-};
-
-const SkuCard = ({sku}: {sku: SkuData}) => (
-  <div className="bg-surface border-line flex flex-col gap-5 rounded-xl border p-7">
-    {/* Title + tagline */}
-    <div>
-      {sku.icon}
-      <h2 className="font-display text-ink mb-1.5 text-[1.75rem] leading-[1.15] font-light tracking-[-0.02em]">
-        {sku.title}
-      </h2>
-      <p className="text-ink-dim min-h-[calc(0.875rem*1.5*2)] text-sm/normal">
-        {sku.tagline}
-      </p>
-    </div>
-
-    {/* Price */}
-    <div>
-      <p className="font-display text-ink mb-1 text-[2rem] leading-[1.1] font-light tracking-[-0.02em]">
-        {sku.price}
-      </p>
-      <p className="font-body text-muted text-[0.8125rem]">{sku.priceDetail}</p>
-    </div>
-
-    {/* CTA above the feature list */}
-    <CtaButton calLink={sku.calEvent} isFullWidth={true}>
-      Book free intro call →
-    </CtaButton>
-
-    {/* Divider */}
-    <div aria-hidden="true" className="border-line border-t" />
-
-    {/* Feature list */}
-    <ul className="m-0 flex flex-1 list-none flex-col gap-2.5 p-0">
-      {sku.deliverables.map((item) => (
+      return (
         <li
-          key={item}
-          className="text-ink-dim flex gap-2.5 text-sm leading-[1.55]"
+          key={sku.anchor}
+          className="border-line-soft relative flex flex-col items-start border-t pt-6 md:items-center md:pt-7 md:text-center"
+          style={{'--reveal-delay': `${index * 90}ms`} as React.CSSProperties}
         >
           <span
-            aria-hidden="true"
-            className="text-accent mt-[0.15rem] shrink-0 text-xs font-semibold"
+            aria-hidden={true}
+            className={twJoin(
+              'absolute top-[-5px] left-3 size-2.5 rounded-full md:left-1/2 md:-translate-x-1/2',
+              isLast ? 'bg-secondary' : 'bg-accent'
+            )}
+          />
+          <div
+            className={twJoin(
+              'font-mono text-[0.65rem] tracking-[0.2em] uppercase',
+              isLast ? 'text-secondary-soft' : 'text-accent-soft'
+            )}
           >
-            ✓
-          </span>
+            {sku.stage}
+          </div>
+          <a
+            className="text-ink font-display hover:text-accent-soft mt-1 text-[1.1rem] font-light tracking-[-0.01em] no-underline transition-colors duration-150"
+            href={`#${sku.anchor}`}
+          >
+            {sku.title}
+          </a>
+          <div className="text-muted mt-1 font-mono text-[0.65rem] tracking-[0.14em]">
+            {sku.price}
+          </div>
+        </li>
+      );
+    })}
+  </ol>
+);
+
+const SkuHeader = ({sku}: {sku: SkuData}) => (
+  <>
+    <div className="text-accent-soft font-mono text-[0.7rem] tracking-[0.22em] uppercase">
+      {sku.stage} · {sku.title}
+    </div>
+    <h2 className="font-display text-ink mt-3 text-[clamp(2rem,4vw,2.85rem)] leading-[1.05] font-light tracking-tight">
+      {sku.tagline}
+    </h2>
+  </>
+);
+
+const PriceBlock = ({cadence, price}: {cadence: string; price: string}) => (
+  <div>
+    <div className="font-display text-ink text-[2rem] leading-[1.05] font-light tracking-[-0.02em]">
+      {price}
+    </div>
+    <div className="text-muted mt-2 font-mono text-[0.7rem] tracking-[0.16em] uppercase">
+      {cadence}
+    </div>
+  </div>
+);
+
+const DeliverablesList = ({items}: {items: string[]}) => (
+  <ul className="m-0 mt-10 flex list-none flex-col gap-3 p-0">
+    {items.map((item, index) => (
+      <li key={item} className="grid grid-cols-[2.5rem_1fr] gap-2 sm:gap-4">
+        <span
+          aria-hidden={true}
+          className="text-muted pt-0.5 font-mono text-[0.7rem] tracking-[0.14em]"
+        >
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <span className="text-ink-dim text-[0.95rem] leading-[1.65]">
           {item}
+        </span>
+      </li>
+    ))}
+  </ul>
+);
+
+const BlockFooter = ({
+  cadence,
+  calEvent,
+  price,
+}: {
+  cadence: string;
+  calEvent: string;
+  price: string;
+}) => (
+  <div className="border-line-soft mt-12 flex flex-wrap items-end justify-between gap-6 border-t pt-8">
+    <PriceBlock cadence={cadence} price={price} />
+    <CalButton calLink={calEvent} variant="ghost">
+      Book a free intro →
+    </CalButton>
+  </div>
+);
+
+const AuditBlock = ({sku}: {sku: SkuData}) => (
+  <div className="grid gap-10 md:grid-cols-[1fr_18rem] md:gap-16">
+    <div data-reveal={true}>
+      <SkuHeader sku={sku} />
+      <p className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7]">
+        {sku.pitch}
+      </p>
+      <DeliverablesList items={sku.deliverables} />
+    </div>
+    <aside
+      className="border-line-soft flex flex-col gap-5 self-start border-t pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-12"
+      data-reveal={true}
+      style={{'--reveal-delay': '120ms'} as React.CSSProperties}
+    >
+      <PriceBlock cadence={sku.cadence} price={sku.price} />
+      <CalButton calLink={sku.calEvent} variant="solid">
+        Book a free intro →
+      </CalButton>
+    </aside>
+  </div>
+);
+
+const MigrateBlock = ({sku}: {sku: SkuData}) => (
+  <div data-reveal={true}>
+    <SkuHeader sku={sku} />
+    <p className="text-ink-dim mt-6 max-w-prose text-[1.125rem] leading-[1.7]">
+      {sku.pitch}
+    </p>
+    <div className="border-line-soft mt-10 grid gap-10 border-t pt-8 sm:grid-cols-2 sm:gap-12">
+      <div>
+        <div className="text-muted mb-2 font-mono text-[0.65rem] tracking-[0.2em] uppercase">
+          Before
+        </div>
+        <p className="text-ink-dim text-[0.95rem] leading-[1.65]">
+          AI-generated patterns layered on top of legacy ones. Conventions
+          drift. Tests skipped. Token costs ballooning. Nothing enforced at
+          write-time.
+        </p>
+      </div>
+      <div>
+        <div className="text-secondary-soft mb-2 font-mono text-[0.65rem] tracking-[0.2em] uppercase">
+          After
+        </div>
+        <p className="text-ink-dim text-[0.95rem] leading-[1.65]">
+          Patterns consolidated. Rules, hooks, and skills enforce them at the
+          keystroke. PR reviews stop catching the same five things. The repo
+          stops fighting itself.
+        </p>
+      </div>
+    </div>
+    <DeliverablesList items={sku.deliverables} />
+    <BlockFooter
+      cadence={sku.cadence}
+      calEvent={sku.calEvent}
+      price={sku.price}
+    />
+  </div>
+);
+
+const FOUNDATION_PHASES = [
+  {
+    detail:
+      'Discovery and install. GAIA rules, hooks, skills, and wiki templates wired to your stack.',
+    label: 'Week 1',
+  },
+  {
+    detail:
+      'Integration with your existing tooling. Mid-foundation demo and live working sessions.',
+    label: 'Week 2',
+  },
+  {
+    detail:
+      'Recorded handoff training, customized runbook delivered, 30 days of email support starts.',
+    label: 'Handoff',
+  },
+];
+
+const FoundationBlock = ({sku}: {sku: SkuData}) => (
+  <div data-reveal={true}>
+    <SkuHeader sku={sku} />
+    <p className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7]">
+      {sku.pitch}
+    </p>
+    <ol className="m-0 mt-10 grid list-none gap-6 p-0 md:grid-cols-3 md:gap-10">
+      {FOUNDATION_PHASES.map((phase, index) => (
+        <li
+          key={phase.label}
+          className="border-line-soft relative border-t pt-5"
+        >
+          <span
+            aria-hidden={true}
+            className="bg-accent absolute top-[-3px] left-0 h-[5px] w-10"
+          />
+          <div className="text-accent-soft font-mono text-[0.65rem] tracking-[0.22em] uppercase">
+            {phase.label}
+          </div>
+          <p className="text-ink-dim mt-3 text-[0.95rem] leading-[1.65]">
+            {phase.detail}
+          </p>
+          <div className="text-muted mt-3 font-mono text-[0.6rem] tracking-[0.18em]">
+            0{index + 1}
+          </div>
         </li>
       ))}
-    </ul>
-
-    {/* Retainer tiers */}
-    {sku.tiers && (
-      <div className="border-line border-t pt-4">
-        <p className="text-muted mb-2 text-xs font-medium tracking-[0.08em] uppercase">
-          Two tiers
-        </p>
-        <ul className="m-0 flex list-none flex-col gap-1 p-0">
-          {sku.tiers.map((tier) => (
-            <li key={tier.price} className="text-ink-dim text-[0.8125rem]">
-              <strong className="text-ink">{tier.price}:</strong>{' '}
-              {tier.description}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
+    </ol>
+    <DeliverablesList items={sku.deliverables} />
+    <BlockFooter
+      cadence={sku.cadence}
+      calEvent={sku.calEvent}
+      price={sku.price}
+    />
   </div>
+);
+
+const RetainerBlock = ({sku}: {sku: SkuData}) => (
+  <div data-reveal={true}>
+    <SkuHeader sku={sku} />
+    <p className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7]">
+      {sku.pitch}
+    </p>
+    <div className="border-line-soft mt-10 grid gap-px border-y bg-transparent sm:grid-cols-2">
+      {sku.tiers?.map((tier, index) => (
+        <div
+          key={tier.price}
+          className={twJoin(
+            'flex flex-col gap-2 py-6 sm:py-8',
+            index === 0 ? 'sm:pr-10' : (
+              'sm:border-line-soft sm:border-l sm:pl-10'
+            )
+          )}
+        >
+          <div className="text-secondary-soft font-mono text-[0.65rem] tracking-[0.22em] uppercase">
+            Tier {String.fromCodePoint(65 + index)}
+          </div>
+          <div className="font-display text-ink text-[1.75rem] leading-[1.1] font-light tracking-[-0.02em]">
+            {tier.price}
+          </div>
+          <p className="text-ink-dim text-[0.95rem] leading-[1.65]">
+            {tier.description}
+          </p>
+        </div>
+      ))}
+    </div>
+    <DeliverablesList items={sku.deliverables} />
+    <BlockFooter
+      cadence={sku.cadence}
+      calEvent={sku.calEvent}
+      price={sku.price}
+    />
+  </div>
+);
+
+const SkuBlock = ({sku}: {sku: SkuData}) => {
+  if (sku.anchor === 'audit') return <AuditBlock sku={sku} />;
+  if (sku.anchor === 'migrate') return <MigrateBlock sku={sku} />;
+  if (sku.anchor === 'foundation') return <FoundationBlock sku={sku} />;
+
+  return <RetainerBlock sku={sku} />;
+};
+
+const Orbs = () => (
+  <>
+    <div
+      aria-hidden={true}
+      className="gaia-drift-orb-a pointer-events-none absolute z-0 rounded-full"
+      style={{
+        background:
+          'radial-gradient(circle at center, rgba(217,119,87,0.36) 0%, rgba(217,119,87,0.18) 32%, rgba(217,119,87,0.06) 60%, rgba(217,119,87,0) 78%)',
+        height: 680,
+        opacity: 0.85,
+        right: -200,
+        top: -200,
+        width: 680,
+      }}
+    />
+    <div
+      aria-hidden={true}
+      className="gaia-drift-orb-b pointer-events-none absolute z-0 rounded-full"
+      style={{
+        background:
+          'radial-gradient(circle at center, rgba(91,138,138,0.26) 0%, rgba(91,138,138,0.14) 36%, rgba(91,138,138,0) 76%)',
+        bottom: -240,
+        height: 540,
+        left: -160,
+        opacity: 0.75,
+        width: 540,
+      }}
+    />
+  </>
 );
 
 const Consulting = () => {
@@ -254,72 +435,95 @@ const Consulting = () => {
   return (
     <>
       {/* Hero */}
-      <section className="pt-20 pb-12">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-8">
-          <h1 className="font-display text-ink mb-6 text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] font-light tracking-[-0.03em]">
-            Work with the creator of GAIA
+      <section className="relative overflow-x-clip px-4 pt-20 pb-16 sm:px-8 sm:pt-28 sm:pb-20">
+        <Orbs />
+        <div className="relative z-10 mx-auto max-w-5xl">
+          <div
+            className="text-accent-soft mb-7 inline-flex items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase"
+            data-reveal={true}
+          >
+            <span aria-hidden={true} className="bg-accent-soft size-1.5" />
+            Consulting
+          </div>
+          <h1
+            className="font-display text-ink max-w-[20ch] text-[clamp(2.4rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]"
+            data-reveal={true}
+            style={{'--reveal-delay': '80ms'} as React.CSSProperties}
+          >
+            Your team is shipping with Claude.{' '}
+            <em className="text-accent-soft font-light italic">
+              The discipline is lagging.
+            </em>
           </h1>
-          <p className="text-ink-dim mx-auto max-w-152 text-[clamp(1rem,2vw,1.1875rem)] leading-[1.65]">
-            I built the GAIA Flash Framework in the 2000s. It powered over
-            100,000 sites and was the standard at every major digital agency.
-            GAIA React carries that same workflow discipline into the
-            Claude-native era.
-            <br />
-            <br />
-            Now, I help teams put it to work.
-          </p>
         </div>
       </section>
 
-      {/* Skip to pricing. Doubles as visual break between hero and pitch */}
-      <div className="px-4 text-center sm:px-8">
-        <CtaButton href="#pricing">See engagement options ↓</CtaButton>
+      {/* Engagement spectrum */}
+      <section className="border-line-soft border-t px-4 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+            <div
+              className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase"
+              data-reveal={true}
+            >
+              The engagement journey
+            </div>
+            <div
+              className="text-muted font-mono text-[0.7rem] tracking-[0.16em]"
+              data-reveal={true}
+            >
+              Brownfield → Sustain
+            </div>
+          </div>
+          <SpectrumRail />
+        </div>
+      </section>
+
+      {/* Engagement blocks */}
+      <div className="px-4 sm:px-8">
+        {SKUS.map((sku, index) => (
+          <section
+            key={sku.anchor}
+            className={twJoin(
+              'border-line-soft scroll-mt-20 border-t py-20 sm:py-28',
+              index === SKUS.length - 1 && 'border-b'
+            )}
+            id={sku.anchor}
+          >
+            <div className="mx-auto max-w-5xl">
+              <SkuBlock sku={sku} />
+            </div>
+          </section>
+        ))}
       </div>
 
-      {/* Lead-in */}
-      <Section id="intro">
-        <div className="flex flex-col gap-5">
-          <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
-            Your team started using Claude Code. Now everyone’s doing it
-            differently: inconsistent patterns, ballooning token costs, and
-            AI-generated problems that shouldn’t exist, caught in code review,
-            or worse, production.
-          </p>
-          <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
-            Without guardrails, this compounds into technical debt and bugs that
-            ship. The fix is to shift the work left, to write-time and
-            commit-time, before any of it reaches PR review or production.
-            That’s what GAIA does.
-          </p>
-        </div>
-      </Section>
-
-      {/* SKU cards */}
-      <section className="scroll-mt-20 pt-4 pb-16" id="pricing">
-        <div className="mx-auto max-w-6xl px-4 sm:px-8">
-          <div className="flex flex-col gap-6 md:grid md:grid-cols-2">
-            {SKUS.map((sku) => (
-              <SkuCard key={sku.title} sku={sku} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Custom inquiries */}
-      <section className="scroll-mt-20 pb-20" id="custom">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-8">
+      {/* Custom + close */}
+      <section className="px-4 py-20 sm:px-8 sm:py-24">
+        <div
+          className="mx-auto flex max-w-3xl flex-col gap-6 text-center"
+          data-reveal={true}
+        >
           <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom
-            integrations, or scope I haven’t named here. Engagements start at
-            $5,000.{' '}
+            integrations, or scope I{' '}haven’t named here. Engagements
+            start at $5,000.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
             <a
-              className="text-accent hover:text-accent-2 decoration-accent/40 hover:decoration-accent-2 underline underline-offset-4 transition-colors duration-150"
+              className="text-ink-dim hover:text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
               href="mailto:steven@gaiareact.com"
             >
-              Get in touch
+              Email me →
             </a>
-            .
-          </p>
+            <a
+              className="text-ink-dim hover:text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
+              href="https://www.linkedin.com/in/stevensacks/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              LinkedIn →
+            </a>
+          </div>
         </div>
       </section>
     </>
