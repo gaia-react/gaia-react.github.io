@@ -5,46 +5,43 @@ import PointList from './PointList';
 
 const POINTS: {desc: ReactNode; name: string}[] = [
   {
-    desc: 'GAIA’s coding rules embed Karpathy’s four coding principles (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution), plus two of GAIA’s own: Always Use TDD and Always Verify Your Work.',
+    desc: (
+      <>
+        Six coding principles encoded as rules and loaded automatically. Every
+        session starts from the same disciplined baseline. See{' '}
+        <a
+          className="text-accent hover:text-accent-soft transition-colors duration-150"
+          href="#discipline"
+        >
+          the principles
+        </a>{' '}
+        below.
+      </>
+    ),
     name: 'Coding principles',
-  },
-  {
-    desc: 'Rules encode the conventions directly instead of hoping Claude infers them from whatever’s already in the repo, or worse, bad examples from its training data.',
-    name: 'Best practices baked in',
   },
   {
     desc: 'Rules block debt-accumulating patterns from being written in the first place: untyped objects, untested components, hardcoded strings, a11y gaps.',
     name: 'Guardrails against technical debt',
   },
   {
-    desc: '1,314 linting rules, strict TypeScript, and Prettier enforce style and correctness on every file Claude touches. No negotiation, no drift.',
-    name: 'Consistently clean code',
-  },
-  {
     desc: 'Multiple scoped skills load on demand when Claude edits matching files. They apply project conventions without re-deriving them each session.',
     name: 'Bundled skills wired in for write-time quality',
   },
   {
-    desc: 'The bundled TDD skill runs a red-green-refactor loop with tests before code, tailored for Vitest, React Testing Library, Storybook, and MSW.',
+    desc: 'Specs become Playwright E2E tests before code is written. The first task in any feature is turning red tests green.',
     name: 'Test-driven development',
   },
   {
-    desc: 'UATs become Playwright E2E specs before Claude writes a line of code. The first task is turning red tests green. Specs become tests automatically.',
-    name: 'Specs that turn into user acceptance tests',
-  },
-  {
-    desc: 'The code-review-audit agent scans for issues with security, performance, architecture, code smells, and antipatterns. Four parallel specialists layer on React patterns, TypeScript, and component health. Extendable with custom rules.',
+    desc: 'The code-review-audit agent scans for security, performance, architecture, code smells, and antipatterns. Extendable with custom rules.',
     name: 'Code review before every merge',
-  },
-  {
-    desc: 'Typecheck, lint, tests, and build must all pass. Not “mostly clean”, actually clean.',
-    name: 'Quality gate before commit',
   },
 ];
 
 const Trust = () => (
   <FxSection
     id="trust"
+    isAboveFold={true}
     lead={
       <>
         <p>
@@ -59,7 +56,7 @@ const Trust = () => (
         </p>
       </>
     }
-    title="How GAIA makes Claude trustworthy"
+    title="Trustworthy by default"
   >
     <TrustGraphic />
     <PointList points={POINTS} />

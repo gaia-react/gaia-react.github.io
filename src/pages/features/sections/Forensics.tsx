@@ -1,45 +1,45 @@
-import type {ReactNode} from 'react';
-import ForensicsTriageGraphic from './figures/ForensicsTriageGraphic';
-import FxSection from './FxSection';
-import PointList from './PointList';
-
-const POINTS: {desc: ReactNode; name: string}[] = [
-  {
-    desc: 'Paths normalized, secrets stripped, machine leaks scrubbed. Local file and GitHub issue body are byte-identical.',
-    name: 'Redacted by default',
-  },
-  {
-    desc: "If Claude determines it's not a problem with GAIA but a local config issue, the fix is returned inline.",
-    name: 'Self-diagnoses user-config issues',
-  },
-];
+import ForensicsIssue from './figures/ForensicsIssue';
 
 const Forensics = () => (
-  <FxSection
+  <section
+    className="bg-tint border-line-soft scroll-mt-20 border-b py-20"
     id="forensics"
-    isCool={true}
-    lead={
-      <>
-        <p>
-          If a GAIA workflow behaves unexpectedly, run
-          <br className="hidden md:inline" />
-          <code className="bg-surface text-ink rounded-sm px-2 py-0.5 text-[0.88em]">
-            /gaia forensics
-          </code>
-          and describe what happened.
-        </p>
-        <p>
-          A redacted, classified, filing-ready report is assembled. User-config
-          issues return the fix inline. Probable bugs are filed to GAIA&apos;s
-          GitHub with one prompt.
-        </p>
-      </>
-    }
-    title="GAIA Forensics"
   >
-    <ForensicsTriageGraphic />
-    <PointList points={POINTS} />
-  </FxSection>
+    <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
+      <div className="grid gap-x-12 gap-y-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-start md:gap-16">
+        <div>
+          <h2 className="group font-display text-ink mb-6 text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]">
+            <a className="text-inherit no-underline" href="#forensics">
+              Bugs happen
+              <span
+                aria-hidden={true}
+                className="ml-[0.4em] text-[0.6em] opacity-0 transition-opacity duration-150 select-none group-hover:opacity-40"
+              >
+                #
+              </span>
+            </a>
+          </h2>
+          <div className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.65]">
+            <p>
+              GAIA is open source, written by one developer (so far).
+              Contributors and sponsors welcome.
+            </p>
+            <p>
+              <code className="bg-surface text-ink rounded-sm px-1.5 text-[0.88em]">
+                /gaia forensics
+              </code>{' '}
+              turns &ldquo;this didn&apos;t work&rdquo; into a complete report:
+              redacted, classified, ready to file. User-config issues return the
+              fix inline. Probable GAIA bugs file straight to my GitHub with one
+              prompt. Same body byte-for-byte, so I can fix them fast.
+            </p>
+          </div>
+        </div>
+
+        <ForensicsIssue />
+      </div>
+    </div>
+  </section>
 );
 
 export default Forensics;

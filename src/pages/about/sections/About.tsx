@@ -49,7 +49,7 @@ const ERA_NOW = [
 const CLOSING = [
   'The AI tooling landscape today looks like Flash before frameworks. Capable tools. No shared structure. Every team reinventing the same patterns.',
   'The fix the first time was structure. A framework that codified what to keep and made the rest unnecessary.',
-  'GAIA is that fix, applied to Claude Code. The goal is the same one I’ve been chasing for twenty years. One person shipping the work of a team.',
+  'GAIA is that fix, applied to Claude Code. The goal is the same one I’ve been chasing for twenty years. Each person shipping the work of a team.',
 ];
 
 const GitHubIcon = (
@@ -263,11 +263,8 @@ const About = () => (
 
     {/* The throughline number */}
     <section className="border-line-soft border-t px-4 py-24 sm:px-8 sm:py-32">
-      <div className="mx-auto max-w-4xl text-center" data-reveal={true}>
-        <div
-          className="font-display text-ink text-[clamp(4rem,12vw,8.5rem)] leading-none font-light tracking-[-0.04em]"
-          style={{'--reveal-delay': '60ms'} as React.CSSProperties}
-        >
+      <div className="mx-auto max-w-4xl text-center">
+        <div className="font-display text-ink text-[clamp(4rem,12vw,8.5rem)] leading-none font-light tracking-[-0.04em]">
           100,000<span className="text-accent-soft italic">+</span>
         </div>
         <div className="text-muted mt-6 font-mono text-[0.75rem] tracking-[0.24em] uppercase">
@@ -279,13 +276,10 @@ const About = () => (
     {/* Selected work */}
     <section className="border-line-soft border-t px-4 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-4xl">
-        <div
-          className="text-muted mb-12 font-mono text-[0.7rem] tracking-[0.22em] uppercase"
-          data-reveal={true}
-        >
+        <div className="text-muted mb-12 font-mono text-[0.7rem] tracking-[0.22em] uppercase">
           Selected work
         </div>
-        <ul className="m-0 flex list-none flex-col gap-10 p-0" data-stagger="">
+        <ul className="m-0 flex list-none flex-col gap-10 p-0">
           {SELECTED_WORK.map((item) => (
             <li
               key={`${item.company}-${item.period}`}
@@ -312,10 +306,7 @@ const About = () => (
     {/* Closing: why this, now */}
     <section className="border-line-soft border-t px-4 py-20 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-3xl">
-        <div
-          className="text-accent-soft mb-10 font-mono text-[0.7rem] tracking-[0.22em] uppercase"
-          data-reveal={true}
-        >
+        <div className="text-accent-soft mb-10 font-mono text-[0.7rem] tracking-[0.22em] uppercase">
           Why this, now
         </div>
         <div className="flex flex-col gap-6">
@@ -327,25 +318,14 @@ const About = () => (
               : 'text-ink-dim text-[1.0625rem] leading-[1.75]';
 
             return (
-              <p
-                key={line}
-                className={className}
-                data-reveal={true}
-                style={
-                  {'--reveal-delay': `${index * 80}ms`} as React.CSSProperties
-                }
-              >
+              <p key={line} className={className}>
                 {line}
               </p>
             );
           })}
         </div>
 
-        <div
-          className="border-line-soft mt-16 flex flex-wrap gap-x-8 gap-y-4 border-t pt-8"
-          data-reveal={true}
-          style={{'--reveal-delay': '300ms'} as React.CSSProperties}
-        >
+        <div className="border-line-soft mt-16 flex flex-wrap gap-x-8 gap-y-4 border-t pt-8">
           <a
             className="text-ink-dim hover:text-accent-soft inline-flex items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
             href="/consulting/"

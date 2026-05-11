@@ -1,4 +1,3 @@
-import type React from 'react';
 import {
   MemoryIcon,
   MultiAgentIcon,
@@ -9,27 +8,27 @@ import {
 const BLOCKS = [
   {
     color: 'teal' as const,
-    copy: "Typecheck, lint, tests, and build are gates, not suggestions. Every commit clears them. Claude can't merge code that doesn't.",
+    copy: "Typecheck, lint, tests, and build are gates, not suggestions. Claude can't merge code that doesn't clear them.",
     Icon: ShieldCheckIcon,
     title: "Claude can't ship broken code",
   },
   {
-    color: 'warn' as const,
-    copy: 'Requirements and acceptance tests are written before Claude writes a line of code. Defined contracts prevents scope drift.',
+    color: 'tealSoft' as const,
+    copy: 'Requirements and acceptance tests are written before Claude writes a line of code. Defined contracts prevent scope drift.',
     Icon: ReflectionIcon,
     title: 'Spec → Plan → Code',
   },
   {
     color: 'accent' as const,
-    copy: 'Wiki, hot cache, session handoff, agent memory, user memory. Each tier has a scope and a maintenance loop so Claude stops relearning your codebase every session.',
+    copy: 'Each tier has a scope and a maintenance loop. Claude stops relearning your codebase every session.',
     Icon: MemoryIcon,
     title: 'Five tiers of memory',
   },
   {
     color: 'muted' as const,
-    copy: 'One merge audit. Four specialists running in parallel. Critical findings block the merge. Suggestions land in a review comment.',
+    copy: 'Security, performance, architecture, antipatterns: all scanned in one merge audit. Critical findings block the merge. Suggestions land in a review comment.',
     Icon: MultiAgentIcon,
-    title: 'A specialist for every concern',
+    title: 'Every angle, audited',
   },
 ];
 
@@ -37,21 +36,15 @@ const BLOCK_STYLES = {
   accent: {bg: 'bg-accent/10', icon: 'text-accent'},
   muted: {bg: 'bg-muted/10', icon: 'text-ink-dim'},
   teal: {bg: 'bg-secondary/12', icon: 'text-secondary'},
-  warn: {bg: 'bg-warn/10', icon: 'text-warn'},
+  tealSoft: {bg: 'bg-secondary-soft/12', icon: 'text-secondary-soft'},
 };
 
 const AgenticDesign = () => (
-  <section
-    className="border-line-soft bg-tint border-y px-4 py-20 sm:px-8"
-    id="agentic-design"
-  >
+  <section className="px-4 py-20 sm:px-8" id="agentic-design">
     <div className="mx-auto max-w-6xl">
-      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-16">
-        <div className="lg:sticky lg:top-24 lg:self-start">
-          <div
-            className="mb-4 inline-flex items-center gap-2"
-            data-reveal={true}
-          >
+      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-24 lg:order-2 lg:self-start">
+          <div className="mb-4 inline-flex items-center gap-2">
             <span
               aria-hidden={true}
               className="bg-secondary-soft size-1.5 rounded-full"
@@ -60,45 +53,17 @@ const AgenticDesign = () => (
               How GAIA works
             </span>
           </div>
-          <h2
-            className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]"
-            data-reveal={true}
-            style={{'--reveal-delay': '60ms'} as React.CSSProperties}
-          >
+          <h2 className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
             Design patterns Claude doesn&apos;t have to remember.
           </h2>
-          <p
-            className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]"
-            data-reveal={true}
-            style={{'--reveal-delay': '120ms'} as React.CSSProperties}
-          >
+          <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
             GAIA wires these patterns into the project itself, not the prompt.
             They run the same way every session, every task, every model
             variant.
           </p>
-          <p
-            className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
-            data-reveal={true}
-            style={{'--reveal-delay': '180ms'} as React.CSSProperties}
-          >
-            Memory that persists. Planning that runs before code changes. Hooks
-            that verify after. Reviews that catch what slips through. Built into
-            the project, not into a prompt.
-          </p>
-          <a
-            className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
-            data-reveal={true}
-            href="/features/#agentic-design"
-            style={{'--reveal-delay': '240ms'} as React.CSSProperties}
-          >
-            Learn more →
-          </a>
         </div>
 
-        <div
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-          data-stagger={true}
-        >
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:order-1">
           {BLOCKS.map((block) => {
             const s = BLOCK_STYLES[block.color];
 
@@ -112,7 +77,7 @@ const AgenticDesign = () => (
                 >
                   <block.Icon size={18} />
                 </div>
-                <h4 className="text-ink mb-1.5 text-[0.95rem] leading-[1.3] font-medium">
+                <h4 className="text-ink mb-1.5 text-[1.05rem] leading-[1.3] font-medium">
                   {block.title}
                 </h4>
                 <p className="text-ink-dim text-[0.88rem] leading-[1.55]">

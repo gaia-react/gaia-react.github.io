@@ -6,7 +6,6 @@ import AgenticDesign from './sections/AgenticDesign';
 import ClaudeMd from './sections/ClaudeMd';
 import Hero from './sections/Hero';
 import ObsidianWiki from './sections/ObsidianWiki';
-import TheStack from './sections/TheStack.tsx';
 import Why from './sections/Why';
 
 const App = () => {
@@ -17,10 +16,9 @@ const App = () => {
     <Layout>
       <Hero />
       <Why />
+      <ClaudeMd />
       <AgenticDesign />
       <ObsidianWiki />
-      <ClaudeMd />
-      <TheStack />
       <Closing />
     </Layout>
   );

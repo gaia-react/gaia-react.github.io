@@ -1,16 +1,26 @@
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState, useSyncExternalStore} from 'react';
 import gaiaLogo from '../assets/gaia-logo.svg';
 
 const NAV_DESKTOP = [
   {href: '/why/', label: 'Why GAIA'},
   {href: '/features/', label: 'Features'},
   {href: 'https://docs.gaiareact.com/', label: 'Docs'},
-  {href: '/roadmap/', label: 'Roadmap'},
   {href: '/about/', label: 'About'},
 ];
 
+const noopUnsubscribe = () => {};
+const subscribePathname = () => noopUnsubscribe;
+const getPathname = () => window.location.pathname;
+const getServerPathname = () => '/';
+
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = useSyncExternalStore(
+    subscribePathname,
+    getPathname,
+    getServerPathname
+  );
+  const isOnGetStarted = pathname.startsWith('/get-started');
   const headerReference = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -78,12 +88,14 @@ export const Header = () => {
             </svg>
             GitHub
           </a>
-          <a
-            className="bg-accent text-canvas hover:bg-accent-2 rounded-sm px-3.5 py-1.75 text-[0.8125rem] font-semibold tracking-[0.02em] whitespace-nowrap transition-colors duration-150"
-            href="/get-started/"
-          >
-            Get Started
-          </a>
+          {!isOnGetStarted && (
+            <a
+              className="bg-accent text-canvas hover:bg-accent-2 rounded-sm px-3.5 py-1.75 text-[0.8125rem] font-semibold tracking-[0.02em] whitespace-nowrap transition-colors duration-150"
+              href="/get-started/"
+            >
+              Get Started
+            </a>
+          )}
         </div>
 
         <button
@@ -120,13 +132,15 @@ export const Header = () => {
               {item.label}
             </a>
           ))}
-          <a
-            className="bg-accent text-canvas hover:bg-accent-2 mt-3 rounded-sm px-5 py-3 text-center font-semibold transition-colors duration-150"
-            href="/get-started/"
-            onClick={() => setMenuOpen(false)}
-          >
-            Get Started
-          </a>
+          {!isOnGetStarted && (
+            <a
+              className="bg-accent text-canvas hover:bg-accent-2 mt-3 rounded-sm px-5 py-3 text-center font-semibold transition-colors duration-150"
+              href="/get-started/"
+              onClick={() => setMenuOpen(false)}
+            >
+              Get Started
+            </a>
+          )}
         </div>
       )}
     </header>

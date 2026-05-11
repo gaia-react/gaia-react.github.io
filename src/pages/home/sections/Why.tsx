@@ -1,28 +1,23 @@
-import type React from 'react';
-import {
-  BullseyeIcon,
-  ReflectionIcon,
-  ShieldCheckIcon,
-} from '@/components/icons';
+import {BullseyeIcon, ShieldCheckIcon, WarningIcon} from '@/components/icons';
 
 const CARDS = [
   {
     color: 'secondary' as const,
-    copy: 'GAIA enforces high standards on every commit, so every line Claude writes is code you can ship.',
+    copy: 'GAIA enforces 1,314 lint rules on every commit, so every line Claude writes is code you can ship.',
     Icon: ShieldCheckIcon,
-    title: 'Trustworthy by default',
+    title: 'Output you can ship',
   },
   {
     color: 'accent' as const,
     copy: 'GAIA gives Claude only what each task needs, so quality and costs stay predictable as your codebase grows.',
     Icon: BullseyeIcon,
-    title: 'Disciplined at scale',
+    title: 'Quality that holds as you grow',
   },
   {
     color: 'warn' as const,
-    copy: "GAIA CI handles the chores for you, so dependencies stay current, vulnerabilities stay patched, and stale code doesn't pile up.",
-    Icon: ReflectionIcon,
-    title: 'Automated maintenance',
+    copy: "GAIA CI runs maintenance on every commit, so dependencies stay current, vulnerabilities stay patched, and stale code doesn't pile up.",
+    Icon: WarningIcon,
+    title: "Tech debt that doesn't compound",
   },
 ];
 
@@ -48,27 +43,19 @@ const Why = () => (
         <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
           Vibe coding is broken. GAIA fixes it.
         </h2>
-        <p className="text-ink-dim text-[1.125rem]">
+        <p className="text-ink-dim mb-4 text-[1.125rem]">
           Most setups run{' '}
           <code className="text-ink bg-surface rounded-sm px-1.5 text-[0.875em]">
             /init
           </code>{' '}
           and hope Claude figures out the rest.
-          <br />
-          <br />
+        </p>
+        <p className="text-ink-dim text-[1.125rem]">
           Three things break Claude on real projects: output you can&apos;t
           trust, quality that drops as the project grows, and technical debt
           that piles up while you build.{' '}
           <span className="text-ink">GAIA fixes all three.</span>
         </p>
-        <a
-          className="text-accent hover:text-accent-soft mt-4 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
-          data-reveal={true}
-          href="/why/"
-          style={{'--reveal-delay': '240ms'} as React.CSSProperties}
-        >
-          Learn more →
-        </a>
       </div>
 
       <div

@@ -1,7 +1,6 @@
 import type React from 'react';
-import {useEffect, useRef, useState} from 'react';
-import {ArrowRightIcon, CheckIcon} from '@/components/icons';
-import StackGrid from '@/components/StackGrid';
+import {useEffect, useImperativeHandle, useRef, useState} from 'react';
+import {CheckIcon} from '@/components/icons';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -35,15 +34,15 @@ const TERM_SCRIPT: TermStep[] = [
   {prompt: '$', text: 'npx create-gaia@latest my-app', type: 'type'},
   {ms: 380, type: 'pause'},
   {cls: 'dim', text: 'Need to install the following packages:', type: 'line'},
-  {cls: 'dim', text: '  create-gaia@lastest', type: 'line'},
+  {cls: 'dim', text: '  create-gaia@latest', type: 'line'},
   {cls: 'dim', text: 'Ok to proceed? (y) y', type: 'line'},
   {ms: 380, type: 'pause'},
   {text: '', type: 'line'},
-  {text: 'Creating my-app from GAIA v1.x.x...', type: 'line'},
+  {text: 'Creating my-app from GAIA v1.1.1...', type: 'line'},
   {
     cls: 'muted',
     delay: 280,
-    text: '  > downloading gaia-v1.x.x.tar.gz',
+    text: '  > downloading gaia-v1.1.1.tar.gz',
     type: 'line',
   },
   {cls: 'muted', delay: 220, text: '  ↳ extracting', type: 'line'},
@@ -67,14 +66,14 @@ const TERM_SCRIPT: TermStep[] = [
   {
     cls: 'dim',
     delay: 320,
-    text: 'Done in 5.8s using pnpm v10.x.x',
+    text: 'Done in 5.8s using pnpm v10.18.2',
     type: 'line',
   },
   {text: '', type: 'line'},
   {
     cls: 'ok',
     delay: 320,
-    text: '+ my-app ready (GAIA v1.x.x). Starting setup...',
+    text: '+ my-app ready (GAIA v1.1.1). Starting setup...',
     type: 'line',
   },
   {ms: 620, type: 'pause'},
@@ -125,7 +124,6 @@ const ClaudeBanner = () => (
     <div className="flex flex-col gap-0.5 font-mono text-[0.95em]">
       <div className="flex items-baseline gap-2">
         <span className="text-ink font-medium">Claude Code</span>
-        <span className="text-muted">v2.x.x</span>
       </div>
       <div className="text-ink-dim">
         Opus 4.7 (1M context) with xhigh effort · Claude Max
@@ -154,7 +152,7 @@ const ClaudeInputBar = () => {
   );
 };
 
-const THINK_GLYPHS = ['*', '+', 'x', '+'];
+const THINK_GLYPHS = ['*', '+', 'x', '·'];
 const THINK_VERBS = [
   'Thinking',
   'Pondering',
@@ -219,14 +217,18 @@ const randomTypingDelay = (): number => {
   return (buffer[0] / 255) * 35;
 };
 
+type AnimatedTerminalHandle = {skip: () => void};
+
 type AnimatedTerminalProperties = {
   isLarge?: boolean;
   onDone?: () => void;
+  ref?: React.Ref<AnimatedTerminalHandle>;
 };
 
 const AnimatedTerminal = ({
   isLarge = false,
   onDone,
+  ref,
 }: AnimatedTerminalProperties) => {
   const [emitted, setEmitted] = useState<EmittedItem[]>([]);
   const [typing, setTyping] = useState<null | TypingState>(null);
@@ -348,6 +350,53 @@ const AnimatedTerminal = ({
     };
   }, []);
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      skip: () => {
+        timersReference.current.forEach(clearTimeout);
+        timersReference.current = [];
+        const finalEmitted: EmittedItem[] = [];
+        let id = 0;
+
+        for (const step of TERM_SCRIPT) {
+          if (step.type === 'line') {
+            finalEmitted.push({
+              cls: step.cls,
+              id,
+              kind: 'line',
+              text: step.text,
+            });
+            id += 1;
+          } else if (step.type === 'type') {
+            finalEmitted.push({
+              frame: !!step.inputBarFrame,
+              id,
+              kind: 'cmd',
+              prompt: step.prompt,
+              text: step.text,
+            });
+            id += 1;
+          } else if (step.type === 'banner') {
+            finalEmitted.push({id, kind: 'banner'});
+            id += 1;
+          } else if (step.type === 'inputbar') {
+            finalEmitted.push({id, kind: 'inputbar'});
+            id += 1;
+          } else if (step.type === 'thinking') {
+            finalEmitted.push({id, kind: 'thinking'});
+            id += 1;
+          }
+        }
+        setEmitted(finalEmitted);
+        setTyping(null);
+        setProgress(null);
+        onDoneReference.current?.();
+      },
+    }),
+    []
+  );
+
   useEffect(() => {
     const element = bodyReference.current;
     if (!element) return;
@@ -367,7 +416,7 @@ const AnimatedTerminal = ({
   return (
     <div
       aria-label="Terminal showing GAIA installation"
-      className={`border-line-soft overflow-hidden rounded-lg bg-[#0e0e0d] text-left ${
+      className={`bg-terminal border-line-soft overflow-hidden rounded-lg text-left ${
         isLarge ?
           'shadow-[0_60px_140px_-60px_rgba(0,0,0,0.75)]'
         : 'shadow-[0_40px_100px_-50px_rgba(0,0,0,0.7)]'
@@ -525,7 +574,7 @@ type CommandBarProperties = {
 };
 
 const CommandBar = ({isCopied, onCopy}: CommandBarProperties) => (
-  <div className="mx-auto mb-5 flex max-w-120 items-center gap-3 rounded-lg bg-[#0e0e0d] px-4 py-3.5 sm:px-6 sm:py-4">
+  <div className="bg-terminal mx-auto mb-5 flex max-w-120 items-center gap-3 rounded-lg px-4 py-3.5 sm:px-6 sm:py-4">
     <span className="text-accent-soft shrink-0 font-mono text-[0.82rem] sm:text-[1rem]">
       $
     </span>
@@ -550,48 +599,32 @@ const CommandBar = ({isCopied, onCopy}: CommandBarProperties) => (
 
 type HeroProperties = {
   isCopied: boolean;
+  isDone: boolean;
   onCopy: () => void;
   onDone: () => void;
   onReplay: () => void;
+  onSkip: () => void;
   playToken: number;
+  terminalReference: React.RefObject<AnimatedTerminalHandle | null>;
 };
 
 const GetStartedHero = ({
   isCopied,
+  isDone,
   onCopy,
   onDone,
   onReplay,
+  onSkip,
   playToken,
+  terminalReference,
 }: HeroProperties) => (
   <section
-    className="relative overflow-x-clip px-4 pt-14 pb-20 text-center sm:px-8 sm:pt-24"
+    className="relative overflow-hidden px-4 pt-14 pb-80 text-center sm:px-8 sm:pt-24 sm:pb-96"
     id="install"
   >
     <div
       aria-hidden={true}
-      className="pointer-events-none absolute z-0"
-      style={{
-        background:
-          'radial-gradient(circle at center, rgba(217,119,87,0.5) 0%, rgba(217,119,87,0.32) 28%, rgba(217,119,87,0.12) 55%, rgba(217,119,87,0) 75%)',
-        height: 720,
-        left: '20%',
-        opacity: 0.5,
-        top: -260,
-        width: 720,
-      }}
-    />
-    <div
-      aria-hidden={true}
-      className="pointer-events-none absolute z-0 rounded-full"
-      style={{
-        background:
-          'radial-gradient(circle at center, rgba(91,138,138,0.5) 0%, rgba(91,138,138,0.28) 30%, rgba(91,138,138,0.1) 58%, rgba(91,138,138,0) 78%)',
-        bottom: -240,
-        height: 600,
-        opacity: 0.32,
-        right: '8%',
-        width: 600,
-      }}
+      className="gaia-haze gaia-haze-drift pointer-events-none absolute inset-[-3%] z-0"
     />
 
     <div className="relative z-10 mx-auto max-w-6xl">
@@ -621,8 +654,23 @@ const GetStartedHero = ({
         style={{'--reveal-delay': '160ms'} as React.CSSProperties}
       >
         <CommandBar isCopied={isCopied} onCopy={onCopy} />
-        <AnimatedTerminal key={playToken} isLarge={true} onDone={onDone} />
-        <div className="mt-3 inline-flex justify-center gap-2">
+        <AnimatedTerminal
+          key={playToken}
+          ref={terminalReference}
+          isLarge={true}
+          onDone={onDone}
+        />
+        <div className="mt-3 flex justify-center gap-2">
+          {!isDone && (
+            <button
+              aria-label="Skip animation"
+              className="border-line-soft text-ink-dim hover:text-ink hover:border-line inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-transparent px-3.5 py-1.5 font-mono text-[0.72rem] tracking-[0.06em] uppercase transition-colors duration-150"
+              onClick={onSkip}
+              type="button"
+            >
+              Skip →
+            </button>
+          )}
           <button
             aria-label="Replay animation"
             className="border-line-soft text-ink-dim hover:text-ink hover:border-line inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-transparent px-3.5 py-1.5 font-mono text-[0.72rem] tracking-[0.06em] uppercase transition-colors duration-150"
@@ -671,50 +719,40 @@ const GetStartedHero = ({
   </section>
 );
 
-// ── What happened ──────────────────────────────────────────────────────────
+// ── Closing ────────────────────────────────────────────────────────────────
 
-const WhatHappenedSection = () => (
-  <section className="pb-20 sm:pt-8" id="what-happened">
-    <div className="mx-auto max-w-6xl px-4 sm:px-8">
-      <div className="mb-12" data-reveal={true}>
-        <div className="mb-4 inline-flex items-center gap-2">
-          <span
-            aria-hidden={true}
-            className="bg-secondary-soft size-1.5 rounded-full"
-          />
-          <span className="text-secondary-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-            What just happened
-          </span>
-        </div>
-        <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
-          You now have a{' '}
-          <em className="text-accent-soft font-light italic">complete</em> React
-          workflow.
-        </h2>
-        <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
-          <code className="text-ink bg-secondary/10 border-secondary/22 rounded-sm border px-1.5 text-[0.92em]">
-            create-gaia
-          </code>{' '}
-          doesn&apos;t just spin up a starter. It wires in the full stack, the
-          guardrails, and the knowledge Claude needs to get work done.
-        </p>
-      </div>
-
-      <StackGrid />
-
-      <div
-        className="border-line-soft mt-12 flex flex-wrap items-center justify-between gap-8 border-t pt-9"
-        data-reveal={true}
-      >
-        <p className="font-display text-ink-dim max-w-[50ch] text-[1.2rem] font-light italic">
-          That&apos;s it. Now go build something.
-        </p>
+const ClosingSection = () => (
+  <section
+    className="relative overflow-hidden px-4 pt-18 pb-16 text-center sm:px-8 sm:pt-28 sm:pb-24"
+    id="closing"
+  >
+    <div
+      aria-hidden={true}
+      className="pointer-events-none absolute inset-0"
+      style={{
+        background:
+          'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(239,165,142,0.14), transparent 70%)',
+      }}
+    />
+    <div className="relative mx-auto max-w-275">
+      <h2 className="text-ink font-display mb-[1.6rem] text-[clamp(2.6rem,7vw,5rem)] leading-[1.05] font-light tracking-[-0.035em]">
+        That&apos;s it.
+      </h2>
+      <p className="text-ink-dim font-display mb-[2.6rem] text-[clamp(1.1rem,2vw,1.35rem)] italic">
+        Now go build something.
+      </p>
+      <div className="flex flex-wrap items-center justify-center gap-6">
         <a
           className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"
           href="https://docs.gaiareact.com/"
         >
-          Open the docs
-          <ArrowRightIcon size={14} />
+          Read the docs →
+        </a>
+        <a
+          className="text-ink-dim hover:text-accent inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
+          href="/features/"
+        >
+          See the Features →
         </a>
       </div>
     </div>
@@ -726,6 +764,8 @@ const WhatHappenedSection = () => (
 const GetStarted = () => {
   const [playToken, setPlayToken] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
+  const [isDone, setIsDone] = useState(false);
+  const terminalReference = useRef<AnimatedTerminalHandle | null>(null);
   const scrollTimerReference = useRef<null | ReturnType<typeof setTimeout>>(
     null
   );
@@ -735,14 +775,18 @@ const GetStarted = () => {
       clearTimeout(scrollTimerReference.current);
       scrollTimerReference.current = null;
     }
+    setIsDone(false);
     window.scrollTo({behavior: 'instant', top: 0});
     setPlayToken((token) => token + 1);
   };
 
+  const onSkip = () => terminalReference.current?.skip();
+
   const onDone = () => {
+    setIsDone(true);
     scrollTimerReference.current = setTimeout(() => {
       if (window.innerWidth < 768) {
-        const section = document.querySelector('#what-happened');
+        const section = document.querySelector('#closing');
 
         if (section) {
           const headerHeight =
@@ -780,12 +824,15 @@ const GetStarted = () => {
     <>
       <GetStartedHero
         isCopied={isCopied}
+        isDone={isDone}
         onCopy={onCopy}
         onDone={onDone}
         onReplay={onReplay}
+        onSkip={onSkip}
         playToken={playToken}
+        terminalReference={terminalReference}
       />
-      <WhatHappenedSection />
+      <ClosingSection />
     </>
   );
 };

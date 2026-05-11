@@ -1,11 +1,6 @@
-import type React from 'react';
-
 const Closing = () => (
   <section className="relative z-10 overflow-hidden px-4 sm:px-8" id="closing">
-    <div
-      className="border-line-soft relative border-t py-24 text-center"
-      data-reveal={true}
-    >
+    <div className="border-line-soft relative border-t py-24 text-center">
       <div
         aria-hidden={true}
         className="pointer-events-none absolute inset-0"
@@ -31,16 +26,13 @@ const Closing = () => (
           </span>
         </div>
 
-        <h2
-          className="text-ink mx-auto mb-9 max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.25rem)] leading-[1.05] tracking-[-0.015em]"
-          style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-        >
+        <h2 className="text-ink mx-auto mb-9 max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.25rem)] leading-[1.05] tracking-[-0.015em]">
           Spend your time on the
           <br className="hidden sm:inline" />
           <span className="inline sm:hidden"> </span>
-          <em className="text-accent-soft font-light italic">
+          <span className="text-accent-soft font-light">
             product, not the workflow.
-          </em>
+          </span>
         </h2>
 
         <div className="flex flex-wrap items-center justify-center gap-6">

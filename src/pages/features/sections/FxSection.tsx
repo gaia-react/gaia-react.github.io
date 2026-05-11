@@ -1,15 +1,22 @@
-import type React from 'react';
-import type {ReactNode} from 'react';
+import type {CSSProperties, ReactNode} from 'react';
 
 type Properties = {
   children: ReactNode;
   id: string;
+  isAboveFold?: boolean;
   isCool?: boolean;
   lead: ReactNode;
   title: string;
 };
 
-const FxSection = ({children, id, isCool, lead, title}: Properties) => (
+const FxSection = ({
+  children,
+  id,
+  isAboveFold,
+  isCool,
+  lead,
+  title,
+}: Properties) => (
   <section
     className={`border-line-soft scroll-mt-20 border-b py-20 ${isCool ? 'bg-tint' : ''}`}
     id={id}
@@ -19,7 +26,7 @@ const FxSection = ({children, id, isCool, lead, title}: Properties) => (
         <div className="md:sticky md:top-24">
           <h2
             className="group font-display text-ink mb-6 max-w-[18ch] text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]"
-            data-reveal={true}
+            data-reveal={isAboveFold ? true : undefined}
           >
             <a className="text-inherit no-underline" href={`#${id}`}>
               {title}
@@ -33,15 +40,23 @@ const FxSection = ({children, id, isCool, lead, title}: Properties) => (
           </h2>
           <div
             className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.65]"
-            data-reveal={true}
-            style={{'--reveal-delay': '80ms'} as React.CSSProperties}
+            data-reveal={isAboveFold ? true : undefined}
+            style={
+              isAboveFold ?
+                ({'--reveal-delay': '80ms'} as CSSProperties)
+              : undefined
+            }
           >
             {lead}
           </div>
         </div>
         <div
-          data-reveal={true}
-          style={{'--reveal-delay': '120ms'} as React.CSSProperties}
+          data-reveal={isAboveFold ? true : undefined}
+          style={
+            isAboveFold ?
+              ({'--reveal-delay': '160ms'} as CSSProperties)
+            : undefined
+          }
         >
           {children}
         </div>

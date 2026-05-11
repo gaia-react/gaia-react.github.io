@@ -1,111 +1,149 @@
 import type React from 'react';
-import {CheckIcon} from '@/components/icons';
+
+type OneTimeTier = {
+  amount: number;
+  name: string;
+};
 
 type Tier = {
   amount: number;
+  benefitGlyph: '+' | '─';
   benefits: string[];
   description: string;
   name: string;
-  price: string;
 };
 
-const TIERS: Tier[] = [
+const CURRENT_MRR = 0;
+const GOAL_MRR = 2000;
+
+const RECURRING_TIERS: Tier[] = [
   {
     amount: 5,
+    benefitGlyph: '─',
     benefits: [
       'Name in SUPPORTERS.md',
       'Mention in release notes',
-      'Early peek at release notes (24h before public)',
+      '24h early peek at release notes',
     ],
-    description: 'For individual developers using GAIA.',
+    description: 'Individual developers using GAIA.',
     name: 'Personal Supporter',
-    price: '$5 / month',
   },
   {
     amount: 25,
+    benefitGlyph: '+',
     benefits: [
-      'Team name listed on this page',
+      'Team name on this page',
       'Vote on roadmap RFCs',
-      'Priority on issue triage from your account',
+      'Priority issue triage',
     ],
-    description:
-      'For small engineering teams using GAIA. Everything in Personal Supporter, plus:',
+    description: 'Small engineering teams using GAIA.',
     name: 'Team Supporter',
-    price: '$25 / month',
   },
   {
     amount: 100,
+    benefitGlyph: '+',
     benefits: [
-      'Logo and link on this page',
+      'Logo on this page',
       'Logo in the repo README',
-      '"Powering" credit on relevant pages',
+      '“Powering” credit on relevant pages',
       'Direct email priority',
     ],
-    description:
-      'For companies that have adopted GAIA. Everything above, plus:',
+    description: 'Companies shipping on GAIA.',
     name: 'Company Sponsor',
-    price: '$100 / month',
   },
+];
+
+const ONE_TIME_TIERS: OneTimeTier[] = [
+  {amount: 25, name: 'Small thanks'},
+  {amount: 100, name: 'Big thanks'},
 ];
 
 const SHOW_CURRENT_SPONSORS = false;
 
-const TierCard = ({delay, tier}: {delay: string; tier: Tier}) => (
-  <article
-    className="bg-surface border-line-soft hover:border-line flex flex-col rounded-lg border p-6 transition-colors duration-150"
-    style={{'--reveal-delay': delay} as React.CSSProperties}
-  >
-    <div className="mb-5">
-      <p className="text-muted mb-1 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
-        {tier.price}
-      </p>
-      <h3 className="text-ink mb-2 text-[1.25rem] font-light tracking-[-0.01em]">
+const recurringUrl = (amount: number) =>
+  `https://github.com/sponsors/gaia-react?frequency=recurring&amount=${amount}`;
+
+const oneTimeUrl = (amount: number) =>
+  `https://github.com/sponsors/gaia-react?frequency=one-time&amount=${amount}`;
+
+const progressPct = Math.min(100, (CURRENT_MRR / GOAL_MRR) * 100);
+
+const TierRow = ({tier}: {tier: Tier}) => (
+  <div className="border-line-soft hover:bg-tint/40 group grid gap-x-10 gap-y-4 border-b px-2 py-9 transition-colors duration-150 last:border-b-0 md:grid-cols-[7rem_minmax(0,1fr)_auto] md:items-start">
+    <div className="flex items-baseline gap-2 md:flex-col md:items-start md:gap-1">
+      <span className="text-ink text-[clamp(1.9rem,3.4vw,2.6rem)] leading-none font-light tracking-tight">
+        ${tier.amount}
+      </span>
+      <span className="text-muted font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+        / month
+      </span>
+    </div>
+    <div className="min-w-0">
+      <h3 className="text-ink mb-1.5 text-[1.2rem] font-normal tracking-[-0.005em]">
         {tier.name}
       </h3>
-      <p className="text-ink-dim text-[0.95rem] leading-[1.6]">
+      <p className="text-ink-dim mb-5 max-w-[44ch] text-[0.96rem] leading-[1.55]">
         {tier.description}
       </p>
-    </div>
-    <div className="mt-auto space-y-5">
-      <ul className="space-y-2.5">
+      <ul className="space-y-2">
         {tier.benefits.map((benefit) => (
-          <li key={benefit} className="flex items-start gap-2.5">
-            <span className="text-accent mt-0.5 shrink-0">
-              <CheckIcon size={14} />
+          <li
+            key={benefit}
+            className="text-ink-dim flex items-baseline gap-3 text-[0.9rem] leading-[1.55]"
+          >
+            <span
+              aria-hidden={true}
+              className="text-accent w-3 shrink-0 font-mono text-[0.95rem]"
+            >
+              {tier.benefitGlyph}
             </span>
-            <span className="text-ink-dim text-[0.88rem] leading-normal">
-              {benefit}
-            </span>
+            <span>{benefit}</span>
           </li>
         ))}
       </ul>
+    </div>
+    <div className="md:self-end md:pb-1">
       <a
-        className="text-accent hover:text-accent-soft inline-flex items-center gap-1.5 text-[0.9rem] no-underline transition-colors duration-150"
-        href={`https://github.com/sponsors/gaia-react?frequency=recurring&amount=${tier.amount}`}
+        className="text-accent hover:text-accent-soft inline-flex items-center gap-1.5 text-[0.92rem] no-underline transition-colors duration-150"
+        href={recurringUrl(tier.amount)}
         rel="noreferrer"
         target="_blank"
       >
-        Sponsor at {tier.price} →
+        Sponsor at ${tier.amount} →
       </a>
     </div>
-  </article>
-);
-
-const EmptySlot = ({label}: {label: string}) => (
-  <div className="bg-surface border-line-soft rounded-lg border px-6 py-8">
-    <p className="text-muted mb-4 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
-      {label}
-    </p>
-    <p className="text-muted text-[0.82rem] italic">
-      First sponsors land here.
-    </p>
   </div>
 );
 
-const SponsorGhLink = ({className}: {className?: string}) => (
+const OneTimeRow = ({tier}: {tier: OneTimeTier}) => (
+  <a
+    className="border-line-soft hover:bg-tint/40 group flex items-baseline justify-between gap-6 border-b px-2 py-5 no-underline transition-colors duration-150 last:border-b-0"
+    href={oneTimeUrl(tier.amount)}
+    rel="noreferrer"
+    target="_blank"
+  >
+    <div className="flex items-baseline gap-6">
+      <span className="text-ink w-16 text-[1.35rem] font-light tracking-tight">
+        ${tier.amount}
+      </span>
+      <span className="text-ink-dim group-hover:text-ink text-[0.98rem] transition-colors duration-150">
+        {tier.name}
+      </span>
+    </div>
+    <span className="text-accent text-[0.88rem]">one-time →</span>
+  </a>
+);
+
+const SponsorButton = ({
+  className,
+  href,
+}: {
+  className?: string;
+  href: string;
+}) => (
   <a
     className={`bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150 ${className ?? ''}`}
-    href="https://github.com/sponsors/gaia-react"
+    href={href}
     rel="noreferrer"
     target="_blank"
   >
@@ -117,13 +155,26 @@ const Sponsors = () => (
   <>
     {/* Hero */}
     <section
-      className="relative overflow-x-clip px-4 pt-24 pb-20 sm:px-8"
+      className="relative overflow-x-clip px-4 py-24 sm:px-8"
       id="sponsors-hero"
     >
+      <div
+        aria-hidden={true}
+        className="gaia-drift-orb-a pointer-events-none absolute z-0 rounded-full"
+        style={{
+          background:
+            'radial-gradient(circle at center, rgba(217,119,87,0.5) 0%, rgba(217,119,87,0.28) 30%, rgba(217,119,87,0.1) 58%, rgba(217,119,87,0) 78%)',
+          height: 760,
+          left: -220,
+          opacity: 0.85,
+          top: -260,
+          width: 760,
+        }}
+      />
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="max-w-270">
           <div
-            className="mb-4 inline-flex items-center gap-2"
+            className="mb-5 inline-flex items-center gap-2"
             data-reveal={true}
           >
             <span
@@ -131,60 +182,117 @@ const Sponsors = () => (
               className="bg-accent-soft size-1.5 rounded-full"
             />
             <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-              Sponsors
+              Open source funding
             </span>
           </div>
 
           <h1
-            className="text-ink mb-8 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.1] tracking-tight"
+            className="text-ink mb-7 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.05] tracking-tight"
             data-reveal={true}
             style={{'--reveal-delay': '80ms'} as React.CSSProperties}
           >
-            Open source. Sustained by sponsors.
+            Free to use.
+            <br />
+            <span className="text-accent-soft font-light italic">
+              Paid forward by sponsors.
+            </span>
           </h1>
 
           <p
-            className="text-ink-dim mb-8 max-w-[56ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55]"
+            className="text-ink-dim mb-9 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]"
             data-reveal={true}
             style={{'--reveal-delay': '180ms'} as React.CSSProperties}
           >
-            Every dollar of sponsorship buys back maintainer time. Releases ship
-            faster. Issues get answered. Roadmap moves forward.
+            No VC money. No sponsorship theater. Every dollar goes to maintainer
+            time. $2,000/mo funds one full day of GAIA work every week.
           </p>
 
           <div
             data-reveal={true}
             style={{'--reveal-delay': '280ms'} as React.CSSProperties}
           >
-            <SponsorGhLink />
+            <SponsorButton href="https://github.com/sponsors/gaia-react" />
           </div>
         </div>
       </div>
     </section>
 
-    {/* Tier cards */}
+    {/* Proof strip */}
     <section
-      className="border-line-soft bg-tint border-y px-4 py-20 sm:px-8"
-      id="tiers"
+      className="bg-tint border-line-soft relative overflow-hidden border-y px-4 py-12 sm:px-8"
+      id="proof"
     >
+      <div
+        aria-hidden={true}
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(70% 120% at 50% 50%, rgba(217,119,87,0.14) 0%, transparent 70%)',
+        }}
+      />
+      <div className="relative mx-auto max-w-3xl">
+        <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+          <div className="flex items-baseline gap-3">
+            <span className="text-ink text-[1.7rem] font-light tracking-tight">
+              ${CURRENT_MRR.toLocaleString()}
+            </span>
+            <span className="text-muted text-[0.9rem]">
+              / ${GOAL_MRR.toLocaleString()} monthly
+            </span>
+          </div>
+          <span className="text-ink-dim font-mono text-[0.76rem] tracking-wider">
+            goal funds 1 maintainer day / week
+          </span>
+        </div>
+        <div
+          aria-label={`Sponsorship progress: $${CURRENT_MRR} of $${GOAL_MRR} monthly goal`}
+          aria-valuemax={GOAL_MRR}
+          aria-valuemin={0}
+          aria-valuenow={CURRENT_MRR}
+          className="bg-line-soft relative h-1.5 w-full overflow-hidden rounded-full"
+          role="progressbar"
+        >
+          <div
+            className="bg-accent absolute inset-y-0 left-0 rounded-full"
+            style={{width: `${progressPct}%`}}
+          />
+        </div>
+      </div>
+    </section>
+
+    {/* Tiers */}
+    <section className="px-4 py-24 sm:px-8" id="tiers">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10 max-w-180" data-reveal={true}>
-          <h2 className="text-ink mb-3 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
-            Choose your level of support.
+        <div className="mb-14 max-w-180">
+          <div className="mb-4 inline-flex items-center gap-2">
+            <span
+              aria-hidden={true}
+              className="bg-accent-soft size-1.5 rounded-full"
+            />
+            <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
+              Recurring
+            </span>
+          </div>
+          <h2 className="text-ink text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
+            Three ways to keep GAIA going
           </h2>
-          <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
-            All tiers go directly to open-source maintenance. No VC money. No
-            sponsorship theater.
-          </p>
         </div>
 
-        <div
-          className="grid grid-cols-1 gap-4 md:grid-cols-3"
-          data-stagger={true}
-        >
-          {TIERS.map((tier, index) => (
-            <TierCard key={tier.name} delay={`${index * 80}ms`} tier={tier} />
+        <div className="border-line-soft border-t">
+          {RECURRING_TIERS.map((tier) => (
+            <TierRow key={tier.name} tier={tier} />
           ))}
+        </div>
+
+        <div className="mt-16 max-w-3xl">
+          <p className="text-muted mb-3 font-mono text-[0.7rem] tracking-[0.18em] uppercase">
+            Or chip in once
+          </p>
+          <div className="border-line-soft border-t">
+            {ONE_TIME_TIERS.map((tier) => (
+              <OneTimeRow key={tier.name} tier={tier} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -192,9 +300,12 @@ const Sponsors = () => (
     {/* Current sponsors. Hidden until first sponsor lands. Flip SHOW_CURRENT_SPONSORS to true when ready. */}
     {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
     {SHOW_CURRENT_SPONSORS && (
-      <section className="px-4 py-20 sm:px-8" id="current-sponsors">
+      <section
+        className="border-line-soft border-t px-4 py-24 sm:px-8"
+        id="current-sponsors"
+      >
         <div className="mx-auto max-w-6xl">
-          <div className="mb-12 max-w-180" data-reveal={true}>
+          <div className="mb-12 max-w-180">
             <div className="mb-4 inline-flex items-center gap-2">
               <span
                 aria-hidden={true}
@@ -205,67 +316,52 @@ const Sponsors = () => (
               </span>
             </div>
             <h2 className="text-ink text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
-              The people keeping this alive.
+              The people keeping this alive
             </h2>
           </div>
 
-          <div className="space-y-10" data-stagger={true}>
-            {/* Company sponsors */}
+          <div className="space-y-12">
             <div>
               <p className="text-muted mb-4 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
                 Company Sponsors
               </p>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-                <EmptySlot label="Logo slot" />
-                <EmptySlot label="Logo slot" />
-                <EmptySlot label="Logo slot" />
-                <EmptySlot label="Logo slot" />
-              </div>
+              <p className="text-ink-dim text-[0.95rem] italic">
+                First company sponsor lands here.
+              </p>
             </div>
-
-            {/* Team supporters */}
             <div>
               <p className="text-muted mb-4 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
                 Team Supporters
               </p>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                <EmptySlot label="Team name" />
-                <EmptySlot label="Team name" />
-                <EmptySlot label="Team name" />
-              </div>
+              <p className="text-ink-dim text-[0.95rem] italic">
+                First team supporter lands here.
+              </p>
             </div>
-
-            {/* Personal supporters */}
             <div>
               <p className="text-muted mb-4 font-mono text-[0.72rem] tracking-[0.14em] uppercase">
                 Personal Supporters
               </p>
-              <div className="bg-surface border-line-soft rounded-lg border px-6 py-8">
-                <p className="text-muted text-[0.82rem] italic">
-                  First sponsors land here.
-                </p>
-              </div>
+              <p className="text-ink-dim text-[0.95rem] italic">
+                First personal supporter lands here.
+              </p>
             </div>
           </div>
         </div>
       </section>
     )}
 
-    {/* Closing CTA */}
+    {/* Closing */}
     <section
       className="relative z-10 overflow-hidden px-4 sm:px-8"
       id="closing"
     >
-      <div
-        className="border-line-soft relative border-t py-24 text-center"
-        data-reveal={true}
-      >
+      <div className="border-line-soft relative border-t py-24 text-center">
         <div
           aria-hidden={true}
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              'radial-gradient(50% 80% at 50% 0%, rgba(217,119,87,0.10) 0%, transparent 70%), radial-gradient(60% 120% at 50% 100%, rgba(91,138,138,0.06) 0%, transparent 70%)',
+              'radial-gradient(50% 80% at 50% 0%, rgba(217,119,87,0.14) 0%, transparent 70%), radial-gradient(60% 120% at 50% 100%, rgba(91,138,138,0.08) 0%, transparent 70%)',
           }}
         />
         <div className="relative mx-auto max-w-6xl">
@@ -277,18 +373,30 @@ const Sponsors = () => (
             <span className="bg-accent-soft size-1.5 rounded-full" />
             <span className="to-line h-px w-20 bg-linear-to-l from-transparent" />
           </div>
-          <p
-            className="text-ink-dim mx-auto mb-8 max-w-[46ch] text-[1.05rem] leading-[1.65]"
-            data-reveal={true}
-            style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-          >
-            GAIA is free to use and open source. Sponsorship keeps it that way.
-          </p>
-          <div
-            data-reveal={true}
-            style={{'--reveal-delay': '160ms'} as React.CSSProperties}
-          >
-            <SponsorGhLink />
+
+          <div className="mx-auto mb-4 flex w-fit items-start gap-2">
+            <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
+              Open source. Paid forward.
+            </span>
+          </div>
+
+          <h2 className="text-ink mx-auto mb-9 max-w-[20ch] text-[clamp(2.4rem,5.5vw,4.25rem)] leading-[1.05] tracking-[-0.015em]">
+            Keep open source
+            <br className="hidden sm:inline" />
+            <span className="inline sm:hidden"> </span>
+            <span className="text-accent-soft font-light">open.</span>
+          </h2>
+
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <SponsorButton href="https://github.com/sponsors/gaia-react" />
+            <a
+              className="text-ink-dim hover:text-accent inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
+              href="https://github.com/gaia-react/gaia"
+              rel="noreferrer"
+              target="_blank"
+            >
+              View on GitHub →
+            </a>
           </div>
         </div>
       </div>

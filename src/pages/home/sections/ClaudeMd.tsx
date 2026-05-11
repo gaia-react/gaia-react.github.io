@@ -1,4 +1,3 @@
-import type React from 'react';
 import {twJoin} from 'tailwind-merge';
 
 const ACTIVE_TIERS = [
@@ -100,10 +99,7 @@ const ClaudeMd = () => (
     <div className="mx-auto max-w-6xl">
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <div
-            className="mb-4 inline-flex items-center gap-2"
-            data-reveal={true}
-          >
+          <div className="mb-4 inline-flex items-center gap-2">
             <span
               aria-hidden={true}
               className="bg-secondary-soft size-1.5 rounded-full"
@@ -112,68 +108,39 @@ const ClaudeMd = () => (
               Claude Code, configured
             </span>
           </div>
-          <h2
-            className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]"
-            data-reveal={true}
-            style={{'--reveal-delay': '60ms'} as React.CSSProperties}
-          >
+          <h2 className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
             Commands you invoke. Hooks that control. An agent that reviews.
           </h2>
-          <p
-            className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]"
-            data-reveal={true}
-            style={{'--reveal-delay': '120ms'} as React.CSSProperties}
-          >
-            The active layer of GAIA&apos;s Claude Code integration. <br />
-            <br />
-            <code className="text-accent">/gaia spec</code> walks you through
-            what you want to build, one focused question at a time, and turns
-            the conversation into a locked-in spec that{' '}
-            <code className="text-accent">/gaia plan</code> hands off to Claude
-            as ready-to-execute work.{' '}
-            <code className="text-accent">/gaia handoff</code> and{' '}
-            <code className="text-accent">/gaia pickup</code> let you clear
-            context without losing state.
+          <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
+            <code className="text-ink">/gaia spec</code> interviews you and
+            writes the spec. <code className="text-ink">/gaia plan</code> hands
+            it to Claude. <code className="text-ink">/gaia handoff</code> and{' '}
+            <code className="text-ink">/gaia pickup</code> carry context across
+            sessions.
           </p>
-          <p
-            className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
-            data-reveal={true}
-            style={{'--reveal-delay': '180ms'} as React.CSSProperties}
-          >
-            Hooks protect main, prevent tech debt, and keep commits clean. The{' '}
-            <code className="text-accent">code-review-audit</code> agent fans
-            four parallel specialists on top of its checks for security,
-            performance, architecture, code smells, and antipatterns. Extendable
-            with custom rules.
+          <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
+            Hooks protect main, prevent tech debt, and keep commits clean.
           </p>
-          <p
-            className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
-            data-reveal={true}
-            style={{'--reveal-delay': '180ms'} as React.CSSProperties}
-          >
-            Scoped rules guide coding best practices, testing, strict typing,
-            and accessibility.{' '}
+          <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
+            The <code className="text-ink">code-review-audit</code> agent scans
+            for security, performance, architecture, and antipatterns. Critical
+            findings block the merge.
+          </p>
+          <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
             <a
-              className="text-accent"
+              className="text-accent hover:text-accent-soft transition-colors duration-150"
               href="https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md"
               rel="noreferrer"
               target="_blank"
             >
               Karpathy&apos;s
             </a>{' '}
-            coding principles are wired in. Skills activate when needed.
+            coding principles, wired in. Scoped rules cover best practices,
+            testing, strict typing, and accessibility.
           </p>
-          <a
-            className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
-            data-reveal={true}
-            href="https://docs.gaiareact.com/#commands"
-            style={{'--reveal-delay': '240ms'} as React.CSSProperties}
-          >
-            Learn more →
-          </a>
         </div>
 
-        <div data-stagger={true}>
+        <div>
           <ActiveTriptych />
           <MatchLedger />
         </div>

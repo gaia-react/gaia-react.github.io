@@ -44,30 +44,14 @@ const Orbs = () => (
   </>
 );
 
-const STATS = [
-  {label: 'Lint rules', value: '1,314'},
-  {label: 'Code audit agents', value: '4 specialists'},
-  {label: 'Warnings allowed', value: 'Zero'},
-];
-
 const Hero = () => (
   <section
-    className="relative overflow-x-clip px-4 pt-4 pb-20 sm:px-8 sm:pt-24"
+    className="relative overflow-x-clip px-4 pt-16 pb-12 sm:px-8 sm:pt-24"
     id="hero"
   >
     <Orbs />
     <div className="relative z-10 mx-auto max-w-6xl">
       <div className="max-w-270">
-        <div className="mb-4 inline-flex items-center gap-2" data-reveal={true}>
-          <span
-            aria-hidden={true}
-            className="bg-accent-soft size-1.5 rounded-full"
-          />
-          <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-            React · Claude Code · v1.1
-          </span>
-        </div>
-
         <h1
           className="text-ink mb-4 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.1] tracking-tight"
           data-reveal={true}
@@ -87,11 +71,12 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          AI ships faster than ever. GAIA keeps it production-grade.
+          Most Claude setups break under pressure. GAIA gives it structure that
+          holds.
         </p>
 
         <p
-          className="text-muted mb-8 text-[0.85rem] leading-normal italic"
+          className="text-muted mb-10 text-[0.85rem] leading-normal italic"
           data-reveal={true}
           style={{'--reveal-delay': '260ms'} as React.CSSProperties}
         >
@@ -100,9 +85,8 @@ const Hero = () => (
         </p>
 
         <div
-          className="mb-12"
           data-reveal={true}
-          style={{'--reveal-delay': '300ms'} as React.CSSProperties}
+          style={{'--reveal-delay': '340ms'} as React.CSSProperties}
         >
           <a
             className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"
@@ -110,23 +94,6 @@ const Hero = () => (
           >
             Get Started →
           </a>
-        </div>
-
-        <div
-          className="border-line-soft flex max-w-xl flex-wrap gap-x-12 gap-y-6 border-t pt-8"
-          data-reveal={true}
-          style={{'--reveal-delay': '420ms'} as React.CSSProperties}
-        >
-          {STATS.map((stat) => (
-            <div key={stat.label}>
-              <strong className="text-ink block font-mono text-[0.9rem] leading-none font-normal tracking-[0.12em] uppercase">
-                {stat.value}
-              </strong>
-              <span className="text-muted font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-                {stat.label}
-              </span>
-            </div>
-          ))}
         </div>
       </div>
     </div>

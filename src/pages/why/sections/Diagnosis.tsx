@@ -30,7 +30,7 @@ const FAILURES: Item[] = [
     name: 'No backstop',
   },
   {
-    desc: "Dependencies rot. Knowledge goes stale. Security findings drift. The chores that quietly decay a project get neglected while you're busy shipping features. AI usually does not handle these at all.",
+    desc: 'Dependencies rot. Knowledge goes stale. Security findings drift. The chores that quietly decay a project get neglected while you’re busy shipping features. AI usually does not handle these at all.',
     name: 'Maintenance debt',
   },
 ];
@@ -41,9 +41,9 @@ const Diagnosis = () => (
     id="diagnosis"
   >
     <div className="mx-auto max-w-275">
-      <div className="mb-10 grid items-start gap-4 lg:grid-cols-[minmax(12rem,1fr)_minmax(0,2.2fr)] lg:gap-8">
+      <div className="mb-14">
         <h2
-          className="group text-ink font-display max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.4rem)] font-normal tracking-[-0.02em]"
+          className="group text-ink font-display mb-6 max-w-[26ch] text-[clamp(2.2rem,4.5vw,3rem)] font-normal tracking-[-0.02em] text-balance"
           data-reveal={true}
         >
           <a className="text-inherit no-underline" href="#diagnosis">
@@ -56,31 +56,31 @@ const Diagnosis = () => (
             </span>
           </a>
         </h2>
-        <div
-          className="text-ink-dim max-w-176 text-[1.05rem] leading-[1.7]"
+        <p
+          className="text-ink-dim max-w-[65ch] text-[1.05rem] leading-[1.7] text-pretty"
           data-reveal={true}
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
-          <p>
-            If you&apos;ve used Claude on a real project, you&apos;ve seen it
-            happen. Working code rewritten. Features hallucinated. Tests never
-            written. The failures are not random. They have shapes.
-          </p>
-        </div>
+          If you’ve used Claude on a real project, you’ve seen it happen.
+          Working code rewritten. Features hallucinated. Tests never written.
+          The failures are not random. They have shapes.
+        </p>
       </div>
       <ol
-        className="border-line-soft list-none border-t p-0"
+        className="grid list-none gap-x-10 gap-y-12 p-0 sm:grid-cols-2 sm:gap-y-14"
         data-stagger={true}
       >
-        {FAILURES.map(({desc, name}) => (
-          <li
-            key={name}
-            className="border-line-soft grid gap-y-2 border-b py-6 last:border-b-0 sm:grid-cols-[minmax(12rem,1fr)_minmax(0,2.2fr)] sm:items-baseline sm:gap-8"
-          >
-            <h3 className="text-ink font-display self-start text-[1.18rem] font-medium tracking-[-0.015em]">
+        {FAILURES.map(({desc, name}, index) => (
+          <li key={name} className="flex flex-col gap-3">
+            <div className="border-line-soft text-accent-soft flex items-baseline gap-3 border-b pb-2 font-mono text-[0.78rem] tracking-[0.18em] uppercase">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span className="text-muted">/</span>
+              <span className="text-muted">Failure mode</span>
+            </div>
+            <h3 className="text-ink font-display text-[1.32rem] font-medium tracking-[-0.015em]">
               {name}
             </h3>
-            <p className="text-ink-dim max-w-[64ch] text-[1rem] leading-[1.7]">
+            <p className="text-ink-dim max-w-[58ch] text-[1rem] leading-[1.7]">
               {desc}
             </p>
           </li>
