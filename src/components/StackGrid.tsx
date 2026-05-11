@@ -28,7 +28,7 @@ export const STACK_GROUPS: StackGroup[] = [
       {kind: 'Type safety', name: 'Strict Mode · Zod'},
       {kind: 'Discipline', name: 'ESLint + Stylelint'},
       {kind: 'Clean Code', name: 'Knip'},
-      {kind: 'Accessibility', name: 'Axe Core'},
+      {kind: 'Package Management', name: 'PNPM'},
     ],
     label: 'Quality',
   },
