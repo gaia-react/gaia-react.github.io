@@ -64,7 +64,7 @@ const Hero = () => (
             className="bg-accent-soft size-1.5 rounded-full"
           />
           <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-            React · Claude Code · v1.1.0
+            React · Claude Code · v1.1
           </span>
         </div>
 

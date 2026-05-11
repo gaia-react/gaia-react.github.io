@@ -35,7 +35,7 @@ const TERM_SCRIPT: TermStep[] = [
   {prompt: '$', text: 'npx create-gaia@latest my-app', type: 'type'},
   {ms: 380, type: 'pause'},
   {cls: 'dim', text: 'Need to install the following packages:', type: 'line'},
-  {cls: 'dim', text: '  create-gaia@1.1.0', type: 'line'},
+  {cls: 'dim', text: '  create-gaia@lastest', type: 'line'},
   {cls: 'dim', text: 'Ok to proceed? (y) y', type: 'line'},
   {ms: 380, type: 'pause'},
   {text: '', type: 'line'},
