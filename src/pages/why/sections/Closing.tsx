@@ -32,7 +32,7 @@ const Closing = () => (
           className="text-ink-dim hover:text-accent inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
           href="/features/"
         >
-          See the Features
+          See the Features →
         </a>
       </div>
     </div>
