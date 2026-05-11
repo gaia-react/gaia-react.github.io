@@ -15,7 +15,7 @@ const TokenGraphic = () => (
     </div>
 
     {/* Grid */}
-    <div className="grid grid-cols-12 gap-[4px] py-[0.4rem] pb-[0.85rem]">
+    <div className="grid grid-cols-12 gap-1 py-[0.4rem] pb-[0.85rem]">
       {Array.from({length: TOTAL}).map((_, index) => {
         const isLoaded = LOADED.has(index);
         const pageKey = `page-${index}`;
@@ -23,7 +23,7 @@ const TokenGraphic = () => (
         return isLoaded ?
             <span
               key={pageKey}
-              className="border-accent/70 bg-accent block h-[14px] rounded-[2px] border"
+              className="border-accent/70 bg-accent block h-3.5 rounded-xs border"
               style={{
                 boxShadow:
                   '0 0 0 1px color-mix(in oklab, var(--color-accent) 30%, transparent)',
@@ -31,7 +31,7 @@ const TokenGraphic = () => (
             />
           : <span
               key={pageKey}
-              className="border-line-soft block h-[14px] rounded-[2px] border bg-white/4"
+              className="border-line-soft block h-3.5 rounded-xs border bg-white/4"
             />;
       })}
     </div>
@@ -40,7 +40,7 @@ const TokenGraphic = () => (
     <div className="border-line-soft text-muted flex gap-5 border-t pt-[0.6rem] text-[0.7rem] tracking-[0.04em]">
       <span className="inline-flex items-center gap-[0.45rem]">
         <span
-          className="bg-accent border-accent/70 inline-block size-[10px] rounded-[2px] border"
+          className="bg-accent border-accent/70 inline-block size-2.5 rounded-xs border"
           style={{
             boxShadow:
               '0 0 0 1px color-mix(in oklab, var(--color-accent) 30%, transparent)',
@@ -49,7 +49,7 @@ const TokenGraphic = () => (
         in context
       </span>
       <span className="inline-flex items-center gap-[0.45rem]">
-        <span className="border-line-soft inline-block size-[10px] rounded-[2px] border bg-white/4" />
+        <span className="border-line-soft inline-block size-2.5 rounded-xs border bg-white/4" />
         on disk · not loaded
       </span>
     </div>

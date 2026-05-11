@@ -5,7 +5,7 @@ import PointList from './PointList';
 
 const POINTS: {desc: ReactNode; name: string}[] = [
   {
-    desc: 'When a new version ships a codemod or breaking-change migration, Update Deps runs it. The PR includes the bump and the migration together. No follow-up commit, no leftover migration work.',
+    desc: 'When a new dependency version requires a codemod or breaking-change migration, GAIA makes sure Claude handles it. The PR includes the bump and the migration together.',
     name: 'Applies migrations and codemods',
   },
   {
@@ -21,7 +21,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Iterates until the upgrade lands clean',
   },
   {
-    desc: 'Patch and minor bumps auto-merge on green CI. Major bumps route to a separate review-required PR. Breaking-change calls stay a human one.',
+    desc: 'Patch and minor bumps auto-merge on green CI. Major bumps route to a separate review-required PR.',
     name: 'Splits by semver',
   },
 ];
@@ -33,14 +33,12 @@ const UpdateDeps = () => (
     lead={
       <>
         <p>
-          Dependabot and Renovate open the PR with the version bump. The actual
-          upgrade work happens after. Applying the codemod. Updating API calls
-          when an interface moves. Resolving conflicts when two upgrades
-          collide. Work that used to land on a human.
+          All Dependabot and Renovate do is open a PR with a version bump,
+          leaving the actual upgrade work for a human to figure out.
         </p>
         <p>
-          GAIA Update Deps does that work. AI runs the codemods, updates the
-          call sites, and resolves any conflicts before the PR opens. The
+          GAIA makes sure Claude does that work, running codemods, migrating
+          source code, and resolving any conflicts before the PR opens. The
           upgrade arrives finished, in a fraction of the time it would take a
           person.
         </p>

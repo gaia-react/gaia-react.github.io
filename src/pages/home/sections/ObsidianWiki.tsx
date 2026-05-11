@@ -3,12 +3,12 @@ import {ArrowRightIcon} from '@/components/icons';
 
 const TIERS = [
   {
-    desc: 'Architecture, flows, decisions. Markdown the team owns.',
+    desc: 'Architecture, flows, decisions.',
     name: 'wiki',
     scope: 'repo',
   },
   {
-    desc: 'What Claude touched this hour. Fast, scoped, evictable.',
+    desc: 'What Claude touched recently. Fast, scoped, evictable.',
     name: 'hot cache',
     scope: 'session',
   },
@@ -78,9 +78,9 @@ const ObsidianWiki = () => (
             data-reveal={true}
             style={{'--reveal-delay': '220ms'} as React.CSSProperties}
           >
-            As your team ships features, GAIA writes what changed into the wiki
-            and clears out anything that&apos;s gone stale or duplicated. The
-            wiki keeps up with the project without anyone having to maintain it.
+            As you ship features, GAIA writes what changed into the wiki and
+            clears out anything that&apos;s gone stale or duplicated. The wiki
+            keeps up with the project without anyone having to maintain it.
           </p>
           <a
             className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"

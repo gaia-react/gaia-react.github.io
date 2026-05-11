@@ -17,7 +17,7 @@ const TheStack = () => (
           The frontend, decided.
         </h2>
         <p className="text-ink-dim text-[1.125rem]">
-          Fewer gaps in the stack. Fewer decisions Claude has to invent.
+          Fewer gaps in the stack means fewer decisions Claude has to invent.
         </p>
       </div>
 

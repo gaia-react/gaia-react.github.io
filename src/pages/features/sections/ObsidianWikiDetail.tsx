@@ -9,7 +9,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Self-maintaining knowledge base',
   },
   {
-    desc: 'Token costs do not balloon as the wiki gets richer. Claude only reads the specific information a task needs, so a project with 1,000 pages of context is no more expensive to work in than one with 10.',
+    desc: 'Token costs do not balloon as the wiki gets richer. Claude only reads the specific information a task needs, so a project with 1,000 pages of context is no more expensive to work in than one with 100.',
     name: 'Token costs don’t balloon',
   },
   {
@@ -33,7 +33,7 @@ const ObsidianWikiDetail = () => (
           building, not just the code in front of it. Product features, user
           flows, design rationale, business decisions, architecture, and
           dependencies all live as focused markdown pages committed to git, not
-          chat history, not machine-local memory.
+          CLAUDE.md, not chat history, not machine-local memory.
         </p>
         <p>
           GAIA ships with the{' '}

@@ -7,7 +7,7 @@ type Pattern = {
 
 const QUALITY: Pattern[] = [
   {
-    body: "Claude can't ship broken code. Pre-tool-use hooks block destructive git, watch-mode tests, force-pushes to main, and eslint-config edits before they happen. Pre-commit hooks gate every commit on typecheck, lint, tests, and build.",
+    body: "Claude can't ship broken code. Pre-tool-use hooks block destructive git, watch-mode tests, force-pushes to main, and eslint-config edits before they happen. Pre-commit hooks gate every commit.",
     name: 'The Stop Hook',
   },
   {
@@ -15,18 +15,18 @@ const QUALITY: Pattern[] = [
     name: 'Reflection',
   },
   {
-    body: 'A specialist for every concern, dispatched in parallel. The code-review audit fans four specialists: React patterns, TypeScript and architecture, i18n, and component health. Findings merge into one tiered report.',
+    body: 'A specialist for every concern, dispatched in parallel and working as a team to find and fix issues.',
     name: 'Multi-Agent Collaboration',
   },
   {
-    body: 'Specs become tests before code is written. UATs the PO authors in plain English compile into red-state Playwright E2E specs before the implementer writes a line of source. The first task is turning red green.',
+    body: 'Specs become user-acceptance tests before code is written. UATs are written into red-state Playwright E2E tests.',
     name: 'Specification-Driven Development',
   },
 ];
 
 const WORKFLOW: Pattern[] = [
   {
-    body: 'Plans are durable artifacts requiring user approval. Per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt all land before any work begins. The plan never executes until you say go.',
+    body: 'Plans are durable artifacts requiring user approval. Per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt all land before any work begins. The plan executes when you say go.',
     name: 'Planning',
   },
   {
@@ -34,7 +34,7 @@ const WORKFLOW: Pattern[] = [
     name: 'Memory & Knowledge Base',
   },
   {
-    body: 'Cost and quality discipline wired in. Mechanical work runs on Sonnet to keep tokens cheap. Heavier reasoning routes to Opus where it earns the price.',
+    body: 'Cost and quality discipline wired in. Mechanical work runs on Sonnet or Haiku to keep tokens cheap. Heavier reasoning routes to Opus when the cost is merited.',
     name: 'Resource-Aware Optimization',
   },
   {
@@ -49,7 +49,7 @@ const CONTEXT: Pattern[] = [
     name: 'Symbol-Aware Retrieval',
   },
   {
-    body: "Skills load by trigger, not by default. The harness reads each skill's description and fires the matching one when its trigger phrase appears. Hundreds can sit on disk without burning a token until they're needed.",
+    body: "Skills load by trigger, not by default. The harness reads each skill's description and fires the matching one when its trigger phrase appears. They sit on disk without burning a token until they're needed.",
     name: 'Skill Activation',
   },
   {
@@ -68,7 +68,7 @@ const TOOLING: Pattern[] = [
     name: 'Human-in-the-Loop',
   },
   {
-    body: 'Defense in depth, layered from the filesystem up. Secrets and credentials are blocked from being written. Debt-accumulating patterns are rejected at the source. The audit covers XSS, SSRF, IDOR, and dependency vulnerabilities.',
+    body: 'Defense in depth, layered from the filesystem up. Secrets and credentials are blocked from being read or written. Debt-accumulating patterns are rejected at the source. The audit covers XSS, SSRF, IDOR, and dependency vulnerabilities.',
     name: 'Guardrails & Safety',
   },
   {
@@ -76,7 +76,7 @@ const TOOLING: Pattern[] = [
     name: 'Parallelization',
   },
   {
-    body: 'A curated React-specific tool surface. Linting, types, unit and E2E tests, visual regression, mocking, the gh CLI, and the Obsidian wiki.',
+    body: 'A curated React-specific tool surface. Linting, types, unit and E2E tests, visual regression, mocking, the GitHub CLI, and the Obsidian wiki.',
     name: 'Tool Use',
   },
 ];
@@ -116,15 +116,26 @@ const CLUSTERS: Cluster[] = [
 ];
 
 const AgenticDesignDetail = () => (
-  <section className="border-line-soft border-b py-20" id="agentic-design">
+  <section
+    className="border-line-soft scroll-mt-20 border-b py-20"
+    id="agentic-design"
+  >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
       {/* Section head */}
       <div className="mb-12 grid items-start gap-6 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16">
         <h2
-          className="font-display text-ink max-w-[18ch] text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]"
+          className="group font-display text-ink max-w-[18ch] text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]"
           data-reveal={true}
         >
-          Agentic design
+          <a className="text-inherit no-underline" href="#agentic-design">
+            Agentic design
+            <span
+              aria-hidden={true}
+              className="ml-[0.4em] text-[0.6em] opacity-0 transition-opacity duration-150 select-none group-hover:opacity-40"
+            >
+              #
+            </span>
+          </a>
         </h2>
         <div
           className="text-ink-dim text-[1.05rem] leading-[1.65]"
@@ -132,12 +143,11 @@ const AgenticDesignDetail = () => (
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
           <p>
-            The patterns below are established agent-design vocabulary. GAIA
-            wires each one in through hooks, agents, rules, commands, and wiki
-            conventions, so they run the same way every session, every engineer,
-            every model variant. Not as emergent model behavior on top of a
-            vanilla setup. Not as prompts you have to repeat. The discipline
-            lives in the project.
+            GAIA wires in design patterns through hooks, agents, rules,
+            commands, and wiki conventions, so they run the same way every
+            session, every agent, every model variant. Not as emergent model
+            behavior on top of a vanilla setup. Not as prompts you have to
+            repeat. The discipline lives in the project.
           </p>
         </div>
       </div>
@@ -160,7 +170,10 @@ const AgenticDesignDetail = () => (
                   key={name}
                   className={`bg-surface border-line-soft rounded-lg border p-[1.4rem_1.4rem_1.5rem] transition-[border-color,transform] duration-150 hover:-translate-y-px ${hoverBorder}`}
                 >
-                  <h4 className="mb-2 text-[1rem] font-medium tracking-[-0.005em]" style={{color}}>
+                  <h4
+                    className="mb-2 text-[1rem] font-medium tracking-[-0.005em]"
+                    style={{color}}
+                  >
                     {name}
                   </h4>
                   <p className="text-ink-dim m-0 text-[0.92rem] leading-[1.6]">

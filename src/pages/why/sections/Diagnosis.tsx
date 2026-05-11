@@ -23,14 +23,14 @@ const FAILURES: Item[] = [
         <code className="bg-surface text-ink rounded-sm px-1.5 font-mono text-[0.875em]">
           any
         </code>
-        . Every shortcut compounds. AI moves at AI speed, so the debt compounds
+        . Every shortcut compounds. AI moves at AI speed, so tech debt compounds
         faster than any human team would let it.
       </>
     ),
     name: 'No backstop',
   },
   {
-    desc: 'Dependencies rot. Wikis go stale. Security findings drift. The chores that quietly decay a project get neglected while the team is busy shipping features. AI usually does not touch them at all.',
+    desc: "Dependencies rot. Knowledge goes stale. Security findings drift. The chores that quietly decay a project get neglected while you're busy shipping features. AI usually does not handle these at all.",
     name: 'Maintenance debt',
   },
 ];
@@ -40,7 +40,7 @@ const Diagnosis = () => (
     className="border-line-soft scroll-mt-20 border-b px-4 py-14 sm:px-8 sm:py-20"
     id="diagnosis"
   >
-    <div className="mx-auto max-w-[1100px]">
+    <div className="mx-auto max-w-275">
       <div className="mb-10 grid items-start gap-4 lg:grid-cols-[minmax(12rem,1fr)_minmax(0,2.2fr)] lg:gap-8">
         <h2
           className="group text-ink font-display max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.4rem)] font-normal tracking-[-0.02em]"
@@ -57,13 +57,13 @@ const Diagnosis = () => (
           </a>
         </h2>
         <div
-          className="text-ink-dim text-[1.05rem] leading-[1.7]"
+          className="text-ink-dim max-w-176 text-[1.05rem] leading-[1.7]"
           data-reveal={true}
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
           <p>
-            If you have used Claude on a real project, you have watched it
-            happen. Working code rewritten. APIs hallucinated. Tests never
+            If you&apos;ve used Claude on a real project, you&apos;ve seen it
+            happen. Working code rewritten. Features hallucinated. Tests never
             written. The failures are not random. They have shapes.
           </p>
         </div>

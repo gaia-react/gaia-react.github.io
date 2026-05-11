@@ -50,15 +50,15 @@ const CI_LEDGER: LedgerRow[] = [
 
 const POINTS: {desc: ReactNode; name: string}[] = [
   {
-    desc: "When app code changes, the workflow runs the wiki chain and opens a labeled PR. When it hasn't, the run exits clean. A run that rewrites more than 25% of the wiki holds for human review instead of auto-merging.",
+    desc: "When app code changes, the workflow runs the wiki sync and opens a labeled PR. When it hasn't, the run exits clean. A run that rewrites more than 25% of the wiki holds for human review instead of auto-merging.",
     name: 'Wiki stays in sync with the code',
   },
   {
-    desc: 'GAIA Update Deps runs weekly. Patch and minor dependency bumps auto-merge on green CI. Major bumps split into a separate review-required PR.',
+    desc: 'GAIA updates dependencies weekly. Patch and minor dependency bumps auto-merge on green CI. Major bumps split into a separate review-required PR. Necessary code migrations are implemented automatically.',
     name: 'Dependencies, tested and merged',
   },
   {
-    desc: 'pnpm audit runs daily. High and critical findings open a GitHub issue plus a single-package security patch PR that auto-merges on green CI. Medium and low findings log only. Security patches never bundle with unrelated dep updates.',
+    desc: 'pnpm audit runs daily. High and critical findings open a GitHub issue plus a single-package security patch PR that auto-merges on green CI. Medium and low findings log only. Security patches never bundle with unrelated dependency updates.',
     name: 'Daily security audit',
   },
   {
@@ -81,14 +81,14 @@ const GaiaCi = () => (
     lead={
       <>
         <p>
-          GAIA CI is the maintenance system built into every GAIA project. Wikis
-          stay in sync with the code. Dependencies stay current and tested.
-          Security findings get patched. Stale branches don&apos;t pile up. The
-          important chores that decay a project when neglected, all running on
-          their own.
+          GAIA CI is the maintenance system built into every GAIA project. The
+          wiki stays in sync with the code. Dependencies stay current and
+          tested. Security findings get patched. Stale branches don&apos;t pile
+          up. The important chores that decay a project when neglected, all
+          running on their own.
         </p>
         <p>
-          AI handles the safe cases. Humans only see the ones AI can&apos;t
+          Claude handles the safe cases. Humans only see the ones it can&apos;t
           recover from. Patch and minor dependency bumps, security patches, and
           routine wiki updates auto-merge on green CI. Major bumps, large wiki
           rewrites, and post-revert failures hold for human review.
@@ -120,7 +120,7 @@ const GaiaCi = () => (
             className={`inline-flex items-center gap-[0.4rem] text-[0.7rem] tracking-[0.12em] uppercase ${row.tone === 'review' ? 'text-warn-soft' : 'text-secondary-soft'}`}
           >
             <span
-              className={`inline-block size-[6px] rounded-full ${row.tone === 'review' ? 'bg-warn' : 'bg-secondary'}`}
+              className={`inline-block size-1.5 rounded-full ${row.tone === 'review' ? 'bg-warn' : 'bg-secondary'}`}
             />
             {row.action}
           </span>

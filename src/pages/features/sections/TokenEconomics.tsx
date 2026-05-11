@@ -9,7 +9,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Rules are scoped to activate only when needed',
   },
   {
-    desc: 'Project knowledge lives as focused, linked Markdown pages. Claude opens the one page it needs ("How does dark mode wire through?") instead of preloading the whole manual.',
+    desc: 'Project knowledge lives as focused, linked Markdown pages. Claude reads only what it needs ("How does dark mode wire through?") instead of preloading the whole manual.',
     name: 'Obsidian wiki, fetched on demand',
   },
   {
@@ -17,22 +17,45 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Wiki behavior tailored to GAIA',
   },
   {
-    desc: 'Sweeps memory, wiki, and autoloaded files for duplication, conflicts, and stale instructions before they start costing tokens.',
+    desc: 'Sweeps memory, wiki, and autoloaded files for duplication, conflicts, and stale instructions before they start wasting tokens.',
     name: 'Periodic knowledge audit',
   },
   {
-    desc: '/gaia handoff and /gaia pickup replace re-briefing Claude from scratch at every session start.',
+    desc: (
+      <>
+        <code className="text-ink bg-surface rounded-sm px-1.5 text-[0.875em]">
+          /gaia handoff
+        </code>
+        and
+        <code className="text-ink bg-surface rounded-sm px-1.5 text-[0.875em]">
+          /gaia pickup
+        </code>
+        replace re-briefing Claude from scratch at every session start.
+      </>
+    ),
     name: 'Session continuity',
   },
   {
-    desc: '/gaia plan spawns each phase as a focused subagent with only the context it needs. No accumulated history, no stale assumptions. Each agent starts fresh and stays cheap.',
+    desc: (
+      <>
+        <code className="text-ink bg-surface rounded-sm px-1.5 text-[0.875em]">
+          /gaia plan
+        </code>
+        runs each phase using focused subagents with only the context they need.
+        No accumulated history, no stale assumptions. Each agent starts fresh
+        and stays cheap.
+      </>
+    ),
     name: 'Task orchestration in clean subagent contexts',
   },
   {
     desc: (
       <>
-        /gaia spec runs in its own context, separate from implementation.
-        GAIA&apos;s Socratic layer wraps{' '}
+        <code className="text-ink bg-surface rounded-sm px-1.5 text-[0.875em]">
+          /gaia spec
+        </code>
+        runs in its own context, separate from implementation. GAIA&apos;s
+        Socratic layer wraps{' '}
         <a
           className="text-accent hover:text-accent-soft transition-colors duration-150"
           href="https://github.com/github/spec-kit"
@@ -40,8 +63,10 @@ const POINTS: {desc: ReactNode; name: string}[] = [
           spec-kit
         </a>
         : one question at a time, an immutable SPEC artifact, then a chain into
-        /gaia plan. The artifact is the handoff between sessions, not
-        accumulated context.
+        <code className="text-ink bg-surface rounded-sm pr-0.5 pl-1.5 text-[0.875em]">
+          /gaia plan
+        </code>
+        . The artifact is the handoff between sessions, not accumulated context.
       </>
     ),
     name: 'Spec discovery in isolated context',

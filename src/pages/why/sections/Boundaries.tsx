@@ -5,15 +5,15 @@ type Item = {
 
 const BOUNDARIES: Item[] = [
   {
-    desc: 'The goal is not to help humans write code faster. It is to make AI trustworthy enough to write production code while the engineer directs.',
+    desc: 'The goal is not to help humans write code faster. It is to make Claude trustworthy enough to write production code while the engineer directs.',
     name: 'Not a copilot',
   },
   {
-    desc: 'Multiple checkpoints between Claude and main require human approval. The AI does the work. You decide what the work is.',
+    desc: 'Key checkpoints between Claude and main require human approval. The AI does the work. You decide what the work is.',
     name: 'Not “fully autonomous”',
   },
   {
-    desc: 'A CLAUDE.md is text the model can ignore. GAIA is the project itself. Hooks intercept. Rules load by file pattern. Agents audit. Commands orchestrate. Discipline you cannot opt out of.',
+    desc: 'A CLAUDE.md is text that AI can ignore. GAIA is the project itself. Hooks intercept. Rules load by file pattern. Agents audit. Commands orchestrate. Discipline Claude cannot opt out of.',
     name: 'Not just a CLAUDE.md',
   },
   {
@@ -27,7 +27,7 @@ const Boundaries = () => (
     className="border-line-soft scroll-mt-20 border-b px-4 py-14 sm:px-8 sm:py-20"
     id="boundaries"
   >
-    <div className="mx-auto max-w-[1100px]">
+    <div className="mx-auto max-w-275">
       <div className="mb-10 grid items-start gap-4 lg:grid-cols-[1fr_2fr] lg:gap-12">
         <h2
           className="group text-ink font-display max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.4rem)] font-normal tracking-[-0.02em]"

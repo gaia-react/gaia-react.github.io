@@ -29,7 +29,7 @@ const UpdateDepsGraphic = () => (
     </div>
 
     {/* Diff block */}
-    <div className="border-line-soft mb-[0.85rem] rounded-[4px] border bg-black/18 p-[0.5rem_0.6rem] font-mono text-[0.78rem]">
+    <div className="border-line-soft mb-[0.85rem] rounded-sm border bg-black/18 p-[0.5rem_0.6rem] font-mono text-[0.78rem]">
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] overflow-hidden py-[0.18rem]">
         <span className="text-warn">-</span>
         <span className="text-warn/80">
@@ -57,7 +57,7 @@ const UpdateDepsGraphic = () => (
           key={c}
           className="inline-flex items-center gap-[0.4rem] tracking-[0.04em]"
         >
-          <span className="bg-secondary inline-block size-[8px] rounded-full" />
+          <span className="bg-secondary inline-block size-2 rounded-full" />
           {c}
         </span>
       ))}

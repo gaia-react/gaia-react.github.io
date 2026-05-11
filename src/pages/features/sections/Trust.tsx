@@ -9,11 +9,11 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Coding principles',
   },
   {
-    desc: 'Rules encode the conventions directly instead of hoping Claude infers them from whatever’s already in the repo.',
+    desc: 'Rules encode the conventions directly instead of hoping Claude infers them from whatever’s already in the repo, or worse, bad examples from its training data.',
     name: 'Best practices baked in',
   },
   {
-    desc: 'Rules block debt-accumulating patterns from being written in the first place: untyped exports, untested components, hardcoded strings, a11y gaps.',
+    desc: 'Rules block debt-accumulating patterns from being written in the first place: untyped objects, untested components, hardcoded strings, a11y gaps.',
     name: 'Guardrails against technical debt',
   },
   {
@@ -21,20 +21,20 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Consistently clean code',
   },
   {
-    desc: 'react-code, typescript, tdd, tailwind, playwright-cli, skeleton-loaders, and eslint-fixes load on demand when Claude edits matching files. They apply project conventions without re-deriving them every session.',
+    desc: 'Multiple scoped skills load on demand when Claude edits matching files. They apply project conventions without re-deriving them each session.',
     name: 'Bundled skills wired in for write-time quality',
   },
   {
-    desc: 'The bundled tdd skill runs a red-green-refactor loop with tests before code, tailored for Vitest, React Testing Library, Storybook composeStory, and MSW.',
+    desc: 'The bundled TDD skill runs a red-green-refactor loop with tests before code, tailored for Vitest, React Testing Library, Storybook, and MSW.',
     name: 'Test-driven development',
   },
   {
-    desc: 'UATs the PO authors in plain English become Playwright E2E specs before the implementer writes a line of source. The implementer’s first task is turning red tests green. Specs become tests automatically.',
-    name: 'Specs that turn into tests',
+    desc: 'UATs become Playwright E2E specs before Claude writes a line of code. The first task is turning red tests green. Specs become tests automatically.',
+    name: 'Specs that turn into user acceptance tests',
   },
   {
-    desc: 'The code-review-audit agent scans the branch diff for security, performance, architecture, code smells, and antipatterns. Four parallel specialists layer on React patterns, TypeScript, i18n, and component health. Extendable with custom rules. Tiered findings (Critical, Important, Suggestions) gate the merge. Runs locally, optionally in CI.',
-    name: 'Code-review audit before every merge',
+    desc: 'The code-review-audit agent scans for issues with security, performance, architecture, code smells, and antipatterns. Four parallel specialists layer on React patterns, TypeScript, and component health. Extendable with custom rules.',
+    name: 'Code review before every merge',
   },
   {
     desc: 'Typecheck, lint, tests, and build must all pass. Not “mostly clean”, actually clean.',
@@ -53,9 +53,9 @@ const Trust = () => (
           an average of every codebase on the internet, bad code and all.
         </p>
         <p>
-          GAIA&apos;s codebase is what you actually want Claude matching. With
-          GAIA, Claude writes code that follows best practices on day one, and
-          can&apos;t ship code that doesn&apos;t.
+          GAIA&apos;s coding style is what you actually want Claude matching.
+          With GAIA, Claude writes code that follows best practices on day one,
+          and can&apos;t ship code that doesn&apos;t.
         </p>
       </>
     }

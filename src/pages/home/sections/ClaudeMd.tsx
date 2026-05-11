@@ -142,18 +142,17 @@ const ClaudeMd = () => (
           >
             Hooks protect main, prevent tech debt, and keep commits clean. The{' '}
             <code className="text-accent">code-review-audit</code> agent fans
-            four parallel specialists (React patterns, TypeScript, i18n,
-            component health) on top of its checks for security, performance,
-            architecture, code smells, and antipatterns. Extendable with custom
-            rules. Tiered findings gate the merge.
+            four parallel specialists on top of its checks for security,
+            performance, architecture, code smells, and antipatterns. Extendable
+            with custom rules.
           </p>
           <p
             className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]"
             data-reveal={true}
             style={{'--reveal-delay': '180ms'} as React.CSSProperties}
           >
-            Scoped rules guide coding practices, accessibility, testing, API
-            patterns.{' '}
+            Scoped rules guide coding best practices, testing, strict typing,
+            and accessibility.{' '}
             <a
               className="text-accent"
               href="https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md"

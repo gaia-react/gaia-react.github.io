@@ -14,7 +14,7 @@ const Hero = () => (
       className="gaia-haze-drift pointer-events-none absolute inset-[-3%] z-0"
       style={{background: HAZE}}
     />
-    <div className="relative z-10 mx-auto grid max-w-[1100px] items-end gap-10 md:grid-cols-2 md:gap-16">
+    <div className="relative z-10 mx-auto grid max-w-275 items-end gap-10 md:grid-cols-2 md:gap-16">
       <h1
         className="font-display text-ink text-[clamp(2.6rem,6vw,4.4rem)] leading-[1.05] font-light tracking-[-0.03em]"
         data-reveal={true}
@@ -28,7 +28,8 @@ const Hero = () => (
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
           The skepticism about AI-built code is fair. Vibe coding ships fast and
-          breaks under load. Tests get skipped. Conventions drift.
+          breaks just as quickly. Quality degrades. Tests get skipped.
+          Conventions drift.
         </p>
         <p
           className="mb-4"
@@ -39,12 +40,12 @@ const Hero = () => (
           discipline around Claude.
         </p>
         <p
-          className="font-display text-ink text-[1.15rem] italic"
+          className="font-display text-ink text-[1.15rem]"
           data-reveal={true}
           style={{'--reveal-delay': '240ms'} as React.CSSProperties}
         >
-          GAIA is the discipline. Built into the project, so Claude has to
-          follow it.
+          GAIA is the discipline. Built into the project so Claude has to follow
+          it.
         </p>
       </div>
     </div>

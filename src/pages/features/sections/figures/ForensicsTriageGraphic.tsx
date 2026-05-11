@@ -29,7 +29,7 @@ const ForensicsTriageGraphic = () => (
     {/* Left col — inbox */}
     <div className="bg-surface border-line-soft rounded-lg border py-4">
       <div className="border-line-soft text-muted flex items-center gap-2 border-b px-[1.1rem] pb-[0.85rem] text-[0.7rem] tracking-[0.16em] uppercase">
-        <span className="bg-warn inline-block size-[6px] rounded-full" />
+        <span className="bg-warn inline-block size-1.5 rounded-full" />
         Failure classes
       </div>
       <ul>
@@ -39,7 +39,7 @@ const ForensicsTriageGraphic = () => (
             className={`border-line-soft relative flex items-center justify-between border-b px-[1.1rem] py-[0.55rem] last:border-b-0${index === 3 ? 'bg-warn/8 text-ink' : 'text-ink-dim'}`}
           >
             {index === 3 && (
-              <span className="bg-warn absolute inset-y-0 left-0 w-[2px] rounded-sm" />
+              <span className="bg-warn absolute inset-y-0 left-0 w-0.5 rounded-sm" />
             )}
             <span>{c}</span>
             <span
@@ -82,7 +82,7 @@ const ForensicsTriageGraphic = () => (
     {/* Right col — report */}
     <div className="bg-surface border-line-soft flex flex-col rounded-lg border">
       <div className="border-line-soft text-muted flex items-center gap-2 border-b px-[1.1rem] pt-4 pb-[0.85rem] text-[0.7rem] tracking-[0.16em] uppercase">
-        <span className="bg-accent inline-block size-[6px] rounded-full" />
+        <span className="bg-accent inline-block size-1.5 rounded-full" />
         /gaia forensics
       </div>
 
@@ -114,7 +114,7 @@ const ForensicsTriageGraphic = () => (
       </div>
 
       {/* Issue card */}
-      <div className="border-line-soft mx-[1.1rem] mb-[1.1rem] rounded-[4px] border bg-black/20 p-[0.85rem_1rem_0.95rem]">
+      <div className="border-line-soft mx-[1.1rem] mb-[1.1rem] rounded-sm border bg-black/20 p-[0.85rem_1rem_0.95rem]">
         <div className="text-muted mb-2 flex items-center gap-2 font-mono text-[0.72rem]">
           <svg
             aria-hidden="true"
@@ -132,7 +132,7 @@ const ForensicsTriageGraphic = () => (
         </div>
         <div className="text-muted flex items-center gap-4 font-mono text-[0.74rem]">
           <span className="text-accent-soft inline-flex items-center gap-[0.4rem]">
-            <span className="bg-accent inline-block size-[8px] rounded-full" />
+            <span className="bg-accent inline-block size-2 rounded-full" />
             Open
           </span>
           <span>byte-identical to local copy</span>

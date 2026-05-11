@@ -46,7 +46,7 @@ const Orbs = () => (
 
 const STATS = [
   {label: 'Lint rules', value: '1,314'},
-  {label: 'Code audit', value: '4 specialists'},
+  {label: 'Code audit agents', value: '4 specialists'},
   {label: 'Warnings allowed', value: 'Zero'},
 ];
 
@@ -89,8 +89,7 @@ const Hero = () => (
         >
           A React workflow engineered for Claude Code. AI ships faster than
           ever. GAIA keeps it production-grade by enforcing quality at
-          write-time and commit-time. Conventions enforced in code, shortcuts
-          blocked at the source, every merge audited before it lands.
+          write-time and commit-time.
         </p>
 
         <p

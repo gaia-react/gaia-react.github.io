@@ -290,9 +290,9 @@ samp {
   --group-glow: rgba(217, 168, 87, 0.3);
 }
 [data-group='vision'] {
-  --group-color: #8eb4b4;
-  --group-bg-strong: rgba(142, 180, 180, 0.08);
-  --group-glow: rgba(142, 180, 180, 0.25);
+  --group-color: #cccbc4;
+  --group-bg-strong: rgba(204, 203, 196, 0.08);
+  --group-glow: rgba(204, 203, 196, 0.22);
 }
 
 @keyframes rm-drift-a {
@@ -408,14 +408,6 @@ samp {
   border: 1px solid var(--color-line-soft);
   border-left: 2px solid var(--group-color, var(--color-muted));
   border-radius: 4px;
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease;
-  &:hover {
-    transform: translateX(3px);
-    border-color: var(--color-line);
-    border-left-color: var(--group-color, var(--color-muted));
-  }
 }
 
 /* ============================================================

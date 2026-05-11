@@ -1,5 +1,3 @@
-import type React from 'react';
-
 type Item = {
   desc: string;
   name: string;
@@ -11,15 +9,15 @@ const OUTCOMES: Item[] = [
     name: 'Code that ships',
   },
   {
-    desc: 'Rules and wiki pages load on demand, not by default. A project with 1,000 wiki pages costs the same per task as one with 10. Claude opens what the task needs and nothing else.',
+    desc: 'Rules and wiki pages load on demand, not by default. Claude opens what the task needs and nothing else.',
     name: 'Costs that do not balloon',
   },
   {
-    desc: 'Project knowledge lives in markdown the AI reads and writes back to. It sits in git, not chat history. Six months in, you have more context, not less.',
+    desc: 'Project knowledge lives in markdown that Claude reads and writes back to. It sits in git, not chat history. Six months in, you have more context, not less.',
     name: 'Knowledge that compounds',
   },
   {
-    desc: 'Every merge runs a code-review audit with a team of specialist agents. Critical findings block the merge. Things you would notice on a senior engineer’s review, the AI catches first.',
+    desc: 'Every merge runs a code-review audit with a team of specialist agents. Critical findings block the merge. Things you would notice on a senior engineer’s review, Claude catches first.',
     name: 'Reviews you can trust',
   },
   {
@@ -33,7 +31,7 @@ const Outcomes = () => (
     className="border-line-soft scroll-mt-20 border-b px-4 py-14 sm:px-8 sm:py-20"
     id="outcomes"
   >
-    <div className="mx-auto max-w-[1100px]">
+    <div className="mx-auto max-w-275">
       <div className="mb-10 grid items-start gap-4 lg:grid-cols-[1fr_2fr] lg:gap-12">
         <h2
           className="group text-ink font-display max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.4rem)] font-normal tracking-[-0.02em]"
@@ -68,20 +66,6 @@ const Outcomes = () => (
           </li>
         ))}
       </ol>
-      <p
-        className="text-muted mt-8 text-[0.98rem]"
-        data-reveal={true}
-        style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-      >
-        See how each piece is wired up on the{' '}
-        <a
-          className="text-accent hover:text-accent-soft transition-colors duration-150"
-          href="/features/"
-        >
-          Features page
-        </a>
-        .
-      </p>
     </div>
   </section>
 );

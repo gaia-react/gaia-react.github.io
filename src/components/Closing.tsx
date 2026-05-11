@@ -27,7 +27,7 @@ const Closing = () => (
 
         <div className="mx-auto mb-4 flex w-fit items-start gap-2">
           <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-            The AI is the engineer. You own the product.
+            Claude is the engineer. You own the product.
           </span>
         </div>
 
@@ -43,12 +43,20 @@ const Closing = () => (
           </em>
         </h2>
 
-        <a
-          className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"
-          href="/get-started/"
-        >
-          Get Started →
-        </a>
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          <a
+            className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"
+            href="/get-started/"
+          >
+            Get Started →
+          </a>
+          <a
+            className="text-ink-dim hover:text-accent inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
+            href="/why/"
+          >
+            Why GAIA →
+          </a>
+        </div>
       </div>
     </div>
   </section>

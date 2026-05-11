@@ -127,11 +127,13 @@ const getBorderClasses = (index: number, total: number, cols: number) => {
   const classes = ['border-line-soft'];
 
   if (!mobileLastCol && !desktopLastCol) classes.push('border-r');
-  else if (!mobileLastCol && desktopLastCol) classes.push('border-r sm:border-r-0');
+  else if (!mobileLastCol && desktopLastCol)
+    classes.push('border-r sm:border-r-0');
   else if (mobileLastCol && !desktopLastCol) classes.push('sm:border-r');
 
   if (!mobileLastRow && !desktopLastRow) classes.push('border-b');
-  else if (!mobileLastRow && desktopLastRow) classes.push('border-b sm:border-b-0');
+  else if (!mobileLastRow && desktopLastRow)
+    classes.push('border-b sm:border-b-0');
   else if (mobileLastRow && !desktopLastRow) classes.push('sm:border-b');
 
   return classes.join(' ');
@@ -177,19 +179,24 @@ const Stack = () => (
     id="stack"
     lead={
       <>
+        <p>GAIA&apos;s stack includes everything you see here.</p>
         <p>
-          1,314 linting rules, four testing layers (unit, integration, E2E,
-          visual) with mocking, i18n, dark mode, forms with validation, and
-          Storybook. All pre-configured and documented for Claude.
-        </p>
-        <p>
-          GAIA uses pnpm. Faster installs. Smaller node_modules. Stricter
-          dependency resolution that blocks phantom imports and closes the
-          easiest path for npm supply-chain attacks.
+          GAIA uses{' '}
+          <a
+            className="text-accent hover:text-accent-soft transition-colors duration-150"
+            href="https://pnpm.io"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            pnpm
+          </a>
+          . Faster installs. Smaller node_modules. Stricter dependency
+          resolution that blocks phantom imports and most importantly, protects
+          against the easiest path for npm supply-chain attacks.
         </p>
       </>
     }
-    title="The stack"
+    title="GAIA Tech Stack"
   >
     <LogoGroup
       cols={4}

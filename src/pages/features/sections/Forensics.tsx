@@ -5,20 +5,12 @@ import PointList from './PointList';
 
 const POINTS: {desc: ReactNode; name: string}[] = [
   {
-    desc: 'Eight failure classes captured with the specific state files that matter for each (init, update, wiki-sync, quality-gate, hook, scaffold, dev-server, other). Read-only. No remediation, no autofix.',
-    name: 'One invocation, complete report',
-  },
-  {
     desc: 'Paths normalized, secrets stripped, machine leaks scrubbed. Local file and GitHub issue body are byte-identical.',
     name: 'Redacted by default',
   },
   {
-    desc: 'Wrong Node version, missing env var, dirty working tree. The fix returns inline, no issue filed.',
+    desc: "If Claude determines it's not a problem with GAIA but a local config issue, the fix is returned inline.",
     name: 'Self-diagnoses user-config issues',
-  },
-  {
-    desc: 'Files to gaia-react/gaia with the gaia-forensics label. Issue body is byte-identical to your local copy.',
-    name: 'One-prompt issue filing for probable bugs',
   },
 ];
 
@@ -29,17 +21,17 @@ const Forensics = () => (
     lead={
       <>
         <p>
-          When a GAIA workflow misfires, you don&apos;t lose 30 minutes hunting
-          state files. Run{' '}
-          <code className="bg-surface rounded-sm px-2 py-0.5 text-[0.88em]">
+          If a GAIA workflow behaves unexpectedly, run
+          <br className="hidden md:inline" />
+          <code className="bg-surface text-ink rounded-sm px-2 py-0.5 text-[0.88em]">
             /gaia forensics
-          </code>{' '}
+          </code>
           and describe what happened.
         </p>
         <p>
-          The skill assembles a redacted, classified, filing-ready report in one
-          run. User-config issues return the fix inline. Probable bugs file to
-          GAIA&apos;s GitHub with one prompt.
+          A redacted, classified, filing-ready report is assembled. User-config
+          issues return the fix inline. Probable bugs are filed to GAIA&apos;s
+          GitHub with one prompt.
         </p>
       </>
     }

@@ -5,7 +5,7 @@ const Discipline = () => (
     className="border-line-soft scroll-mt-20 border-b px-4 py-14 sm:px-8 sm:py-20"
     id="discipline"
   >
-    <div className="mx-auto max-w-[1100px]">
+    <div className="mx-auto max-w-275">
       <div className="mb-10 grid items-start gap-4 lg:grid-cols-[1fr_2fr] lg:gap-12">
         <h2
           className="group text-ink font-display max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.4rem)] font-normal tracking-[-0.02em]"
@@ -36,18 +36,18 @@ const Discipline = () => (
             AI does not bring that discipline on its own. The default is the
             opposite. Trained on the aggregate of every codebase on the
             internet, the model mirrors the average. The average is not
-            disciplined. Without structure around it, AI averages every shortcut
+            disciplined. Without structure around it, AI takes every shortcut
             its training data has ever taken. Every bad coding habit.
           </p>
           <p>
             GAIA provides structure in layers. Hooks own the tool call. Rules
             and Skills own the writing. Gates own the commit. Audits own the
-            merge. Discipline is structural, not personal.
+            merge. Discipline is structural.
           </p>
           <p className="text-ink">
-            GAIA does not make AI “smarter.” GAIA makes AI{' '}
-            <em className="text-accent font-display italic">disciplined</em>.
-            That is what “vibe coding” is missing.
+            GAIA makes Claude{' '}
+            <em className="text-accent font-display">disciplined</em>. That is
+            what “vibe coding” is missing.
           </p>
         </div>
       </div>

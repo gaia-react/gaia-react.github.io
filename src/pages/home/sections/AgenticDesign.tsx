@@ -15,9 +15,9 @@ const BLOCKS = [
   },
   {
     color: 'warn' as const,
-    copy: 'The Quality Gate runs typecheck, lint, tests, and build on every commit. The code-review audit tiers findings as Critical, Important, and Suggestions, and blocks the merge until fixed.',
+    copy: 'Requirements and acceptance tests are written before Claude writes a line of code. Defined contracts prevents scope drift.',
     Icon: ReflectionIcon,
-    title: 'Quality ensured before merge',
+    title: 'Spec → Plan → Code',
   },
   {
     color: 'accent' as const,
@@ -26,8 +26,8 @@ const BLOCKS = [
     title: 'Five tiers of memory',
   },
   {
-    color: 'accent' as const,
-    copy: 'One merge audit. Four specialists run in parallel: React patterns, TypeScript and architecture, i18n, and component health. Critical findings block the merge. Suggestions land in a review comment.',
+    color: 'muted' as const,
+    copy: 'One merge audit. Four specialists running in parallel. Critical findings block the merge. Suggestions land in a review comment.',
     Icon: MultiAgentIcon,
     title: 'A specialist for every concern',
   },
@@ -35,6 +35,7 @@ const BLOCKS = [
 
 const BLOCK_STYLES = {
   accent: {bg: 'bg-accent/10', icon: 'text-accent'},
+  muted: {bg: 'bg-muted/10', icon: 'text-ink-dim'},
   teal: {bg: 'bg-secondary/12', icon: 'text-secondary'},
   warn: {bg: 'bg-warn/10', icon: 'text-warn'},
 };

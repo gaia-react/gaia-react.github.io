@@ -20,7 +20,7 @@ const CARDS = [
   },
   {
     color: 'warn' as const,
-    copy: 'GAIA CI handles the chores for you, so dependencies stay current, vulnerabilities stay patched, and stale branches don’t pile up.',
+    copy: "GAIA CI handles the chores for you, so dependencies stay current, vulnerabilities stay patched, and stale code doesn't pile up.",
     Icon: ReflectionIcon,
     title: 'Automated maintenance',
   },
@@ -46,15 +46,14 @@ const Why = () => (
           </span>
         </div>
         <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
-          The system, not the prompt.
+          Vibe coding is broken. GAIA fixes it.
         </h2>
         <p className="text-ink-dim text-[1.125rem]">
-          Most setups treat Claude as a tool you hold. You run{' '}
+          Most setups run{' '}
           <code className="text-ink bg-surface rounded-sm px-1.5 text-[0.875em]">
             /init
-          </code>
-          , let Claude set up a CLAUDE.md, and hope the model figures out the
-          rest.
+          </code>{' '}
+          and hope Claude figures out the rest.
           <br />
           <br />
           Three things break Claude on real projects: output you can&apos;t

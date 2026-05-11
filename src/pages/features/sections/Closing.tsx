@@ -13,7 +13,7 @@ const Closing = () => (
           'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(239,165,142,0.14), transparent 70%)',
       }}
     />
-    <div className="relative mx-auto max-w-[1100px]">
+    <div className="relative mx-auto max-w-275">
       <span
         className="text-accent-soft mb-[1.4rem] inline-block font-mono text-[0.72rem] tracking-[0.18em] uppercase"
         data-reveal={true}

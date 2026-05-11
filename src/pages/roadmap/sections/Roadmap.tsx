@@ -13,7 +13,7 @@ type Item = {
   title: string;
 };
 
-const LAST_UPDATED = '2026-05-09';
+const LAST_UPDATED = '2026-05-11';
 
 const GROUPS: Group[] = [
   {
@@ -58,7 +58,7 @@ const GROUPS: Group[] = [
       {
         description:
           'From issue to merge-ready PR with agents doing the work in between. Pick-up, planning, implementation, review, and handback. The human gates the plan and the merge. Everything else runs on its own.',
-        title: 'Autonomous workflow',
+        title: 'Autonomous workflows',
       },
       {
         description:
@@ -117,37 +117,37 @@ const Orbs = () => (
     className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
   >
     <div
-      className="rm-drift-shipped absolute size-[540px] rounded-full blur-[2px] sm:size-[720px]"
+      className="rm-drift-shipped absolute size-105 rounded-full blur-[2px] sm:size-145"
       style={{
         background:
           'radial-gradient(circle at center, rgba(126,196,136,0.34) 0%, rgba(126,196,136,0.16) 30%, rgba(126,196,136,0.05) 58%, rgba(126,196,136,0) 78%)',
         left: '-260px',
-        top: '-200px',
+        top: '9%',
       }}
     />
     <div
-      className="rm-drift-accent absolute hidden size-[620px] rounded-full blur-[2px] sm:block"
+      className="rm-drift-accent absolute size-90 rounded-full blur-[2px] sm:size-135"
       style={{
         background:
           'radial-gradient(circle at center, rgba(217,119,87,0.32) 0%, rgba(217,119,87,0.16) 30%, rgba(217,119,87,0.06) 58%, rgba(217,119,87,0) 78%)',
         right: '-200px',
-        top: '120px',
+        top: '23%',
       }}
     />
     <div
-      className="rm-drift-warn absolute size-[405px] rounded-full blur-[2px] sm:size-[540px]"
+      className="rm-drift-warn absolute size-101.25 rounded-full blur-[2px] sm:size-135"
       style={{
         background:
           'radial-gradient(circle at center, rgba(217,168,87,0.22) 0%, rgba(217,168,87,0.10) 32%, rgba(217,168,87,0.04) 60%, rgba(217,168,87,0) 80%)',
-        left: '30%',
-        top: '50%',
+        left: '-180px',
+        top: '44.5%',
       }}
     />
     <div
-      className="rm-drift-vision absolute size-[570px] rounded-full blur-[2px] sm:size-[760px]"
+      className="rm-drift-vision absolute size-142.5 rounded-full blur-[2px] sm:size-190"
       style={{
         background:
-          'radial-gradient(circle at center, rgba(91,138,138,0.28) 0%, rgba(91,138,138,0.13) 30%, rgba(91,138,138,0.04) 58%, rgba(91,138,138,0) 78%)',
+          'radial-gradient(circle at center, rgba(204,203,196,0.28) 0%, rgba(204,203,196,0.13) 30%, rgba(204,203,196,0.04) 58%, rgba(204,203,196,0) 78%)',
         bottom: '-240px',
         right: '-180px',
       }}
@@ -194,21 +194,13 @@ const Roadmap = () => (
   <div className="relative overflow-x-clip">
     <Orbs />
     <header className="relative z-10 px-6 pt-16 pb-12 sm:pt-24">
-      <div className="mx-auto w-full max-w-[880px]">
+      <div className="mx-auto w-full max-w-220">
         <h1
           className="font-display text-ink m-0 mb-6 text-[clamp(3rem,7vw,5.25rem)] leading-none font-light tracking-[-0.035em]"
           data-reveal={true}
         >
           Roadmap
         </h1>
-        <p
-          className="font-display text-ink-dim m-0 mb-5 max-w-[38ch] text-[clamp(1.1rem,2vw,1.35rem)] leading-[1.6]"
-          data-reveal={true}
-          style={{'--reveal-delay': '80ms'} as CSSProperties}
-        >
-          Where GAIA is today. Where it is going. Every release adds another
-          layer to the discipline.
-        </p>
         <p
           className="text-muted font-mono text-[0.72rem] tracking-[0.14em] uppercase"
           data-reveal={true}
@@ -219,7 +211,7 @@ const Roadmap = () => (
       </div>
     </header>
     <section className="relative z-10 px-6 pt-8 pb-24 sm:pb-24">
-      <div className="rm-spine relative mx-auto w-full max-w-[960px] pl-10 sm:pl-12">
+      <div className="rm-spine relative mx-auto w-full max-w-240 pl-10 sm:pl-12">
         {GROUPS.map((group) => (
           <Stage key={group.id} group={group} />
         ))}
