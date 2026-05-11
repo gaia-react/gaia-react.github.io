@@ -505,8 +505,8 @@ const Consulting = () => {
         >
           <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom
-            integrations, or scope I{' '}haven’t named here. Engagements
-            start at $5,000.
+            integrations, or scope I{' '}haven’t named here. Engagements start
+            at $5,000.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
             <a
