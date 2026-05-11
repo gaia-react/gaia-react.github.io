@@ -252,7 +252,7 @@ const AuditBlock = ({sku}: {sku: SkuData}) => (
 );
 
 const MigrateBlock = ({sku}: {sku: SkuData}) => (
-  <div data-reveal={true}>
+  <div>
     <SkuHeader sku={sku} />
     <p className="text-ink-dim mt-6 max-w-prose text-[1.125rem] leading-[1.7]">
       {sku.pitch}
@@ -307,7 +307,7 @@ const FOUNDATION_PHASES = [
 ];
 
 const FoundationBlock = ({sku}: {sku: SkuData}) => (
-  <div data-reveal={true}>
+  <div>
     <SkuHeader sku={sku} />
     <p className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7]">
       {sku.pitch}
@@ -344,7 +344,7 @@ const FoundationBlock = ({sku}: {sku: SkuData}) => (
 );
 
 const RetainerBlock = ({sku}: {sku: SkuData}) => (
-  <div data-reveal={true}>
+  <div>
     <SkuHeader sku={sku} />
     <p className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7]">
       {sku.pitch}
@@ -446,15 +446,22 @@ const Consulting = () => {
             Consulting
           </div>
           <h1
-            className="font-display text-ink max-w-[20ch] text-[clamp(2.4rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]"
+            className="font-display text-ink max-w-[22ch] text-[clamp(2rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]"
             data-reveal={true}
             style={{'--reveal-delay': '80ms'} as React.CSSProperties}
           >
-            Your team is shipping with Claude.{' '}
-            <em className="text-accent-soft font-light italic">
-              The discipline is lagging.
+            GAIA is the workflow.
+            <em className="text-accent-soft block font-light italic">
+              The author is the shortcut.
             </em>
           </h1>
+          <p
+            className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7] sm:mt-8 sm:text-[1.125rem]"
+            data-reveal={true}
+            style={{'--reveal-delay': '160ms'} as React.CSSProperties}
+          >
+            Work with me to skip the trial and error.
+          </p>
         </div>
       </section>
 
@@ -469,7 +476,7 @@ const Consulting = () => {
               The engagement journey
             </div>
             <div
-              className="text-muted font-mono text-[0.7rem] tracking-[0.16em]"
+              className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block"
               data-reveal={true}
             >
               Brownfield → Sustain
@@ -499,10 +506,7 @@ const Consulting = () => {
 
       {/* Custom + close */}
       <section className="px-4 py-20 sm:px-8 sm:py-24">
-        <div
-          className="mx-auto flex max-w-3xl flex-col gap-6 text-center"
-          data-reveal={true}
-        >
+        <div className="mx-auto flex max-w-3xl flex-col gap-6 text-center">
           <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom
             integrations, or scope I{' '}haven’t named here. Engagements start

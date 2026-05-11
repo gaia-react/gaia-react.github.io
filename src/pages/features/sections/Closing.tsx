@@ -30,9 +30,9 @@ const Closing = () => (
         </a>
         <a
           className="text-ink-dim hover:text-accent inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
-          href="/roadmap/"
+          href="/about/"
         >
-          See the Roadmap →
+          About the Author →
         </a>
       </div>
     </div>

@@ -5,7 +5,6 @@ const NAV_DESKTOP = [
   {href: '/why/', label: 'Why GAIA'},
   {href: '/features/', label: 'Features'},
   {href: 'https://docs.gaiareact.com/', label: 'Docs'},
-  {href: '/roadmap/', label: 'Roadmap'},
   {href: '/about/', label: 'About'},
 ];
 
