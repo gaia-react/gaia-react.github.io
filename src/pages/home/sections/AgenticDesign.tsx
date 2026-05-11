@@ -13,7 +13,7 @@ const BLOCKS = [
     title: "Claude can't ship broken code",
   },
   {
-    color: 'warn' as const,
+    color: 'tealSoft' as const,
     copy: 'Requirements and acceptance tests are written before Claude writes a line of code. Defined contracts prevent scope drift.',
     Icon: ReflectionIcon,
     title: 'Spec → Plan → Code',
@@ -36,14 +36,14 @@ const BLOCK_STYLES = {
   accent: {bg: 'bg-accent/10', icon: 'text-accent'},
   muted: {bg: 'bg-muted/10', icon: 'text-ink-dim'},
   teal: {bg: 'bg-secondary/12', icon: 'text-secondary'},
-  warn: {bg: 'bg-warn/10', icon: 'text-warn'},
+  tealSoft: {bg: 'bg-secondary-soft/12', icon: 'text-secondary-soft'},
 };
 
 const AgenticDesign = () => (
   <section className="px-4 py-20 sm:px-8" id="agentic-design">
     <div className="mx-auto max-w-6xl">
-      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-16">
-        <div className="lg:sticky lg:top-24 lg:self-start">
+      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-24 lg:order-2 lg:self-start">
           <div className="mb-4 inline-flex items-center gap-2">
             <span
               aria-hidden={true}
@@ -56,20 +56,14 @@ const AgenticDesign = () => (
           <h2 className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
             Design patterns Claude doesn&apos;t have to remember.
           </h2>
-          <p className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]">
+          <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
             GAIA wires these patterns into the project itself, not the prompt.
             They run the same way every session, every task, every model
             variant.
           </p>
-          <a
-            className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
-            href="/features/#agentic-design"
-          >
-            Learn more →
-          </a>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:order-1">
           {BLOCKS.map((block) => {
             const s = BLOCK_STYLES[block.color];
 
@@ -83,7 +77,7 @@ const AgenticDesign = () => (
                 >
                   <block.Icon size={18} />
                 </div>
-                <h4 className="text-ink mb-1.5 text-[0.95rem] leading-[1.3] font-medium">
+                <h4 className="text-ink mb-1.5 text-[1.05rem] leading-[1.3] font-medium">
                   {block.title}
                 </h4>
                 <p className="text-ink-dim text-[0.88rem] leading-[1.55]">

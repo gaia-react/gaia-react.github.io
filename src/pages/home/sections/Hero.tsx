@@ -44,12 +44,6 @@ const Orbs = () => (
   </>
 );
 
-const STATS = [
-  {label: 'Lint rules', value: '1,314'},
-  {label: 'Code audit agents', value: '4 specialists'},
-  {label: 'Warnings allowed', value: 'Zero'},
-];
-
 const Hero = () => (
   <section
     className="relative overflow-x-clip px-4 pt-16 pb-12 sm:px-8 sm:pt-24"
@@ -77,11 +71,12 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          AI ships faster than ever. GAIA keeps it production-grade.
+          Most Claude setups break under pressure. GAIA gives it structure that
+          holds.
         </p>
 
         <p
-          className="text-muted mb-8 text-[0.85rem] leading-normal italic"
+          className="text-muted mb-10 text-[0.85rem] leading-normal italic"
           data-reveal={true}
           style={{'--reveal-delay': '260ms'} as React.CSSProperties}
         >
@@ -90,25 +85,8 @@ const Hero = () => (
         </p>
 
         <div
-          className="border-line-soft mb-10 flex max-w-xl flex-wrap gap-x-12 gap-y-6 border-t pt-8"
           data-reveal={true}
-          style={{'--reveal-delay': '320ms'} as React.CSSProperties}
-        >
-          {STATS.map((stat) => (
-            <div key={stat.label}>
-              <strong className="text-ink block font-mono text-[0.9rem] leading-none font-normal tracking-[0.12em] uppercase">
-                {stat.value}
-              </strong>
-              <span className="text-muted font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <div
-          data-reveal={true}
-          style={{'--reveal-delay': '420ms'} as React.CSSProperties}
+          style={{'--reveal-delay': '340ms'} as React.CSSProperties}
         >
           <a
             className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"

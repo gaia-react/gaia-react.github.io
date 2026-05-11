@@ -1,5 +1,3 @@
-import {ArrowRightIcon} from '@/components/icons';
-
 const TIERS = [
   {
     desc: 'Architecture, flows, decisions.',
@@ -59,17 +57,10 @@ const ObsidianWiki = () => (
             Context stops getting lost between sessions. The wiki stays yours:
             plain markdown in your repo, not a vendor&apos;s database.
           </p>
-          <p className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]">
+          <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
             As you ship features, GAIA updates the wiki and clears stale or
             duplicate entries. No one has to maintain it.
           </p>
-          <a
-            className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
-            href="/features/#wiki"
-          >
-            How the wiki works
-            <ArrowRightIcon size={14} />
-          </a>
         </div>
 
         <div className="flex flex-col gap-2">

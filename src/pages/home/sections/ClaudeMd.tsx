@@ -126,7 +126,7 @@ const ClaudeMd = () => (
             four specialists in parallel: security, performance, architecture,
             and code smells. Critical findings block the merge.
           </p>
-          <p className="text-ink-dim mb-6 text-[1.05rem] leading-[1.65]">
+          <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
             <a
               className="text-accent hover:text-accent-soft transition-colors duration-150"
               href="https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md"
@@ -138,12 +138,6 @@ const ClaudeMd = () => (
             coding principles, wired in. Scoped rules cover best practices,
             testing, strict typing, and accessibility.
           </p>
-          <a
-            className="text-accent hover:text-accent-soft mt-2 inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
-            href="https://docs.gaiareact.com/#commands"
-          >
-            Learn more →
-          </a>
         </div>
 
         <div>
