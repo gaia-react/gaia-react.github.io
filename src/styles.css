@@ -184,25 +184,6 @@ samp {
 }
 
 /* ============================================================
-   Stack marquee
-   ============================================================ */
-@keyframes stackrow-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@utility stackrow-marquee-track {
-  animation: stackrow-scroll 40s linear infinite;
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-}
-
-/* ============================================================
    Scroll-reveal animations
    ============================================================ */
 [data-reveal] {

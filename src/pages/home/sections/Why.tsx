@@ -10,19 +10,19 @@ const CARDS = [
     color: 'secondary' as const,
     copy: 'GAIA enforces high standards on every commit, so every line Claude writes is code you can ship.',
     Icon: ShieldCheckIcon,
-    title: 'Trustworthy by default',
+    title: 'Output you can ship',
   },
   {
     color: 'accent' as const,
     copy: 'GAIA gives Claude only what each task needs, so quality and costs stay predictable as your codebase grows.',
     Icon: BullseyeIcon,
-    title: 'Disciplined at scale',
+    title: 'Quality that holds as you grow',
   },
   {
     color: 'warn' as const,
-    copy: "GAIA CI handles the chores for you, so dependencies stay current, vulnerabilities stay patched, and stale code doesn't pile up.",
+    copy: "GAIA CI runs maintenance on every commit, so dependencies stay current, vulnerabilities stay patched, and stale code doesn't pile up.",
     Icon: ReflectionIcon,
-    title: 'Automated maintenance',
+    title: "Tech debt that doesn't compound",
   },
 ];
 
