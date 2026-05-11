@@ -44,9 +44,9 @@ const Closing = () => (
           </a>
           <a
             className="text-ink-dim hover:text-accent inline-flex items-center gap-1.5 text-[0.95rem] no-underline transition-colors duration-150"
-            href="https://docs.gaiareact.com/"
+            href="/why/"
           >
-            Read the Docs →
+            Why GAIA →
           </a>
         </div>
       </div>
