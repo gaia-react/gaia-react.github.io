@@ -1,7 +1,6 @@
 import {Layout} from '@/components/Layout';
 import {useScrollReveal} from '@/hooks/useScrollReveal';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
-import Boundaries from './sections/Boundaries';
 import Closing from './sections/Closing';
 import Diagnosis from './sections/Diagnosis';
 import Discipline from './sections/Discipline';
@@ -18,7 +17,6 @@ const App = () => {
       <Diagnosis />
       <Discipline />
       <Outcomes />
-      <Boundaries />
       <Closing />
     </Layout>
   );

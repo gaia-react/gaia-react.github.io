@@ -1,5 +1,3 @@
-import type React from 'react';
-
 const Discipline = () => (
   <section
     className="border-line-soft scroll-mt-20 border-b px-4 py-14 sm:px-8 sm:py-20"
@@ -7,10 +5,7 @@ const Discipline = () => (
   >
     <div className="mx-auto max-w-275">
       <div className="mb-10 grid items-start gap-4 lg:grid-cols-[1fr_2fr] lg:gap-12">
-        <h2
-          className="group text-ink font-display max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.4rem)] font-normal tracking-[-0.02em]"
-          data-reveal={true}
-        >
+        <h2 className="group text-ink font-display max-w-[16ch] text-[clamp(2.2rem,4.5vw,3rem)] font-normal tracking-[-0.02em]">
           <a className="text-inherit no-underline" href="#discipline">
             What vibe coding is missing
             <span
@@ -21,11 +16,7 @@ const Discipline = () => (
             </span>
           </a>
         </h2>
-        <div
-          className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.7]"
-          data-reveal={true}
-          style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-        >
+        <div className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.7]">
           <p>
             AI has the capacity to be far more disciplined than any human at
             writing code. It does not complain about linting. It does not get
@@ -45,9 +36,8 @@ const Discipline = () => (
             merge. Discipline is structural.
           </p>
           <p className="text-ink">
-            GAIA makes Claude{' '}
-            <em className="text-accent font-display">disciplined</em>. That is
-            what “vibe coding” is missing.
+            GAIA makes Claude disciplined. That is what “vibe coding” is
+            missing.
           </p>
         </div>
       </div>

@@ -162,9 +162,58 @@ samp {
 }
 
 /* ============================================================
-   Atmospheric haze drift (Why-page hero)
-   Subtle position oscillation on a multi-radial gradient mesh.
+   Atmospheric haze (Why + Features hero backdrop)
+   Three off-canvas light sources. OKLCH interpolation keeps the
+   falloff perceptually warm instead of muddying through the fade.
+   Shared geometry; temperature swaps between warm-led (Why,
+   persuasion) and cool-led (Features, mechanism).
    ============================================================ */
+@utility gaia-haze {
+  background:
+    radial-gradient(
+      ellipse 80% 70% at 15% -15% in oklch,
+      color-mix(in oklch, var(--color-accent) 38%, transparent) 0%,
+      color-mix(in oklch, var(--color-accent) 20%, transparent) 30%,
+      color-mix(in oklch, var(--color-accent) 5%, transparent) 55%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 70% 80% at 105% 30% in oklch,
+      color-mix(in oklch, var(--color-secondary) 30%, transparent) 0%,
+      color-mix(in oklch, var(--color-secondary) 15%, transparent) 40%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 45% at 55% 115% in oklch,
+      color-mix(in oklch, var(--color-secondary) 22%, transparent) 0%,
+      color-mix(in oklch, var(--color-secondary) 10%, transparent) 45%,
+      transparent 75%
+    );
+}
+
+@utility gaia-haze-cool {
+  background:
+    radial-gradient(
+      ellipse 80% 70% at 15% -15% in oklch,
+      color-mix(in oklch, var(--color-secondary) 38%, transparent) 0%,
+      color-mix(in oklch, var(--color-secondary) 20%, transparent) 30%,
+      color-mix(in oklch, var(--color-secondary) 5%, transparent) 55%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 70% 80% at 105% 30% in oklch,
+      color-mix(in oklch, var(--color-accent) 30%, transparent) 0%,
+      color-mix(in oklch, var(--color-accent) 15%, transparent) 40%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 45% at 55% 115% in oklch,
+      color-mix(in oklch, var(--color-accent) 22%, transparent) 0%,
+      color-mix(in oklch, var(--color-accent) 10%, transparent) 45%,
+      transparent 75%
+    );
+}
+
 @keyframes gaia-haze-drift {
   0%,
   100% {
