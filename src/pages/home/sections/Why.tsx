@@ -57,8 +57,8 @@ const Why = () => (
           <br />
           <br />
           Three things break Claude on real projects: output you can&apos;t
-          trust, quality that drops as the project grows, and important chores
-          that get neglected and pile up while you build.{' '}
+          trust, quality that drops as the project grows, and technical debt
+          that piles up while you build.{' '}
           <span className="text-ink">GAIA fixes all three.</span>
         </p>
         <a

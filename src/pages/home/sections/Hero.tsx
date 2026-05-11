@@ -69,7 +69,7 @@ const Hero = () => (
         </div>
 
         <h1
-          className="text-ink mb-8 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.1] tracking-tight"
+          className="text-ink mb-4 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.1] tracking-tight"
           data-reveal={true}
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
@@ -87,9 +87,7 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          A React workflow engineered for Claude Code. AI ships faster than
-          ever. GAIA keeps it production-grade by enforcing quality at
-          write-time and commit-time.
+          AI ships faster than ever. GAIA keeps it production-grade.
         </p>
 
         <p
