@@ -313,7 +313,7 @@ const FoundationBlock = ({sku}: {sku: SkuData}) => (
       {sku.pitch}
     </p>
     <ol className="m-0 mt-10 grid list-none gap-6 p-0 md:grid-cols-3 md:gap-10">
-      {FOUNDATION_PHASES.map((phase, index) => (
+      {FOUNDATION_PHASES.map((phase) => (
         <li
           key={phase.label}
           className="border-line-soft relative border-t pt-5"
@@ -328,9 +328,6 @@ const FoundationBlock = ({sku}: {sku: SkuData}) => (
           <p className="text-ink-dim mt-3 text-[0.95rem] leading-[1.65]">
             {phase.detail}
           </p>
-          <div className="text-muted mt-3 font-mono text-[0.6rem] tracking-[0.18em]">
-            0{index + 1}
-          </div>
         </li>
       ))}
     </ol>
