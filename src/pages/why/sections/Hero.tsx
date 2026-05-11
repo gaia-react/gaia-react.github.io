@@ -13,7 +13,7 @@ const Hero = () => (
       >
         The Case for GAIA
       </h1>
-      <div className="text-ink-dim text-[1.05rem] leading-[1.7]">
+      <div className="text-ink-dim pl-4 text-[1.05rem] leading-[1.7]">
         <p
           className="mb-4"
           data-reveal={true}
