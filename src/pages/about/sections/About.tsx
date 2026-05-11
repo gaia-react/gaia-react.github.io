@@ -21,6 +21,12 @@ const SELECTED_WORK: WorkItem[] = [
     role: 'Lead React Engineer',
   },
   {
+    company: 'PlayBrain',
+    note: 'Architected a custom multilingual publishing platform and a real-time esports tournament system on a serverless AWS backend. Hired and led the engineering team.',
+    period: '2016–2017',
+    role: 'Director of Engineering',
+  },
+  {
     company: 'Plug DJ',
     note: 'Social music platform that grew to 6M registered users and 1M monthly actives, supporting 60K simultaneous connections. Raised $2.5M from Javelin Venture Partners. Acquired.',
     period: '2012–2015',
@@ -65,6 +71,19 @@ const EmailIcon = (
   </svg>
 );
 
+const ConsultingIcon = (
+  <svg
+    aria-hidden="true"
+    fill="currentColor"
+    fillRule="evenodd"
+    height="15"
+    viewBox="0 0 24 24"
+    width="15"
+  >
+    <path d="M9 2a3 3 0 0 0-3 3v2H3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3V5a3 3 0 0 0-3-3H9zm6 5V5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v2h6z" />
+  </svg>
+);
+
 const LINKS = [
   {href: 'https://github.com/stevensacks', icon: GitHubIcon, label: 'GitHub'},
   {
@@ -72,6 +91,7 @@ const LINKS = [
     icon: LinkedInIcon,
     label: 'LinkedIn',
   },
+  {href: '/consulting/', icon: ConsultingIcon, label: 'Consulting'},
   {href: 'mailto:steven@gaiareact.com', icon: EmailIcon, label: 'Email'},
 ];
 

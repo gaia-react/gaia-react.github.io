@@ -85,21 +85,6 @@ const SKUS: SkuData[] = [
     title: 'Audit',
   },
   {
-    calEvent: 'foundation-intro',
-    deliverables: [
-      'GAIA installed and customized for your repo: rules, hooks, skills, wiki templates matched to your stack',
-      'Integration with your existing tooling (Sentry, Linear, etc.)',
-      '2–3 live sessions: kickoff, mid-foundation demo, handoff training (all recorded)',
-      'Written runbook customized to you',
-      '30 days of post-delivery email support',
-    ],
-    icon: FoundationIcon,
-    price: '$25,000',
-    priceDetail: '2 weeks · 2–3 live sessions',
-    tagline: 'Full GAIA setup for you',
-    title: 'Foundation',
-  },
-  {
     calEvent: 'migrate-intro',
     deliverables: [
       'Hands-on refactor of one repo: pattern consolidation, AI-debt cleanup, type tightening',
@@ -113,6 +98,21 @@ const SKUS: SkuData[] = [
     priceDetail: '3–4 weeks · async-first · scope-variable',
     tagline: 'Take one messy repo from AI sprawl to GAIA-ready',
     title: 'Migrate',
+  },
+  {
+    calEvent: 'foundation-intro',
+    deliverables: [
+      'GAIA installed and customized for your repo: rules, hooks, skills, wiki templates matched to your stack',
+      'Integration with your existing tooling (Sentry, Linear, etc.)',
+      '2–3 live sessions: kickoff, mid-foundation demo, handoff training (all recorded)',
+      'Written runbook customized to you',
+      '30 days of post-delivery email support',
+    ],
+    icon: FoundationIcon,
+    price: '$25,000',
+    priceDetail: '2 weeks · 2–3 live sessions',
+    tagline: 'Full GAIA setup for you',
+    title: 'Foundation',
   },
   {
     calEvent: 'retainer-intro',
@@ -260,12 +260,13 @@ const Consulting = () => {
             Work with the creator of GAIA
           </h1>
           <p className="text-ink-dim mx-auto max-w-152 text-[clamp(1rem,2vw,1.1875rem)] leading-[1.65]">
-            I built the GAIA Flash Framework in the 2000s, which was used to
-            build 100k+ sites and by every major digital agency worldwide. GAIA
-            React carries the same automation philosophy into the AI-native era.
+            I built the GAIA Flash Framework in the 2000s. It powered over
+            100,000 sites and was the standard at every major digital agency.
+            GAIA React carries that same workflow discipline into the
+            Claude-native era.
             <br />
             <br />
-            Now, I help teams and individuals adopt it.
+            Now, I help teams put it to work.
           </p>
         </div>
       </section>
@@ -286,8 +287,9 @@ const Consulting = () => {
           </p>
           <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Without guardrails, this compounds into technical debt and bugs that
-            ship. I help teams and individuals fix the workflow before it gets
-            there.
+            ship. The fix is to shift the work left, to write-time and
+            commit-time, before any of it reaches PR review or production.
+            That’s what GAIA does.
           </p>
         </div>
       </Section>
@@ -308,7 +310,8 @@ const Consulting = () => {
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-8">
           <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom
-            integrations, or scope I haven’t named here.{' '}
+            integrations, or scope I haven’t named here. Engagements start at
+            $5,000.{' '}
             <a
               className="text-accent hover:text-accent-2 decoration-accent/40 hover:decoration-accent-2 underline underline-offset-4 transition-colors duration-150"
               href="mailto:steven@gaiareact.com"
