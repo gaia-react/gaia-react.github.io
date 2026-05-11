@@ -1,12 +1,10 @@
 import type {ReactNode} from 'react';
 import ChromaticLogo from '@/assets/logos/ChromaticLogo';
-import ClaudeLogo from '@/assets/logos/ClaudeLogo';
 import ConformLogo from '@/assets/logos/ConformLogo';
 import ESLintLogo from '@/assets/logos/ESLintLogo';
 import I18NextLogo from '@/assets/logos/I18NextLogo';
 import KnipLogo from '@/assets/logos/KnipLogo';
 import MSWLogo from '@/assets/logos/MSWLogo';
-import ObsidianLogo from '@/assets/logos/ObsidianLogo';
 import PlaywrightLogo from '@/assets/logos/PlaywrightLogo';
 import PrettierLogo from '@/assets/logos/PrettierLogo';
 import ReactRouterLogo from '@/assets/logos/ReactRouterLogo';
@@ -23,106 +21,149 @@ type LogoEntry = {
   component: ReactNode;
   href: string;
   name: string;
+  role: string;
 };
 
 const FOUNDATION: LogoEntry[] = [
   {
-    component: <ClaudeLogo height={36} />,
-    href: 'https://claude.com/claude-code',
-    name: 'Claude',
-  },
-  {
-    component: <ObsidianLogo height={36} />,
-    href: 'https://obsidian.md/',
-    name: 'Obsidian',
-  },
-  {
-    component: <ReactRouterLogo height={36} />,
+    component: <ReactRouterLogo height={32} />,
     href: 'https://reactrouter.com/',
     name: 'React Router',
+    role: 'routing',
   },
   {
-    component: <TailwindLogo height={36} />,
-    href: 'https://tailwindcss.com',
-    name: 'Tailwind',
-  },
-  {
-    component: <TSLogo height={36} />,
+    component: <TSLogo height={32} />,
     href: 'https://www.typescriptlang.org/',
     name: 'TypeScript',
+    role: 'types',
   },
-  {component: <ZodLogo height={36} />, href: 'https://zod.dev/', name: 'Zod'},
   {
-    component: <I18NextLogo height={36} />,
+    component: <ZodLogo height={32} />,
+    href: 'https://zod.dev/',
+    name: 'Zod',
+    role: 'schemas',
+  },
+  {
+    component: <TailwindLogo height={32} />,
+    href: 'https://tailwindcss.com',
+    name: 'Tailwind',
+    role: 'styling',
+  },
+  {
+    component: <I18NextLogo height={32} />,
     href: 'https://react.i18next.com/',
     name: 'i18next',
+    role: 'translation',
   },
   {
-    component: <ConformLogo height={28} />,
+    component: <ConformLogo height={26} />,
     href: 'https://conform.guide/',
     name: 'Conform',
+    role: 'forms',
   },
 ];
 
 const TESTING: LogoEntry[] = [
   {
-    component: <VitestLogo height={36} />,
+    component: <VitestLogo height={32} />,
     href: 'https://vitest.dev/',
     name: 'Vitest',
+    role: 'unit runner',
   },
   {
-    component: <RTLLogo height={36} />,
+    component: <RTLLogo height={32} />,
     href: 'https://testing-library.com/docs/react-testing-library/intro/',
     name: 'RTL',
+    role: 'component testing',
   },
   {
-    component: <PlaywrightLogo height={36} />,
+    component: <PlaywrightLogo height={32} />,
     href: 'https://playwright.dev/',
     name: 'Playwright',
+    role: 'end-to-end',
   },
-  {component: <MSWLogo height={36} />, href: 'https://mswjs.io/', name: 'MSW'},
   {
-    component: <StorybookLogo height={36} />,
+    component: <MSWLogo height={32} />,
+    href: 'https://mswjs.io/',
+    name: 'MSW',
+    role: 'api mocking',
+  },
+  {
+    component: <StorybookLogo height={32} />,
     href: 'https://storybook.js.org/',
     name: 'Storybook',
+    role: 'components',
   },
   {
-    component: <ChromaticLogo height={36} />,
+    component: <ChromaticLogo height={32} />,
     href: 'https://www.chromatic.com/',
     name: 'Chromatic',
+    role: 'visual regression',
   },
 ];
 
 const CODE_QUALITY: LogoEntry[] = [
   {
-    component: <ESLintLogo height={36} />,
+    component: <ESLintLogo height={32} />,
     href: 'https://eslint.org/',
     name: 'ESLint',
+    role: 'js linter',
   },
   {
-    component: <PrettierLogo height={36} />,
+    component: <PrettierLogo height={32} />,
     href: 'https://prettier.io/',
     name: 'Prettier',
+    role: 'formatter',
   },
   {
-    component: <StylelintLogo height={36} />,
+    component: <StylelintLogo height={32} />,
     href: 'https://stylelint.io/',
     name: 'Stylelint',
+    role: 'css linter',
   },
   {
-    component: <KnipLogo height={36} />,
+    component: <KnipLogo height={32} />,
     href: 'https://knip.dev/',
     name: 'Knip',
+    role: 'dead code',
+  },
+];
+
+type Group = {
+  cols: number;
+  gridClass: string;
+  items: LogoEntry[];
+  title: string;
+};
+
+const GROUPS: Group[] = [
+  {
+    cols: 3,
+    gridClass: 'grid-cols-2 sm:grid-cols-3',
+    items: FOUNDATION,
+    title: 'Foundation',
+  },
+  {
+    cols: 3,
+    gridClass: 'grid-cols-2 sm:grid-cols-3',
+    items: TESTING,
+    title: 'Testing',
+  },
+  {
+    cols: 4,
+    gridClass: 'grid-cols-2 sm:grid-cols-4',
+    items: CODE_QUALITY,
+    title: 'Code quality',
   },
 ];
 
 const MOBILE_COLS = 2;
 
-const getBorderClasses = (index: number, total: number, cols: number) => {
+const tileBorders = (index: number, total: number, cols: number) => {
   const mobileLastCol = (index + 1) % MOBILE_COLS === 0;
-  const mobileLastRow = index >= total - MOBILE_COLS;
   const desktopLastCol = (index + 1) % cols === 0;
-  const desktopLastRow = index >= total - cols;
+  const mobileLastRow = index >= total - MOBILE_COLS;
+  const desktopLastRow = index >= total - (total % cols || cols);
 
   const classes = ['border-line-soft'];
 
@@ -131,47 +172,39 @@ const getBorderClasses = (index: number, total: number, cols: number) => {
     classes.push('border-r sm:border-r-0');
   else if (mobileLastCol && !desktopLastCol) classes.push('sm:border-r');
 
-  if (!mobileLastRow && !desktopLastRow) classes.push('border-b');
-  else if (!mobileLastRow && desktopLastRow)
-    classes.push('border-b sm:border-b-0');
-  else if (mobileLastRow && !desktopLastRow) classes.push('sm:border-b');
+  if (!mobileLastRow) classes.push('border-b');
+  else if (!desktopLastRow) classes.push('sm:border-b');
 
   return classes.join(' ');
 };
 
-type LogoGroupProperties = {
-  cols: number;
-  gridClass: string;
-  items: LogoEntry[];
-  title: string;
-};
-
-const LogoGroup = ({cols, gridClass, items, title}: LogoGroupProperties) => (
-  <div className="mb-10 last:mb-0">
-    <h3 className="font-display text-ink mb-4 text-[1.3rem] font-normal tracking-[-0.015em]">
-      {title}
-    </h3>
-    <div
-      className={`border-line-soft bg-surface grid overflow-hidden rounded-lg border ${gridClass}`}
-    >
-      {items.map(({component, href, name}, index) => (
-        <a
-          key={name}
-          className={`group flex flex-col items-center justify-center gap-[0.6rem] p-[1.4rem_0.75rem_1.2rem] transition-colors duration-150 ${getBorderClasses(index, items.length, cols)}`}
-          href={href}
-          rel="noreferrer"
-          target="_blank"
-        >
-          <div className="flex size-10 items-center justify-center transition-transform duration-150 group-hover:-translate-y-px">
-            {component}
-          </div>
-          <span className="text-ink-dim group-hover:text-ink text-center font-mono text-[0.75rem] tracking-[0.04em] transition-colors duration-150">
-            {name}
-          </span>
-        </a>
-      ))}
+const Tile = ({
+  cols,
+  component,
+  href,
+  index,
+  name,
+  role,
+  total,
+}: LogoEntry & {cols: number; index: number; total: number}) => (
+  <a
+    className={`group flex flex-col items-center gap-[0.55rem] px-3 py-5 transition-colors duration-150 ${tileBorders(index, total, cols)}`}
+    href={href}
+    rel="noreferrer"
+    target="_blank"
+  >
+    <div className="flex h-9 items-center transition-transform duration-150 group-hover:-translate-y-px">
+      {component}
     </div>
-  </div>
+    <div className="mt-1 flex flex-col items-center gap-[0.2rem]">
+      <span className="text-ink-dim group-hover:text-ink font-mono text-[0.76rem] tracking-[0.04em] transition-colors duration-150">
+        {name}
+      </span>
+      <span className="text-muted text-[0.62rem] tracking-[0.14em] uppercase">
+        {role}
+      </span>
+    </div>
+  </a>
 );
 
 const Stack = () => (
@@ -179,9 +212,13 @@ const Stack = () => (
     id="stack"
     lead={
       <>
-        <p>GAIA&apos;s stack includes everything you see here.</p>
         <p>
-          GAIA uses{' '}
+          Industry-standard tools, each a default in serious React projects.
+          Refined over years. The same tools humans rely on to ship reliable
+          code. Claude works with them, just faster.
+        </p>
+        <p>
+          Package management runs on{' '}
           <a
             className="text-accent hover:text-accent-soft transition-colors duration-150"
             href="https://pnpm.io"
@@ -191,31 +228,38 @@ const Stack = () => (
             pnpm
           </a>
           . Faster installs. Smaller node_modules. Stricter dependency
-          resolution that blocks phantom imports and most importantly, protects
-          against the easiest path for npm supply-chain attacks.
+          resolution that blocks phantom imports and the easiest path for npm
+          supply-chain attacks.
         </p>
       </>
     }
-    title="GAIA Tech Stack"
+    title="A professional frontend stack"
   >
-    <LogoGroup
-      cols={4}
-      gridClass="grid-cols-2 sm:grid-cols-4"
-      items={FOUNDATION}
-      title="Foundation"
-    />
-    <LogoGroup
-      cols={3}
-      gridClass="grid-cols-2 sm:grid-cols-3"
-      items={TESTING}
-      title="Testing"
-    />
-    <LogoGroup
-      cols={4}
-      gridClass="grid-cols-2 sm:grid-cols-4"
-      items={CODE_QUALITY}
-      title="Code quality"
-    />
+    <div className="bg-surface border-line-soft overflow-hidden rounded-lg border">
+      {GROUPS.map((group, groupIndex) => (
+        <div
+          key={group.title}
+          className={groupIndex > 0 ? 'border-line-soft border-t' : ''}
+        >
+          <div className="border-line-soft flex items-center border-b bg-black/15 px-5 py-2.5">
+            <span className="text-muted font-mono text-[0.65rem] tracking-[0.2em] uppercase">
+              {group.title}
+            </span>
+          </div>
+          <div className={`grid ${group.gridClass}`}>
+            {group.items.map((item, index) => (
+              <Tile
+                key={item.name}
+                {...item}
+                cols={group.cols}
+                index={index}
+                total={group.items.length}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
   </FxSection>
 );
 

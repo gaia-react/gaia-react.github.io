@@ -26,9 +26,9 @@ const BLOCKS = [
   },
   {
     color: 'muted' as const,
-    copy: 'One merge audit. Four specialists running in parallel. Critical findings block the merge. Suggestions land in a review comment.',
+    copy: 'Security, performance, architecture, antipatterns: all scanned in one merge audit. Critical findings block the merge. Suggestions land in a review comment.',
     Icon: MultiAgentIcon,
-    title: 'A specialist for every concern',
+    title: 'Every angle, audited',
   },
 ];
 

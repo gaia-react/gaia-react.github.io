@@ -122,9 +122,9 @@ const ClaudeMd = () => (
             Hooks protect main, prevent tech debt, and keep commits clean.
           </p>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
-            The <code className="text-ink">code-review-audit</code> agent fans
-            four specialists in parallel: security, performance, architecture,
-            and code smells. Critical findings block the merge.
+            The <code className="text-ink">code-review-audit</code> agent scans
+            for security, performance, architecture, and antipatterns. Critical
+            findings block the merge.
           </p>
           <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
             <a

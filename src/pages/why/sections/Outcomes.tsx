@@ -17,7 +17,7 @@ const OUTCOMES: Item[] = [
     name: 'Knowledge that compounds',
   },
   {
-    desc: 'Every merge runs a code-review audit with a team of specialist agents. Critical findings block the merge. Things you would notice on a senior engineer’s review, Claude catches first.',
+    desc: 'Every merge runs a code-review audit covering security, performance, architecture, and antipatterns. Critical findings block the merge. Things you would notice on a senior engineer’s review, Claude catches first.',
     name: 'Reviews you can trust',
   },
   {

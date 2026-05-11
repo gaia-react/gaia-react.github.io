@@ -1,5 +1,5 @@
 import type {ReactNode} from 'react';
-import WikiGraphic from './figures/WikiGraphic';
+import ObsidianNote from './figures/ObsidianNote';
 import FxSection from './FxSection';
 import PointList from './PointList';
 
@@ -25,7 +25,6 @@ const POINTS: {desc: ReactNode; name: string}[] = [
 const ObsidianWikiDetail = () => (
   <FxSection
     id="wiki"
-    isCool={true}
     lead={
       <>
         <p>
@@ -53,7 +52,7 @@ const ObsidianWikiDetail = () => (
     }
     title="A second brain for Claude"
   >
-    <WikiGraphic />
+    <ObsidianNote />
     <PointList points={POINTS} />
   </FxSection>
 );

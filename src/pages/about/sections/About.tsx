@@ -49,7 +49,7 @@ const ERA_NOW = [
 const CLOSING = [
   'The AI tooling landscape today looks like Flash before frameworks. Capable tools. No shared structure. Every team reinventing the same patterns.',
   'The fix the first time was structure. A framework that codified what to keep and made the rest unnecessary.',
-  'GAIA is that fix, applied to Claude Code. The goal is the same one I’ve been chasing for twenty years. One person shipping the work of a team.',
+  'GAIA is that fix, applied to Claude Code. The goal is the same one I’ve been chasing for twenty years. Each person shipping the work of a team.',
 ];
 
 const GitHubIcon = (

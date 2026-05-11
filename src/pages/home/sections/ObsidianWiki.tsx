@@ -15,7 +15,7 @@ const TIERS = [
     scope: 'cross-session',
   },
   {
-    desc: "Each specialist's scratchpad, persisted between runs.",
+    desc: "Each subagent's scratchpad, persisted between runs.",
     name: 'agent memory',
     scope: 'per-agent',
   },

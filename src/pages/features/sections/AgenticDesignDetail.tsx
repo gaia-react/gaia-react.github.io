@@ -1,119 +1,90 @@
-import type React from 'react';
-
 type Pattern = {
   body: string;
   name: string;
 };
 
-const QUALITY: Pattern[] = [
-  {
-    body: "Claude can't ship broken code. Pre-tool-use hooks block destructive git, watch-mode tests, force-pushes to main, and eslint-config edits before they happen. Pre-commit hooks gate every commit.",
-    name: 'The Stop Hook',
-  },
-  {
-    body: 'Two blocking review layers before merge. The Quality Gate runs typecheck, lint, tests, and build. The code-review audit tiers findings as Critical, Important, and Suggestions, and blocks the merge.',
-    name: 'Reflection',
-  },
-  {
-    body: 'A specialist for every concern, dispatched in parallel and working as a team to find and fix issues.',
-    name: 'Multi-Agent Collaboration',
-  },
-  {
-    body: 'Specs become user-acceptance tests before code is written. UATs are written into red-state Playwright E2E tests.',
-    name: 'Specification-Driven Development',
-  },
-];
-
 const WORKFLOW: Pattern[] = [
   {
-    body: 'Plans are durable artifacts requiring user approval. Per-task docs, a task graph with phases, an execution playbook, and a kickoff prompt all land before any work begins. The plan executes when you say go.',
+    body: 'Plans are durable artifacts requiring user approval. Task graph, execution playbook, kickoff prompt — all before any work begins.',
     name: 'Planning',
   },
   {
-    body: 'Five tiers so Claude stops relearning your codebase. Wiki for long-term knowledge, hot cache, handoff snapshots, per-agent memory, and user memory across projects. The wiki maintains itself, with audits sweeping for duplication and orphans before they compound.',
+    body: 'Five tiers so Claude stops relearning the codebase: wiki, hot cache, handoff snapshots, per-agent memory, cross-project memory.',
     name: 'Memory & Knowledge Base',
   },
   {
-    body: 'Cost and quality discipline wired in. Mechanical work runs on Sonnet or Haiku to keep tokens cheap. Heavier reasoning routes to Opus when the cost is merited.',
+    body: 'Mechanical work runs on Sonnet or Haiku. Heavier reasoning routes to Opus when the cost is merited.',
     name: 'Resource-Aware Optimization',
   },
   {
-    body: "Sub-agents run in fresh contexts so shared state can't corrupt their work. Each task doc is self-contained. Git-worktree branches add filesystem-level isolation when needed.",
+    body: "Sub-agents run in fresh contexts so shared state can't corrupt their work. Git-worktree branches add filesystem-level isolation when needed.",
     name: 'Session Isolation',
   },
 ];
 
 const CONTEXT: Pattern[] = [
   {
-    body: 'Code intelligence runs through Serena MCP, an LSP-backed tool registered once and reused across every GAIA project. A symbol query returns the one definition, not every line that mentions the name. The grep-and-read tax disappears.',
+    body: 'Serena MCP gives Claude LSP-backed symbol search. A query returns the one definition, not every line that mentions the name.',
     name: 'Symbol-Aware Retrieval',
   },
   {
-    body: "Skills load by trigger, not by default. The harness reads each skill's description and fires the matching one when its trigger phrase appears. They sit on disk without burning a token until they're needed.",
+    body: 'Skills load by trigger, not by default. They sit on disk without burning a token until the matching phrase appears.',
     name: 'Skill Activation',
   },
   {
-    body: 'Claude pulls facts from the wiki on demand instead of carrying them in context. A hot cache primes at session start. Deeper questions trigger explicit retrieval, with citations attached to the answer.',
+    body: 'Claude pulls facts from the wiki on demand. A hot cache primes at session start; deeper questions trigger explicit retrieval.',
     name: 'Knowledge Retrieval',
   },
   {
-    body: 'Constraints route to context, not loaded globally. Path-scoped rules auto-load only when Claude is editing matching files. Conditional hooks route commands to the right gate.',
+    body: 'Path-scoped rules auto-load only when Claude is editing matching files. Conditional hooks route commands to the right gate.',
     name: 'Routing',
   },
 ];
 
 const TOOLING: Pattern[] = [
   {
-    body: "Six structurally enforced checkpoints between Claude's intent and impact. Quality Gate, code-review audit, plan approval, phase gates, destructive-command blocking, merge confirmation. None of them can be skipped.",
+    body: "Six checkpoints between Claude's intent and impact. Quality gate, code-review audit, plan approval, phase gates, destructive-command block, merge confirmation.",
     name: 'Human-in-the-Loop',
   },
   {
-    body: 'Defense in depth, layered from the filesystem up. Secrets and credentials are blocked from being read or written. Debt-accumulating patterns are rejected at the source. The audit covers XSS, SSRF, IDOR, and dependency vulnerabilities.',
+    body: 'Defense in depth. Secrets blocked from read or write. Debt patterns rejected at the source. The audit covers XSS, SSRF, IDOR, and dep vulns.',
     name: 'Guardrails & Safety',
   },
   {
-    body: 'Independent work runs concurrently. Audit specialists fan out from a single dispatch. Plan phases run in parallel where dependencies allow.',
+    body: 'Independent work runs concurrently. Audit subagents fan out from a single dispatch. Plan phases run in parallel where dependencies allow.',
     name: 'Parallelization',
   },
   {
-    body: 'A curated React-specific tool surface. Linting, types, unit and E2E tests, visual regression, mocking, the GitHub CLI, and the Obsidian wiki.',
+    body: 'A curated React-specific tool surface. Linting, types, unit and E2E tests, visual regression, mocking, the GitHub CLI, the wiki.',
     name: 'Tool Use',
   },
 ];
 
 type Cluster = {
   color: string;
-  hoverBorder: string;
   items: Pattern[];
   title: string;
 };
 
 const CLUSTERS: Cluster[] = [
   {
-    color: 'var(--color-accent)',
-    hoverBorder: 'hover:border-accent/35',
-    items: QUALITY,
-    title: 'Quality enforcement',
-  },
-  {
-    color: 'var(--color-secondary)',
-    hoverBorder: 'hover:border-secondary/35',
+    color: 'var(--color-accent-soft)',
     items: WORKFLOW,
     title: 'Workflow control',
   },
   {
-    color: 'var(--color-warn)',
-    hoverBorder: 'hover:border-warn/35',
+    color: 'var(--color-secondary-soft)',
     items: CONTEXT,
     title: 'Context engineering',
   },
   {
-    color: '#cccbc4',
-    hoverBorder: 'hover:border-muted/35',
+    color: 'var(--color-warn-soft)',
     items: TOOLING,
     title: 'Tooling and safety',
   },
 ];
+
+const pad = (n: number) => String(n + 1).padStart(2, '0');
 
 const AgenticDesignDetail = () => (
   <section
@@ -121,12 +92,8 @@ const AgenticDesignDetail = () => (
     id="agentic-design"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
-      {/* Section head */}
-      <div className="mb-12 grid items-start gap-6 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16">
-        <h2
-          className="group font-display text-ink max-w-[18ch] text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]"
-          data-reveal={true}
-        >
+      <div className="mb-14 grid items-start gap-6 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16">
+        <h2 className="group font-display text-ink max-w-[18ch] text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]">
           <a className="text-inherit no-underline" href="#agentic-design">
             Agentic design
             <span
@@ -137,53 +104,65 @@ const AgenticDesignDetail = () => (
             </span>
           </a>
         </h2>
-        <div
-          className="text-ink-dim text-[1.05rem] leading-[1.65]"
-          data-reveal={true}
-          style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-        >
+        <div className="text-ink-dim text-[1.05rem] leading-[1.65]">
           <p>
-            GAIA wires in design patterns through hooks, agents, rules,
-            commands, and wiki conventions, so they run the same way every
-            session, every agent, every model variant. Not as emergent model
-            behavior on top of a vanilla setup. Not as prompts you have to
+            GAIA wires design patterns into hooks, agents, rules, commands, and
+            wiki conventions, so they run the same way every session, every
+            agent, every model variant. Not emergent behavior. Not prompts you
             repeat. The discipline lives in the project.
           </p>
         </div>
       </div>
 
-      {/* Clusters */}
-      <div className="flex flex-col gap-18">
-        {CLUSTERS.map(({color, hoverBorder, items, title}) => (
-          <div key={title} className="border-line-soft border-t pt-8">
-            {/* Cluster head — always left-aligned */}
-            <div className="mb-7">
-              <h3 className="font-display text-ink text-[clamp(1.4rem,2.4vw,1.85rem)] font-normal tracking-[-0.015em]">
-                {title}
-              </h3>
-            </div>
+      {/* Pattern matrix — 3 clusters × 4 patterns, aligned rows via subgrid */}
+      <div className="border-line-soft bg-surface grid overflow-hidden rounded-lg border md:grid-cols-3 md:grid-rows-[repeat(5,auto)]">
+        {CLUSTERS.map((cluster, colIndex) => {
+          const isLastCol = colIndex === CLUSTERS.length - 1;
 
-            {/* Card grid */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {items.map(({body, name}) => (
-                <div
-                  key={name}
-                  className={`bg-surface border-line-soft rounded-lg border p-[1.4rem_1.4rem_1.5rem] transition-[border-color,transform] duration-150 hover:-translate-y-px ${hoverBorder}`}
-                >
-                  <h4
-                    className="mb-2 text-[1rem] font-medium tracking-[-0.005em]"
-                    style={{color}}
-                  >
-                    {name}
-                  </h4>
-                  <p className="text-ink-dim m-0 text-[0.92rem] leading-[1.6]">
-                    {body}
-                  </p>
+          return (
+            <div
+              key={cluster.title}
+              className={`grid md:row-span-5 md:grid-rows-subgrid ${
+                isLastCol ? '' : (
+                  'border-line-soft border-b md:border-r md:border-b-0'
+                )
+              }`}
+            >
+              <div className="border-line-soft border-b px-5 py-3.5">
+                <div className="flex items-center gap-2.5">
+                  <span
+                    aria-hidden={true}
+                    className="inline-block h-1.5 w-6"
+                    style={{background: cluster.color}}
+                  />
+                  <span className="text-ink font-mono text-[0.7rem] tracking-[0.18em] uppercase">
+                    {cluster.title}
+                  </span>
                 </div>
-              ))}
+              </div>
+              {cluster.items.map(({body, name}, index) => {
+                const isLastRow = index === cluster.items.length - 1;
+
+                return (
+                  <div
+                    key={name}
+                    className={`p-5 ${isLastRow ? '' : 'border-line-soft border-b'}`}
+                  >
+                    <div className="text-muted mb-2 font-mono text-[0.65rem] tracking-[0.18em] uppercase">
+                      {pad(index)}
+                    </div>
+                    <h3 className="text-ink mb-1.5 text-[0.98rem] font-medium tracking-[-0.005em]">
+                      {name}
+                    </h3>
+                    <p className="text-ink-dim text-[0.87rem] leading-[1.55]">
+                      {body}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
