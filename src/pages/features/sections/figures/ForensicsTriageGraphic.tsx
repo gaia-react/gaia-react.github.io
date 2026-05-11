@@ -24,7 +24,7 @@ const REPORT_ROWS: ReportRow[] = [
 const ForensicsTriageGraphic = () => (
   <div
     aria-hidden="true"
-    className="mb-10 grid grid-cols-1 gap-4 font-mono text-[0.78rem] sm:gap-0 sm:grid-cols-[minmax(0,1fr)_80px_minmax(0,1.1fr)]"
+    className="mb-10 grid grid-cols-1 gap-4 font-mono text-[0.78rem] sm:grid-cols-[minmax(0,1fr)_80px_minmax(0,1.1fr)] sm:gap-0"
   >
     {/* Left col — inbox */}
     <div className="bg-surface border-line-soft rounded-lg border py-4">
