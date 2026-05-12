@@ -31,6 +31,8 @@ type TypingState = {
 
 // ── Terminal script ────────────────────────────────────────────────────────
 
+const GAIA_VERSION = '1.2.0';
+
 const TERM_SCRIPT: TermStep[] = [
   {prompt: '$', text: 'npx create-gaia@latest my-app', type: 'type'},
   {ms: 380, type: 'pause'},
@@ -39,11 +41,11 @@ const TERM_SCRIPT: TermStep[] = [
   {cls: 'dim', text: 'Ok to proceed? (y) y', type: 'line'},
   {ms: 380, type: 'pause'},
   {text: '', type: 'line'},
-  {text: 'Creating my-app from GAIA v1.1.1...', type: 'line'},
+  {text: `Creating my-app from GAIA v${GAIA_VERSION}...`, type: 'line'},
   {
     cls: 'muted',
     delay: 280,
-    text: '  > downloading gaia-v1.1.1.tar.gz',
+    text: `  > downloading gaia-v${GAIA_VERSION}.tar.gz`,
     type: 'line',
   },
   {cls: 'muted', delay: 220, text: '  ↳ extracting', type: 'line'},
@@ -74,7 +76,7 @@ const TERM_SCRIPT: TermStep[] = [
   {
     cls: 'ok',
     delay: 320,
-    text: '+ my-app ready (GAIA v1.1.1). Starting setup...',
+    text: `+ my-app ready (GAIA v${GAIA_VERSION}). Starting setup...`,
     type: 'line',
   },
   {ms: 620, type: 'pause'},

@@ -25,7 +25,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Guardrails against technical debt',
   },
   {
-    desc: 'Multiple scoped skills load on demand when Claude edits matching files. They apply project conventions without re-deriving them each session.',
+    desc: 'Scoped skills load on demand when Claude edits matching files. They apply project conventions without re-deriving them each session.',
     name: 'Bundled skills wired in for write-time quality',
   },
   {
