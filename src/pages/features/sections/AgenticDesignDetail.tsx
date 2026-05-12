@@ -5,7 +5,7 @@ type Pattern = {
 
 const WORKFLOW: Pattern[] = [
   {
-    body: 'Plans are durable artifacts requiring user approval. Task graph, execution playbook, kickoff prompt — all before any work begins.',
+    body: 'Plans are durable artifacts requiring user approval, produced before any work begins: task graph, execution playbook, kickoff prompt.',
     name: 'Planning',
   },
   {
