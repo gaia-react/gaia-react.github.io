@@ -26,7 +26,7 @@ const BLOCKS = [
   },
   {
     color: 'muted' as const,
-    copy: 'Security, performance, architecture, antipatterns: all scanned in one merge audit. Critical findings block the merge. Suggestions land in a review comment.',
+    copy: 'Security, performance, architecture, antipatterns: all scanned in one merge audit. Critical and Important findings block the merge. Suggestions land in a review comment.',
     Icon: MultiAgentIcon,
     title: 'Every angle, audited',
   },

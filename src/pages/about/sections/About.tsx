@@ -164,7 +164,9 @@ const About = () => (
             <img
               alt="Portrait of Steven Sacks"
               className="border-line size-12 rounded-full border object-cover"
+              decoding="async"
               height={48}
+              loading="lazy"
               src="/steven.jpg"
               width={48}
             />

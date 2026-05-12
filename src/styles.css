@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/fraunces/standard.css';
+@import '@fontsource-variable/fraunces/standard-italic.css';
 
 @theme {
   --color-canvas: #141413;
@@ -21,7 +23,7 @@
   --color-line-soft: #2e2e2b;
   --color-terminal: #0e0e0d;
 
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: 'Fraunces Variable', Georgia, serif;
   --font-body: ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 

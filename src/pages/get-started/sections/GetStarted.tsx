@@ -719,6 +719,92 @@ const GetStartedHero = ({
   </section>
 );
 
+// ── What ships in the scaffold ──────────────────────────────────────────────
+
+const SCAFFOLD = [
+  {
+    body: 'A Karpathy-style CLAUDE.md, plus rules and skills that load only when the work touches them. Conventions hold across sessions; context stays small.',
+    title: 'Project memory & rules',
+  },
+  {
+    body: '1,314 lint rules on every commit via pre-commit hooks. A code-review-audit agent reviews every merge: security, performance, architecture, antipatterns. "Done" means the gates passed.',
+    title: 'Quality gates',
+  },
+  {
+    body: 'An Obsidian wiki for durable project knowledge, plus a hot cache and handoff notes, so a new session never relearns the codebase from scratch.',
+    title: 'Persistent knowledge',
+  },
+  {
+    body: 'Vitest, React Testing Library, Playwright, MSW, Storybook, and Chromatic, wired and ready. The same tools a serious React team already runs.',
+    title: 'A real test stack',
+  },
+  {
+    body: 'Workflows keep dependencies current, run a daily security audit, sync the wiki on commit, and prune stale branches: maintenance that usually slips while you ship.',
+    title: 'Standing CI',
+  },
+];
+
+const InlineCode = ({children}: {children: string}) => (
+  <code className="text-ink font-mono text-[0.9em]">{children}</code>
+);
+
+const WhatYouGet = () => (
+  <section
+    className="border-line-soft border-t px-4 py-20 sm:px-8 sm:py-28"
+    id="whats-included"
+  >
+    <div className="mx-auto max-w-3xl">
+      <h2 className="text-ink font-display mb-7 text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] tracking-[-0.02em]">
+        What{' '}
+        <span className="text-accent-soft font-mono text-[0.78em]">
+          npx create-gaia
+        </span>{' '}
+        sets up
+      </h2>
+
+      <div className="text-ink-dim mb-12 space-y-4 text-[1.05rem] leading-[1.65]">
+        <p>
+          One command scaffolds a React 19 and TypeScript project with the
+          Claude Code workflow already wired in.{' '}
+          <InlineCode>create-gaia</InlineCode> pulls the GAIA template, runs{' '}
+          <InlineCode>git init</InlineCode>, installs dependencies with{' '}
+          <a
+            className="text-accent hover:text-accent-soft transition-colors duration-150"
+            href="https://pnpm.io"
+            rel="noreferrer"
+            target="_blank"
+          >
+            pnpm
+          </a>
+          , then hands off to Claude Code, where{' '}
+          <InlineCode>/gaia-init</InlineCode> brings every dependency current
+          and finishes setup. No config to write. No prompt library to assemble.
+          The discipline ships in the box.
+        </p>
+        <p>
+          From there, work has a shape: every feature starts with{' '}
+          <InlineCode>/gaia spec</InlineCode>, a spec, a plan, and acceptance
+          tests written before the code. Pre-commit hooks hold the line. A merge
+          audit has the last word.
+        </p>
+      </div>
+
+      <dl className="border-line-soft bg-line-soft grid gap-px overflow-hidden rounded-lg border sm:grid-cols-2">
+        {SCAFFOLD.map((item) => (
+          <div key={item.title} className="bg-surface px-5 py-6">
+            <dt className="text-ink mb-2 font-mono text-[0.8rem] tracking-[0.04em]">
+              {item.title}
+            </dt>
+            <dd className="text-ink-dim text-[0.95rem] leading-[1.6]">
+              {item.body}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+);
+
 // ── Closing ────────────────────────────────────────────────────────────────
 
 const ClosingSection = () => (
@@ -832,6 +918,7 @@ const GetStarted = () => {
         playToken={playToken}
         terminalReference={terminalReference}
       />
+      <WhatYouGet />
       <ClosingSection />
     </>
   );

@@ -40,3 +40,8 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify IndexNow
+        run: |
+          curl -fsS -m 30 -X POST 'https://api.indexnow.org/indexnow' \
+            -H 'Content-Type: application/json' \
+            -d '{"host":"gaiareact.com","key":"fd715526058a4dc088287170bafcfd65","keyLocation":"https://gaiareact.com/fd715526058a4dc088287170bafcfd65.txt","urlList":["https://gaiareact.com/","https://gaiareact.com/why/","https://gaiareact.com/features/","https://gaiareact.com/get-started/","https://gaiareact.com/consulting/","https://gaiareact.com/about/"]}' || true
