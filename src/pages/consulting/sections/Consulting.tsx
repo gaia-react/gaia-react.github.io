@@ -1,10 +1,41 @@
 import type React from 'react';
-import {useEffect} from 'react';
-import {getCalApi} from '@calcom/embed-react';
 import {twJoin} from 'tailwind-merge';
 
 const CAL_USERNAME = 'stevensacks';
 const CAL_NAMESPACE = 'consulting';
+const CAL_LAYOUT = 'month_view';
+const CAL_BASE_URL = `https://cal.com/${CAL_USERNAME}`;
+
+// The Cal popup needs embed.js from app.cal.com. Load it lazily on first click
+// (a mount effect runs during prerender and bakes an orphaned <script> into the
+// static HTML). If embed.js is blocked or never executes, fall back to the
+// hosted booking page so the link always works.
+const openCalModal = async (calLink: string, fallbackHref: string) => {
+  try {
+    const {getCalApi} = await import('@calcom/embed-react');
+    const cal = await getCalApi({namespace: CAL_NAMESPACE});
+    cal('ui', {
+      hideEventTypeDetails: false,
+      layout: CAL_LAYOUT,
+      theme: 'dark',
+    });
+    cal('modal', {
+      calLink: `${CAL_USERNAME}/${calLink}`,
+      config: {layout: CAL_LAYOUT},
+    });
+  } catch {
+    window.location.href = fallbackHref;
+
+    return;
+  }
+  setTimeout(() => {
+    const cal = (window as unknown as {Cal?: {version?: string}}).Cal;
+
+    if (!cal?.version) {
+      window.location.href = fallbackHref;
+    }
+  }, 2500);
+};
 
 type SkuData = {
   anchor: string;
@@ -34,7 +65,7 @@ const SKUS: SkuData[] = [
       'Optional 30-minute Q&A call within 2 weeks.',
     ],
     pitch:
-      'A read-only review of your existing codebase. No GAIA required. Delivers a written report and a prioritized migration roadmap you can act on immediately, with or without continuing.',
+      "A read-only review of your existing codebase (whether it's GAIA or not). Delivers a written report and a prioritized migration roadmap you can act on immediately, with or without continuing.",
     price: '$5,000',
     stage: 'Diagnose',
     tagline: 'Your migration roadmap, before you commit to anything else',
@@ -114,22 +145,29 @@ const CalButton = ({
   calLink: string;
   children: React.ReactNode;
   variant?: 'ghost' | 'solid';
-}) => (
-  <button
-    className={twJoin(
-      'font-body inline-flex h-10 cursor-pointer items-center gap-2 rounded-md px-4 text-[0.875rem] font-medium tracking-[0.01em] whitespace-nowrap no-underline transition-colors duration-150',
-      variant === 'solid' ?
-        'bg-accent text-canvas hover:bg-accent-2 border-none'
-      : 'border-line text-ink hover:border-accent hover:text-accent-soft border bg-transparent'
-    )}
-    data-cal-config='{"layout":"month_view"}'
-    data-cal-link={`${CAL_USERNAME}/${calLink}`}
-    data-cal-namespace={CAL_NAMESPACE}
-    type="button"
-  >
-    {children}
-  </button>
-);
+}) => {
+  const href = `${CAL_BASE_URL}/${calLink}?layout=${CAL_LAYOUT}`;
+
+  return (
+    <a
+      className={twJoin(
+        'font-body inline-flex h-10 cursor-pointer items-center gap-2 rounded-md px-4 text-[0.875rem] font-medium tracking-[0.01em] whitespace-nowrap no-underline transition-colors duration-150',
+        variant === 'solid' ?
+          'bg-accent text-canvas hover:bg-accent-2 border-none'
+        : 'border-line text-ink hover:border-accent hover:text-accent-soft border bg-transparent'
+      )}
+      href={href}
+      onClick={async (event) => {
+        event.preventDefault();
+        await openCalModal(calLink, href);
+      }}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      {children}
+    </a>
+  );
+};
 
 const SpectrumRail = () => (
   <ol
@@ -415,114 +453,101 @@ const Orbs = () => (
   </>
 );
 
-const Consulting = () => {
-  useEffect(() => {
-    (async () => {
-      const cal = await getCalApi({namespace: CAL_NAMESPACE});
-      cal('ui', {
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-        theme: 'dark',
-      });
-    })();
-  }, []);
-
-  return (
-    <>
-      {/* Hero */}
-      <section className="relative overflow-x-clip px-4 pt-20 pb-16 sm:px-8 sm:pt-28 sm:pb-20">
-        <Orbs />
-        <div className="relative z-10 mx-auto max-w-5xl">
-          <div
-            className="text-accent-soft mb-7 inline-flex items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase"
-            data-reveal={true}
-          >
-            <span aria-hidden={true} className="bg-accent-soft size-1.5" />
-            Consulting
-          </div>
-          <h1 className="font-display text-ink max-w-[22ch] text-[clamp(2rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]">
-            GAIA is the workflow.
-            <em className="text-accent-soft block font-light italic">
-              The author is the shortcut.
-            </em>
-          </h1>
-          <p
-            className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7] sm:mt-8 sm:text-[1.125rem]"
-            data-reveal={true}
-            style={{'--reveal-delay': '160ms'} as React.CSSProperties}
-          >
-            Work with me to skip the trial and error.
-          </p>
+const Consulting = () => (
+  <>
+    {/* Hero */}
+    <section className="relative overflow-x-clip px-4 pt-20 pb-16 sm:px-8 sm:pt-28 sm:pb-20">
+      <Orbs />
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <div
+          className="text-accent-soft mb-7 inline-flex items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase"
+          data-reveal={true}
+        >
+          <span aria-hidden={true} className="bg-accent-soft size-1.5" />
+          Consulting
         </div>
-      </section>
-
-      {/* Engagement spectrum */}
-      <section className="border-line-soft border-t px-4 py-16 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-            <div
-              className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase"
-              data-reveal={true}
-            >
-              The engagement journey
-            </div>
-            <div
-              className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block"
-              data-reveal={true}
-            >
-              Brownfield → Sustain
-            </div>
-          </div>
-          <SpectrumRail />
-        </div>
-      </section>
-
-      {/* Engagement blocks */}
-      <div className="px-4 sm:px-8">
-        {SKUS.map((sku, index) => (
-          <section
-            key={sku.anchor}
-            className={twJoin(
-              'border-line-soft scroll-mt-20 border-t py-20 sm:py-28',
-              index === SKUS.length - 1 && 'border-b'
-            )}
-            id={sku.anchor}
-          >
-            <div className="mx-auto max-w-5xl">
-              <SkuBlock sku={sku} />
-            </div>
-          </section>
-        ))}
+        <h1 className="font-display text-ink max-w-[22ch] text-[clamp(2rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]">
+          GAIA is the workflow.
+          <em className="text-accent-soft block font-light italic">
+            The author is the shortcut.
+          </em>
+        </h1>
+        <p
+          className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7] sm:mt-8 sm:text-[1.125rem]"
+          data-reveal={true}
+          style={{'--reveal-delay': '160ms'} as React.CSSProperties}
+        >
+          Work with me to skip the trial and error.
+        </p>
       </div>
+    </section>
 
-      {/* Custom + close */}
-      <section className="px-4 py-20 sm:px-8 sm:py-24">
-        <div className="mx-auto flex max-w-3xl flex-col gap-6 text-center">
-          <p className="text-ink-dim mx-auto max-w-prose text-[1.0625rem] leading-[1.7]">
-            Need something outside these engagements? Multi-month builds, custom
-            integrations, or scope I{' '}haven’t named here. Engagements start
-            at $5,000.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-            <a
-              className="text-ink-dim hover:text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
-              href="mailto:steven@gaiareact.com"
-            >
-              Email me →
-            </a>
-            <a
-              className="text-ink-dim hover:text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
-              href="https://www.linkedin.com/in/stevensacks/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              LinkedIn →
-            </a>
+    {/* Engagement spectrum */}
+    <section className="border-line-soft border-t px-4 py-16 sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+          <div
+            className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase"
+            data-reveal={true}
+          >
+            The engagement journey
+          </div>
+          <div
+            className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block"
+            data-reveal={true}
+          >
+            Brownfield → Sustain
           </div>
         </div>
-      </section>
-    </>
-  );
-};
+        <SpectrumRail />
+      </div>
+    </section>
+
+    {/* Engagement blocks */}
+    <div className="px-4 sm:px-8">
+      {SKUS.map((sku, index) => (
+        <section
+          key={sku.anchor}
+          className={twJoin(
+            'border-line-soft scroll-mt-20 border-t py-20 sm:py-28',
+            index === SKUS.length - 1 && 'border-b'
+          )}
+          id={sku.anchor}
+        >
+          <div className="mx-auto max-w-5xl">
+            <SkuBlock sku={sku} />
+          </div>
+        </section>
+      ))}
+    </div>
+
+    {/* Custom + close */}
+    <section className="px-4 py-20 sm:px-8 sm:py-24">
+      <div className="mx-auto flex max-w-3xl flex-col gap-6 text-center">
+        <p className="text-ink-dim mx-auto max-w-prose text-[1.0625rem] leading-[1.7]">
+          Need something outside these engagements? Multi-month builds, custom
+          integrations, or scope I{' '}haven’t named here. Engagements start at
+          $5,000.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          <a
+            className="text-ink-dim hover:text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
+            href="mailto:steven@gaiareact.com"
+          >
+            Email me →
+          </a>
+          <a
+            className="text-ink-dim hover:text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
+            href="https://www.linkedin.com/in/stevensacks/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            LinkedIn →
+          </a>
+        </div>
+      </div>
+    </section>
+  </>
+);
 
 export default Consulting;
