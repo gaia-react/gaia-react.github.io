@@ -44,7 +44,7 @@
       0% {
         transform: translateX(-2000px);
       }
-      15% {
+      18% {
         transform: translateX(5400px);
       }
       100% {
@@ -52,7 +52,7 @@
       }
     }
     .gaia-ai-shimmer {
-      animation: gaia-ai-shimmer 10s linear 5s infinite both;
+      animation: gaia-ai-shimmer 8s linear infinite both;
     }
     @media (prefers-reduced-motion: reduce) {
       .gaia-ai-shimmer {
