@@ -393,3 +393,24 @@ samp {
 @utility gs-term__art {
   text-shadow: 0 0 18px rgba(217, 119, 87, 0.35);
 }
+
+/* ============================================================
+   Header mobile menu
+   ============================================================ */
+@keyframes gaia-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility gaia-menu-in {
+  animation: gaia-menu-in 0.2s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
