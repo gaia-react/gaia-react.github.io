@@ -2,11 +2,13 @@ import {useEffect, useRef, useState, useSyncExternalStore} from 'react';
 import {twJoin} from 'tailwind-merge';
 import gaiaLogo from '../assets/gaia-logo.svg';
 
-const NAV_DESKTOP = [
+type NavItem = {external?: boolean; href: string; label: string};
+
+const NAV_DESKTOP: NavItem[] = [
   {href: '/why/', label: 'Why GAIA'},
   {href: '/features/', label: 'Features'},
-  {href: 'https://docs.gaiareact.com/', label: 'Docs'},
   {href: '/about/', label: 'About'},
+  {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
 ];
 
 const isActivePath = (pathname: string, href: string) =>
@@ -74,6 +76,8 @@ export const Header = () => {
                     active ? 'text-accent' : 'text-ink-dim hover:text-accent'
                   )}
                   href={item.href}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  target={item.external ? '_blank' : undefined}
                 >
                   {item.label}
                 </a>
@@ -147,6 +151,8 @@ export const Header = () => {
                 )}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                target={item.external ? '_blank' : undefined}
               >
                 {item.label}
               </a>

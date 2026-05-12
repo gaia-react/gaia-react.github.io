@@ -3,9 +3,9 @@ type FooterLink = {external?: boolean; href: string; label: string};
 const FOOTER_NAV: FooterLink[] = [
   {href: '/why/', label: 'Why GAIA'},
   {href: '/features/', label: 'Features'},
-  {href: 'https://docs.gaiareact.com/', label: 'Docs'},
   {href: '/about/', label: 'About'},
   {href: '/consulting/', label: 'Consulting'},
+  {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
   {external: true, href: 'https://github.com/gaia-react/gaia', label: 'GitHub'},
 ];
 
