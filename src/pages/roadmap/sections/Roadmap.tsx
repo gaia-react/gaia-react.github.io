@@ -167,11 +167,7 @@ const Roadmap = () => (
           Roadmap
         </span>
       </div>
-      <h1
-        className="text-ink m-0 mb-6 text-[clamp(2.5rem,5.4vw,4.5rem)] leading-[1.1] tracking-tight"
-        data-reveal={true}
-        style={{'--reveal-delay': '80ms'} as CSSProperties}
-      >
+      <h1 className="text-ink m-0 mb-6 text-[clamp(2.5rem,5.4vw,4.5rem)] leading-[1.1] tracking-tight">
         Every release, in order.
       </h1>
       <p

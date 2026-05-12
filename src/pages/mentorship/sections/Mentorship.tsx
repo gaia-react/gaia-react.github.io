@@ -49,11 +49,7 @@ const Mentorship = () => (
           <span aria-hidden={true} className="bg-accent-soft size-1.5" />
           Mentorship
         </div>
-        <h1
-          className="font-display text-ink mb-10 max-w-[22ch] text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] font-light tracking-[-0.03em]"
-          data-reveal={true}
-          style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-        >
+        <h1 className="font-display text-ink mb-10 max-w-[22ch] text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] font-light tracking-[-0.03em]">
           I want to get better at working with AI.{' '}
           <em className="text-accent-soft font-light italic">
             So I built a coach that watches how I work.

@@ -445,11 +445,7 @@ const Consulting = () => {
             <span aria-hidden={true} className="bg-accent-soft size-1.5" />
             Consulting
           </div>
-          <h1
-            className="font-display text-ink max-w-[22ch] text-[clamp(2rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]"
-            data-reveal={true}
-            style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-          >
+          <h1 className="font-display text-ink max-w-[22ch] text-[clamp(2rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]">
             GAIA is the workflow.
             <em className="text-accent-soft block font-light italic">
               The author is the shortcut.

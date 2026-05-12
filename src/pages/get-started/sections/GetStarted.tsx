@@ -638,11 +638,7 @@ const GetStartedHero = ({
         </span>
       </div>
 
-      <h1
-        className="text-ink mx-auto mb-10 max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] tracking-[-0.018em]"
-        data-reveal={true}
-        style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-      >
+      <h1 className="text-ink mx-auto mb-10 max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] tracking-[-0.018em]">
         One command is
         <br />
         <em className="text-accent-soft font-light italic">all you need.</em>

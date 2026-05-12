@@ -34,9 +34,9 @@ const Orbs = () => (
       style={{
         background:
           'radial-gradient(circle at center, rgba(217,168,87,0.4) 0%, rgba(217,168,87,0.2) 32%, rgba(217,168,87,0.08) 60%, rgba(217,168,87,0) 80%)',
-        bottom: -180,
+        bottom: -270,
         height: 420,
-        left: '24%',
+        left: '33%',
         opacity: 0.5,
         width: 420,
       }}
@@ -52,11 +52,7 @@ const Hero = () => (
     <Orbs />
     <div className="relative z-10 mx-auto max-w-6xl">
       <div className="max-w-270">
-        <h1
-          className="text-ink mb-4 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.1] tracking-tight"
-          data-reveal={true}
-          style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-        >
+        <h1 className="text-ink mb-4 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.1] tracking-tight">
           Claude is raw power.
           <br className="hidden sm:inline" />
           <span className="inline sm:hidden"> </span>
