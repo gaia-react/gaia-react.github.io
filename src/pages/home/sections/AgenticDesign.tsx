@@ -100,8 +100,8 @@ const AgenticDesign = () => (
           </p>
           <p className="text-ink-dim text-[1.05rem] leading-[1.65] text-pretty">
             Here are two of them: a commit gate that turns typecheck, lint,
-            tests, and build into hard stops that must be fixed, and an audit
-            that reads the diff before it reaches main.
+            tests, and build into hard stops, and an audit that reads the diff
+            before it reaches main.
           </p>
         </div>
 
