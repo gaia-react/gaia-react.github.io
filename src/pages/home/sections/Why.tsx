@@ -24,9 +24,8 @@ const Why = () => (
           and technical debt piling up while you build.
         </p>
         <p className="text-ink-dim text-[1.125rem] leading-[1.65]">
-          <span className="text-ink">GAIA fixes all three.</span> Not with a
-          longer prompt. With discipline built into the project, so Claude has
-          to follow it.
+          <span className="text-ink">GAIA fixes all three.</span> Its structure
+          and tooling enlist Claude in the fight against its own drift.
         </p>
       </div>
     </div>

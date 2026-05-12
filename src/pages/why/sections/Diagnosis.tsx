@@ -19,12 +19,12 @@ const FAILURES: Item[] = [
     desc: (
       <>
         Without enforced gates, “done” means the model said so. Tests are not
-        written. Types go{' '}
+        written. Types collapse to{' '}
         <code className="bg-surface text-ink rounded-sm px-1.5 font-mono text-[0.875em]">
           any
         </code>
-        . Every shortcut compounds. AI moves at AI speed, so tech debt compounds
-        faster than any human team would let it.
+        . AI moves at AI speed, so tech debt piles up faster than any human team
+        would tolerate.
       </>
     ),
     name: 'No backstop',
@@ -77,7 +77,7 @@ const Diagnosis = () => (
             <h3 className="text-ink font-display text-[1.32rem] font-medium tracking-[-0.015em]">
               {name}
             </h3>
-            <p className="text-ink-dim max-w-[58ch] text-[1rem] leading-[1.7]">
+            <p className="text-ink-dim max-w-[58ch] text-[1rem] leading-[1.7] text-pretty">
               {desc}
             </p>
           </li>

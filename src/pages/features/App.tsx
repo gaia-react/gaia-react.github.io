@@ -4,6 +4,7 @@ import {Layout} from '@/components/Layout';
 import {useScrollReveal} from '@/hooks/useScrollReveal';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesignDetail from './sections/AgenticDesignDetail';
+import Fitness from './sections/Fitness';
 import Forensics from './sections/Forensics';
 import GaiaCi from './sections/GaiaCi';
 import Hero from './sections/Hero';
@@ -36,6 +37,7 @@ const App = () => {
       <ObsidianWikiDetail />
       <GaiaCi />
       <UpdateDeps />
+      <Fitness />
       <Forensics />
       <Suspense fallback={null}>
         <Stack />

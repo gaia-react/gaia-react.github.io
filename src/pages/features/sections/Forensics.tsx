@@ -2,7 +2,7 @@ import ForensicsIssue from './figures/ForensicsIssue';
 
 const Forensics = () => (
   <section
-    className="bg-tint border-line-soft scroll-mt-20 border-b py-20"
+    className="border-line-soft scroll-mt-20 border-b py-20"
     id="forensics"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
