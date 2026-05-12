@@ -63,16 +63,18 @@ const Hero = () => (
         </h1>
 
         <p
-          className="text-ink-dim mb-4 max-w-[56ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55]"
+          className="text-ink-dim mb-4 max-w-[56ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          Most Claude setups break under pressure. GAIA gives it structure that
-          holds.
+          Every codebase drifts. AI just gets there faster.
+          <br className="hidden sm:inline" />
+          <span className="sm:hidden"> </span>
+          GAIA is the discipline that holds the line.
         </p>
 
         <p
-          className="text-muted mb-10 max-w-[56ch] text-[0.85rem] leading-normal italic"
+          className="text-muted mb-10 max-w-[66ch] text-[0.85rem] leading-normal italic"
           data-reveal={true}
           style={{'--reveal-delay': '260ms'} as React.CSSProperties}
         >

@@ -92,16 +92,16 @@ const AgenticDesign = () => (
           <h2 className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
             Design patterns Claude doesn&apos;t have to remember.
           </h2>
-          <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
+          <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65] text-pretty">
             Gates on every commit. Specs before code. Scoped memory. A
             code-review audit on every merge. GAIA wires these into the project
             itself, so they run the same way every session, every task, every
             model variant.
           </p>
-          <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
-            Here, two of them: the commit gate that turns typecheck, lint,
-            tests, and build into hard stops, and the audit that reads the diff
-            before it reaches main.
+          <p className="text-ink-dim text-[1.05rem] leading-[1.65] text-pretty">
+            Here are two of them: a commit gate that turns typecheck, lint,
+            tests, and build into hard stops that must be fixed, and an audit
+            that reads the diff before it reaches main.
           </p>
         </div>
 

@@ -113,8 +113,8 @@ const ClaudeMd = () => (
           </h2>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
             <code className="text-ink">/gaia spec</code> interviews you and
-            writes the spec. <code className="text-ink">/gaia plan</code> hands
-            it to Claude. <code className="text-ink">/gaia handoff</code> and{' '}
+            writes the spec. <code className="text-ink">/gaia plan</code> slices
+            it into tasks. <code className="text-ink">/gaia handoff</code> and{' '}
             <code className="text-ink">/gaia pickup</code> carry context across
             sessions.
           </p>
