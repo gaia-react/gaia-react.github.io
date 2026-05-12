@@ -137,7 +137,7 @@ export const Header = () => {
       </div>
 
       {menuOpen && (
-        <div className="bg-surface-raised border-line absolute inset-x-0 top-full flex flex-col gap-1 border-b p-4 sm:px-8">
+        <div className="gaia-menu-in bg-surface-raised border-line absolute inset-x-0 top-full flex flex-col gap-1 border-b p-4 sm:px-8">
           {NAV_DESKTOP.map((item) => {
             const active = isActivePath(pathname, item.href);
 
