@@ -1,12 +1,18 @@
 import {useEffect, useRef, useState, useSyncExternalStore} from 'react';
+import {twJoin} from 'tailwind-merge';
 import gaiaLogo from '../assets/gaia-logo.svg';
 
-const NAV_DESKTOP = [
+type NavItem = {external?: boolean; href: string; label: string};
+
+const NAV_DESKTOP: NavItem[] = [
   {href: '/why/', label: 'Why GAIA'},
   {href: '/features/', label: 'Features'},
-  {href: 'https://docs.gaiareact.com/', label: 'Docs'},
   {href: '/about/', label: 'About'},
+  {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
 ];
+
+const isActivePath = (pathname: string, href: string) =>
+  href.startsWith('/') && pathname.startsWith(href);
 
 const noopUnsubscribe = () => {};
 const subscribePathname = () => noopUnsubscribe;
@@ -58,15 +64,25 @@ export const Header = () => {
             aria-label="Main navigation"
             className="hidden items-center gap-0.5 md:flex"
           >
-            {NAV_DESKTOP.map((item) => (
-              <a
-                key={item.href}
-                className="text-ink-dim font-body hover:text-accent rounded-sm px-2.5 py-1.5 text-[0.8125rem] tracking-[0.02em] whitespace-nowrap no-underline transition-colors duration-150"
-                href={item.href}
-              >
-                {item.label}
-              </a>
-            ))}
+            {NAV_DESKTOP.map((item) => {
+              const active = isActivePath(pathname, item.href);
+
+              return (
+                <a
+                  key={item.href}
+                  aria-current={active ? 'page' : undefined}
+                  className={twJoin(
+                    'font-body rounded-sm px-2.5 py-1.5 text-[0.8125rem] tracking-[0.02em] whitespace-nowrap no-underline transition-colors duration-150',
+                    active ? 'text-accent' : 'text-ink-dim hover:text-accent'
+                  )}
+                  href={item.href}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  target={item.external ? '_blank' : undefined}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
         </div>
 
@@ -122,16 +138,26 @@ export const Header = () => {
 
       {menuOpen && (
         <div className="bg-surface-raised border-line absolute inset-x-0 top-full flex flex-col gap-1 border-b p-4 sm:px-8">
-          {NAV_DESKTOP.map((item) => (
-            <a
-              key={item.href}
-              className="text-ink-dim font-body border-line hover:text-accent border-b px-0 py-2.5 text-base no-underline transition-colors duration-150"
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAV_DESKTOP.map((item) => {
+            const active = isActivePath(pathname, item.href);
+
+            return (
+              <a
+                key={item.href}
+                aria-current={active ? 'page' : undefined}
+                className={twJoin(
+                  'font-body border-line border-b px-0 py-2.5 text-base no-underline transition-colors duration-150',
+                  active ? 'text-accent' : 'text-ink-dim hover:text-accent'
+                )}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                target={item.external ? '_blank' : undefined}
+              >
+                {item.label}
+              </a>
+            );
+          })}
           {!isOnGetStarted && (
             <a
               className="bg-accent text-canvas hover:bg-accent-2 mt-3 rounded-sm px-5 py-3 text-center font-semibold transition-colors duration-150"

@@ -11,7 +11,9 @@ const ZodLogo: FC<ZodLogoProperties> = ({height, width, ...properties}) => {
   return (
     <img
       alt="Zod"
+      decoding="async"
       height={adjustedHeight}
+      loading="lazy"
       src={zodLogo}
       width={adjustedWidth}
       {...properties}

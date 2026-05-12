@@ -16,9 +16,20 @@ export const useScrollReveal = () => {
       {rootMargin: '0px 0px -40px 0px', threshold: 0}
     );
 
+    const viewportHeight = window.innerHeight;
+
     document
       .querySelectorAll('[data-reveal], [data-stagger]')
-      .forEach((element) => io.observe(element));
+      .forEach((element) => {
+        // Anything inside the fold on load animates in immediately, including
+        // the bottom strip the observer's rootMargin trims off. Only elements
+        // genuinely below the fold wait for a scroll.
+        if (element.getBoundingClientRect().top < viewportHeight) {
+          element.classList.add('is-in');
+        } else {
+          io.observe(element);
+        }
+      });
 
     return () => io.disconnect();
   }, []);

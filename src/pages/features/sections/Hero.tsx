@@ -7,10 +7,7 @@ const Hero = () => (
       className="gaia-haze-cool gaia-haze-drift pointer-events-none absolute inset-[-3%] z-0"
     />
     <div className="relative z-10 mx-auto grid max-w-275 items-end gap-10 md:grid-cols-2 md:gap-16">
-      <h1
-        className="font-display text-ink text-[clamp(2.6rem,6vw,4.4rem)] leading-[1.05] font-light tracking-[-0.03em]"
-        data-reveal={true}
-      >
+      <h1 className="font-display text-ink text-[clamp(2.6rem,6vw,4.4rem)] leading-[1.05] font-light tracking-[-0.03em]">
         The Discipline of GAIA
       </h1>
       <div className="text-ink-dim text-[1.05rem] leading-[1.7]">
@@ -19,7 +16,7 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
-          Discipline is structural. Built into GAIA so Claude has to follow it.
+          GAIA&apos;s discipline is structural. Claude works inside it.
         </p>
         <p
           className="mb-4"

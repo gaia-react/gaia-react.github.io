@@ -27,35 +27,38 @@ const SKUS: SkuData[] = [
     cadence: '1 week · 100% async',
     calEvent: 'audit-intro',
     deliverables: [
-      'Deep review of one repo. CLAUDE.md, rules, hooks, prompt patterns, last 50 PRs.',
-      'A 15 to 25 page written report. What’s working, what’s costing you, top 5 fixes ranked by ROI.',
+      'Deep review of one repo against GAIA conventions. Lint posture, agentic-pattern gaps, AI-debt signals from recent PRs, existing CLAUDE.md and rules where present.',
+      'A 15 to 25 page written report: what’s working, what’s costing you, and the prioritized migration roadmap.',
+      'The migration roadmap is the core deliverable: an ordered list of refactors with effort and blast-radius estimates. The backlog your Migration Sprints burn down. Yours to keep regardless of next steps.',
       '20-minute recorded walkthrough video.',
       'Optional 30-minute Q&A call within 2 weeks.',
     ],
     pitch:
-      'An outside opinion on your Claude workflow, delivered as a written report you can act on without scheduling anything else.',
+      'A read-only review of your existing codebase. No GAIA required. Delivers a written report and a prioritized migration roadmap you can act on immediately, with or without continuing.',
     price: '$5,000',
     stage: 'Diagnose',
-    tagline: 'Where the AI debt is, and what it’s costing you',
+    tagline: 'Your migration roadmap, before you commit to anything else',
     title: 'Audit',
   },
   {
-    anchor: 'migrate',
-    cadence: '3 to 4 weeks · async-first · scope-variable',
+    anchor: 'migration',
+    cadence: '2-week sprints · buy as many as the roadmap needs · async-first',
     calEvent: 'migrate-intro',
     deliverables: [
-      'Hands-on refactor of one repo. Pattern consolidation, AI-debt cleanup, type tightening.',
-      'GAIA installed on the refactored codebase. Rules, hooks, skills, wiki templates.',
-      'Commit-by-commit migration log so you can review the cleanup.',
-      'Written remediation report. What was changed, why, and what to watch for.',
-      'Optional 30-minute handoff call within 2 weeks of delivery.',
+      'Per sprint: hands-on refactor of the top roadmap items that fit the budget. Pattern consolidation, AI-debt cleanup, type tightening.',
+      'GAIA installed or extended on the code the sprint touches. Rules, hooks, skills, wiki templates.',
+      'Commit-by-commit migration log. Every change visible and reviewable.',
+      'Short "what changed / what to watch" note after each sprint.',
+      'Cumulative remediation report that grows across sprints. The full before/after catalog.',
+      '30 days of post-delivery email support per sprint.',
+      'Optional 30-minute handoff call within 2 weeks of sprint delivery.',
     ],
     pitch:
-      'Take one messy repo from AI sprawl to GAIA-ready. The longest engagement, and usually the one with the most ground to recover.',
-    price: 'From $35,000',
+      'Hands-on refactor of your codebase, chunked into 2-week sprints. Commit one sprint at a time. Most migrations run 2 to 4. Each sprint delivers visible, reviewable results before you decide whether to continue.',
+    price: '$18,000/sprint',
     stage: 'Remediate',
-    tagline: 'One repo, taken from AI sprawl to GAIA-ready',
-    title: 'Migrate',
+    tagline: 'AI sprawl cleaned up, sprint by sprint',
+    title: 'Migration',
   },
   {
     anchor: 'foundation',
@@ -85,7 +88,7 @@ const SKUS: SkuData[] = [
       'Slack or Discord access with 24-hour response time.',
       'Quarterly written health-check summary.',
       'First-look access to GAIA roadmap features.',
-      '10% discount on additional Foundation or Migration engagements.',
+      '10% discount on additional Migration Sprints or a Foundation engagement.',
     ],
     pitch:
       'Ongoing oversight after the cleanup or the setup. The discipline keeps holding because someone outside the team is watching.',
@@ -131,7 +134,7 @@ const CalButton = ({
 const SpectrumRail = () => (
   <ol
     className="relative m-0 grid list-none grid-cols-2 gap-y-10 p-0 md:grid-cols-4 md:gap-y-0"
-    data-reveal={true}
+    data-stagger=""
   >
     {SKUS.map((sku, index) => {
       const isLast = index === SKUS.length - 1;
@@ -140,7 +143,6 @@ const SpectrumRail = () => (
         <li
           key={sku.anchor}
           className="border-line-soft relative flex flex-col items-start border-t pt-6 md:items-center md:pt-7 md:text-center"
-          style={{'--reveal-delay': `${index * 90}ms`} as React.CSSProperties}
         >
           <span
             aria-hidden={true}
@@ -231,18 +233,14 @@ const BlockFooter = ({
 
 const AuditBlock = ({sku}: {sku: SkuData}) => (
   <div className="grid gap-10 md:grid-cols-[1fr_18rem] md:gap-16">
-    <div data-reveal={true}>
+    <div>
       <SkuHeader sku={sku} />
       <p className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7]">
         {sku.pitch}
       </p>
       <DeliverablesList items={sku.deliverables} />
     </div>
-    <aside
-      className="border-line-soft flex flex-col gap-5 self-start border-t pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-12"
-      data-reveal={true}
-      style={{'--reveal-delay': '120ms'} as React.CSSProperties}
-    >
+    <aside className="border-line-soft flex flex-col gap-5 self-start border-t pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-12">
       <PriceBlock cadence={sku.cadence} price={sku.price} />
       <CalButton calLink={sku.calEvent} variant="solid">
         Book a free intro →
@@ -380,7 +378,7 @@ const RetainerBlock = ({sku}: {sku: SkuData}) => (
 
 const SkuBlock = ({sku}: {sku: SkuData}) => {
   if (sku.anchor === 'audit') return <AuditBlock sku={sku} />;
-  if (sku.anchor === 'migrate') return <MigrateBlock sku={sku} />;
+  if (sku.anchor === 'migration') return <MigrateBlock sku={sku} />;
   if (sku.anchor === 'foundation') return <FoundationBlock sku={sku} />;
 
   return <RetainerBlock sku={sku} />;
@@ -442,11 +440,7 @@ const Consulting = () => {
             <span aria-hidden={true} className="bg-accent-soft size-1.5" />
             Consulting
           </div>
-          <h1
-            className="font-display text-ink max-w-[22ch] text-[clamp(2rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]"
-            data-reveal={true}
-            style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-          >
+          <h1 className="font-display text-ink max-w-[22ch] text-[clamp(2rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]">
             GAIA is the workflow.
             <em className="text-accent-soft block font-light italic">
               The author is the shortcut.
@@ -504,7 +498,7 @@ const Consulting = () => {
       {/* Custom + close */}
       <section className="px-4 py-20 sm:px-8 sm:py-24">
         <div className="mx-auto flex max-w-3xl flex-col gap-6 text-center">
-          <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
+          <p className="text-ink-dim mx-auto max-w-prose text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom
             integrations, or scope I{' '}haven’t named here. Engagements start
             at $5,000.

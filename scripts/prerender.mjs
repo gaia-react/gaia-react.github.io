@@ -60,8 +60,21 @@ const exitCode = await (async () => {
       const target = `http://localhost:${PORT}${route.url}`;
       await page.goto(target, {timeout: 30_000, waitUntil: 'load'});
       await page.waitForSelector('#root > *', {timeout: 15_000});
+      await page
+        .waitForNetworkIdle({idleTime: 250, timeout: 5_000})
+        .catch(() => {});
       await new Promise((resolve) => {
         setTimeout(resolve, 250);
+      });
+
+      // useScrollReveal adds `is-in` at runtime; the IntersectionObserver fires
+      // during prerender and bakes it onto above-the-fold elements. Strip it so
+      // the static markup matches React's output — otherwise hydration sees a
+      // className mismatch and the element renders, hides, then fades back in.
+      await page.evaluate(() => {
+        for (const element of document.querySelectorAll('.is-in')) {
+          element.classList.remove('is-in');
+        }
       });
 
       const html = await page.content();

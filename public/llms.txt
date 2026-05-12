@@ -1,0 +1,18 @@
+# GAIA
+
+> GAIA is the Claude Code workflow for React teams: a project-level layer of rules, hooks, agents, memory, and CI that turns Claude's raw capability into work you can ship. Claude is raw power. GAIA is order and focus.
+
+GAIA installs with one command, `npx create-gaia@latest my-app`, and scaffolds a React 19 project with the workflow built in: enforced coding rules, a code-review-audit agent on every merge, Agentic Design patterns, an Obsidian wiki for durable project knowledge, a full test stack (Vitest, React Testing Library, Playwright, MSW, Storybook, Chromatic), and a standing CI layer that keeps dependencies current, patches security findings, syncs the wiki, and prunes stale branches. Open source, written by one developer (so far). Contributors and sponsors welcome.
+
+## Site
+
+- [GAIA: The Claude Code Workflow for React](https://gaiareact.com/): What GAIA is, who it's for, and the core idea: structure that holds under pressure.
+- [Why Claude Code Breaks Without Structure](https://gaiareact.com/why/): The case for project-level discipline in AI-built code, and why vibe coding falls apart at scale.
+- [Features](https://gaiareact.com/features/): Coding rules, code-review audits, Agentic Design patterns, the Obsidian wiki, token economics, and GAIA CI, covered pattern by pattern.
+- [Get Started](https://gaiareact.com/get-started/): Install GAIA in one command, and what `npx create-gaia` sets up.
+- [Consulting](https://gaiareact.com/consulting/): Hands-on help adopting GAIA and Claude Code: Audit, Migration, Foundation, or Retainer, by the creator.
+- [About Steven Sacks](https://gaiareact.com/about/): Creator of GAIA React, and the original GAIA Flash Framework back in 2008.
+
+## Code
+
+- [GAIA on GitHub](https://github.com/gaia-react/gaia): Source of truth for features, rules, hooks, skills, and commands. MIT-licensed.

@@ -22,7 +22,7 @@ const COLUMNS: Column[] = [
     specimen: (
       <>
         <div className="text-muted">.claude/rules/tailwind.md</div>
-        <div className="text-line-soft my-[0.45rem]">───</div>
+        <div className="border-line-soft my-[0.6rem] border-t" />
         <div className="text-ink-dim">
           <div>---</div>
           <div>
@@ -53,7 +53,7 @@ const COLUMNS: Column[] = [
     specimen: (
       <>
         <div className="text-muted">serena vs grep</div>
-        <div className="text-line-soft my-[0.45rem]">───</div>
+        <div className="border-line-soft my-[0.6rem] border-t" />
         <div className="grid grid-cols-[1fr_auto_auto] gap-x-4">
           <div />
           <div className="text-muted text-right">grep</div>
@@ -92,7 +92,7 @@ const COLUMNS: Column[] = [
     specimen: (
       <>
         <div className="text-muted">KNOWLEDGE-2026-05-12.md</div>
-        <div className="text-line-soft my-[0.45rem]">───</div>
+        <div className="border-line-soft my-[0.6rem] border-t" />
         <div className="text-ink-dim">
           <div className="flex justify-between gap-3">
             <span>Stores scanned</span>
@@ -142,7 +142,7 @@ const LoadOnDemand = () => (
             </span>
           </a>
         </h2>
-        <p className="text-ink-dim text-justify text-[1.05rem] leading-[1.65]">
+        <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
           Three intercepts keep Claude&apos;s working surface lean. Rules sit
           dormant until you touch matching files. Symbol queries return one
           answer, not every match. Periodic audits prune what accumulates.

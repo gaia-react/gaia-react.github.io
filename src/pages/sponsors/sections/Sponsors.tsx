@@ -186,11 +186,7 @@ const Sponsors = () => (
             </span>
           </div>
 
-          <h1
-            className="text-ink mb-7 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.05] tracking-tight"
-            data-reveal={true}
-            style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-          >
+          <h1 className="text-ink mb-7 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.05] tracking-tight">
             Free to use.
             <br />
             <span className="text-accent-soft font-light italic">

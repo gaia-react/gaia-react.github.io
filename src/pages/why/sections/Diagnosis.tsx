@@ -66,10 +66,7 @@ const Diagnosis = () => (
           The failures are not random. They have shapes.
         </p>
       </div>
-      <ol
-        className="grid list-none gap-x-10 gap-y-12 p-0 sm:grid-cols-2 sm:gap-y-14"
-        data-stagger={true}
-      >
+      <ol className="grid list-none gap-x-10 gap-y-12 p-0 sm:grid-cols-2 sm:gap-y-14">
         {FAILURES.map(({desc, name}, index) => (
           <li key={name} className="flex flex-col gap-3">
             <div className="border-line-soft text-accent-soft flex items-baseline gap-3 border-b pb-2 font-mono text-[0.78rem] tracking-[0.18em] uppercase">

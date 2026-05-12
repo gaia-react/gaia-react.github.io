@@ -144,11 +144,7 @@ const About = () => (
           About
         </div>
 
-        <h1
-          className="font-display text-ink mb-12 max-w-[20ch] text-[clamp(2.4rem,5.6vw,4.5rem)] leading-[1.05] font-light tracking-[-0.03em]"
-          data-reveal={true}
-          style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-        >
+        <h1 className="font-display text-ink mb-12 max-w-[20ch] text-[clamp(2.4rem,5.6vw,4.5rem)] leading-[1.05] font-light tracking-[-0.03em]">
           I built the framework Flash needed in 2008.{' '}
           <em className="text-accent-soft font-light italic">
             I’m building the one Claude needs now.
@@ -164,7 +160,9 @@ const About = () => (
             <img
               alt="Portrait of Steven Sacks"
               className="border-line size-12 rounded-full border object-cover"
+              decoding="async"
               height={48}
+              loading="lazy"
               src="/steven.jpg"
               width={48}
             />

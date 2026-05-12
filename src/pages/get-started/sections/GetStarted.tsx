@@ -1,5 +1,6 @@
 import type React from 'react';
 import {useEffect, useImperativeHandle, useRef, useState} from 'react';
+import {twJoin} from 'tailwind-merge';
 import {CheckIcon} from '@/components/icons';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -111,6 +112,11 @@ const TERM_SCRIPT: TermStep[] = [
   {type: 'inputbar'},
 ];
 
+// ── Reduced-motion helper ──────────────────────────────────────────────────
+
+const prefersReducedMotion = (): boolean =>
+  matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ── Sub-components ─────────────────────────────────────────────────────────
 
 const ClaudeBanner = () => (
@@ -168,6 +174,8 @@ const ThinkingLine = () => {
   const [elapsed, setElapsed] = useState(0);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const glyphInterval = setInterval(
       () => setGlyphIndex((index) => (index + 1) % THINK_GLYPHS.length),
       220
@@ -217,16 +225,52 @@ const randomTypingDelay = (): number => {
   return (buffer[0] / 255) * 35;
 };
 
+// Final state of the terminal: every emitted item, in order, fully typed.
+// Shared by skip() and by the reduced-motion path.
+const buildCompletedState = (): EmittedItem[] => {
+  const items: EmittedItem[] = [];
+  let id = 0;
+
+  for (const step of TERM_SCRIPT) {
+    if (step.type === 'line') {
+      items.push({cls: step.cls, id, kind: 'line', text: step.text});
+      id += 1;
+    } else if (step.type === 'type') {
+      items.push({
+        frame: !!step.inputBarFrame,
+        id,
+        kind: 'cmd',
+        prompt: step.prompt,
+        text: step.text,
+      });
+      id += 1;
+    } else if (step.type === 'banner') {
+      items.push({id, kind: 'banner'});
+      id += 1;
+    } else if (step.type === 'inputbar') {
+      items.push({id, kind: 'inputbar'});
+      id += 1;
+    } else if (step.type === 'thinking') {
+      items.push({id, kind: 'thinking'});
+      id += 1;
+    }
+  }
+
+  return items;
+};
+
 type AnimatedTerminalHandle = {skip: () => void};
 
 type AnimatedTerminalProperties = {
   isLarge?: boolean;
+  isReplay?: boolean;
   onDone?: () => void;
   ref?: React.Ref<AnimatedTerminalHandle>;
 };
 
 const AnimatedTerminal = ({
   isLarge = false,
+  isReplay = false,
   onDone,
   ref,
 }: AnimatedTerminalProperties) => {
@@ -238,6 +282,19 @@ const AnimatedTerminal = ({
   const onDoneReference = useRef(onDone);
 
   useEffect(() => {
+    // Honour reduced-motion on the initial mount: skip the character-by-
+    // character scheduler and drop straight to the finished terminal. A user
+    // who taps Replay opts back in (isReplay), so we let that one play. The
+    // setEmitted is deferred to a timer so it lands after hydration.
+    if (!isReplay && prefersReducedMotion()) {
+      const id = setTimeout(() => {
+        setEmitted(buildCompletedState());
+        onDoneReference.current?.();
+      });
+
+      return () => clearTimeout(id);
+    }
+
     const queue = (delay: number, function_: () => void) => {
       const id = setTimeout(function_, delay);
       timersReference.current.push(id);
@@ -348,7 +405,7 @@ const AnimatedTerminal = ({
       timersReference.current.forEach(clearTimeout);
       timersReference.current = [];
     };
-  }, []);
+  }, [isReplay]);
 
   useImperativeHandle(
     ref,
@@ -356,39 +413,7 @@ const AnimatedTerminal = ({
       skip: () => {
         timersReference.current.forEach(clearTimeout);
         timersReference.current = [];
-        const finalEmitted: EmittedItem[] = [];
-        let id = 0;
-
-        for (const step of TERM_SCRIPT) {
-          if (step.type === 'line') {
-            finalEmitted.push({
-              cls: step.cls,
-              id,
-              kind: 'line',
-              text: step.text,
-            });
-            id += 1;
-          } else if (step.type === 'type') {
-            finalEmitted.push({
-              frame: !!step.inputBarFrame,
-              id,
-              kind: 'cmd',
-              prompt: step.prompt,
-              text: step.text,
-            });
-            id += 1;
-          } else if (step.type === 'banner') {
-            finalEmitted.push({id, kind: 'banner'});
-            id += 1;
-          } else if (step.type === 'inputbar') {
-            finalEmitted.push({id, kind: 'inputbar'});
-            id += 1;
-          } else if (step.type === 'thinking') {
-            finalEmitted.push({id, kind: 'thinking'});
-            id += 1;
-          }
-        }
-        setEmitted(finalEmitted);
+        setEmitted(buildCompletedState());
         setTyping(null);
         setProgress(null);
         onDoneReference.current?.();
@@ -619,7 +644,13 @@ const GetStartedHero = ({
   terminalReference,
 }: HeroProperties) => (
   <section
-    className="relative overflow-hidden px-4 pt-14 pb-80 text-center sm:px-8 sm:pt-24 sm:pb-96"
+    className={twJoin(
+      'relative overflow-hidden px-4 pt-14 pb-16 text-center sm:px-8 sm:py-24',
+      // Hold the section a full viewport tall while the terminal is still
+      // typing, so the next section can't peek up. Once it's done, collapse
+      // to content height — no dead acre of dark space on tall displays.
+      !isDone && 'min-h-lvh'
+    )}
     id="install"
   >
     <div
@@ -638,11 +669,7 @@ const GetStartedHero = ({
         </span>
       </div>
 
-      <h1
-        className="text-ink mx-auto mb-10 max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] tracking-[-0.018em]"
-        data-reveal={true}
-        style={{'--reveal-delay': '80ms'} as React.CSSProperties}
-      >
+      <h1 className="text-ink mx-auto mb-10 max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] tracking-[-0.018em]">
         One command is
         <br />
         <em className="text-accent-soft font-light italic">all you need.</em>
@@ -658,6 +685,7 @@ const GetStartedHero = ({
           key={playToken}
           ref={terminalReference}
           isLarge={true}
+          isReplay={playToken > 0}
           onDone={onDone}
         />
         <div className="mt-3 flex justify-center gap-2">
@@ -714,6 +742,148 @@ const GetStartedHero = ({
           </a>
           .
         </span>
+      </div>
+    </div>
+  </section>
+);
+
+// ── What ships in the scaffold ──────────────────────────────────────────────
+
+const InlineCode = ({children}: {children: string}) => (
+  <code className="text-ink font-mono text-[0.9em]">{children}</code>
+);
+
+const RECAP = [
+  {
+    body: 'A Karpathy-style CLAUDE.md, plus rules and skills that load only when the work touches them. Conventions hold across sessions.',
+    title: 'Project memory & rules',
+  },
+  {
+    body: '1,314 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
+    title: 'Quality gates',
+  },
+  {
+    body: 'An Obsidian wiki, a hot cache, and handoff notes, so a new session never relearns the codebase.',
+    title: 'Persistent knowledge',
+  },
+  {
+    body: 'Vitest, React Testing Library, Playwright, MSW, Storybook, Chromatic, wired and ready.',
+    title: 'A real test stack',
+  },
+  {
+    body: 'Workflows keep dependencies current, run a daily security audit, sync the wiki on commit, and prune stale branches.',
+    title: 'Standing CI',
+  },
+];
+
+const WhatYouGet = () => (
+  <section
+    className="border-line-soft bg-tint scroll-mt-20 border-y py-20 sm:py-28"
+    id="whats-included"
+  >
+    <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
+      {/* Header band */}
+      <div className="mb-12 grid gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16">
+        <div>
+          <h2 className="group font-display text-ink max-w-[18ch] text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]">
+            <a className="text-inherit no-underline" href="#whats-included">
+              What{' '}
+              <code className="text-ink-dim font-mono text-[0.85em]">
+                npx create-gaia
+              </code>{' '}
+              sets up
+              <span
+                aria-hidden={true}
+                className="ml-[0.4em] text-[0.6em] opacity-0 transition-opacity duration-150 select-none group-hover:opacity-40"
+              >
+                #
+              </span>
+            </a>
+          </h2>
+        </div>
+        <div className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.65]">
+          <p>
+            One command writes a complete React 19 and TypeScript project to
+            disk, with the Claude Code workflow already wired in. No config to
+            write. No prompt library to assemble. The discipline ships in the
+            box.
+          </p>
+          <p>
+            Work has a shape: every feature starts with{' '}
+            <InlineCode>/gaia spec</InlineCode>, a plan, and acceptance tests
+            written before the code. Pre-commit hooks hold the line. A merge
+            audit has the last word.
+          </p>
+        </div>
+      </div>
+
+      {/* Specimen band */}
+      <div className="grid gap-8 md:grid-cols-[1.05fr_0.95fr] md:gap-12">
+        {/* File tree card */}
+        <div className="bg-surface border-line-soft overflow-hidden rounded-lg border font-mono">
+          <div className="border-line-soft text-muted border-b bg-black/15 px-5 py-[0.7rem] text-[0.65rem] tracking-[0.18em] uppercase">
+            npx create-gaia my-app
+          </div>
+          <div className="overflow-x-auto p-5 text-[0.72rem] leading-[1.7] sm:text-[0.8rem]">
+            <pre className="m-0 whitespace-pre">
+              {[
+                ['', 'my-app/'],
+                ['├── ', '.claude/', ''],
+                ['│   ├── ', 'agents/', '        # code-review-audit'],
+                ['│   ├── ', 'commands/', '       # /gaia-init, /setup-gaia'],
+                ['│   ├── ', 'hooks/', '          # guardrail hooks'],
+                [
+                  '│   ├── ',
+                  'rules/',
+                  '          # load-on-demand conventions',
+                ],
+                [
+                  '│   └── ',
+                  'skills/',
+                  '         # /gaia, tdd, react-code, ...',
+                ],
+                ['├── ', '.gaia/', '              # GAIA CLI, manifest'],
+                ['├── ', '.github/workflows/', ' # standing CI'],
+                ['├── ', '.husky/', '             # pre-commit'],
+                ['├── ', '.specify/', '           # spec-driven workflow'],
+                ['├── ', '.storybook/', ''],
+                ['├── ', 'app/', '                # React Router 7 app'],
+                ['├── ', 'test/', '               # Vitest, RTL, MSW'],
+                ['├── ', 'wiki/', '               # Obsidian project memory'],
+                ['├── ', 'CLAUDE.md', '           # project brain'],
+                ['├── ', 'package.json', ''],
+                [
+                  '└── ',
+                  'eslint · vitest · playwright · vite · tsconfig configs',
+                  '',
+                ],
+              ].map(([connector, name, comment]) => (
+                <span key={name}>
+                  <span aria-hidden={true} className="text-muted">
+                    {connector}
+                  </span>
+                  <span className="text-ink">{name}</span>
+                  {comment && <span className="text-muted">{comment}</span>}
+                  {'\n'}
+                </span>
+              ))}
+            </pre>
+          </div>
+        </div>
+
+        {/* Capability recap */}
+        <dl className="space-y-6">
+          {RECAP.map(({body, title}) => (
+            <div key={title}>
+              <dt className="text-ink mb-1.5 text-[0.98rem] font-medium tracking-[-0.005em]">
+                {title}
+              </dt>
+              <dd className="text-ink-dim text-[0.92rem] leading-[1.6]">
+                {body}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   </section>
@@ -784,24 +954,22 @@ const GetStarted = () => {
 
   const onDone = () => {
     setIsDone(true);
+    // Under reduced motion the terminal finished on mount; don't yank the
+    // viewport down on top of that. The user scrolls when they're ready.
+    if (prefersReducedMotion()) return;
     scrollTimerReference.current = setTimeout(() => {
-      if (window.innerWidth < 768) {
-        const section = document.querySelector('#closing');
-
-        if (section) {
-          const headerHeight =
-            document.querySelector('header')?.getBoundingClientRect().height ??
-            64;
-          const top =
-            section.getBoundingClientRect().top +
-            window.scrollY -
-            headerHeight -
-            10;
-          window.scrollTo({behavior: 'smooth', top});
-        }
-      } else {
-        window.scrollTo({behavior: 'smooth', top: document.body.scrollHeight});
-      }
+      const section = document.querySelector('#whats-included');
+      if (!section) return;
+      const {top} = section.getBoundingClientRect();
+      // Leave the user alone if they've already scrolled the section into view.
+      if (top < window.innerHeight - 80) return;
+      const headerHeight =
+        document.querySelector('header')?.getBoundingClientRect().height ?? 60;
+      // Land the section's top flush under the sticky header, no gap.
+      window.scrollTo({
+        behavior: 'smooth',
+        top: top + window.scrollY - headerHeight,
+      });
     }, 3000);
   };
 
@@ -832,6 +1000,7 @@ const GetStarted = () => {
         playToken={playToken}
         terminalReference={terminalReference}
       />
+      <WhatYouGet />
       <ClosingSection />
     </>
   );
