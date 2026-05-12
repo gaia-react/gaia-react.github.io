@@ -1,5 +1,6 @@
 import type React from 'react';
 import {useEffect, useImperativeHandle, useRef, useState} from 'react';
+import {twJoin} from 'tailwind-merge';
 import {CheckIcon} from '@/components/icons';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -111,6 +112,11 @@ const TERM_SCRIPT: TermStep[] = [
   {type: 'inputbar'},
 ];
 
+// ── Reduced-motion helper ──────────────────────────────────────────────────
+
+const prefersReducedMotion = (): boolean =>
+  matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ── Sub-components ─────────────────────────────────────────────────────────
 
 const ClaudeBanner = () => (
@@ -168,6 +174,8 @@ const ThinkingLine = () => {
   const [elapsed, setElapsed] = useState(0);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const glyphInterval = setInterval(
       () => setGlyphIndex((index) => (index + 1) % THINK_GLYPHS.length),
       220
@@ -217,16 +225,52 @@ const randomTypingDelay = (): number => {
   return (buffer[0] / 255) * 35;
 };
 
+// Final state of the terminal: every emitted item, in order, fully typed.
+// Shared by skip() and by the reduced-motion path.
+const buildCompletedState = (): EmittedItem[] => {
+  const items: EmittedItem[] = [];
+  let id = 0;
+
+  for (const step of TERM_SCRIPT) {
+    if (step.type === 'line') {
+      items.push({cls: step.cls, id, kind: 'line', text: step.text});
+      id += 1;
+    } else if (step.type === 'type') {
+      items.push({
+        frame: !!step.inputBarFrame,
+        id,
+        kind: 'cmd',
+        prompt: step.prompt,
+        text: step.text,
+      });
+      id += 1;
+    } else if (step.type === 'banner') {
+      items.push({id, kind: 'banner'});
+      id += 1;
+    } else if (step.type === 'inputbar') {
+      items.push({id, kind: 'inputbar'});
+      id += 1;
+    } else if (step.type === 'thinking') {
+      items.push({id, kind: 'thinking'});
+      id += 1;
+    }
+  }
+
+  return items;
+};
+
 type AnimatedTerminalHandle = {skip: () => void};
 
 type AnimatedTerminalProperties = {
   isLarge?: boolean;
+  isReplay?: boolean;
   onDone?: () => void;
   ref?: React.Ref<AnimatedTerminalHandle>;
 };
 
 const AnimatedTerminal = ({
   isLarge = false,
+  isReplay = false,
   onDone,
   ref,
 }: AnimatedTerminalProperties) => {
@@ -238,6 +282,19 @@ const AnimatedTerminal = ({
   const onDoneReference = useRef(onDone);
 
   useEffect(() => {
+    // Honour reduced-motion on the initial mount: skip the character-by-
+    // character scheduler and drop straight to the finished terminal. A user
+    // who taps Replay opts back in (isReplay), so we let that one play. The
+    // setEmitted is deferred to a timer so it lands after hydration.
+    if (!isReplay && prefersReducedMotion()) {
+      const id = setTimeout(() => {
+        setEmitted(buildCompletedState());
+        onDoneReference.current?.();
+      });
+
+      return () => clearTimeout(id);
+    }
+
     const queue = (delay: number, function_: () => void) => {
       const id = setTimeout(function_, delay);
       timersReference.current.push(id);
@@ -348,7 +405,7 @@ const AnimatedTerminal = ({
       timersReference.current.forEach(clearTimeout);
       timersReference.current = [];
     };
-  }, []);
+  }, [isReplay]);
 
   useImperativeHandle(
     ref,
@@ -356,39 +413,7 @@ const AnimatedTerminal = ({
       skip: () => {
         timersReference.current.forEach(clearTimeout);
         timersReference.current = [];
-        const finalEmitted: EmittedItem[] = [];
-        let id = 0;
-
-        for (const step of TERM_SCRIPT) {
-          if (step.type === 'line') {
-            finalEmitted.push({
-              cls: step.cls,
-              id,
-              kind: 'line',
-              text: step.text,
-            });
-            id += 1;
-          } else if (step.type === 'type') {
-            finalEmitted.push({
-              frame: !!step.inputBarFrame,
-              id,
-              kind: 'cmd',
-              prompt: step.prompt,
-              text: step.text,
-            });
-            id += 1;
-          } else if (step.type === 'banner') {
-            finalEmitted.push({id, kind: 'banner'});
-            id += 1;
-          } else if (step.type === 'inputbar') {
-            finalEmitted.push({id, kind: 'inputbar'});
-            id += 1;
-          } else if (step.type === 'thinking') {
-            finalEmitted.push({id, kind: 'thinking'});
-            id += 1;
-          }
-        }
-        setEmitted(finalEmitted);
+        setEmitted(buildCompletedState());
         setTyping(null);
         setProgress(null);
         onDoneReference.current?.();
@@ -619,7 +644,13 @@ const GetStartedHero = ({
   terminalReference,
 }: HeroProperties) => (
   <section
-    className="relative min-h-lvh overflow-hidden px-4 pt-14 pb-16 text-center sm:px-8 sm:py-24"
+    className={twJoin(
+      'relative overflow-hidden px-4 pt-14 pb-16 text-center sm:px-8 sm:py-24',
+      // Hold the section a full viewport tall while the terminal is still
+      // typing, so the next section can't peek up. Once it's done, collapse
+      // to content height — no dead acre of dark space on tall displays.
+      !isDone && 'min-h-lvh'
+    )}
     id="install"
   >
     <div
@@ -654,6 +685,7 @@ const GetStartedHero = ({
           key={playToken}
           ref={terminalReference}
           isLarge={true}
+          isReplay={playToken > 0}
           onDone={onDone}
         />
         <div className="mt-3 flex justify-center gap-2">
@@ -922,6 +954,9 @@ const GetStarted = () => {
 
   const onDone = () => {
     setIsDone(true);
+    // Under reduced motion the terminal finished on mount; don't yank the
+    // viewport down on top of that. The user scrolls when they're ready.
+    if (prefersReducedMotion()) return;
     scrollTimerReference.current = setTimeout(() => {
       const section = document.querySelector('#whats-included');
       if (!section) return;

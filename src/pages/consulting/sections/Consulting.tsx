@@ -134,7 +134,7 @@ const CalButton = ({
 const SpectrumRail = () => (
   <ol
     className="relative m-0 grid list-none grid-cols-2 gap-y-10 p-0 md:grid-cols-4 md:gap-y-0"
-    data-reveal={true}
+    data-stagger=""
   >
     {SKUS.map((sku, index) => {
       const isLast = index === SKUS.length - 1;
@@ -143,7 +143,6 @@ const SpectrumRail = () => (
         <li
           key={sku.anchor}
           className="border-line-soft relative flex flex-col items-start border-t pt-6 md:items-center md:pt-7 md:text-center"
-          style={{'--reveal-delay': `${index * 90}ms`} as React.CSSProperties}
         >
           <span
             aria-hidden={true}
@@ -234,18 +233,14 @@ const BlockFooter = ({
 
 const AuditBlock = ({sku}: {sku: SkuData}) => (
   <div className="grid gap-10 md:grid-cols-[1fr_18rem] md:gap-16">
-    <div data-reveal={true}>
+    <div>
       <SkuHeader sku={sku} />
       <p className="text-ink-dim mt-6 max-w-prose text-[1.0625rem] leading-[1.7]">
         {sku.pitch}
       </p>
       <DeliverablesList items={sku.deliverables} />
     </div>
-    <aside
-      className="border-line-soft flex flex-col gap-5 self-start border-t pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-12"
-      data-reveal={true}
-      style={{'--reveal-delay': '120ms'} as React.CSSProperties}
-    >
+    <aside className="border-line-soft flex flex-col gap-5 self-start border-t pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-12">
       <PriceBlock cadence={sku.cadence} price={sku.price} />
       <CalButton calLink={sku.calEvent} variant="solid">
         Book a free intro →
@@ -503,7 +498,7 @@ const Consulting = () => {
       {/* Custom + close */}
       <section className="px-4 py-20 sm:px-8 sm:py-24">
         <div className="mx-auto flex max-w-3xl flex-col gap-6 text-center">
-          <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
+          <p className="text-ink-dim mx-auto max-w-prose text-[1.0625rem] leading-[1.7]">
             Need something outside these engagements? Multi-month builds, custom
             integrations, or scope I{' '}haven’t named here. Engagements start
             at $5,000.

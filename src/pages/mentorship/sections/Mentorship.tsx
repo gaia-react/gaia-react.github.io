@@ -77,23 +77,14 @@ const Mentorship = () => (
     <section className="border-line-soft border-t px-4 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-4xl">
         <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-          <div
-            className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase"
-            data-reveal={true}
-          >
+          <div className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase">
             The loop
           </div>
-          <div
-            className="text-muted font-mono text-[0.7rem] tracking-[0.16em] lowercase"
-            data-reveal={true}
-          >
+          <div className="text-muted font-mono text-[0.7rem] tracking-[0.16em] lowercase">
             events → patterns → adapted session
           </div>
         </div>
-        <ol
-          className="m-0 grid list-none gap-8 p-0 md:grid-cols-3 md:gap-10"
-          data-stagger=""
-        >
+        <ol className="m-0 grid list-none gap-8 p-0 md:grid-cols-3 md:gap-10">
           {LOOP_STEPS.map((step, index) => (
             <li
               key={step.label}
@@ -115,11 +106,7 @@ const Mentorship = () => (
             </li>
           ))}
         </ol>
-        <div
-          className="mt-14 flex flex-col gap-5"
-          data-reveal={true}
-          style={{'--reveal-delay': '160ms'} as React.CSSProperties}
-        >
+        <div className="mt-14 flex flex-col gap-5">
           <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
             Every spec I write, every plan I refine, every code review I run
             goes through GAIA&rsquo;s commands. Each step emits a structured
@@ -137,10 +124,7 @@ const Mentorship = () => (
     {/* The privacy ledger (centerpiece) */}
     <section className="border-line-soft border-t px-4 py-20 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-5xl">
-        <div
-          className="mb-10 flex flex-wrap items-baseline justify-between gap-4"
-          data-reveal={true}
-        >
+        <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
           <div className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase">
             Private by design
           </div>
@@ -149,11 +133,7 @@ const Mentorship = () => (
           </div>
         </div>
 
-        <h2
-          className="font-display text-ink mb-12 max-w-[24ch] text-[clamp(1.6rem,3.4vw,2.5rem)] leading-[1.15] font-light tracking-[-0.02em]"
-          data-reveal={true}
-          style={{'--reveal-delay': '100ms'} as React.CSSProperties}
-        >
+        <h2 className="font-display text-ink mb-12 max-w-[24ch] text-[clamp(1.6rem,3.4vw,2.5rem)] leading-[1.15] font-light tracking-[-0.02em]">
           Mentorship doesn&rsquo;t read your code.{' '}
           <em className="text-accent-soft font-light italic">
             It works on event metadata.
@@ -161,7 +141,7 @@ const Mentorship = () => (
         </h2>
 
         <div className="border-line-soft grid gap-12 border-t pt-10 md:grid-cols-2 md:gap-16">
-          <div data-reveal={true}>
+          <div>
             <div className="text-accent-soft mb-6 font-mono text-[0.7rem] tracking-[0.22em] uppercase">
               Observed
             </div>
@@ -185,10 +165,7 @@ const Mentorship = () => (
             </ul>
           </div>
 
-          <div
-            data-reveal={true}
-            style={{'--reveal-delay': '140ms'} as React.CSSProperties}
-          >
+          <div>
             <div className="text-secondary-soft mb-6 font-mono text-[0.7rem] tracking-[0.22em] uppercase">
               Not observed
             </div>
@@ -213,10 +190,7 @@ const Mentorship = () => (
           </div>
         </div>
 
-        <div
-          className="border-line-soft mt-14 border-t pt-10"
-          data-reveal={true}
-        >
+        <div className="border-line-soft mt-14 border-t pt-10">
           <div className="text-muted mb-4 font-mono text-[0.65rem] tracking-[0.22em] uppercase">
             Your profile lives at
           </div>
@@ -237,10 +211,7 @@ const Mentorship = () => (
           </p>
         </div>
 
-        <div
-          className="border-line-soft mt-12 grid gap-3 border-t pt-8 sm:grid-cols-[10rem_1fr] sm:gap-10"
-          data-reveal={true}
-        >
+        <div className="border-line-soft mt-12 grid gap-3 border-t pt-8 sm:grid-cols-[10rem_1fr] sm:gap-10">
           <div className="text-muted font-mono text-[0.65rem] tracking-[0.22em] uppercase">
             Transparency
           </div>
@@ -257,75 +228,48 @@ const Mentorship = () => (
     {/* Controls */}
     <section className="border-line-soft border-t px-4 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-3xl">
-        <div
-          className="text-muted mb-10 font-mono text-[0.7rem] tracking-[0.22em] uppercase"
-          data-reveal={true}
-        >
+        <div className="text-muted mb-10 font-mono text-[0.7rem] tracking-[0.22em] uppercase">
           Controls
         </div>
-        <p
-          className="text-ink-dim mb-8 text-[1.0625rem] leading-[1.7]"
-          data-reveal={true}
-        >
+        <p className="text-ink-dim mb-8 text-[1.0625rem] leading-[1.7]">
           Mentorship is off by default. You can enable it during GAIA&rsquo;s
           initial setup, or any time afterward.
         </p>
-        <div data-reveal={true}>
-          <CodeBlock language="bash" title="terminal">
-            {`gaia mentorship enable
+        <CodeBlock language="bash" title="terminal">
+          {`gaia mentorship enable
 gaia mentorship disable  # stop, keep data
 gaia mentorship status
 gaia mentorship purge    # delete all data`}
-          </CodeBlock>
-        </div>
-        <p
-          className="text-ink-dim mt-12 mb-8 text-[1.0625rem] leading-[1.7]"
-          data-reveal={true}
-        >
+        </CodeBlock>
+        <p className="text-ink-dim mt-12 mb-8 text-[1.0625rem] leading-[1.7]">
           Analytics is bundled with the mentorship opt-in. It rolls up daily
           aggregates from the same events, on disk, never sent. You can disable
           it separately while keeping mentorship on, or print the latest report.
         </p>
-        <div data-reveal={true}>
-          <CodeBlock language="bash" title="terminal">
-            {`gaia mentorship analytics enable
+        <CodeBlock language="bash" title="terminal">
+          {`gaia mentorship analytics enable
 gaia mentorship analytics disable
 gaia mentorship analytics dry-run`}
-          </CodeBlock>
-        </div>
+        </CodeBlock>
       </div>
     </section>
 
     {/* Closing */}
     <section className="border-line-soft border-t px-4 py-20 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-3xl">
-        <div
-          className="text-accent-soft mb-10 font-mono text-[0.7rem] tracking-[0.22em] uppercase"
-          data-reveal={true}
-        >
+        <div className="text-accent-soft mb-10 font-mono text-[0.7rem] tracking-[0.22em] uppercase">
           Why I shipped it
         </div>
         <div className="flex flex-col gap-6">
-          <p
-            className="text-ink-dim text-[1.0625rem] leading-[1.75]"
-            data-reveal={true}
-          >
+          <p className="text-ink-dim text-[1.0625rem] leading-[1.75]">
             I built it for myself. It ships with GAIA so you can use it too.
           </p>
-          <p
-            className="font-display text-ink text-[1.3rem] leading-normal font-light tracking-[-0.01em]"
-            data-reveal={true}
-            style={{'--reveal-delay': '120ms'} as React.CSSProperties}
-          >
+          <p className="font-display text-ink text-[1.3rem] leading-normal font-light tracking-[-0.01em]">
             The discipline that makes the AI trustworthy also makes the engineer
             better. The coach is how I keep that loop honest.
           </p>
         </div>
-        <div
-          className="border-line-soft mt-16 flex flex-wrap gap-x-8 gap-y-4 border-t pt-8"
-          data-reveal={true}
-          style={{'--reveal-delay': '260ms'} as React.CSSProperties}
-        >
+        <div className="border-line-soft mt-16 flex flex-wrap gap-x-8 gap-y-4 border-t pt-8">
           <a
             className="text-ink-dim hover:text-accent-soft inline-flex items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
             href="/get-started/"

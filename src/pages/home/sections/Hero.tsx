@@ -72,7 +72,7 @@ const Hero = () => (
         </p>
 
         <p
-          className="text-muted mb-10 text-[0.85rem] leading-normal italic"
+          className="text-muted mb-10 max-w-[56ch] text-[0.85rem] leading-normal italic"
           data-reveal={true}
           style={{'--reveal-delay': '260ms'} as React.CSSProperties}
         >
