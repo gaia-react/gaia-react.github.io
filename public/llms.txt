@@ -10,7 +10,7 @@ GAIA installs with one command — `npx create-gaia@latest my-app` — and scaff
 - [Why Claude Code Breaks Without Structure](https://gaiareact.com/why/): The case for project-level discipline in AI-built code, and why vibe coding falls apart at scale.
 - [Features](https://gaiareact.com/features/): Coding rules, code-review audits, Agentic Design patterns, the Obsidian wiki, token economics, and GAIA CI — pattern by pattern.
 - [Get Started](https://gaiareact.com/get-started/): Install GAIA in one command, and what `npx create-gaia` sets up.
-- [Consulting](https://gaiareact.com/consulting/): Hands-on help adopting GAIA and Claude Code — Audit, Foundation, Migrate, or Retainer, by the creator.
+- [Consulting](https://gaiareact.com/consulting/): Hands-on help adopting GAIA and Claude Code — Audit, Migration, Foundation, or Retainer, by the creator.
 - [About Steven Sacks](https://gaiareact.com/about/): Creator of GAIA React — and, in 2008, the original GAIA Flash Framework.
 
 ## Code
