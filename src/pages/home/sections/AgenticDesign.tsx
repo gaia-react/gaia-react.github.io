@@ -1,48 +1,84 @@
-import {
-  MemoryIcon,
-  MultiAgentIcon,
-  ReflectionIcon,
-  ShieldCheckIcon,
-} from '@/components/icons';
+const COMMIT_GATES = ['typecheck', 'lint', 'tests', 'build'] as const;
 
-const BLOCKS = [
+const AUDIT_FINDINGS = [
   {
-    color: 'teal' as const,
-    copy: "Typecheck, lint, tests, and build are gates, not suggestions. Claude can't merge code that doesn't clear them.",
-    Icon: ShieldCheckIcon,
-    title: "Claude can't ship broken code",
+    file: 'api/session.ts:88',
+    note: 'secret committed in source',
+    severity: 'CRITICAL' as const,
   },
   {
-    color: 'tealSoft' as const,
-    copy: 'Requirements and acceptance tests are written before Claude writes a line of code. Defined contracts prevent scope drift.',
-    Icon: ReflectionIcon,
-    title: 'Spec → Plan → Code',
+    file: 'cart/total.ts:24',
+    note: 'discount path has no test',
+    severity: 'IMPORTANT' as const,
   },
   {
-    color: 'accent' as const,
-    copy: 'Each tier has a scope and a maintenance loop. Claude stops relearning your codebase every session.',
-    Icon: MemoryIcon,
-    title: 'Five tiers of memory',
-  },
-  {
-    color: 'muted' as const,
-    copy: 'Security, performance, architecture, antipatterns: all scanned in one merge audit. Critical and Important findings block the merge. Suggestions land in a review comment.',
-    Icon: MultiAgentIcon,
-    title: 'Every angle, audited',
+    file: 'ui/Modal.tsx:12',
+    note: 'prefer native dialog element',
+    severity: 'SUGGESTION' as const,
   },
 ];
 
-const BLOCK_STYLES = {
-  accent: {bg: 'bg-accent/10', icon: 'text-accent'},
-  muted: {bg: 'bg-muted/10', icon: 'text-ink-dim'},
-  teal: {bg: 'bg-secondary/12', icon: 'text-secondary'},
-  tealSoft: {bg: 'bg-secondary-soft/12', icon: 'text-secondary-soft'},
+const SEVERITY_STYLE = {
+  CRITICAL: 'text-warn',
+  IMPORTANT: 'text-accent-soft',
+  SUGGESTION: 'text-muted',
 };
+
+const GateLedger = () => (
+  <div className="border-line bg-surface overflow-hidden rounded-lg border font-mono text-[0.8rem]">
+    <div className="bg-surface-raised border-line flex items-center justify-between border-b px-4 py-2">
+      <span className="text-ink-dim text-xs tracking-wider">
+        pre-commit · code-review-audit
+      </span>
+      <span className="text-muted text-[0.6rem] tracking-[0.16em] uppercase">
+        every commit · every merge
+      </span>
+    </div>
+    <div className="space-y-4 p-4 leading-relaxed">
+      <div>
+        <div className="text-ink-dim">
+          <span className="text-muted">$ </span>git commit -m &quot;add discount
+          logic&quot;
+        </div>
+        <div className="text-secondary mt-1 flex flex-wrap gap-x-4 gap-y-0.5">
+          {COMMIT_GATES.map((gate) => (
+            <span key={gate}>✓ {gate}</span>
+          ))}
+        </div>
+        <div className="text-muted mt-1">committed → feat/checkout</div>
+      </div>
+      <div>
+        <div className="text-ink-dim">
+          <span className="text-muted">$ </span>gh pr merge 412
+        </div>
+        <div className="mt-2 space-y-1.5">
+          {AUDIT_FINDINGS.map((finding) => (
+            <div
+              key={finding.file}
+              className="grid grid-cols-[5rem_1fr] gap-x-3 sm:grid-cols-[5rem_9.5rem_1fr]"
+            >
+              <span className={SEVERITY_STYLE[finding.severity]}>
+                {finding.severity}
+              </span>
+              <span className="text-muted">{finding.file}</span>
+              <span className="text-ink-dim max-sm:col-span-2">
+                {finding.note}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="text-warn mt-3">
+          ✗ merge blocked — 1 critical and 1 important must clear first
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const AgenticDesign = () => (
   <section className="px-4 py-20 sm:px-8" id="agentic-design">
     <div className="mx-auto max-w-6xl">
-      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-16">
+      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:order-2 lg:self-start">
           <div className="mb-4 inline-flex items-center gap-2">
             <span
@@ -56,36 +92,21 @@ const AgenticDesign = () => (
           <h2 className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
             Design patterns Claude doesn&apos;t have to remember.
           </h2>
+          <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
+            Gates on every commit. Specs before code. Scoped memory. A
+            code-review audit on every merge. GAIA wires these into the project
+            itself, so they run the same way every session, every task, every
+            model variant.
+          </p>
           <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
-            GAIA wires these patterns into the project itself, not the prompt.
-            They run the same way every session, every task, every model
-            variant.
+            Here, two of them: the commit gate that turns typecheck, lint,
+            tests, and build into hard stops, and the audit that reads the diff
+            before it reaches main.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:order-1">
-          {BLOCKS.map((block) => {
-            const s = BLOCK_STYLES[block.color];
-
-            return (
-              <div
-                key={block.title}
-                className="bg-surface border-line-soft hover:border-line rounded-lg border p-5 transition-colors duration-150"
-              >
-                <div
-                  className={`mb-3 inline-flex size-8 items-center justify-center rounded-sm ${s.bg} ${s.icon}`}
-                >
-                  <block.Icon size={18} />
-                </div>
-                <h4 className="text-ink mb-1.5 text-[1.05rem] leading-[1.3] font-medium">
-                  {block.title}
-                </h4>
-                <p className="text-ink-dim text-[0.88rem] leading-[1.55]">
-                  {block.copy}
-                </p>
-              </div>
-            );
-          })}
+        <div className="lg:order-1">
+          <GateLedger />
         </div>
       </div>
     </div>

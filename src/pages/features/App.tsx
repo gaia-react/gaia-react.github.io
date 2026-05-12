@@ -1,9 +1,9 @@
 import {lazy, Suspense} from 'react';
+import Closing from '@/components/Closing';
 import {Layout} from '@/components/Layout';
 import {useScrollReveal} from '@/hooks/useScrollReveal';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesignDetail from './sections/AgenticDesignDetail';
-import Closing from './sections/Closing';
 import Forensics from './sections/Forensics';
 import GaiaCi from './sections/GaiaCi';
 import Hero from './sections/Hero';
@@ -40,7 +40,7 @@ const App = () => {
       <Suspense fallback={null}>
         <Stack />
       </Suspense>
-      <Closing />
+      <Closing secondaryHref="/about/" secondaryLabel="About the Author →" />
     </Layout>
   );
 };

@@ -19,7 +19,7 @@ const App = () => {
       <ClaudeMd />
       <AgenticDesign />
       <ObsidianWiki />
-      <Closing />
+      <Closing secondaryHref="/why/" secondaryLabel="Why GAIA →" />
     </Layout>
   );
 };

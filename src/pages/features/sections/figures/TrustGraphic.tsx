@@ -28,7 +28,7 @@ const TrustGraphic = () => (
     </div>
 
     {/* Pipeline */}
-    <div className="border-accent ml-2 flex flex-col gap-[0.45rem] border-l-2 py-1 pl-[1.1rem]">
+    <div className="flex flex-col gap-[0.45rem]">
       {STAGES.map(({label, result}) => (
         <div
           key={label}
@@ -44,7 +44,7 @@ const TrustGraphic = () => (
     </div>
 
     {/* Audit */}
-    <div className="border-warn mt-4 ml-2 rounded-r-sm border-l-2 bg-white/2 pt-[0.85rem] pr-[0.85rem] pb-[0.95rem] pl-[1.1rem]">
+    <div className="border-line-soft mt-4 rounded-sm border bg-white/2 p-[0.85rem]">
       <div className="mb-[0.6rem] flex items-baseline justify-between gap-3">
         <span className="text-warn-soft text-[0.7rem] tracking-[0.16em] uppercase">
           code-review audit
@@ -66,7 +66,7 @@ const TrustGraphic = () => (
     </div>
 
     {/* Merge */}
-    <div className="text-ink mt-4 ml-2 inline-flex items-center gap-[0.6rem] px-[0.85rem] py-[0.55rem] text-[0.78rem] tracking-[0.16em] uppercase">
+    <div className="text-ink mt-4 inline-flex items-center gap-[0.6rem] px-[0.85rem] py-[0.55rem] text-[0.78rem] tracking-[0.16em] uppercase">
       <span
         className="bg-accent inline-block size-2 rounded-full"
         style={{

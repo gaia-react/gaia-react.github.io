@@ -18,7 +18,7 @@ const TokenEconomics = () => (
             </span>
           </a>
         </h2>
-        <p className="text-ink-dim text-justify text-[1.05rem] leading-[1.65]">
+        <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
           Long Claude sessions bloat. Context piles up each turn, memory
           accumulates between turns, every new session starts cold and burns
           tokens re-briefing. GAIA&apos;s four workflow commands write durable

@@ -16,7 +16,7 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
-          Discipline is structural. Built into GAIA so Claude has to follow it.
+          GAIA&apos;s discipline is structural. Claude works inside it.
         </p>
         <p
           className="mb-4"
