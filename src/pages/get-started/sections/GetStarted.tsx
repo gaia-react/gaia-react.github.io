@@ -31,7 +31,7 @@ type TypingState = {
 
 // ── Terminal script ────────────────────────────────────────────────────────
 
-const GAIA_VERSION = '1.2.0';
+const GAIA_VERSION = '1.2.2';
 
 const TERM_SCRIPT: TermStep[] = [
   {prompt: '$', text: 'npx create-gaia@latest my-app', type: 'type'},
