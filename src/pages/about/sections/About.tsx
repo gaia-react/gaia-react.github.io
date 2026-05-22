@@ -162,7 +162,7 @@ const About = () => (
               className="border-line size-12 rounded-full border object-cover"
               decoding="async"
               height={48}
-              loading="lazy"
+              loading="eager"
               src="/steven.jpg"
               width={48}
             />

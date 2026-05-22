@@ -18,7 +18,13 @@ export const Footer = () => {
     <footer className="border-line text-ink-dim font-body border-t px-4 py-8 text-sm sm:px-8">
       <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between sm:gap-8">
         <a aria-label="GAIA, home" className="shrink-0" href="/">
-          <img alt="GAIA" className="h-14 w-auto" src={gaiaLogo} />
+          <img
+            alt="GAIA"
+            className="h-14 w-auto"
+            height={56}
+            src={gaiaLogo}
+            width={152}
+          />
         </a>
 
         <div className="flex flex-col items-center gap-4 sm:items-end">

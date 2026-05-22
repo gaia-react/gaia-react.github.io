@@ -57,7 +57,13 @@ export const Header = () => {
             className="flex shrink-0 items-center"
             href="/"
           >
-            <img alt="GAIA" className="h-6 w-auto" src={gaiaLogo} />
+            <img
+              alt="GAIA"
+              className="h-6 w-auto"
+              height={24}
+              src={gaiaLogo}
+              width={65}
+            />
           </a>
 
           <nav

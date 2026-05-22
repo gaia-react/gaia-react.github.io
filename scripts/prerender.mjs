@@ -1,3 +1,4 @@
+import {execSync} from 'node:child_process';
 import {writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -91,6 +92,39 @@ const exitCode = await (async () => {
 
       await page.close();
     }
+
+    // Update sitemap.xml with git-based lastmod dates
+    const SITEMAP_ROUTES = [
+      {srcPath: 'index.html', url: 'https://gaiareact.com/'},
+      {srcPath: 'why/index.html', url: 'https://gaiareact.com/why/'},
+      {srcPath: 'get-started/index.html', url: 'https://gaiareact.com/get-started/'},
+      {srcPath: 'features/index.html', url: 'https://gaiareact.com/features/'},
+      {srcPath: 'consulting/index.html', url: 'https://gaiareact.com/consulting/'},
+      {srcPath: 'about/index.html', url: 'https://gaiareact.com/about/'},
+    ];
+
+    const today = new Date().toISOString().slice(0, 10);
+    const getLastmod = (srcPath) => {
+      try {
+        const date = execSync(`git log --format="%as" -1 -- "${srcPath}"`, {
+          cwd: root,
+          encoding: 'utf8',
+        }).trim();
+        return date || today;
+      } catch {
+        return today;
+      }
+    };
+
+    const urlEntries = SITEMAP_ROUTES.map(
+      ({url, srcPath}) =>
+        `  <url>\n    <loc>${url}</loc>\n    <lastmod>${getLastmod(srcPath)}</lastmod>\n  </url>`
+    ).join('\n');
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlEntries}\n</urlset>\n`;
+
+    await writeFile(path.join(root, 'public', 'sitemap.xml'), sitemap);
+    await writeFile(path.join(root, 'dist', 'sitemap.xml'), sitemap);
+    console.log('updated sitemap.xml');
 
     return 0;
   } catch (error) {
