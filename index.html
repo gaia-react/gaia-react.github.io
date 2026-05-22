@@ -10,6 +10,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href="https://gaiareact.com/" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fraunces-latin-standard-normal-DihXLNYH.woff2">
     <title>GAIA: The Claude Code Workflow for React</title>
 
     <!-- Open Graph -->
@@ -68,7 +69,9 @@
               "width": 180,
               "height": 180
             },
-            "founder": {"@id": "https://gaiareact.com/#person"}
+            "founder": {"@id": "https://gaiareact.com/#person"},
+            "email": "steven@gaiareact.com",
+            "sameAs": ["https://github.com/gaia-react"]
           },
           {
             "@type": "Person",
@@ -93,10 +96,24 @@
             "url": "https://gaiareact.com/",
             "author": {"@id": "https://gaiareact.com/#person"},
             "publisher": {"@id": "https://gaiareact.com/#organization"},
+            "softwareVersion": "1.2.3",
+            "downloadUrl": "https://www.npmjs.com/package/create-gaia",
+            "installUrl": "https://github.com/gaia-react/gaia",
+            "license": "https://github.com/gaia-react/gaia/blob/main/LICENSE",
+            "featureList": [
+              "Enforced coding rules via CLAUDE.md and ESLint",
+              "Pre-commit and pre-push git hooks",
+              "Agentic Design patterns for Claude Code",
+              "Obsidian wiki for token-efficient context management",
+              "Automated GAIA CI with code-review audit",
+              "Token economics controls and trust scaffolding",
+              "One-command React 19 project scaffolding via create-gaia"
+            ],
             "offers": {
               "@type": "Offer",
               "price": "0",
-              "priceCurrency": "USD"
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/OnlineOnly"
             }
           }
         ]

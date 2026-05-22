@@ -10,6 +10,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href="https://gaiareact.com/get-started/" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fraunces-latin-standard-normal-DihXLNYH.woff2">
     <title>Install GAIA: Set Up Claude Code for React in One Command</title>
 
     <!-- Open Graph -->
@@ -74,6 +75,30 @@
             "name": "GAIA React",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform"
+          },
+          {
+            "@type": "HowTo",
+            "@id": "https://gaiareact.com/get-started/#howto",
+            "name": "Install GAIA: Set Up Claude Code for React",
+            "description": "One command scaffolds a React 19 project with the Claude Code workflow built in.",
+            "totalTime": "PT5M",
+            "supply": [{"@type": "HowToSupply", "name": "Node.js >= 22.19.0"}],
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Run the create-gaia command",
+                "text": "Run npx create-gaia@latest my-app in your terminal.",
+                "itemListElement": {"@type": "HowToDirection", "text": "npx create-gaia@latest my-app"}
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "What gets scaffolded",
+                "text": "GAIA creates a React 19 + TypeScript project with .claude/ rules, hooks, skills, agents, .gaia/, .github/workflows/, .husky/, .specify/, .storybook/, and a wiki/ directory."
+              }
+            ],
+            "isPartOf": {"@id": "https://gaiareact.com/#website"}
           },
           {
             "@type": "BreadcrumbList",
