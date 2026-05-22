@@ -49,7 +49,7 @@ const ERA_NOW = [
 const CLOSING = [
   'Every team using Claude right now is paying a tax: prompt drift, skipped tests, code the next engineer is afraid to touch. It’s the same tax Flash teams paid before GAIA Flash, and it compounds quietly until the only fix left is a rewrite.',
   'GAIA stops the compounding: discipline built into the project itself, the way it was in GAIA Flash. I’ve done this before, at scale.',
-  'My goal hasn’t changed in twenty years. Each person shipping the work of a team. Code the next engineer can build on.',
+  'My goal hasn’t changed since then. Each person shipping the work of a team. Code the next engineer can build on.',
 ];
 
 const GitHubIcon = (
