@@ -2,6 +2,8 @@ import {useEffect} from 'react';
 
 export const useScrollReveal = () => {
   useEffect(() => {
+    document.documentElement.classList.add('js-ready');
+
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const io = new IntersectionObserver(
