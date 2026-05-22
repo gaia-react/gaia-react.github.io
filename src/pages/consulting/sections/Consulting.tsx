@@ -497,11 +497,11 @@ const Consulting = () => (
             <div className="text-ink mb-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase">
               Steven Sacks
             </div>
-            <p className="text-ink-dim max-w-prose text-[1.0625rem] leading-[1.7]">
-              Thirty years building for the web. GAIA Flash shipped
-              on 100,000+ sites. Previously Principal Fullstack at Trek10, Lead
-              React Engineer at American Express, and founder of Plug DJ (6M
-              users, acquired).
+            <p className="text-ink-dim max-w-148 text-[1.0625rem] leading-[1.7]">
+              Thirty years building for the web. GAIA Flash shipped on 100,000+
+              sites. Previously Principal Fullstack at Trek10, Lead React
+              Engineer at American Express, and founder of Plug DJ (6M users,
+              acquired).
             </p>
             <a
               className="text-ink-dim hover:text-accent-soft mt-4 inline-block font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
