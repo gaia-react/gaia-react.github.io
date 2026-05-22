@@ -114,7 +114,8 @@ const ClaudeMd = () => (
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
             <code className="text-ink">/gaia spec</code> interviews you and
             writes the spec. <code className="text-ink">/gaia plan</code> slices
-            it into tasks. <code className="text-ink">/gaia handoff</code> and{' '}
+            it into tasks. <code className="text-ink">/gaia handoff</code>
+            {' and '}
             <code className="text-ink">/gaia pickup</code> carry context across
             sessions.
           </p>
@@ -134,9 +135,10 @@ const ClaudeMd = () => (
               target="_blank"
             >
               Karpathy&apos;s
-            </a>{' '}
-            coding principles, wired in. Scoped rules cover best practices,
-            testing, strict typing, and accessibility.
+            </a>
+            {
+              ' coding principles, wired in. Scoped rules cover best practices, testing, strict typing, and accessibility.'
+            }
           </p>
         </div>
 

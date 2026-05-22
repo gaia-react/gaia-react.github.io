@@ -11,8 +11,9 @@ const COLUMNS: Column[] = [
   {
     body: (
       <>
-        Each rule declares the file patterns it cares about via{' '}
-        <code>paths:</code> frontmatter. The Tailwind rule loads when you edit a{' '}
+        {'Each rule declares the file patterns it cares about via '}
+        <code>paths:</code>
+        {' frontmatter. The Tailwind rule loads when you edit a '}
         <code>.tsx</code> or <code>.css</code> file. The Storybook rule loads
         only on <code>.stories.tsx</code> files. The rest stay dormant until
         matching files are touched.
@@ -43,7 +44,7 @@ const COLUMNS: Column[] = [
   {
     body: (
       <>
-        Serena MCP gives Claude LSP-backed code intelligence. A query for{' '}
+        {'Serena MCP gives Claude LSP-backed code intelligence. A query for '}
         <code>createSession</code> returns one canonical definition. A grep
         returns every line that mentions the name, and Claude reads each match
         to triage. Symbol search returns the answer, not the noise.

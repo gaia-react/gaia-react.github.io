@@ -17,7 +17,7 @@ const isActivePath = (pathname: string, href: string) =>
 const noopUnsubscribe = () => {};
 const subscribePathname = () => noopUnsubscribe;
 const getPathname = () => window.location.pathname;
-const getServerPathname = () => '/';
+const getServerPathname = () => window.location.pathname;
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);

@@ -5,8 +5,6 @@ import path from 'node:path';
 
 export default defineConfig({
   base: '/',
-  preview: {port: 6415},
-  server: {port: 6414},
   build: {
     rollupOptions: {
       input: {
@@ -22,5 +20,7 @@ export default defineConfig({
     },
   },
   plugins: [react(), tailwindcss()],
+  preview: {port: 6415},
   resolve: {alias: {'@': '/src'}},
+  server: {port: 6414},
 });

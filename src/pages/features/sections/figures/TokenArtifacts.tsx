@@ -73,7 +73,7 @@ const SpecCard = () => (
       </div>
 
       <div className="text-muted">
-        clarifications.answered:{' '}
+        {'clarifications.answered: '}
         <span className="text-ink-dim normal-case">5 of 5</span>
       </div>
     </div>
@@ -188,7 +188,8 @@ const PickupCard = () => (
     <div className="space-y-[0.65rem]">
       <div className="text-ink-dim space-y-[0.2rem] leading-normal">
         <div>
-          <span className="text-muted">Branch:</span> feat/card-grid{' '}
+          <span className="text-muted">Branch:</span>
+          {' feat/card-grid '}
           <span className="text-secondary-soft">(clean)</span>
         </div>
         <div>
@@ -215,7 +216,7 @@ const PickupCard = () => (
       </div>
 
       <div className="text-muted pt-[0.1rem]">
-        suggested next:{' '}
+        {'suggested next: '}
         <span className="text-ink-dim normal-case">
           pin breakpoint behavior
         </span>

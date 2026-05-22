@@ -56,7 +56,7 @@ const Hero = () => (
           Claude is raw power.
           <br className="hidden sm:inline" />
           <span className="inline sm:hidden"> </span>
-          GAIA is{' '}
+          {'GAIA is '}
           <em className="text-accent-soft font-light italic">
             order and focus.
           </em>

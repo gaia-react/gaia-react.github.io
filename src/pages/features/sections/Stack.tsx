@@ -218,7 +218,7 @@ const Stack = () => (
           code. Claude works with them, just faster.
         </p>
         <p>
-          Package management runs on{' '}
+          {'Package management runs on '}
           <a
             className="text-accent hover:text-accent-soft transition-colors duration-150"
             href="https://pnpm.io"

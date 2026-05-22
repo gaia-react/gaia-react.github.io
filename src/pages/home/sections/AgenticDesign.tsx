@@ -42,7 +42,7 @@ const GateLedger = () => (
         </div>
         <div className="text-secondary mt-1 flex flex-wrap gap-x-4 gap-y-0.5">
           {COMMIT_GATES.map((gate) => (
-            <span key={gate}>✓ {gate}</span>
+            <span key={gate}>{`✓ ${gate}`}</span>
           ))}
         </div>
         <div className="text-muted mt-1">committed → feat/checkout</div>

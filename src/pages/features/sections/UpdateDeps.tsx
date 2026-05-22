@@ -87,13 +87,13 @@ const GaiaCard = () => (
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] py-[0.18rem]">
         <span className="text-warn">-</span>
         <span className="text-warn/80">
-          import {'{useNavigate}'} from &apos;@remix-run/react&apos;
+          {`import {useNavigate} from '@remix-run/react'`}
         </span>
       </div>
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] py-[0.18rem]">
         <span className="text-secondary">+</span>
         <span className="text-secondary/70">
-          import {'{useNavigate}'} from &apos;react-router&apos;
+          {`import {useNavigate} from 'react-router'`}
         </span>
       </div>
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] py-[0.18rem]">

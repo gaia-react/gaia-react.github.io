@@ -18,8 +18,9 @@ const FAILURES: Item[] = [
   {
     desc: (
       <>
-        Without enforced gates, “done” means the model said so. Tests are not
-        written. Types collapse to{' '}
+        {
+          'Without enforced gates, “done” means the model said so. Tests are not written. Types collapse to '
+        }
         <code className="bg-surface text-ink rounded-sm px-1.5 font-mono text-[0.875em]">
           any
         </code>
