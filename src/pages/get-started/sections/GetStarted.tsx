@@ -832,7 +832,7 @@ const WhatYouGet = () => (
                 ['', 'my-app/'],
                 ['├── ', '.claude/', ''],
                 ['│   ├── ', 'agents/', '        # code-review-audit'],
-                ['│   ├── ', 'commands/', '       # /gaia-init, /setup-gaia'],
+                ['│   ├── ', 'commands/', '       # /gaia-init, /setup-gaia-ci'],
                 ['│   ├── ', 'hooks/', '          # guardrail hooks'],
                 [
                   '│   ├── ',

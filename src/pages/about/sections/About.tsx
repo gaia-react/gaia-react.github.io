@@ -10,9 +10,9 @@ type WorkItem = {
 const SELECTED_WORK: WorkItem[] = [
   {
     company: 'Trek10',
-    note: 'Led six engineers rebuilding a financial services platform for a top-tier management consulting client. Built a JSON-driven dashboard engine for non-engineers and modernized the codebase from React 15 to React 19.',
+    note: 'Led six engineers rebuilding a financial services platform for a top-tier management consulting client. Built a JSON-driven dashboard engine for non-engineers, improved the Python API layer, and modernized the codebase from React 15 to React 19.',
     period: '2024–2025',
-    role: 'Principal Frontend Engineer',
+    role: 'Principal Fullstack Engineer',
   },
   {
     company: 'American Express',
