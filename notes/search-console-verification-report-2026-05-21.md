@@ -8,7 +8,7 @@ Three weeks post-merge of PR #11 ("Add JSON-LD schema and Puppeteer prerendering
 
 The JSON-LD and prerendering work introduced in PR #11 is intact and has been extended well by subsequent PRs. All nine current routes carry valid, well-structured JSON-LD schemas with appropriate `@type` values. The `robots.txt` is correctly configured with a `Sitemap` directive and explicit permission grants for every major AI crawler (GPTBot, ClaudeBot, PerplexityBot, etc.). The h1 regression documented in `notes/h1-audit.md` is resolved — every page now has an `<h1>` in its React component.
 
-However, three issues undercut the otherwise solid baseline: `/roadmap/` and `/sponsors/` are absent from the Puppeteer prerender script, meaning crawlers receive an empty `<div id="root">` shell for those routes despite their JSON-LD being present in the source shell. The `public/sitemap.xml` is also incomplete — it lists only the original six routes and is missing `/roadmap/`, `/mentorship/`, and `/sponsors/`. Google indexing signals are inconclusive: the live site was unreachable from this cloud execution environment (see Limitations), and a `site:gaiareact.com` web search returned zero results from the domain, though that could reflect the early indexing window rather than a structural failure.
+One issue remains unresolved: React error #418 (hydration mismatch) persists on production. The route coverage gaps noted below are intentional by design, not bugs. Google indexing signals are inconclusive: the live site was unreachable from this cloud execution environment (see Limitations), and a `site:gaiareact.com` web search returned zero results from the domain, though that could reflect the early indexing window rather than a structural failure.
 
 ---
 
@@ -26,10 +26,10 @@ The repository has **nine routes** as of 2026-05-21 (up from the seven in PR #11
 | `/docs/` | — | — | *Route retired; replaced by `/why/`* | — | — | See `/why/` row |
 | `/features/` | ✅ | ✅ | WebPage, ItemList, SoftwareApplication, BreadcrumbList | ✅ | ✅ | ItemList appropriate for feature catalogue |
 | `/get-started/` | ✅ | ✅ | **TechArticle**, Person, Organization, SoftwareApplication, BreadcrumbList | ✅ | ✅ | Correct for installation guide |
-| `/roadmap/` | ✅ | ✅ | WebPage, SoftwareApplication, BreadcrumbList | ❌ | ❌ | **Not in prerender script; not in sitemap** |
+| `/roadmap/` | ✅ | ✅ | WebPage, SoftwareApplication, BreadcrumbList | ❌ | ❌ | Intentionally excluded — not yet shipped/wired into build |
 | `/why/` | ✅ | ✅ | WebPage, SoftwareApplication, BreadcrumbList | ✅ | ✅ | Replaced `/docs/`; WebPage is appropriate |
-| `/mentorship/` | ✅ | ✅ | WebPage, SoftwareApplication, BreadcrumbList | ✅ | ❌ | Prerendered but not in sitemap |
-| `/sponsors/` | ✅ | ✅ | WebPage, BreadcrumbList | ❌ | ❌ | **Not in prerender script; not in sitemap** |
+| `/mentorship/` | ✅ | ✅ | WebPage, SoftwareApplication, BreadcrumbList | ✅ | ❌ | Intentionally unlisted — CLI-reachable-only, noindex |
+| `/sponsors/` | ✅ | ✅ | WebPage, BreadcrumbList | ❌ | ❌ | Intentionally excluded — launch strategy, not yet public |
 
 **Schema validation**: All nine JSON-LD blocks pass structural validation (valid JSON, correct `@context: "https://schema.org"`, every graph node has `@type` and `@id`, all `@id` values use the `https://gaiareact.com/` base). Full automated validation via `https://validator.schema.org/` requires a browser — see Manual Follow-ups.
 
@@ -50,7 +50,7 @@ Web search for `site:gaiareact.com` returned **zero results** from the domain. T
 
 ### IndexNow (CI integration)
 
-The CI workflow (`pages.yml`) pings IndexNow on every deploy for six routes: `/`, `/why/`, `/features/`, `/get-started/`, `/consulting/`, `/about/`. The three new routes (`/roadmap/`, `/mentorship/`, `/sponsors/`) are not included.
+The CI workflow (`pages.yml`) pings IndexNow on every deploy for six routes: `/`, `/why/`, `/features/`, `/get-started/`, `/consulting/`, `/about/`. The three excluded routes (`/roadmap/`, `/mentorship/`, `/sponsors/`) are intentionally absent — they are either not yet public or deliberately unlisted.
 
 ---
 
@@ -73,23 +73,11 @@ The following checks could not be performed automatically and require manual act
 
 ## Issues Found
 
-### P1 — Two routes not prerendered
+### Note — Route exclusions are intentional
 
-`/roadmap/` and `/sponsors/` have HTML shells, React components, JSON-LD, and `<h1>` headings, but are **absent from `scripts/prerender.mjs`**. When built, Puppeteer skips them — the deployed `dist/` files for those routes are empty `<div id="root">` shells. Crawlers see no text content and the JSON-LD in the `<head>` is the only machine-readable signal.
+`/roadmap/`, `/mentorship/`, and `/sponsors/` are absent from the prerender script and sitemap by design. `/roadmap/` is not yet shipped. `/mentorship/` is CLI-reachable-only with `noindex`. `/sponsors/` is withheld as launch strategy. Do not add these to `scripts/prerender.mjs` or `public/sitemap.xml` until each route is explicitly launched.
 
-**Fix**: Add to `scripts/prerender.mjs` ROUTES array:
-```js
-{url: '/roadmap/', out: 'roadmap/index.html'},
-{url: '/sponsors/', out: 'sponsors/index.html'},
-```
-
-### P2 — Sitemap incomplete
-
-`public/sitemap.xml` lists six routes. Missing: `/roadmap/`, `/mentorship/`, `/sponsors/`. Crawlers and Search Console use the sitemap as the authoritative route list; omitted routes receive no priority signal and are crawled less frequently.
-
-**Fix**: Add entries for all three missing routes with appropriate `<priority>` and `<lastmod>` values. Also update the IndexNow `urlList` in `.github/workflows/pages.yml`.
-
-### P3 — Hydration mismatch unresolved
+### P1 — Hydration mismatch unresolved
 
 React error #418 (hydration mismatch) is still reported on production per `notes/hydration-mismatch-fix.md`. This does not affect crawl content (Puppeteer captures the fully rendered DOM before hydration), but it causes a DOM flash on real user visits and may depress Core Web Vitals scores (CLS spike during the replacement). Not a blocker for indexing, but worth fixing before running a CWV audit.
 
@@ -97,23 +85,18 @@ React error #418 (hydration mismatch) is still reported on production per `notes
 
 ## Recommended Next Actions
 
-1. **Fix prerender coverage** (P1): Add `/roadmap/` and `/sponsors/` to `scripts/prerender.mjs`. Refer to `notes/route-changes.md` § "Prerender script" for the exact format. One-line change per route; open a small PR (`seo/fix-prerender-coverage`).
-
-2. **Update sitemap + IndexNow** (P2): Edit `public/sitemap.xml` to add the three missing routes. Update the `urlList` in `.github/workflows/pages.yml` to include all nine routes. See `notes/route-changes.md` § "Submit updated sitemap" for the post-deploy checklist.
-
-3. **Manual Search Console checks** (P1 — user action required):
+1. **Manual Search Console checks** (user action required):
    - GSC → Pages → confirm at least 6 routes show "Indexed"
-   - GSC → URL Inspection → run "View crawled page" on `/roadmap/` — if it shows empty shell, that confirms the prerender gap
-   - GSC → URL Inspection → request indexing for `/mentorship/` (prerendered but not in sitemap)
-   - Resubmit sitemap after updating it
+   - GSC → URL Inspection → "View crawled page" on each indexed route to confirm rendered HTML
+   - Resubmit sitemap if any routes show "Crawled - currently not indexed"
 
-4. **Rich Results Test** (manual): Run `https://search.google.com/test/rich-results` for at least `/`, `/consulting/`, `/get-started/`, and `/about/`. These carry the richest schemas (SoftwareApplication, Service, TechArticle, Person) most likely to generate rich snippets.
+2. **Rich Results Test** (manual): Run `https://search.google.com/test/rich-results` for at least `/`, `/consulting/`, `/get-started/`, and `/about/`. These carry the richest schemas (SoftwareApplication, Service, TechArticle, Person) most likely to generate rich snippets.
 
-5. **H1 audit** (resolved): `notes/h1-audit.md` documents missing `<h1>` tags on five routes. As of 2026-05-21, all nine pages have `<h1>` elements in their React components. This note can be closed.
+3. **H1 audit** (resolved): `notes/h1-audit.md` documents missing `<h1>` tags on five routes. As of 2026-05-21, all nine pages have `<h1>` elements in their React components. This note can be closed.
 
-6. **Hydration mismatch** (P3): See `notes/hydration-mismatch-fix.md` for investigation steps. Priority is lower than the prerender + sitemap fixes above.
+4. **Hydration mismatch** (P1): See `notes/hydration-mismatch-fix.md` for investigation steps.
 
-7. **Link building**: The absence from search results after three weeks suggests the domain has low authority. No amount of on-page SEO compensates for zero inbound links. Consider: submitting to developer directories (Made with React, Product Hunt, etc.), posting a launch thread on X/Twitter referencing the domain, or requesting a mention in the Claude Code docs or ecosystem listing.
+5. **Link building**: The absence from search results after three weeks suggests the domain has low authority. No amount of on-page SEO compensates for zero inbound links. Consider: submitting to developer directories (Made with React, Product Hunt, etc.), posting a launch thread on X/Twitter referencing the domain, or requesting a mention in the Claude Code docs or ecosystem listing.
 
 ---
 
@@ -138,7 +121,7 @@ All major crawlers explicitly allowed. Sitemap directive present. ✅
 
 ## Appendix: sitemap.xml (current state)
 
-Six routes present; three missing:
+Six public routes listed; three intentionally excluded:
 
 | Route | In sitemap | Priority | Last modified |
 |-------|:-:|:-:|:-:|
@@ -148,6 +131,6 @@ Six routes present; three missing:
 | `/features/` | ✅ | 0.9 | 2026-05-12 |
 | `/consulting/` | ✅ | 0.9 | 2026-04-28 |
 | `/about/` | ✅ | 0.6 | 2026-04-28 |
-| `/roadmap/` | ❌ | — | — |
-| `/mentorship/` | ❌ | — | — |
-| `/sponsors/` | ❌ | — | — |
+| `/roadmap/` | ❌ | — | Intentional — not yet shipped |
+| `/mentorship/` | ❌ | — | Intentional — unlisted/noindex |
+| `/sponsors/` | ❌ | — | Intentional — launch strategy |
