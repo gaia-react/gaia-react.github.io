@@ -161,9 +161,10 @@ const About = () => (
               alt="Portrait of Steven Sacks"
               className="border-line size-12 rounded-full border object-cover"
               decoding="async"
+              fetchPriority="high"
               height={48}
               loading="eager"
-              src="/steven.jpg"
+              src="/steven.webp"
               width={48}
             />
             <div className="leading-tight">
