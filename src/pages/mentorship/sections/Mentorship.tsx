@@ -50,7 +50,7 @@ const Mentorship = () => (
           Mentorship
         </div>
         <h1 className="font-display text-ink mb-10 max-w-[22ch] text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] font-light tracking-[-0.03em]">
-          I want to get better at working with AI.{' '}
+          {'I want to get better at working with AI. '}
           <em className="text-accent-soft font-light italic">
             So I built a coach that watches how I work.
           </em>
@@ -101,7 +101,7 @@ const Mentorship = () => (
                 {step.detail}
               </p>
               <div className="text-muted mt-3 font-mono text-[0.6rem] tracking-[0.18em]">
-                0{index + 1}
+                {`0${index + 1}`}
               </div>
             </li>
           ))}
@@ -134,7 +134,7 @@ const Mentorship = () => (
         </div>
 
         <h2 className="font-display text-ink mb-12 max-w-[24ch] text-[clamp(1.6rem,3.4vw,2.5rem)] leading-[1.15] font-light tracking-[-0.02em]">
-          Mentorship doesn&rsquo;t read your code.{' '}
+          {'Mentorship doesn’t read your code. '}
           <em className="text-accent-soft font-light italic">
             It works on event metadata.
           </em>
@@ -206,7 +206,7 @@ const Mentorship = () => (
             </code>
           </div>
           <p className="text-ink-dim text-[1.0625rem] leading-[1.7]">
-            Plain text. In your home directory, never in your repo.{' '}
+            {'Plain text. In your home directory, never in your repo. '}
             <span className="text-ink">Read it. Edit it. Delete it.</span>
           </p>
         </div>

@@ -6,7 +6,7 @@ import {preview} from 'vite';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = '/Users/stevensacks/Development/gaia-react/website';
 
-const ROUTES = ['/', '/about/', '/why/', '/features/', '/get-started/'];
+const ROUTES = ['/', '/about/', '/consulting/', '/features/', '/get-started/', '/mentorship/', '/why/'];
 const PORT = 6416;
 
 const server = await preview({
