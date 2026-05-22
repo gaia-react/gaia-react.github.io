@@ -1,19 +1,5 @@
 import type {ReactNode} from 'react';
-import ChromaticLogo from '@/assets/logos/ChromaticLogo';
-import ConformLogo from '@/assets/logos/ConformLogo';
-import ESLintLogo from '@/assets/logos/ESLintLogo';
-import I18NextLogo from '@/assets/logos/I18NextLogo';
-import KnipLogo from '@/assets/logos/KnipLogo';
-import MSWLogo from '@/assets/logos/MSWLogo';
-import PlaywrightLogo from '@/assets/logos/PlaywrightLogo';
-import PrettierLogo from '@/assets/logos/PrettierLogo';
-import ReactRouterLogo from '@/assets/logos/ReactRouterLogo';
-import RTLLogo from '@/assets/logos/RTLLogo';
-import StorybookLogo from '@/assets/logos/StorybookLogo';
 import StylelintLogo from '@/assets/logos/StylelintLogo';
-import TailwindLogo from '@/assets/logos/TailwindLogo';
-import TSLogo from '@/assets/logos/TSLogo';
-import VitestLogo from '@/assets/logos/VitestLogo';
 import ZodLogo from '@/assets/logos/ZodLogo';
 import FxSection from './FxSection';
 
@@ -26,13 +12,29 @@ type LogoEntry = {
 
 const FOUNDATION: LogoEntry[] = [
   {
-    component: <ReactRouterLogo height={32} />,
+    component: (
+      <img
+        alt="React Router"
+        height={32}
+        loading="lazy"
+        src="/logos/react-router-logo.svg"
+        width={54}
+      />
+    ),
     href: 'https://reactrouter.com/',
     name: 'React Router',
     role: 'routing',
   },
   {
-    component: <TSLogo height={32} />,
+    component: (
+      <img
+        alt="TypeScript"
+        height={32}
+        loading="lazy"
+        src="/logos/ts-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://www.typescriptlang.org/',
     name: 'TypeScript',
     role: 'types',
@@ -44,19 +46,43 @@ const FOUNDATION: LogoEntry[] = [
     role: 'schemas',
   },
   {
-    component: <TailwindLogo height={32} />,
+    component: (
+      <img
+        alt="Tailwind"
+        height={32}
+        loading="lazy"
+        src="/logos/tailwind-logo.svg"
+        width={52}
+      />
+    ),
     href: 'https://tailwindcss.com',
     name: 'Tailwind',
     role: 'styling',
   },
   {
-    component: <I18NextLogo height={32} />,
+    component: (
+      <img
+        alt="i18next"
+        height={32}
+        loading="lazy"
+        src="/logos/i18next-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://react.i18next.com/',
     name: 'i18next',
     role: 'translation',
   },
   {
-    component: <ConformLogo height={26} />,
+    component: (
+      <img
+        alt="Conform"
+        height={26}
+        loading="lazy"
+        src="/logos/conform-logo.svg"
+        width={126}
+      />
+    ),
     href: 'https://conform.guide/',
     name: 'Conform',
     role: 'forms',
@@ -65,37 +91,85 @@ const FOUNDATION: LogoEntry[] = [
 
 const TESTING: LogoEntry[] = [
   {
-    component: <VitestLogo height={32} />,
+    component: (
+      <img
+        alt="Vitest"
+        height={32}
+        loading="lazy"
+        src="/logos/vitest-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://vitest.dev/',
     name: 'Vitest',
     role: 'unit runner',
   },
   {
-    component: <RTLLogo height={32} />,
+    component: (
+      <img
+        alt="RTL"
+        height={32}
+        loading="lazy"
+        src="/logos/rtl-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://testing-library.com/docs/react-testing-library/intro/',
     name: 'RTL',
     role: 'component testing',
   },
   {
-    component: <PlaywrightLogo height={32} />,
+    component: (
+      <img
+        alt="Playwright"
+        height={32}
+        loading="lazy"
+        src="/logos/playwright-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://playwright.dev/',
     name: 'Playwright',
     role: 'end-to-end',
   },
   {
-    component: <MSWLogo height={32} />,
+    component: (
+      <img
+        alt="MSW"
+        height={32}
+        loading="lazy"
+        src="/logos/msw-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://mswjs.io/',
     name: 'MSW',
     role: 'api mocking',
   },
   {
-    component: <StorybookLogo height={32} />,
+    component: (
+      <img
+        alt="Storybook"
+        height={32}
+        loading="lazy"
+        src="/logos/storybook-logo.svg"
+        width={26}
+      />
+    ),
     href: 'https://storybook.js.org/',
     name: 'Storybook',
     role: 'components',
   },
   {
-    component: <ChromaticLogo height={32} />,
+    component: (
+      <img
+        alt="Chromatic"
+        height={32}
+        loading="lazy"
+        src="/logos/chromatic-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://www.chromatic.com/',
     name: 'Chromatic',
     role: 'visual regression',
@@ -104,13 +178,29 @@ const TESTING: LogoEntry[] = [
 
 const CODE_QUALITY: LogoEntry[] = [
   {
-    component: <ESLintLogo height={32} />,
+    component: (
+      <img
+        alt="ESLint"
+        height={32}
+        loading="lazy"
+        src="/logos/eslint-logo.svg"
+        width={36}
+      />
+    ),
     href: 'https://eslint.org/',
     name: 'ESLint',
     role: 'js linter',
   },
   {
-    component: <PrettierLogo height={32} />,
+    component: (
+      <img
+        alt="Prettier"
+        height={32}
+        loading="lazy"
+        src="/logos/prettier-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://prettier.io/',
     name: 'Prettier',
     role: 'formatter',
@@ -122,7 +212,15 @@ const CODE_QUALITY: LogoEntry[] = [
     role: 'css linter',
   },
   {
-    component: <KnipLogo height={32} />,
+    component: (
+      <img
+        alt="Knip"
+        height={32}
+        loading="lazy"
+        src="/logos/knip-logo.svg"
+        width={32}
+      />
+    ),
     href: 'https://knip.dev/',
     name: 'Knip',
     role: 'dead code',

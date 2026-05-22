@@ -488,9 +488,10 @@ const Consulting = () => (
             alt="Portrait of Steven Sacks"
             className="border-line size-16 shrink-0 rounded-full border object-cover"
             decoding="async"
+            fetchPriority="high"
             height={64}
             loading="eager"
-            src="/steven.jpg"
+            src="/steven.webp"
             width={64}
           />
           <div>
