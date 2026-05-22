@@ -73,6 +73,61 @@
               {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaiareact.com/"},
               {"@type": "ListItem", "position": 2, "name": "Features", "item": "https://gaiareact.com/features/"}
             ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://gaiareact.com/features/#faq",
+            "isPartOf": {"@id": "https://gaiareact.com/features/#page"},
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How does GAIA make Claude output trustworthy?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "GAIA encodes your coding standards as enforceable rules loaded automatically every session. Six coding principles, guardrails against technical debt patterns, scoped skills that apply project conventions at write time, test-driven development with Playwright E2E tests written before code, and a code-review-audit agent that scans every PR for security, performance, and architecture issues before merge."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does GAIA manage Claude's context window?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "GAIA uses three intercepts to keep Claude's working surface lean: path-scoped rules that load only when you edit matching files, LSP-backed symbol search that returns one canonical definition instead of dozens of grep matches, and periodic knowledge audits that prune stale entries and over-budget rules. Token costs stay predictable as the project grows."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I report a bug in GAIA?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Run /gaia forensics. It turns any failure into a structured bug report: redacted, classified, and ready to file. User-configuration issues return the fix inline. Probable GAIA bugs file directly to GitHub with one prompt, with the same body byte-for-byte, so the maintainer can reproduce and fix them fast."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does GAIA keep a Claude Code project healthy over time?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Run /gaia fitness. It audits your entire Claude integration, including hooks, rules, skills, CLAUDE.md, settings, and GAIA install fitness, then grades each area A+ to F and heals what it can on a branch. You review the diff and commit when satisfied. The check protocol survives /update-gaia."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does GAIA automate project maintenance?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "GAIA CI handles dependency updates (patch and minor auto-merge with codemods, major routes to a review PR), daily security audits with pnpm audit, wiki sync whenever app code changes, and monthly stale branch cleanup. Claude handles the safe cases automatically. Humans only see what it cannot safely recover from, with a hard $5 cost cap per run."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What agentic design patterns does GAIA implement?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "GAIA implements 17 of the 29 patterns in the agentic design taxonomy: durable planning artifacts requiring user approval, five-tier memory and knowledge base, resource-aware model routing (Sonnet and Haiku for mechanical work, Opus for deep reasoning), session isolation with git worktrees, and six human-in-the-loop checkpoints between Claude's intent and its impact on the codebase."
+                }
+              }
+            ]
           }
         ]
       }
