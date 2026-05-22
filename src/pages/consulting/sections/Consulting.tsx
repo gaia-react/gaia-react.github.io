@@ -498,7 +498,7 @@ const Consulting = () => (
               Steven Sacks
             </div>
             <p className="text-ink-dim max-w-prose text-[1.0625rem] leading-[1.7]">
-              Thirty years building web frameworks at scale. GAIA Flash shipped
+              Thirty years building for the web. GAIA Flash shipped
               on 100,000+ sites. Previously Principal Fullstack at Trek10, Lead
               React Engineer at American Express, and founder of Plug DJ (6M
               users, acquired).

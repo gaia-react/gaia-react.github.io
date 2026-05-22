@@ -123,7 +123,7 @@ export const Header = () => {
         <button
           aria-expanded={menuOpen}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          className="text-ink-dim flex cursor-pointer border-none bg-transparent p-2 leading-none md:hidden"
+          className="text-ink-dim flex cursor-pointer border-none bg-transparent p-3 leading-none md:hidden"
           onClick={() => setMenuOpen((open) => !open)}
           type="button"
         >
