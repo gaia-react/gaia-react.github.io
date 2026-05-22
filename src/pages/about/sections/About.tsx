@@ -145,7 +145,7 @@ const About = () => (
         </div>
 
         <h1 className="font-display text-ink mb-12 max-w-[20ch] text-[clamp(2.4rem,5.6vw,4.5rem)] leading-[1.05] font-light tracking-[-0.03em]">
-          I built the framework Flash needed in 2008.{' '}
+          {'I built the framework Flash needed in 2008. '}
           <em className="text-accent-soft font-light italic">
             I’m building the one Claude needs now.
           </em>
@@ -288,7 +288,7 @@ const About = () => (
               </div>
               <div>
                 <h3 className="font-display text-ink mb-2 text-[1.35rem] leading-tight font-normal tracking-[-0.01em]">
-                  {item.role},{' '}
+                  {`${item.role}, `}
                   <span className="text-accent">{item.company}</span>
                 </h3>
                 <p className="text-ink-dim text-[1rem] leading-[1.7]">

@@ -45,8 +45,10 @@ const ObsidianNote = () => (
     </div>
 
     <p className="text-ink-dim mb-3 text-[0.9rem] leading-[1.6]">
-      The login route lives in <Wikilink>routes/auth</Wikilink> and uses{' '}
-      <Wikilink>session-store</Wikilink> to persist tokens. See{' '}
+      The login route lives in <Wikilink>routes/auth</Wikilink>
+      {' and uses '}
+      <Wikilink>session-store</Wikilink>
+      {' to persist tokens. See '}
       <Wikilink>security-headers</Wikilink> for CSP requirements.
     </p>
 
@@ -61,7 +63,10 @@ const ObsidianNote = () => (
       Linked from
     </div>
     <div className="text-ink-dim mt-2 text-[0.84rem]">
-      <Wikilink>product-flows</Wikilink> · <Wikilink>onboarding</Wikilink> ·{' '}
+      <Wikilink>product-flows</Wikilink>
+      {' · '}
+      <Wikilink>onboarding</Wikilink>
+      {' · '}
       <Wikilink>security-audit-2026-04</Wikilink>
     </div>
   </div>

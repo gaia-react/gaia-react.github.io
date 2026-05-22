@@ -34,6 +34,13 @@ const exitCode = await (async () => {
     for (const route of ROUTES) {
       const page = await browser.newPage();
 
+      // Signal to animated components (e.g. the terminal on /get-started/)
+      // that they should not start animations during prerender, so that the
+      // captured DOM matches React's initial hydration state.
+      await page.evaluateOnNewDocument(() => {
+        window.__PRERENDER__ = true;
+      });
+
       page.on('pageerror', (error) => {
         console.error(`[${route.url}] page error:`, error.message);
       });

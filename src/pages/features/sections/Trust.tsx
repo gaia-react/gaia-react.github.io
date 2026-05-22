@@ -7,15 +7,16 @@ const POINTS: {desc: ReactNode; name: string}[] = [
   {
     desc: (
       <>
-        Six coding principles encoded as rules and loaded automatically. Every
-        session starts from the same disciplined baseline. See{' '}
+        {
+          'Six coding principles encoded as rules and loaded automatically. Every session starts from the same disciplined baseline. See '
+        }
         <a
           className="text-accent hover:text-accent-soft transition-colors duration-150"
           href="#discipline"
         >
           the principles
-        </a>{' '}
-        below.
+        </a>
+        {' below.'}
       </>
     ),
     name: 'Coding principles',

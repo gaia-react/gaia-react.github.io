@@ -15,13 +15,13 @@ const Why = () => (
           Vibe coding is broken. GAIA fixes it.
         </h2>
         <p className="text-ink-dim mb-4 text-[1.125rem] leading-[1.65]">
-          Most setups run{' '}
+          {'Most setups run '}
           <code className="text-ink bg-surface rounded-sm px-1.5 text-[0.875em]">
             /init
-          </code>{' '}
-          and hope Claude figures out the rest. It does, for a while. Then comes
-          output you can&apos;t trust, quality that drops as the project grows,
-          and technical debt piling up while you build.
+          </code>
+          {
+            ' and hope Claude figures out the rest. It does, for a while. Then comes output you can’t trust, quality that drops as the project grows, and technical debt piling up while you build.'
+          }
         </p>
         <p className="text-ink-dim text-[1.125rem] leading-[1.65]">
           <span className="text-ink">GAIA fixes all three.</span> Its structure

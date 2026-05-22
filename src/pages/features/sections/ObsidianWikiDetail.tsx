@@ -35,7 +35,7 @@ const ObsidianWikiDetail = () => (
           CLAUDE.md, not chat history, not machine-local memory.
         </p>
         <p>
-          GAIA ships with the{' '}
+          {'GAIA ships with the '}
           <a
             className="text-accent hover:text-accent-soft transition-colors duration-150"
             href="https://github.com/AgriciDaniel/claude-obsidian"
@@ -43,10 +43,10 @@ const ObsidianWikiDetail = () => (
             target="_blank"
           >
             claude-obsidian
-          </a>{' '}
-          integration wired up. The vault structure, the ingestion commands, and
-          the maintenance skills are configured before you write your first
-          page.
+          </a>
+          {
+            ' integration wired up. The vault structure, the ingestion commands, and the maintenance skills are configured before you write your first page.'
+          }
         </p>
       </>
     }

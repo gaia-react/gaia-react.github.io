@@ -49,9 +49,10 @@ const ObsidianWiki = () => (
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
             <span className="text-ink">
               GAIA&apos;s wiki saves Claude tokens.
-            </span>{' '}
-            Architecture, flows, and decisions live as committed markdown that
-            Claude reads on demand, so it never re-infers them from source.
+            </span>
+            {
+              ' Architecture, flows, and decisions live as committed markdown that Claude reads on demand, so it never re-infers them from source.'
+            }
           </p>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
             Context stops getting lost between sessions. The wiki stays yours:

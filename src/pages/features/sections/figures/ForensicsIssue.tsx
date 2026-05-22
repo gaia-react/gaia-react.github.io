@@ -35,7 +35,7 @@ const ForensicsIssue = () => (
         <div className="text-ink-dim">
           <div>Error: orchestrator exit 1</div>
           <div className="pl-[0.95rem]">
-            at{' '}
+            {'at '}
             <span className="text-ink">
               gaia/skills/plan/orchestrator.ts:284
             </span>

@@ -215,7 +215,7 @@ const SpectrumRail = () => (
 const SkuHeader = ({sku}: {sku: SkuData}) => (
   <>
     <div className="text-accent-soft font-mono text-[0.7rem] tracking-[0.22em] uppercase">
-      {sku.stage} · {sku.title}
+      {`${sku.stage} · ${sku.title}`}
     </div>
     <h2 className="font-display text-ink mt-3 text-[clamp(2rem,4vw,2.85rem)] leading-[1.05] font-light tracking-tight">
       {sku.tagline}
@@ -394,7 +394,7 @@ const RetainerBlock = ({sku}: {sku: SkuData}) => (
           )}
         >
           <div className="text-secondary-soft font-mono text-[0.65rem] tracking-[0.22em] uppercase">
-            Tier {String.fromCodePoint(65 + index)}
+            {`Tier ${String.fromCodePoint(65 + index)}`}
           </div>
           <div className="font-display text-ink text-[1.75rem] leading-[1.1] font-light tracking-[-0.02em]">
             {tier.price}
@@ -525,9 +525,9 @@ const Consulting = () => (
     <section className="px-4 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto flex max-w-3xl flex-col gap-6 text-center">
         <p className="text-ink-dim mx-auto max-w-prose text-[1.0625rem] leading-[1.7]">
-          Need something outside these engagements? Multi-month builds, custom
-          integrations, or scope I{' '}haven’t named here. Engagements start at
-          $5,000.
+          {
+            'Need something outside these engagements? Multi-month builds, custom integrations, or scope I\u00A0haven\u2019t named here. Engagements start at $5,000.'
+          }
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
           <a

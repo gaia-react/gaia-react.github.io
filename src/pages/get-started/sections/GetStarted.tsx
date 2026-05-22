@@ -284,6 +284,10 @@ const AnimatedTerminal = ({
   const onDoneReference = useRef(onDone);
 
   useEffect(() => {
+    // Skip animation during Puppeteer prerender so the initial DOM state
+    // matches React's hydration snapshot (emitted=[], typing=null).
+    if ('__PRERENDER__' in window) return;
+
     // Honour reduced-motion on the initial mount: skip the character-by-
     // character scheduler and drop straight to the finished terminal. A user
     // who taps Replay opts back in (isReplay), so we let that one play. The
@@ -724,7 +728,7 @@ const GetStartedHero = ({
         <span className="text-line">·</span>
         <span>
           Node.js <strong className="text-ink font-medium">&ge; 22.19.0</strong>
-          . We recommend{' '}
+          {'. We recommend '}
           <a
             className="text-ink-dim border-line-soft hover:border-accent-soft hover:text-ink border-b no-underline transition-colors duration-150"
             href="https://github.com/nvm-sh/nvm"
@@ -732,8 +736,8 @@ const GetStartedHero = ({
             target="_blank"
           >
             nvm
-          </a>{' '}
-          or grab it from{' '}
+          </a>
+          {' or grab it from '}
           <a
             className="text-ink-dim border-line-soft hover:border-accent-soft hover:text-ink border-b no-underline transition-colors duration-150"
             href="https://nodejs.org/en/"
@@ -789,11 +793,11 @@ const WhatYouGet = () => (
         <div>
           <h2 className="group font-display text-ink max-w-[18ch] text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]">
             <a className="text-inherit no-underline" href="#whats-included">
-              What{' '}
+              {'What '}
               <code className="text-ink-dim font-mono text-[0.85em]">
                 npx create-gaia
-              </code>{' '}
-              sets up
+              </code>
+              {' sets up'}
               <span
                 aria-hidden={true}
                 className="ml-[0.4em] text-[0.6em] opacity-0 transition-opacity duration-150 select-none group-hover:opacity-40"
@@ -811,7 +815,7 @@ const WhatYouGet = () => (
             box.
           </p>
           <p>
-            Work has a shape: every feature starts with{' '}
+            {'Work has a shape: every feature starts with '}
             <InlineCode>/gaia spec</InlineCode>, a plan, and acceptance tests
             written before the code. Pre-commit hooks hold the line. A merge
             audit has the last word.
@@ -832,7 +836,11 @@ const WhatYouGet = () => (
                 ['', 'my-app/'],
                 ['├── ', '.claude/', ''],
                 ['│   ├── ', 'agents/', '        # code-review-audit'],
-                ['│   ├── ', 'commands/', '       # /gaia-init, /setup-gaia-ci'],
+                [
+                  '│   ├── ',
+                  'commands/',
+                  '       # /gaia-init, /setup-gaia-ci',
+                ],
                 ['│   ├── ', 'hooks/', '          # guardrail hooks'],
                 [
                   '│   ├── ',

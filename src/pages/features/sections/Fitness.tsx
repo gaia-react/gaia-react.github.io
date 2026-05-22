@@ -87,22 +87,23 @@ const Fitness = () => (
         </div>
         <div className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.65]">
           <p>
-            As a project grows, its Claude integration drifts. New hooks, new
-            rules, edited skills, a{' '}
+            {
+              'As a project grows, its Claude integration drifts. New hooks, new rules, edited skills, a '
+            }
             <code className="bg-surface text-ink rounded-sm px-1.5 text-[0.88em]">
               CLAUDE.md
-            </code>{' '}
-            that creeps past its budget, settings that collect redundant
-            permissions. Every bit of that drift makes Claude a little less
-            effective and a little more expensive to run.
+            </code>
+            {
+              ' that creeps past its budget, settings that collect redundant permissions. Every bit of that drift makes Claude a little less effective and a little more expensive to run.'
+            }
           </p>
           <p>
             <code className="bg-surface text-ink rounded-sm px-1.5 text-[0.88em]">
               /gaia fitness
-            </code>{' '}
-            audits the whole surface, grades it F to A+, and heals what it can,
-            keeping your Claude integration lean and current as the project
-            grows.
+            </code>
+            {
+              ' audits the whole surface, grades it F to A+, and heals what it can, keeping your Claude integration lean and current as the project grows.'
+            }
           </p>
         </div>
       </div>
