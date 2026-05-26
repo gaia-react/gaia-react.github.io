@@ -28,7 +28,7 @@ const FINDINGS: Finding[] = [
     severity: 'info',
   },
   {
-    detail: 'GAIA v1.3.0 installed, v1.3.3 available · /update-gaia',
+    detail: 'GAIA v1.3.0 installed, v1.3.4 available · /update-gaia',
     severity: 'info',
   },
 ];
