@@ -5,11 +5,14 @@ import {twJoin} from 'tailwind-merge';
 const CAL_USERNAME = 'stevensacks';
 const CAL_NAMESPACE = 'consulting';
 const CAL_LAYOUT = 'month_view';
+const CAL_BASE_URL = `https://cal.com/${CAL_USERNAME}`;
 
 // Cal's getCalApi injects <script src="app.cal.com/embed/embed.js"> the moment
 // it runs. The Consulting effect guards on __PRERENDER__ so the script never
 // lands in the static HTML; on the real client it pre-warms the API so the
-// first click opens the modal instantly instead of falling back to navigation.
+// first click opens the modal instantly. If embed.js is blocked (CSP, network,
+// extensions), fall back to opening the hosted booking page in a new tab so
+// the CTA still leads somewhere useful.
 const initCal = async () => {
   const {getCalApi} = await import('@calcom/embed-react');
   const cal = await getCalApi({namespace: CAL_NAMESPACE});
@@ -23,11 +26,26 @@ const initCal = async () => {
 };
 
 const openCalModal = async (calLink: string) => {
-  const cal = await initCal();
-  cal('modal', {
-    calLink: `${CAL_USERNAME}/${calLink}`,
-    config: {layout: CAL_LAYOUT},
-  });
+  const fallbackHref = `${CAL_BASE_URL}/${calLink}?layout=${CAL_LAYOUT}`;
+
+  try {
+    const cal = await initCal();
+    cal('modal', {
+      calLink: `${CAL_USERNAME}/${calLink}`,
+      config: {layout: CAL_LAYOUT},
+    });
+  } catch {
+    window.open(fallbackHref, '_blank', 'noopener,noreferrer');
+
+    return;
+  }
+  setTimeout(() => {
+    const cal = (window as unknown as {Cal?: {version?: string}}).Cal;
+
+    if (!cal?.version) {
+      window.open(fallbackHref, '_blank', 'noopener,noreferrer');
+    }
+  }, 2500);
 };
 
 type SkuData = {
