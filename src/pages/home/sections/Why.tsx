@@ -1,7 +1,7 @@
 const Why = () => (
   <section className="px-4 py-20 sm:px-8" id="why">
     <div className="mx-auto max-w-6xl">
-      <div className="max-w-180" data-reveal={true}>
+      <div className="max-w-191" data-reveal={true}>
         <div className="mb-4 inline-flex items-center gap-2">
           <span
             aria-hidden={true}
