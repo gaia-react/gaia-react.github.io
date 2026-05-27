@@ -70,6 +70,12 @@ type WorkItem = {
   role: string;
 };
 
+type TestimonialItem = {
+  attribution: string;
+  name: string;
+  quote: string;
+};
+
 const GitHubIcon = (
   <svg
     aria-hidden="true"
@@ -127,6 +133,27 @@ const SELECTED_WORK: WorkItem[] = [
     note: 'Social music platform. 6M registered users, 1M monthly actives. Raised $2.5M from Javelin Venture Partners. Acquired.',
     period: '2012–2015',
     role: 'Founder',
+  },
+];
+
+const TESTIMONIALS: TestimonialItem[] = [
+  {
+    attribution: 'Principal Engineer, Streamie Security',
+    name: 'Curtis Jones',
+    quote:
+      'Steven was hired to fix the fiasco which was the front-end of the project. The front-end was months behind schedule and hardly progressing at all. Steven quickly brought order to chaos, got the front-end moving again.',
+  },
+  {
+    attribution: 'Security Consultant, Deja vu Security',
+    name: 'Rhett Brown',
+    quote:
+      'Steven brings a level of rigor to development that is very rare. He approaches his work almost philosophically, working hard to incorporate best practices and logical structure.',
+  },
+  {
+    attribution: 'COO, Allman Consulting and Training',
+    name: 'Todd Thurston',
+    quote:
+      'He does what he says he will do with high integrity. He has always delivered for me, and that is appreciated when working with deadlines. He is innovative and can help work out a solution when you hit the wall.',
   },
 ];
 
@@ -493,6 +520,26 @@ const SkuBlock = ({sku}: {sku: SkuData}) => {
   return <RetainerBlock sku={sku} />;
 };
 
+const TestimonialCard = ({item}: {item: TestimonialItem}) => (
+  <li className="border-line-soft relative flex flex-col gap-6 border-t pt-6">
+    <span
+      aria-hidden={true}
+      className="bg-accent absolute top-[-3px] left-0 h-[5px] w-10"
+    />
+    <blockquote className="text-ink-dim m-0 text-[1.0625rem] leading-[1.65] font-light text-pretty italic">
+      {item.quote}
+    </blockquote>
+    <div className="mt-auto">
+      <div className="font-display text-ink text-[1rem] leading-tight font-normal tracking-[-0.01em]">
+        {item.name}
+      </div>
+      <div className="text-muted mt-2 font-mono text-[0.65rem] tracking-[0.18em] uppercase">
+        {item.attribution}
+      </div>
+    </div>
+  </li>
+);
+
 const Orbs = () => (
   <>
     <div
@@ -689,13 +736,10 @@ const Consulting = () => {
 
       {/* Engagement blocks */}
       <div className="px-4 sm:px-8">
-        {SKUS.map((sku, index) => (
+        {SKUS.map((sku) => (
           <section
             key={sku.anchor}
-            className={twJoin(
-              'border-line-soft scroll-mt-20 border-t py-20 sm:py-28',
-              index === SKUS.length - 1 && 'border-b'
-            )}
+            className="border-line-soft scroll-mt-20 border-t py-20 sm:py-28"
             id={sku.anchor}
           >
             <div className="mx-auto max-w-5xl">
@@ -704,6 +748,34 @@ const Consulting = () => {
           </section>
         ))}
       </div>
+
+      {/* References */}
+      <section className="border-line-soft border-t border-b px-4 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-12 flex flex-wrap items-baseline justify-between gap-4">
+            <div
+              className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase"
+              data-reveal={true}
+            >
+              References
+            </div>
+            <div
+              className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block"
+              data-reveal={true}
+            >
+              From clients and colleagues
+            </div>
+          </div>
+          <ul
+            className="m-0 grid list-none gap-10 p-0 md:grid-cols-3 md:gap-10"
+            data-stagger=""
+          >
+            {TESTIMONIALS.map((item) => (
+              <TestimonialCard key={item.name} item={item} />
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* Custom + close */}
       <section className="px-4 py-20 sm:px-8 sm:py-24">
