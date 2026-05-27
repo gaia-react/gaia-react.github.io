@@ -63,6 +63,73 @@ type SkuData = {
 
 type SkuTier = {description: string; price: string};
 
+type WorkItem = {
+  company: string;
+  note: string;
+  period: string;
+  role: string;
+};
+
+const GitHubIcon = (
+  <svg
+    aria-hidden="true"
+    fill="currentColor"
+    height="14"
+    viewBox="0 0 24 24"
+    width="14"
+  >
+    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+  </svg>
+);
+
+const LinkedInIcon = (
+  <svg
+    aria-hidden="true"
+    fill="currentColor"
+    height="14"
+    viewBox="0 0 24 24"
+    width="14"
+  >
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.852 3.37-1.852 3.601 0 4.267 2.37 4.267 5.455v6.288zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
+
+const SOCIAL_LINKS = [
+  {
+    href: 'https://www.linkedin.com/in/stevensacks/',
+    icon: LinkedInIcon,
+    label: 'LinkedIn',
+  },
+  {href: 'https://github.com/stevensacks', icon: GitHubIcon, label: 'GitHub'},
+];
+
+const SELECTED_WORK: WorkItem[] = [
+  {
+    company: 'Trek10',
+    note: 'Led six engineers rebuilding a financial services platform. Modernized the codebase from React 15 to React 19.',
+    period: '2024–2025',
+    role: 'Principal Fullstack Engineer',
+  },
+  {
+    company: 'American Express',
+    note: 'Built the internal dining concierge platform used by Amex teams worldwide. Led the mobile rebuild of Pocket Concierge for Japan.',
+    period: '2020–2023',
+    role: 'Lead React Engineer',
+  },
+  {
+    company: 'PlayBrain',
+    note: 'Architected a serverless multilingual publishing platform and a real-time esports tournament system. Hired and led the engineering team.',
+    period: '2016–2017',
+    role: 'Director of Engineering',
+  },
+  {
+    company: 'Plug DJ',
+    note: 'Social music platform. 6M registered users, 1M monthly actives. Raised $2.5M from Javelin Venture Partners. Acquired.',
+    period: '2012–2015',
+    role: 'Founder',
+  },
+];
+
 const SKUS: SkuData[] = [
   {
     anchor: 'audit',
@@ -493,38 +560,109 @@ const Consulting = () => {
             Work with me to skip the trial and error.
           </p>
           <div
-            className="mt-10 flex flex-row items-start gap-5 sm:gap-10"
+            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5"
             data-reveal={true}
             style={{'--reveal-delay': '240ms'} as React.CSSProperties}
           >
-            <img
-              alt="Portrait of Steven Sacks"
-              className="border-line size-16 shrink-0 rounded-full border object-cover"
-              decoding="async"
-              fetchPriority="high"
-              height={64}
-              loading="eager"
-              src="/steven.webp"
-              width={64}
-            />
-            <div>
-              <div className="text-ink mb-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase">
-                Steven Sacks
+            <div className="flex items-center gap-5">
+              <img
+                alt="Portrait of Steven Sacks"
+                className="border-line size-16 shrink-0 rounded-full border object-cover"
+                decoding="async"
+                fetchPriority="high"
+                height={64}
+                loading="eager"
+                src="/steven.webp"
+                width={64}
+              />
+              <div>
+                <div className="text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase">
+                  Author of GAIA
+                </div>
+                <p className="text-ink max-w-148 text-[1.0625rem] leading-tight">
+                  Steven Sacks
+                </p>
               </div>
-              <p className="text-ink-dim max-w-148 text-[1.0625rem] leading-[1.7]">
-                Thirty years building for the web. GAIA Flash shipped on
-                100,000+ sites. Previously Principal Fullstack at Trek10, Lead
-                React Engineer at American Express, and founder of Plug DJ (6M
-                users, acquired).
-              </p>
-              <a
-                className="text-ink-dim hover:text-accent-soft mt-4 inline-block font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
-                href="/about/"
-              >
-                Full background →
-              </a>
+            </div>
+            <ul className="m-0 flex list-none flex-wrap items-center gap-x-6 gap-y-3 p-0">
+              {SOCIAL_LINKS.map((link) => {
+                const external = link.href.startsWith('http');
+
+                return (
+                  <li key={link.href}>
+                    <a
+                      className="text-ink-dim hover:text-accent-soft inline-flex items-center gap-2 font-mono text-[0.7rem] tracking-[0.18em] uppercase no-underline transition-colors duration-150"
+                      href={link.href}
+                      rel={external ? 'noopener noreferrer' : undefined}
+                      target={external ? '_blank' : undefined}
+                    >
+                      {link.icon}
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Track record */}
+      <section className="border-line-soft border-t px-4 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-12 flex flex-wrap items-baseline justify-between gap-4">
+            <div
+              className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase"
+              data-reveal={true}
+            >
+              Track record
+            </div>
+            <div
+              className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block"
+              data-reveal={true}
+            >
+              Thirty years shipping real systems
             </div>
           </div>
+
+          <div
+            className="border-line-soft mb-14 grid items-end gap-10 border-b pb-12 md:grid-cols-[auto_1fr] md:gap-16"
+            data-reveal={true}
+          >
+            <div>
+              <div className="font-display text-ink text-[clamp(3.25rem,8vw,5.75rem)] leading-none font-light tracking-[-0.04em]">
+                100,000
+                <span className="text-accent-soft italic">+</span>
+              </div>
+              <div className="text-muted mt-4 font-mono text-[0.7rem] tracking-[0.22em] uppercase">
+                Sites shipped on GAIA Flash
+              </div>
+            </div>
+            <p className="text-ink-dim max-w-prose text-[1.0625rem] leading-[1.7]">
+              GAIA Flash codified the discipline Flash teams lacked. GAIA does
+              the same for Claude-native React.
+            </p>
+          </div>
+
+          <ul
+            className="m-0 grid list-none gap-10 p-0 md:grid-cols-2 md:gap-x-12 md:gap-y-12"
+            data-stagger=""
+          >
+            {SELECTED_WORK.map((item) => (
+              <li key={item.company}>
+                <div className="text-muted font-mono text-[0.65rem] tracking-[0.18em]">
+                  {item.period}
+                </div>
+                <h3 className="font-display text-ink mt-2 text-[1.2rem] leading-tight font-normal tracking-[-0.01em]">
+                  {`${item.role}, `}
+                  <span className="text-accent">{item.company}</span>
+                </h3>
+                <p className="text-ink-dim mt-3 text-[0.95rem] leading-[1.65]">
+                  {item.note}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
