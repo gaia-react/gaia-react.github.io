@@ -285,10 +285,7 @@ const CalButton = ({
 );
 
 const SpectrumRail = () => (
-  <ol
-    className="relative m-0 grid list-none grid-cols-2 gap-y-10 p-0 md:grid-cols-4 md:gap-y-0"
-    data-stagger=""
-  >
+  <ol className="relative m-0 grid list-none grid-cols-2 gap-y-10 p-0 md:grid-cols-4 md:gap-y-0">
     {SKUS.map((sku, index) => {
       const isLast = index === SKUS.length - 1;
 
@@ -558,10 +555,7 @@ const TestimonialCard = ({item}: {item: TestimonialItem}) => (
 );
 
 const FeaturedTestimonialCard = ({item}: {item: FeaturedTestimonialItem}) => (
-  <figure
-    className="border-line-soft relative mb-10 grid gap-8 border-t pt-8 md:mb-12 md:grid-cols-[16rem_1fr] md:gap-16"
-    data-reveal={true}
-  >
+  <figure className="border-line-soft relative mb-10 grid gap-8 border-t pt-8 md:mb-12 md:grid-cols-[16rem_1fr] md:gap-16">
     <span
       aria-hidden={true}
       className="bg-accent absolute top-[-3px] left-0 h-[5px] w-16"
@@ -738,6 +732,7 @@ const Consulting = () => {
           <ul
             className="m-0 grid list-none gap-10 p-0 md:grid-cols-2 md:gap-12"
             data-stagger=""
+            style={{'--stagger-delay': '140ms'} as React.CSSProperties}
           >
             {SELECTED_WORK.map((item) => (
               <li key={item.company}>
@@ -761,16 +756,10 @@ const Consulting = () => {
       <section className="border-line-soft border-t px-4 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-            <div
-              className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase"
-              data-reveal={true}
-            >
+            <div className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase">
               The engagement journey
             </div>
-            <div
-              className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block"
-              data-reveal={true}
-            >
+            <div className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block">
               Brownfield → Sustain
             </div>
           </div>
@@ -797,24 +786,15 @@ const Consulting = () => {
       <section className="border-line-soft border-y px-4 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 flex flex-wrap items-baseline justify-between gap-4">
-            <div
-              className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase"
-              data-reveal={true}
-            >
+            <div className="text-muted font-mono text-[0.7rem] tracking-[0.22em] uppercase">
               References
             </div>
-            <div
-              className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block"
-              data-reveal={true}
-            >
+            <div className="text-muted hidden font-mono text-[0.7rem] tracking-[0.16em] uppercase md:block">
               From clients and colleagues
             </div>
           </div>
           <FeaturedTestimonialCard item={FEATURED_TESTIMONIAL} />
-          <ul
-            className="m-0 grid list-none gap-10 p-0 md:grid-cols-3 md:gap-10"
-            data-stagger=""
-          >
+          <ul className="m-0 grid list-none gap-10 p-0 md:grid-cols-3 md:gap-10">
             {TESTIMONIALS.map((item) => (
               <TestimonialCard key={item.name} item={item} />
             ))}

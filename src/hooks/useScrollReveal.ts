@@ -1,9 +1,16 @@
 import {useEffect} from 'react';
 
+// Apply js-ready at module load, before React's first paint, so the gated
+// hidden state (.js-ready [data-reveal]) is in place when the reveal elements
+// paint. In prod the prerenderer bakes this onto <html>; dev has no prerender,
+// so without this the elements paint visible and their entrance transition is
+// skipped. JS-gated, so no-JS users still get the visible fallback.
+if (typeof document !== 'undefined') {
+  document.documentElement.classList.add('js-ready');
+}
+
 export const useScrollReveal = () => {
   useEffect(() => {
-    document.documentElement.classList.add('js-ready');
-
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const io = new IntersectionObserver(
