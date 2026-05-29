@@ -12,7 +12,7 @@ const SELECTED_WORK: WorkItem[] = [
     company: 'Trek10',
     note: 'Led six engineers rebuilding a financial services platform for a top-tier management consulting client. Built a JSON-driven dashboard engine for non-engineers, improved the Python API layer, and modernized the codebase from React 15 to React 19.',
     period: '2024–2025',
-    role: 'Principal Fullstack Engineer',
+    role: 'Principal Frontend Engineer',
   },
   {
     company: 'American Express',

@@ -48,6 +48,12 @@ const openCalModal = async (calLink: string) => {
   }, 2500);
 };
 
+type FeaturedTestimonialItem = {
+  attribution: string;
+  name: string;
+  paragraphs: string[];
+};
+
 type SkuData = {
   anchor: string;
   cadence: string;
@@ -63,17 +69,17 @@ type SkuData = {
 
 type SkuTier = {description: string; price: string};
 
+type TestimonialItem = {
+  attribution: string;
+  name: string;
+  quote: string;
+};
+
 type WorkItem = {
   company: string;
   note: string;
   period: string;
   role: string;
-};
-
-type TestimonialItem = {
-  attribution: string;
-  name: string;
-  quote: string;
 };
 
 const GitHubIcon = (
@@ -114,7 +120,7 @@ const SELECTED_WORK: WorkItem[] = [
     company: 'Trek10',
     note: 'Led six engineers rebuilding a financial services platform. Modernized the codebase from React 15 to React 19.',
     period: '2024–2025',
-    role: 'Principal Fullstack Engineer',
+    role: 'Principal Frontend Engineer',
   },
   {
     company: 'American Express',
@@ -130,7 +136,7 @@ const SELECTED_WORK: WorkItem[] = [
   },
   {
     company: 'Plug DJ',
-    note: 'Social music platform. 6M registered users, 1M monthly actives. Raised $2.5M from Javelin Venture Partners. Acquired.',
+    note: 'Social music platform. 6M registered users, 1M monthly actives. Raised $2.25M from Javelin Venture Partners. Acquired.',
     period: '2012–2015',
     role: 'Founder',
   },
@@ -156,6 +162,17 @@ const TESTIMONIALS: TestimonialItem[] = [
       'He does what he says he will do with high integrity. He has always delivered for me, and that is appreciated when working with deadlines. He is innovative and can help work out a solution when you hit the wall.',
   },
 ];
+
+const FEATURED_TESTIMONIAL: FeaturedTestimonialItem = {
+  attribution: 'Director of Delivery, Trek10',
+  name: 'Dave Russo',
+  paragraphs: [
+    'I had the privilege of managing Steven Sacks, and I can say without hesitation that he is one of the strongest engineering leaders I’ve worked with.',
+    'When Steven took ownership of a codebase that had accumulated significant technical debt, he didn’t just stabilize it, he transformed it. He brought a clear-eyed assessment of what needed to change, built team alignment around a path forward, and executed with disciplined velocity. The result was a measurably healthier system and a team that moved faster and with more confidence.',
+    'What sets Steven apart is the combination of high standards and high throughput. He holds the bar on code quality without letting it become a bottleneck. He leads engineers by example by writing clean, maintainable code himself while creating a culture where the team does the same.',
+    'Any organization looking for an engineering leader who can both raise the bar and ship would be lucky to have Steven.',
+  ],
+};
 
 const SKUS: SkuData[] = [
   {
@@ -530,7 +547,7 @@ const TestimonialCard = ({item}: {item: TestimonialItem}) => (
       {item.quote}
     </blockquote>
     <div className="mt-auto">
-      <div className="font-display text-ink text-[1rem] leading-tight font-normal tracking-[-0.01em]">
+      <div className="font-display text-ink text-base/tight font-normal tracking-[-0.01em]">
         {item.name}
       </div>
       <div className="text-muted mt-2 font-mono text-[0.65rem] tracking-[0.18em] uppercase">
@@ -538,6 +555,33 @@ const TestimonialCard = ({item}: {item: TestimonialItem}) => (
       </div>
     </div>
   </li>
+);
+
+const FeaturedTestimonialCard = ({item}: {item: FeaturedTestimonialItem}) => (
+  <figure
+    className="border-line-soft relative mb-10 grid gap-8 border-t pt-8 md:mb-12 md:grid-cols-[16rem_1fr] md:gap-16"
+    data-reveal={true}
+  >
+    <span
+      aria-hidden={true}
+      className="bg-accent absolute top-[-3px] left-0 h-[5px] w-16"
+    />
+    <figcaption className="flex flex-col gap-2 md:pt-1">
+      <div className="font-display text-ink text-xl/tight font-normal tracking-[-0.01em]">
+        {item.name}
+      </div>
+      <div className="text-muted font-mono text-[0.65rem] tracking-[0.18em] uppercase">
+        {item.attribution}
+      </div>
+    </figcaption>
+    <blockquote className="text-ink-dim m-0 flex flex-col gap-4 text-[1.125rem] leading-[1.7] font-light text-pretty italic">
+      {item.paragraphs.map((paragraph) => (
+        <p key={paragraph.slice(0, 32)} className="m-0">
+          {paragraph}
+        </p>
+      ))}
+    </blockquote>
+  </figure>
 );
 
 const Orbs = () => (
@@ -692,7 +736,7 @@ const Consulting = () => {
           </div>
 
           <ul
-            className="m-0 grid list-none gap-10 p-0 md:grid-cols-2 md:gap-x-12 md:gap-y-12"
+            className="m-0 grid list-none gap-10 p-0 md:grid-cols-2 md:gap-12"
             data-stagger=""
           >
             {SELECTED_WORK.map((item) => (
@@ -750,7 +794,7 @@ const Consulting = () => {
       </div>
 
       {/* References */}
-      <section className="border-line-soft border-t border-b px-4 py-16 sm:px-8 sm:py-20">
+      <section className="border-line-soft border-y px-4 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 flex flex-wrap items-baseline justify-between gap-4">
             <div
@@ -766,6 +810,7 @@ const Consulting = () => {
               From clients and colleagues
             </div>
           </div>
+          <FeaturedTestimonialCard item={FEATURED_TESTIMONIAL} />
           <ul
             className="m-0 grid list-none gap-10 p-0 md:grid-cols-3 md:gap-10"
             data-stagger=""
