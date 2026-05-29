@@ -297,7 +297,7 @@ const SpectrumRail = () => (
           <span
             aria-hidden={true}
             className={twJoin(
-              'absolute top-[-5px] left-3 size-2.5 rounded-full md:left-1/2 md:-translate-x-1/2',
+              'absolute -top-1.25 left-3 size-2.5 rounded-full md:left-1/2 md:-translate-x-1/2',
               isLast ? 'bg-secondary' : 'bg-accent'
             )}
           />
@@ -468,7 +468,7 @@ const FoundationBlock = ({sku}: {sku: SkuData}) => (
         >
           <span
             aria-hidden={true}
-            className="bg-accent absolute top-[-3px] left-0 h-[5px] w-10"
+            className="bg-accent absolute -top-0.75 left-0 h-1.25 w-10"
           />
           <div className="text-accent-soft font-mono text-[0.65rem] tracking-[0.22em] uppercase">
             {phase.label}
@@ -538,7 +538,7 @@ const TestimonialCard = ({item}: {item: TestimonialItem}) => (
   <li className="border-line-soft relative flex flex-col gap-6 border-t pt-6">
     <span
       aria-hidden={true}
-      className="bg-accent absolute top-[-3px] left-0 h-[5px] w-10"
+      className="bg-accent absolute -top-0.75 left-0 h-1.25 w-10"
     />
     <blockquote className="text-ink-dim m-0 text-[1.0625rem] leading-[1.65] font-light text-pretty italic">
       {item.quote}
@@ -558,7 +558,7 @@ const FeaturedTestimonialCard = ({item}: {item: FeaturedTestimonialItem}) => (
   <figure className="border-line-soft relative mb-10 grid gap-8 border-t pt-8 md:mb-12 md:grid-cols-[16rem_1fr] md:gap-16">
     <span
       aria-hidden={true}
-      className="bg-accent absolute top-[-3px] left-0 h-[5px] w-16"
+      className="bg-accent absolute -top-0.75 left-0 h-1.25 w-16"
     />
     <figcaption className="flex flex-col gap-2 md:pt-1">
       <div className="font-display text-ink text-xl/tight font-normal tracking-[-0.01em]">
