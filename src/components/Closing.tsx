@@ -1,18 +1,9 @@
 type ClosingProperties = {
-  eyebrow?: string;
-  headline?: string;
   secondaryHref: string;
   secondaryLabel: string;
-  sublede?: string;
 };
 
-const Closing = ({
-  eyebrow = 'Open source. MIT.',
-  headline = 'Discipline you can install.',
-  secondaryHref,
-  secondaryLabel,
-  sublede = 'You direct. Claude implements. GAIA enforces.',
-}: ClosingProperties) => (
+const Closing = ({secondaryHref, secondaryLabel}: ClosingProperties) => (
   <section
     className="relative overflow-hidden px-4 pt-18 pb-16 text-center sm:px-8 sm:pt-28 sm:pb-24"
     id="closing"
@@ -27,13 +18,15 @@ const Closing = ({
     />
     <div className="relative mx-auto max-w-275">
       <span className="text-accent-soft mb-[1.4rem] inline-block font-mono text-[0.72rem] tracking-[0.18em] uppercase">
-        {eyebrow}
+        Open source. MIT.
       </span>
       <h2 className="text-ink font-display mb-[1.6rem] text-[clamp(2.6rem,7vw,5rem)] leading-[1.05] font-light tracking-[-0.035em]">
-        {headline}
+        Discipline you can install.
       </h2>
       <p className="text-ink-dim font-display mb-[2.6rem] text-[clamp(1.1rem,2vw,1.35rem)] italic">
-        {sublede}
+        You direct. Claude implements.
+        <br className="sm:hidden" />
+        <span className="hidden sm:inline">&nbsp;</span>GAIA enforces.
       </p>
       <div className="flex flex-wrap items-center justify-center gap-6">
         <a

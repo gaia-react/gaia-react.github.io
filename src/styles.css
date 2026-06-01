@@ -444,7 +444,7 @@ samp {
 }
 
 @utility gaia-menu-in {
-  animation: gaia-menu-in 0.2s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation: gaia-menu-in 0.4s cubic-bezier(0.2, 0.6, 0.2, 1) both;
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }

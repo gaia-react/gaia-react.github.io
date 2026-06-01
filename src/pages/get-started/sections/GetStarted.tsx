@@ -675,11 +675,22 @@ const GetStartedHero = ({
         </span>
       </div>
 
-      <h1 className="text-ink mx-auto mb-10 max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] tracking-[-0.018em]">
+      <h1 className="text-ink mx-auto mb-6 max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] tracking-[-0.018em]">
         One command is
         <br />
         <em className="text-accent-soft font-light italic">all you need.</em>
       </h1>
+
+      <p
+        className="text-ink-dim mx-auto mb-10 max-w-[60ch] text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-pretty"
+        data-reveal={true}
+        style={{'--reveal-delay': '120ms'} as React.CSSProperties}
+      >
+        GAIA gives you a production-grade React frontend and the Claude-native
+        system to build everything else on it. The frontend is handled. You add
+        your backend, your services, your domain logic, and Claude builds them
+        {" inside GAIA's conventions."}
+      </p>
 
       <div
         className="relative mx-auto max-w-220"
@@ -745,6 +756,15 @@ const GetStartedHero = ({
             target="_blank"
           >
             nodejs.org
+          </a>
+          {'. macOS or Linux. On Windows, run inside '}
+          <a
+            className="text-ink-dim border-line-soft hover:border-accent-soft hover:text-ink border-b no-underline transition-colors duration-150"
+            href="https://learn.microsoft.com/en-us/windows/wsl/install"
+            rel="noreferrer"
+            target="_blank"
+          >
+            WSL2
           </a>
           .
         </span>
