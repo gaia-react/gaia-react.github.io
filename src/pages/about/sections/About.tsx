@@ -43,7 +43,7 @@ const ERA_THEN = [
 const ERA_NOW = [
   'Claude is capable, fast, and everywhere. Every team re-solves the same problems. Prompt drift. Convention chaos. Tests skipped. Vibe-coded work that breaks in week two.',
   'The bottleneck still isn’t capability. It’s the absence of discipline around Claude.',
-  'GAIA React codifies the patterns worth keeping. The AI has to follow them.',
+  'GAIA codifies the patterns worth keeping. The AI has to follow them.',
 ];
 
 const CLOSING = [
