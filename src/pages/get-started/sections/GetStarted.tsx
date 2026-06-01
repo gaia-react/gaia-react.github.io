@@ -32,6 +32,7 @@ type TypingState = {
 // ── Terminal script ────────────────────────────────────────────────────────
 
 const GAIA_VERSION = '1.3.4';
+const OPUS_VERSION = '4.8';
 
 const TERM_SCRIPT: TermStep[] = [
   {prompt: '$', text: 'npx create-gaia@latest my-app', type: 'type'},
@@ -134,7 +135,7 @@ const ClaudeBanner = () => (
         <span className="text-ink font-medium">Claude Code</span>
       </div>
       <div className="text-ink-dim">
-        Opus 4.7 (1M context) with xhigh effort · Claude Max
+        Opus {OPUS_VERSION} (1M context) with xhigh effort · Claude Max
       </div>
       <div className="text-muted">~/projects/my-app</div>
     </div>
@@ -654,7 +655,7 @@ const GetStartedHero = ({
       'relative overflow-hidden px-4 pt-14 pb-16 text-center sm:px-8 sm:py-24',
       // Hold the section a full viewport tall while the terminal is still
       // typing, so the next section can't peek up. Once it's done, collapse
-      // to content height — no dead acre of dark space on tall displays.
+      // to content height, no dead acre of dark space on tall displays.
       !isDone && 'min-h-lvh'
     )}
     id="install"
@@ -729,7 +730,7 @@ const GetStartedHero = ({
       </div>
 
       <div
-        className="text-muted mx-auto mt-9 inline-flex max-w-160 flex-wrap items-baseline justify-center gap-2 text-[0.92rem]"
+        className="text-muted mx-auto mt-9 inline-flex max-w-142 flex-wrap items-baseline justify-center gap-2 text-[0.92rem]"
         data-reveal={true}
         style={{'--reveal-delay': '240ms'} as React.CSSProperties}
       >
@@ -837,7 +838,7 @@ const WhatYouGet = () => (
           <p>
             {'Work has a shape: every feature starts with '}
             <InlineCode>/gaia spec</InlineCode>, a plan, and acceptance tests
-            written before the code. Pre-commit hooks hold the line. A merge
+            written before the code. Pre-commit hooks catch what slips. A merge
             audit has the last word.
           </p>
         </div>

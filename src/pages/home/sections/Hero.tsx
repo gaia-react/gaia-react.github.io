@@ -70,7 +70,7 @@ const Hero = () => (
           Every codebase drifts. AI just gets there faster.
           <br className="hidden sm:inline" />
           <span className="sm:hidden"> </span>
-          GAIA is the discipline that holds the line.
+          GAIA is the discipline that resists it.
         </p>
 
         <p
