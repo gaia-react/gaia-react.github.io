@@ -725,7 +725,7 @@ const Consulting = () => {
             </div>
             <p className="text-ink-dim max-w-prose text-[1.0625rem] leading-[1.7]">
               GAIA Flash codified the discipline Flash teams lacked. GAIA does
-              the same for Claude-native React.
+              the same for Claude-native development.
             </p>
           </div>
 
