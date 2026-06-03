@@ -9,6 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         about: path.resolve(import.meta.dirname, 'about/index.html'),
+        changelog: path.resolve(import.meta.dirname, 'changelog/index.html'),
         consulting: path.resolve(import.meta.dirname, 'consulting/index.html'),
         features: path.resolve(import.meta.dirname, 'features/index.html'),
         getStarted: path.resolve(import.meta.dirname, 'get-started/index.html'),

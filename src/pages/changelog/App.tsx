@@ -1,15 +1,15 @@
 import {Layout} from '@/components/Layout';
-import {useScrollReveal} from '@/hooks/useScrollReveal';
+import {useRevealOnLoad} from '@/hooks/useRevealOnLoad';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
-import Roadmap from './sections/Roadmap';
+import Changelog from './sections/Changelog';
 
 const App = () => {
   useScrollToHash();
-  useScrollReveal();
+  useRevealOnLoad();
 
   return (
     <Layout>
-      <Roadmap />
+      <Changelog />
     </Layout>
   );
 };

@@ -7,6 +7,7 @@ const FOOTER_NAV: FooterLink[] = [
   {href: '/features/', label: 'Features'},
   {href: '/get-started/', label: 'Get Started'},
   {href: '/about/', label: 'About'},
+  {href: '/changelog/', label: 'Changelog'},
   {href: '/consulting/', label: 'Consulting'},
   {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
 ];
