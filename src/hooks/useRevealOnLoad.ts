@@ -1,5 +1,14 @@
 import {useEffect} from 'react';
 
+// Apply js-ready at module load, before React's first paint, so the gated hidden
+// state (.js-ready [data-reveal]) is in place when the reveal elements paint.
+// Without it they paint visible and the entrance transition is skipped, because
+// this page has no useScrollReveal to add the class. The prerenderer bakes it
+// onto <html> in prod; JS-gated, so no-JS users still get the visible fallback.
+if (typeof document !== 'undefined') {
+  document.documentElement.classList.add('js-ready');
+}
+
 // Reveal on load, never on scroll. Unlike useScrollReveal, this adds `is-in` to
 // every [data-reveal] element on mount instead of waiting for it to scroll into
 // view. Above-the-fold elements are seen animating in; anything already marked
