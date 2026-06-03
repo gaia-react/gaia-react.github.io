@@ -11,7 +11,7 @@ export default {
     'GAIA apps reject non-local redirect targets and close an XSS vector, so a crafted redirect or payload cannot send users off-site or run injected markup.',
   ],
   headline:
-    'GAIA apps ship with a Content-Security-Policy, and accessibility testing is built in.',
+    'GAIA apps now ship with a Content-Security-Policy, and accessibility testing is built in.',
   improved: [
     'GAIA apps detect client hints with a pre-paint inline script instead of a reload, removing the flash and extra page load on first visit.',
     'The `/setup-gaia` command is renamed to `/setup-cloned-gaia-project`.',
