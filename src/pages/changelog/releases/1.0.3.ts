@@ -1,7 +1,7 @@
 export default {
   date: '2026-05-01',
-  headline: 'Hook conditional cleanup',
+  headline: 'Maintenance release',
   summary:
-    'Removed conditional logic from PreToolUse and PostToolUse hooks for predictable trigger behavior.',
+    "Internal reliability fixes to GAIA's own Claude hooks. No changes to how GAIA apps behave.",
   version: '1.0.3',
 };

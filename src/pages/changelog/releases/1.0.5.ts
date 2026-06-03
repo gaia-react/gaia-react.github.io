@@ -1,7 +1,7 @@
 export default {
   date: '2026-05-04',
-  headline: 'Wiki sync',
+  headline: 'Language-aware project setup and visible update prompts.',
   summary:
-    'Wiki sync system. drift-check, commit-nudge, and stop safety-net hooks plus the /wiki-sync workhorse for a convergent wiki-update model.',
+    '`/gaia-init` now asks for your primary language and any additional locales when it scaffolds a project, with an opt-out path that strips i18n entirely. The `/update-deps` and `/update-gaia` prompts move to the statusline, so they stay visible instead of firing once where you might miss them.',
   version: '1.0.5',
 };
