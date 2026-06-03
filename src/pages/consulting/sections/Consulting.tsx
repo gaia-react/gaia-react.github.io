@@ -244,7 +244,7 @@ const SKUS: SkuData[] = [
       '10% discount on additional Migration Sprints or a Foundation engagement.',
     ],
     pitch:
-      'Ongoing oversight after the cleanup or the setup. The discipline keeps holding because someone outside the team is watching.',
+      'Ongoing oversight after the cleanup or the setup. GAIA’s gates enforce the rules without anyone watching. The retainer is for the judgment they can’t automate, the edge cases and the roadmap calls.',
     price: 'From $5,000/mo',
     stage: 'Sustain',
     tagline: 'Ongoing oversight as the codebase grows',

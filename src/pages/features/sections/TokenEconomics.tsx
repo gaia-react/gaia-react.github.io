@@ -19,11 +19,11 @@ const TokenEconomics = () => (
           </a>
         </h2>
         <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
-          Long Claude sessions bloat. Context piles up each turn, memory
-          accumulates between turns, every new session starts cold and burns
-          tokens re-briefing. GAIA&apos;s four workflow commands write durable
-          artifacts to disk, then read them on demand. State persists. The
-          conversation stays small.
+          Long sessions accumulate state. Context grows each turn, memory
+          carries between turns, and every new session starts cold. That is how
+          any conversation works. GAIA&apos;s four workflow commands write
+          durable artifacts to disk, then read them on demand. State persists.
+          The conversation stays small.
         </p>
       </div>
 

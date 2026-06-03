@@ -832,8 +832,9 @@ const WhatYouGet = () => (
           <p>
             One command writes a complete React 19 and TypeScript project to
             disk, with the Claude Code workflow already wired in. No config to
-            write. No prompt library to assemble. The discipline ships in the
-            box.
+            write. No prompt library to assemble. Hooks and a commit gate
+            enforce the conventions, no prompting required. The discipline ships
+            in the box.
           </p>
           <p>
             {'Work has a shape: every feature starts with '}

@@ -41,13 +41,13 @@ const ERA_THEN = [
 ];
 
 const ERA_NOW = [
-  'Claude is capable, fast, and everywhere. Every team re-solves the same problems. Prompt drift. Convention chaos. Tests skipped. Vibe-coded work that breaks in week two.',
+  'Claude is capable, fast, and everywhere. Every team re-solves the same problems. Prompt drift. Convention chaos. Tests skipped. Debt that compounds by week two.',
   'The bottleneck still isn’t capability. It’s the absence of discipline around Claude.',
-  'GAIA codifies the patterns worth keeping. The AI has to follow them.',
+  'GAIA codifies the patterns worth keeping. Hooks and gates enforce them on every commit.',
 ];
 
 const CLOSING = [
-  'Every team using Claude right now is paying a tax: prompt drift, skipped tests, code the next engineer is afraid to touch. It’s the same tax Flash teams paid before GAIA Flash, and it compounds quietly until the only fix left is a rewrite.',
+  'Every team using Claude right now is paying a tax. Prompt drift, skipped tests, code the next engineer inherits cold. Any powerful tool without enforced structure runs up that tax, and Claude runs it up faster. It’s the same tax Flash teams paid before GAIA Flash, and it compounds quietly until the only fix left is a rewrite.',
   'GAIA stops the compounding: discipline built into the project itself, the way it was in GAIA Flash. I’ve done this before, at scale.',
   'My goal hasn’t changed since then. Each person shipping the work of a team. Code the next engineer can build on.',
 ];

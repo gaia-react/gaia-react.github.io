@@ -17,7 +17,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Why Obsidian?',
   },
   {
-    desc: 'Technical, branding, and business knowledge are kept siloed, and Claude does not cross-load between them unless a task genuinely spans more than one.',
+    desc: 'Technical, branding, and business knowledge stay siloed. GAIA keeps the domains separate, loading across them only when a task genuinely spans more than one.',
     name: 'Domain isolation is mandatory',
   },
 ];
