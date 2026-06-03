@@ -1,7 +1,7 @@
 const Why = () => (
   <section className="px-4 pt-9 pb-20 sm:px-8 sm:py-20" id="why">
     <div className="mx-auto max-w-6xl">
-      <div className="max-w-191">
+      <div className="max-w-164">
         <div className="mb-4 inline-flex items-center gap-2">
           <span
             aria-hidden={true}
@@ -12,20 +12,24 @@ const Why = () => (
           </span>
         </div>
         <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
-          Vibe coding is broken. GAIA fixes it.
+          Vibe coding doesn’t scale. Discipline does.
         </h2>
+        <p className="text-ink-dim mb-4 text-[1.125rem] leading-[1.65]">
+          Every codebase drifts. AI just gets there faster. GAIA is built to
+          resist it.
+        </p>
         <p className="text-ink-dim mb-4 text-[1.125rem] leading-[1.65]">
           {'Most setups run '}
           <code className="text-ink bg-surface rounded-sm px-1.5 text-[0.875em]">
             /init
           </code>
-          {
-            ' and hope Claude figures out the rest. It does, for a while. Then comes output you can’t trust, quality that drops as the project grows, and technical debt piling up while you build.'
-          }
+          , install a few skills, and hope Claude figures out the rest. It does,
+          for a while. Then technical debt builds up. In your codebase and
+          Claude itself. Both compounding as the project grows.
         </p>
         <p className="text-ink-dim text-[1.125rem] leading-[1.65]">
-          <span className="text-ink">GAIA fixes all three.</span> Its structure
-          and tooling enlist Claude in the fight against its own drift.
+          <span className="text-ink">GAIA fixes this.</span> Its structure and
+          tooling enlist Claude in the fight against drift.
         </p>
       </div>
     </div>

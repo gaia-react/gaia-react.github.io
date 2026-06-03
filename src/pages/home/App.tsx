@@ -4,6 +4,7 @@ import {useScrollReveal} from '@/hooks/useScrollReveal';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesign from './sections/AgenticDesign';
 import ClaudeMd from './sections/ClaudeMd';
+import Determinism from './sections/Determinism';
 import Hero from './sections/Hero';
 import ObsidianWiki from './sections/ObsidianWiki';
 import Why from './sections/Why';
@@ -16,9 +17,10 @@ const App = () => {
     <Layout>
       <Hero />
       <Why />
-      <ClaudeMd />
+      <Determinism />
       <AgenticDesign />
       <ObsidianWiki />
+      <ClaudeMd />
       <Closing secondaryHref="/why/" secondaryLabel="Why GAIA →" />
     </Layout>
   );

@@ -27,13 +27,12 @@ const Discipline = () => (
             AI does not bring that discipline on its own. The default is the
             opposite. Trained on the aggregate of every codebase on the
             internet, the model mirrors the average. The average is not
-            disciplined. Without structure around it, AI takes every shortcut
-            its training data has ever taken. Every bad coding habit.
+            disciplined. Without structure, average is what you get.
           </p>
           <p>
-            GAIA provides structure in layers. Hooks own the tool call. Rules
-            and Skills own the writing. Gates own the commit. Audits own the
-            merge. Discipline is structural.
+            GAIA provides structure in layers. Skills and Rules advise. Hooks
+            own every action, Gates own the commit, Audits own the merge. They
+            fire no matter what the model decides. Discipline is structural.
           </p>
           <p className="text-ink">
             GAIA makes Claude disciplined. That is what “vibe coding” is

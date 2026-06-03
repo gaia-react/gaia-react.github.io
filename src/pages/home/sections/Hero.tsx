@@ -63,14 +63,12 @@ const Hero = () => (
         </h1>
 
         <p
-          className="text-ink-dim mb-4 max-w-[56ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
+          className="text-ink-dim mb-4 max-w-[48ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          Every codebase drifts. AI just gets there faster.
-          <br className="hidden sm:inline" />
-          <span className="sm:hidden"> </span>
-          GAIA is the discipline that resists it.
+          The discipline of a strong engineering team. A professional foundation
+          for Claude Code.
         </p>
 
         <p
