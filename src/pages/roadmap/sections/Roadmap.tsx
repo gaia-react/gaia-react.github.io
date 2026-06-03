@@ -23,8 +23,8 @@ const SHIPPED: ShippedItem[] = [
   {
     date: '2026-05-10',
     description:
-      'Auto-merge and auto-revert workflows on smart-cron with per-tool state. /update-deps becomes /sharpen. code-review-audit promoted to an opt-in CI gate (/setup-gaia-ci). Serena MCP for LSP-backed code intelligence. knip for dead-code detection. /gaia spec auto and /gaia forensics. Robust accessibility tooling stack.',
-    title: 'GAIA CI and the /sharpen rebrand',
+      'Auto-merge and auto-revert workflows on smart-cron with per-tool state. code-review-audit promoted to an opt-in CI gate (/setup-gaia-ci). Serena MCP for LSP-backed code intelligence. knip for dead-code detection. /gaia-spec auto and /gaia-forensics. Robust accessibility tooling stack.',
+    title: 'GAIA CI and smart-cron',
     version: 'v1.1.0',
   },
   {

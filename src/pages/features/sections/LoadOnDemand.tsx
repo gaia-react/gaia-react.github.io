@@ -83,7 +83,7 @@ const COLUMNS: Column[] = [
   {
     body: (
       <>
-        <code>/gaia audit</code> sweeps memory, the wiki, and autoloaded files
+        <code>/gaia-audit</code> sweeps memory, the wiki, and autoloaded files
         for cross-store duplication, stale entries, and rules that drift over
         budget. Two stages: a report with sha256 drift checks, then a mechanical
         apply. Anything that changed since the report gets skipped.

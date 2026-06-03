@@ -43,7 +43,7 @@ const META = [
     name: 'Won’t touch an unsafe tree',
   },
   {
-    desc: 'Add project-specific graded check categories. /gaia fitness runs whatever you define alongside the built-in seven.',
+    desc: 'Add project-specific graded check categories. /gaia-fitness runs whatever you define alongside the built-in seven.',
     name: 'Yours to extend',
   },
   {
@@ -99,7 +99,7 @@ const Fitness = () => (
           </p>
           <p>
             <code className="bg-surface text-ink rounded-sm px-1.5 text-[0.88em]">
-              /gaia fitness
+              /gaia-fitness
             </code>
             {
               ' audits the whole surface, grades it F to A+, and heals what it can, keeping your Claude integration lean and current as the project grows.'

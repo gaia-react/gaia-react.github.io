@@ -10,7 +10,7 @@ const TIERS = [
     scope: 'session',
   },
   {
-    desc: 'Compact session state for /gaia handoff and /gaia pickup.',
+    desc: 'Compact session state for /gaia-handoff and /gaia-pickup.',
     name: 'handoff',
     scope: 'cross-session',
   },

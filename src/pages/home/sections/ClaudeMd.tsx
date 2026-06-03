@@ -1,7 +1,7 @@
 import {twJoin} from 'tailwind-merge';
 
 const ACTIVE_TIERS = [
-  {accent: true, caption: 'you invoke', eyebrow: 'COMMAND', name: '/gaia spec'},
+  {accent: true, caption: 'you invoke', eyebrow: 'COMMAND', name: '/gaia-spec'},
   {caption: 'fires automatically', eyebrow: 'HOOK', name: 'pre-commit'},
   {caption: 'gates every merge', eyebrow: 'AGENT', name: 'code-review-audit'},
 ];
@@ -112,11 +112,11 @@ const ClaudeMd = () => (
             Commands you invoke. Hooks that control. An agent that reviews.
           </h2>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">
-            <code className="text-ink">/gaia spec</code> interviews you and
-            writes the spec. <code className="text-ink">/gaia plan</code> slices
-            it into tasks. <code className="text-ink">/gaia handoff</code>
+            <code className="text-ink">/gaia-spec</code> interviews you and
+            writes the spec. <code className="text-ink">/gaia-plan</code> slices
+            it into tasks. <code className="text-ink">/gaia-handoff</code>
             {' and '}
-            <code className="text-ink">/gaia pickup</code> carry context across
+            <code className="text-ink">/gaia-pickup</code> carry context across
             sessions.
           </p>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65]">

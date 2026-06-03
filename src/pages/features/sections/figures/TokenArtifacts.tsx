@@ -37,7 +37,7 @@ const SpecCard = () => (
         chat.
       </>
     }
-    command="/gaia spec"
+    command="/gaia-spec"
     meta="immutable"
   >
     <div className="space-y-[0.7rem]">
@@ -88,7 +88,7 @@ const PlanCard = () => (
         not the plan. Execution starts cold from <code>KICKOFF.md</code>.
       </>
     }
-    command="/gaia plan"
+    command="/gaia-plan"
     meta="subagent"
   >
     <div className="space-y-[0.55rem]">
@@ -138,7 +138,7 @@ const HandoffCard = () => (
         pointers to file lines, never inlined.
       </>
     }
-    command="/gaia handoff"
+    command="/gaia-handoff"
     meta="synthesis"
   >
     <div className="space-y-[0.65rem]">
@@ -182,7 +182,7 @@ const PickupCard = () => (
         transcript replay.
       </>
     }
-    command="/gaia pickup"
+    command="/gaia-pickup"
     meta="≤ 15 lines"
   >
     <div className="space-y-[0.65rem]">

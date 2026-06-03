@@ -837,7 +837,7 @@ const WhatYouGet = () => (
           </p>
           <p>
             {'Work has a shape: every feature starts with '}
-            <InlineCode>/gaia spec</InlineCode>, a plan, and acceptance tests
+            <InlineCode>/gaia-spec</InlineCode>, a plan, and acceptance tests
             written before the code. Pre-commit hooks catch what slips. A merge
             audit has the last word.
           </p>
@@ -871,7 +871,7 @@ const WhatYouGet = () => (
                 [
                   '│   └── ',
                   'skills/',
-                  '         # /gaia, tdd, react-code, ...',
+                  '         # /gaia-wiki, tdd, react-code, ...',
                 ],
                 ['├── ', '.gaia/', '              # GAIA CLI, manifest'],
                 ['├── ', '.github/workflows/', ' # standing CI'],
