@@ -734,7 +734,7 @@ const GetStartedHero = ({
         data-reveal={true}
         style={{'--reveal-delay': '240ms'} as React.CSSProperties}
       >
-        <span className="text-secondary-soft font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+        <span className="text-muted font-mono text-[0.68rem] tracking-[0.18em] uppercase">
           Prerequisite
         </span>
         <span className="text-line">·</span>

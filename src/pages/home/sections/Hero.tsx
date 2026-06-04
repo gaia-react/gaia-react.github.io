@@ -63,7 +63,7 @@ const Hero = () => (
         </h1>
 
         <p
-          className="text-ink-dim mb-4 max-w-[64ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
+          className="text-ink-dim mb-4 max-w-[50ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
