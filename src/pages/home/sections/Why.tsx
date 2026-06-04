@@ -24,8 +24,8 @@ const Why = () => (
             /init
           </code>
           , install a few skills, and hope Claude figures out the rest. It does,
-          for a while. Then technical debt builds up. In your codebase and
-          Claude itself. Both compounding as the project grows.
+          for a while. Then technical debt builds up, in your codebase and in
+          Claude’s configuration and memory. Both compound as the project grows.
         </p>
         <p className="text-ink-dim text-[1.125rem] leading-[1.65]">
           <span className="text-ink">GAIA fixes this.</span> Its structure and

@@ -67,16 +67,16 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          The discipline of a strong engineering team. A professional foundation
-          for Claude Code.
+          GAIA is a professional foundation for Claude Code, with the discipline
+          of a strong engineering team baked in.
         </p>
 
         <p
-          className="text-ink-dim mb-4 max-w-[56ch] text-[clamp(0.95rem,1.4vw,1.2rem)] leading-[1.55] text-pretty"
+          className="text-ink-dim mb-4 max-w-[60ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.55] text-pretty"
           data-reveal={true}
-          style={{'--reveal-delay': '230ms'} as React.CSSProperties}
+          style={{'--reveal-delay': '215ms'} as React.CSSProperties}
         >
-          React on the frontend, your stack everywhere else.
+          AI writes more code now. GAIA keeps technical debt from piling up.
         </p>
 
         <p

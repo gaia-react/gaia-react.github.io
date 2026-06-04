@@ -22,15 +22,13 @@ const Determinism = () => (
         </h2>
         <div className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.65] text-pretty">
           <p>
-            Why not just install a few skills? A skill is advice. The model
-            takes it or leaves it.&nbsp;
-            <span className="text-ink">
-              Hooks, gates, and audits don’t ask.
-            </span>
+            Why not just install a few skills? A skill is advice. The model can
+            take it or leave it.
           </p>
           <p>
-            You can’t build determinism out of suggestions. That’s the
-            difference between a bundle of skills and a foundation.
+            GAIA doesn’t ask. It blocks the merge until an automated review
+            signs off on your exact code, so what reaches main is&nbsp;
+            <span className="text-ink">code you can trust.</span>
           </p>
         </div>
       </div>
