@@ -6,6 +6,8 @@ export default {
     '`/gaia forensics` turns a workflow misfire into a redacted, filing-ready bug report in one pass.',
   ],
   date: '2026-05-10',
+  headline:
+    'Built-in accessibility testing, dead-code detection, and Serena-powered code intelligence.',
   improved: [
     '**BREAKING:** the `/wiki-sync`, `/wiki-consolidate`, and `/wiki-lint` slash commands are removed. Use `/gaia wiki sync`, `/gaia wiki consolidate`, `/gaia wiki lint`, or `/gaia wiki` for the full chain. This resolves a name collision with the `claude-obsidian` plugin. See the full changelog for details.',
     '`/gaia audit` no longer covers intra-wiki duplication or broken-wikilink checks, which overlapped with the wiki commands. Run `/gaia wiki` separately for wiki-internal audits.',
