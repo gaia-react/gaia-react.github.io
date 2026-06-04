@@ -10,7 +10,7 @@ type CardProperties = {
 const ArtifactCard = ({caption, children, command, meta}: CardProperties) => (
   <div className="bg-surface border-line-soft flex flex-col rounded-lg border p-[1rem_1.1rem_1.2rem]">
     <div className="text-muted border-line-soft mb-[0.85rem] flex items-baseline justify-between border-b pb-[0.6rem] font-mono text-[0.7rem] tracking-[0.14em] uppercase">
-      <span className="text-accent-soft">{command}</span>
+      <span className="text-accent-soft normal-case">{command}</span>
       <span>{meta}</span>
     </div>
     <div className="flex-1 font-mono text-[0.8rem] leading-[1.55]">
