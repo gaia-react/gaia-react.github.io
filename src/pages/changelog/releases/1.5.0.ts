@@ -7,7 +7,6 @@ export default {
   date: '2026-06-05',
   fixed: [
     '`/update-gaia` merges your `package.json` field by field instead of as one opaque block: it never touches your `name`, `version`, `description`, or `author`, applies only the real dependency and script changes from the release, and never re-adds a dependency you removed. A version-only release now skips `package.json` entirely instead of raising a full-file conflict every time.',
-    'GAIA commands always invoke the project-local CLI (`.gaia/cli/gaia`), so a shell alias named `gaia` on your machine no longer interferes with GAIA workflows.',
   ],
   headline:
     'Discrete `/gaia-*` slash commands, dependency-CVE advisories, and a smarter `/update-gaia`.',
