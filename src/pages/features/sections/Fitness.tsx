@@ -1,35 +1,60 @@
-type Finding = {detail: string; severity: Severity};
+type Finding = {file: string; remediation: string; severity: Severity};
+type FindingGroup = {category: string; findings: Finding[]; grade: string};
 type ReportRow = {category: string; grade: string; note?: string};
-type Severity = 'info' | 'warning';
+type Severity = 'error' | 'info' | 'warning';
 
 const REPORT: ReportRow[] = [
+  {category: 'CLAUDE.md hygiene', grade: 'A', note: '1 info'},
+  {category: 'GAIA-install fitness', grade: 'A', note: '1 info'},
   {category: 'Hook integrity', grade: 'A+'},
+  {category: 'Rule hygiene', grade: 'A+'},
+  {category: 'Settings hygiene', grade: 'A+'},
   {
     category: 'Skill / command / agent frontmatter',
     grade: 'B+',
     note: '1 warning',
   },
-  {category: 'Rule hygiene', grade: 'A+'},
-  {category: 'CLAUDE.md hygiene', grade: 'A', note: '1 info'},
-  {category: 'Settings hygiene', grade: 'A+'},
-  {category: 'GAIA-install fitness', grade: 'A', note: '1 info'},
   {category: 'Wiki fitness', grade: 'A+'},
 ];
 
 const OVERALL = 'B+';
 
-const FINDINGS: Finding[] = [
+const FINDINGS: FindingGroup[] = [
   {
-    detail: '.claude/commands/deploy.md · description frontmatter is missing',
-    severity: 'warning',
+    category: 'CLAUDE.md hygiene',
+    findings: [
+      {
+        file: 'CLAUDE.md',
+        remediation:
+          '@-import of a path-scoped rule resolves but is always-loaded; consider whether it warrants it.',
+        severity: 'info',
+      },
+    ],
+    grade: 'A',
   },
   {
-    detail: 'CLAUDE.md · over the size budget; consider splitting',
-    severity: 'info',
+    category: 'GAIA-install fitness',
+    findings: [
+      {
+        file: '.gaia/manifest.json',
+        remediation:
+          'GAIA v1.4.0 installed; v1.5.0 available. Run /update-gaia to upgrade.',
+        severity: 'info',
+      },
+    ],
+    grade: 'A',
   },
   {
-    detail: 'GAIA v1.3.0 installed, v1.5.0 available · /update-gaia',
-    severity: 'info',
+    category: 'Skill / command / agent frontmatter',
+    findings: [
+      {
+        file: '.claude/commands/deploy.md',
+        remediation:
+          'description frontmatter is missing; add a concise description of what this command does.',
+        severity: 'warning',
+      },
+    ],
+    grade: 'B+',
   },
 ];
 
@@ -53,14 +78,15 @@ const META = [
 ];
 
 const SEVERITY: Record<Severity, {dot: string; text: string}> = {
+  error: {dot: 'bg-accent', text: 'text-accent'},
   info: {dot: 'bg-muted', text: 'text-muted'},
   warning: {dot: 'bg-warn', text: 'text-warn-soft'},
 };
 
 const gradeTone = (grade: string) => {
-  if (grade === 'A+') return 'text-secondary-soft';
-  if (grade.startsWith('A')) return 'text-ink';
+  if (grade.startsWith('A')) return 'text-secondary-soft';
   if (grade.startsWith('B')) return 'text-warn-soft';
+  if (grade.startsWith('C')) return 'text-accent-soft';
 
   return 'text-accent';
 };
@@ -110,69 +136,80 @@ const Fitness = () => (
 
       {/* Report card · centerpiece */}
       <div className="bg-surface border-line-soft overflow-hidden rounded-lg border font-mono">
-        <div className="border-line-soft grid grid-cols-[1fr_auto] items-baseline gap-x-4 border-b bg-black/15 px-5 py-[0.7rem]">
-          <span className="text-ink-dim text-[0.8rem]">
-            <span className="text-muted">&gt; </span>/gaia-fitness
+        <div className="border-line-soft grid grid-cols-[1fr_auto_1.5rem] items-baseline gap-x-4 border-b bg-black/15 px-5 py-[0.7rem]">
+          <span className="text-ink-dim text-[0.8rem]">/gaia-fitness</span>
+          <span className="text-muted text-right text-[0.6rem] tracking-[0.18em] uppercase">
+            Overall
           </span>
-          <span className="flex items-baseline gap-2">
-            <span className="text-muted text-[0.6rem] tracking-[0.18em] uppercase">
-              Overall
-            </span>
-            <span className={`text-[0.95rem] ${gradeTone(OVERALL)}`}>
-              {OVERALL}
-            </span>
+          <span className={`text-left text-[0.95rem] ${gradeTone(OVERALL)}`}>
+            {OVERALL}
           </span>
         </div>
 
         {REPORT.map((row) => (
           <div
             key={row.category}
-            className="border-line-soft grid grid-cols-[1fr_auto] items-baseline gap-x-4 border-b px-5 py-[0.7rem] last:border-b-0 sm:grid-cols-[1fr_7rem_2.25rem]"
+            className="border-line-soft grid grid-cols-[1fr_1.5rem] items-baseline gap-x-4 border-b px-5 py-[0.7rem] last:border-b-0 sm:grid-cols-[1fr_7rem_1.5rem]"
           >
             <span className="text-ink text-[0.85rem]">{row.category}</span>
             <span className="text-muted hidden text-right text-[0.7rem] sm:block">
               {row.note ?? ''}
             </span>
             <span
-              className={`text-right text-[0.85rem] ${gradeTone(row.grade)}`}
+              className={`text-left text-[0.85rem] ${gradeTone(row.grade)}`}
             >
               {row.grade}
             </span>
           </div>
         ))}
 
-        <div className="border-line-soft space-y-2 border-t bg-black/15 px-5 py-[0.9rem]">
-          {FINDINGS.map(({detail, severity}) => {
-            const tone = SEVERITY[severity];
+        <div className="border-line-soft space-y-4 border-t bg-black/15 px-5 py-[0.9rem]">
+          <p className="text-muted text-[0.6rem] tracking-[0.18em] uppercase">
+            Findings
+          </p>
+          {FINDINGS.map((group) => (
+            <div key={group.category} className="space-y-1.5">
+              <p className="text-[0.8rem]">
+                <span className="text-ink">{group.category}</span>
+                <span className="text-muted">: </span>
+                <span className={gradeTone(group.grade)}>{group.grade}</span>
+              </p>
+              {group.findings.map(({file, remediation, severity}) => {
+                const tone = SEVERITY[severity];
 
-            return (
-              <div
-                key={detail}
-                className="grid grid-cols-[5rem_1fr] items-baseline gap-x-3"
-              >
-                <span
-                  className={`inline-flex items-center gap-[0.4rem] text-[0.62rem] tracking-[0.14em] uppercase ${tone.text}`}
-                >
-                  <span
-                    className={`inline-block size-1.5 rounded-full ${tone.dot}`}
-                  />
-                  {severity}
-                </span>
-                <span className="text-ink-dim font-sans text-[0.82rem] leading-[1.55]">
-                  {detail}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="border-line-soft flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t px-5 py-[0.7rem] text-[0.72rem]">
-          <span className="text-secondary-soft">healed 1 finding</span>
-          <span className="text-muted">
-            branch chore/gaia-fitness-2026-05-12-1430 · review and commit
-          </span>
+                return (
+                  <div
+                    key={file}
+                    className="grid grid-cols-[5rem_1fr] items-baseline gap-x-3"
+                  >
+                    <span
+                      className={`inline-flex items-center gap-[0.4rem] text-[0.62rem] tracking-[0.14em] uppercase ${tone.text}`}
+                    >
+                      <span
+                        className={`inline-block size-1.5 rounded-full ${tone.dot}`}
+                      />
+                      {severity}
+                    </span>
+                    <span className="block space-y-0.5">
+                      <span className="text-ink block text-[0.78rem]">
+                        {file}
+                      </span>
+                      <span className="text-ink-dim block font-sans text-[0.82rem] leading-[1.55]">
+                        {remediation}
+                      </span>
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
         </div>
       </div>
+
+      <p className="text-muted mt-3 font-mono text-[0.72rem] leading-normal">
+        Changes applied on branch chore/gaia-fitness-2026-05-12-1430. Review
+        with git diff, then commit when satisfied.
+      </p>
 
       {/* Meta strip */}
       <dl className="mt-10 grid gap-x-12 gap-y-6 md:grid-cols-2">
