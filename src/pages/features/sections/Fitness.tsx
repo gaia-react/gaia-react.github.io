@@ -112,7 +112,7 @@ const Fitness = () => (
       <div className="bg-surface border-line-soft overflow-hidden rounded-lg border font-mono">
         <div className="border-line-soft grid grid-cols-[1fr_auto] items-baseline gap-x-4 border-b bg-black/15 px-5 py-[0.7rem]">
           <span className="text-ink-dim text-[0.8rem]">
-            <span className="text-muted">$ </span>gaia fitness
+            <span className="text-muted">&gt; </span>/gaia-fitness
           </span>
           <span className="flex items-baseline gap-2">
             <span className="text-muted text-[0.6rem] tracking-[0.18em] uppercase">
