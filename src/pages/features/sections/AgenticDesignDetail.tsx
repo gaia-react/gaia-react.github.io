@@ -114,7 +114,7 @@ const AgenticDesignDetail = () => (
         </div>
       </div>
 
-      {/* Pattern matrix — 3 clusters × 4 patterns, aligned rows via subgrid */}
+      {/* Pattern matrix - 3 clusters × 4 patterns, aligned rows via subgrid */}
       <div className="border-line-soft bg-surface grid overflow-hidden rounded-lg border md:grid-cols-3 md:grid-rows-[repeat(5,auto)]">
         {CLUSTERS.map((cluster, colIndex) => {
           const isLastCol = colIndex === CLUSTERS.length - 1;

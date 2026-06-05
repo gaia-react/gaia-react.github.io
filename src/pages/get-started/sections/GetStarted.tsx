@@ -734,7 +734,7 @@ const GetStartedHero = ({
         data-reveal={true}
         style={{'--reveal-delay': '240ms'} as React.CSSProperties}
       >
-        <span className="text-secondary-soft font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+        <span className="text-muted font-mono text-[0.68rem] tracking-[0.18em] uppercase">
           Prerequisite
         </span>
         <span className="text-line">·</span>
@@ -832,12 +832,13 @@ const WhatYouGet = () => (
           <p>
             One command writes a complete React 19 and TypeScript project to
             disk, with the Claude Code workflow already wired in. No config to
-            write. No prompt library to assemble. The discipline ships in the
-            box.
+            write. No prompt library to assemble. Hooks and a commit gate
+            enforce the conventions, no prompting required. The discipline is
+            built in.
           </p>
           <p>
             {'Work has a shape: every feature starts with '}
-            <InlineCode>/gaia spec</InlineCode>, a plan, and acceptance tests
+            <InlineCode>/gaia-spec</InlineCode>, a plan, and acceptance tests
             written before the code. Pre-commit hooks catch what slips. A merge
             audit has the last word.
           </p>
@@ -871,7 +872,7 @@ const WhatYouGet = () => (
                 [
                   '│   └── ',
                   'skills/',
-                  '         # /gaia, tdd, react-code, ...',
+                  '         # /gaia-wiki, tdd, react-code, ...',
                 ],
                 ['├── ', '.gaia/', '              # GAIA CLI, manifest'],
                 ['├── ', '.github/workflows/', ' # standing CI'],

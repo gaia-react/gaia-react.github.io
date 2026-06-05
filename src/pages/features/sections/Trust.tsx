@@ -22,7 +22,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Coding principles',
   },
   {
-    desc: 'Rules block debt-accumulating patterns from being written in the first place: untyped objects, untested components, hardcoded strings, a11y gaps.',
+    desc: 'Rules steer Claude away from debt-accumulating patterns as it writes, and the commit gate blocks the ones that slip through. Untyped objects, untested components, hardcoded strings, a11y gaps.',
     name: 'Guardrails against technical debt',
   },
   {
@@ -48,7 +48,7 @@ const Trust = () => (
         <p>
           You can&apos;t trust output you can&apos;t predict. Without
           enforceable conventions, Claude reverts to its training distribution,
-          an average of every codebase on the internet, bad code and all.
+          an average of every codebase on the internet.
         </p>
         <p>
           GAIA&apos;s coding style is what you actually want Claude matching.

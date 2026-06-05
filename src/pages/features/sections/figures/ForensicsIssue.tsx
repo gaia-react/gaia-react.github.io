@@ -68,14 +68,14 @@ const ForensicsIssue = () => (
           Context
         </div>
         <p className="text-ink-dim leading-[1.6]">
-          Running /gaia plan on a feature rework. Exit during the plan-phase-2
+          Running /gaia-plan on a feature rework. Exit during the plan-phase-2
           quality gate.
         </p>
       </div>
     </div>
 
     <div className="border-line-soft text-muted mt-[1.15rem] space-y-[0.18rem] border-t pt-[0.7rem] font-mono text-[0.62rem] tracking-[0.08em]">
-      <div>— filed via /gaia forensics —</div>
+      <div>— filed via /gaia-forensics —</div>
       <div>— body byte-identical to local report —</div>
     </div>
   </div>

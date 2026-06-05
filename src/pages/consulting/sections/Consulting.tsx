@@ -244,7 +244,7 @@ const SKUS: SkuData[] = [
       '10% discount on additional Migration Sprints or a Foundation engagement.',
     ],
     pitch:
-      'Ongoing oversight after the cleanup or the setup. The discipline keeps holding because someone outside the team is watching.',
+      'Ongoing oversight after the cleanup or the setup. GAIA’s gates enforce the rules without anyone watching. The retainer is for the judgment they can’t automate, the edge cases and the roadmap calls.',
     price: 'From $5,000/mo',
     stage: 'Sustain',
     tagline: 'Ongoing oversight as the codebase grows',
@@ -621,7 +621,7 @@ const Consulting = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-x-clip px-4 pt-20 pb-16 sm:px-8 sm:pt-28 sm:pb-20">
+      <section className="relative overflow-x-clip px-4 pt-14 pb-16 sm:px-8 sm:pt-28 sm:pb-20">
         <Orbs />
         <div className="relative z-10 mx-auto max-w-5xl">
           <div

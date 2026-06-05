@@ -8,6 +8,7 @@ const NAV_DESKTOP: NavItem[] = [
   {href: '/why/', label: 'Why GAIA'},
   {href: '/features/', label: 'Features'},
   {href: '/about/', label: 'About'},
+  {href: '/changelog/', label: 'Changelog'},
   {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
 ];
 

@@ -20,11 +20,11 @@ const OVERALL = 'B+';
 
 const FINDINGS: Finding[] = [
   {
-    detail: '.claude/commands/deploy.md — description frontmatter is missing',
+    detail: '.claude/commands/deploy.md · description frontmatter is missing',
     severity: 'warning',
   },
   {
-    detail: 'CLAUDE.md — over the size budget; consider splitting',
+    detail: 'CLAUDE.md · over the size budget; consider splitting',
     severity: 'info',
   },
   {
@@ -43,7 +43,7 @@ const META = [
     name: 'Won’t touch an unsafe tree',
   },
   {
-    desc: 'Add project-specific graded check categories. /gaia fitness runs whatever you define alongside the built-in seven.',
+    desc: 'Add project-specific graded check categories. /gaia-fitness runs whatever you define alongside the built-in seven.',
     name: 'Yours to extend',
   },
   {
@@ -94,12 +94,12 @@ const Fitness = () => (
               CLAUDE.md
             </code>
             {
-              ' that creeps past its budget, settings that collect redundant permissions. Every bit of that drift makes Claude a little less effective and a little more expensive to run.'
+              ' that creeps past its budget, settings that collect redundant permissions. Every bit of that drift makes your Claude integration a little less effective and a little more expensive to run.'
             }
           </p>
           <p>
             <code className="bg-surface text-ink rounded-sm px-1.5 text-[0.88em]">
-              /gaia fitness
+              /gaia-fitness
             </code>
             {
               ' audits the whole surface, grades it F to A+, and heals what it can, keeping your Claude integration lean and current as the project grows.'
@@ -108,11 +108,11 @@ const Fitness = () => (
         </div>
       </div>
 
-      {/* Report card — centerpiece */}
+      {/* Report card · centerpiece */}
       <div className="bg-surface border-line-soft overflow-hidden rounded-lg border font-mono">
         <div className="border-line-soft grid grid-cols-[1fr_auto] items-baseline gap-x-4 border-b bg-black/15 px-5 py-[0.7rem]">
           <span className="text-ink-dim text-[0.8rem]">
-            <span className="text-muted">$ </span>gaia fitness
+            <span className="text-muted">&gt; </span>/gaia-fitness
           </span>
           <span className="flex items-baseline gap-2">
             <span className="text-muted text-[0.6rem] tracking-[0.18em] uppercase">

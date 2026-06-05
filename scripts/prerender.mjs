@@ -11,6 +11,7 @@ const root = path.resolve(__dirname, '..');
 const ROUTES = [
   {url: '/', out: 'index.html'},
   {url: '/about/', out: 'about/index.html'},
+  {url: '/changelog/', out: 'changelog/index.html'},
   {url: '/consulting/', out: 'consulting/index.html'},
   {url: '/features/', out: 'features/index.html'},
   {url: '/get-started/', out: 'get-started/index.html'},
@@ -101,6 +102,9 @@ const exitCode = await (async () => {
       {srcPath: 'features/index.html', url: 'https://gaiareact.com/features/'},
       {srcPath: 'consulting/index.html', url: 'https://gaiareact.com/consulting/'},
       {srcPath: 'about/index.html', url: 'https://gaiareact.com/about/'},
+      // Changelog freshness tracks the release data, not the shell HTML, which
+      // rarely changes. A new release file bumps lastmod; the shell does not.
+      {srcPath: 'src/pages/changelog/releases', url: 'https://gaiareact.com/changelog/'},
     ];
 
     const today = new Date().toISOString().slice(0, 10);

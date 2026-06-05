@@ -63,22 +63,20 @@ const Hero = () => (
         </h1>
 
         <p
-          className="text-ink-dim mb-4 max-w-[56ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
+          className="text-ink-dim mb-4 max-w-[50ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          Every codebase drifts. AI just gets there faster.
-          <br className="hidden sm:inline" />
-          <span className="sm:hidden"> </span>
-          GAIA is the discipline that resists it.
+          GAIA is a professional foundation for Claude Code, with the discipline
+          of a strong engineering team baked in.
         </p>
 
         <p
-          className="text-ink-dim mb-4 max-w-[56ch] text-[clamp(0.95rem,1.4vw,1.2rem)] leading-[1.55] text-pretty"
+          className="text-ink-dim mb-4 max-w-[60ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.55] text-pretty"
           data-reveal={true}
-          style={{'--reveal-delay': '230ms'} as React.CSSProperties}
+          style={{'--reveal-delay': '215ms'} as React.CSSProperties}
         >
-          React on the frontend, your stack everywhere else.
+          AI writes more code now. GAIA keeps technical debt from piling up.
         </p>
 
         <p

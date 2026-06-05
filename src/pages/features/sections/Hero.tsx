@@ -1,7 +1,7 @@
 import type React from 'react';
 
 const Hero = () => (
-  <section className="border-line-soft relative overflow-hidden border-b px-4 pt-18 pb-12 sm:px-8 sm:pt-28 sm:pb-20">
+  <section className="border-line-soft relative overflow-hidden border-b px-4 pt-14 pb-12 sm:px-8 sm:pt-28 sm:pb-20">
     <div
       aria-hidden={true}
       className="gaia-haze-cool gaia-haze-drift pointer-events-none absolute inset-[-3%] z-0"

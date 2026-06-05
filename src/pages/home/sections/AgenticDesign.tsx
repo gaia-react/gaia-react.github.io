@@ -68,7 +68,7 @@ const GateLedger = () => (
           ))}
         </div>
         <div className="text-warn mt-3">
-          ✗ merge blocked — 1 critical and 1 important must clear first
+          ✗ merge blocked, 1 critical and 1 important must clear first
         </div>
       </div>
     </div>
@@ -86,22 +86,20 @@ const AgenticDesign = () => (
               className="bg-secondary-soft size-1.5 rounded-full"
             />
             <span className="text-secondary-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
-              How GAIA works
+              The merge gate
             </span>
           </div>
           <h2 className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
-            Design patterns Claude doesn&apos;t have to remember.
+            Nothing reaches main until it’s reviewed.
           </h2>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65] text-pretty">
-            Gates on every commit. Specs before code. Scoped memory. A
-            code-review audit on every merge. GAIA wires these into the project
-            itself, so they run the same way every session, every task, every
-            model variant.
+            Before any change can merge, GAIA reviews it. An automated audit
+            reads the diff for security holes, missing tests, and risky
+            patterns, then stops the merge when it finds something that matters.
           </p>
           <p className="text-ink-dim text-[1.05rem] leading-[1.65] text-pretty">
-            Here are two of them: a commit gate that turns typecheck, lint,
-            tests, and build into hard stops, and an audit that reads the diff
-            before it reaches main.
+            Every commit must pass typecheck, lint, tests, and build before it
+            lands. This lets Claude move fast without quietly breaking things.
           </p>
         </div>
 

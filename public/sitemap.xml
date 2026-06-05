@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gaiareact.com/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-06-04</lastmod>
   </url>
   <url>
     <loc>https://gaiareact.com/why/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-06-04</lastmod>
   </url>
   <url>
     <loc>https://gaiareact.com/get-started/</loc>
@@ -23,5 +23,9 @@
   <url>
     <loc>https://gaiareact.com/about/</loc>
     <lastmod>2026-05-23</lastmod>
+  </url>
+  <url>
+    <loc>https://gaiareact.com/changelog/</loc>
+    <lastmod>2026-06-04</lastmod>
   </url>
 </urlset>

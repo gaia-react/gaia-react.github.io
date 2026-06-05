@@ -17,7 +17,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Why Obsidian?',
   },
   {
-    desc: 'Technical, branding, and business knowledge are kept siloed, and Claude does not cross-load between them unless a task genuinely spans more than one.',
+    desc: 'Technical, branding, and business knowledge stay siloed. GAIA keeps the domains separate, loading across them only when a task genuinely spans more than one.',
     name: 'Domain isolation is mandatory',
   },
 ];
@@ -35,7 +35,7 @@ const ObsidianWikiDetail = () => (
           CLAUDE.md, not chat history, not machine-local memory.
         </p>
         <p>
-          {'GAIA ships with the '}
+          {'GAIA comes with the '}
           <a
             className="text-accent hover:text-accent-soft transition-colors duration-150"
             href="https://github.com/AgriciDaniel/claude-obsidian"
@@ -45,7 +45,7 @@ const ObsidianWikiDetail = () => (
             claude-obsidian
           </a>
           {
-            ' integration wired up. The vault structure, the ingestion commands, and the maintenance skills are configured before you write your first page.'
+            ' integration already set up. On top of it, GAIA’s custom tooling keeps the wiki organized and up to date as your project grows, with nothing for you to maintain.'
           }
         </p>
       </>

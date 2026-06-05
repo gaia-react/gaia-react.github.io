@@ -26,7 +26,7 @@ const Forensics = () => (
             </p>
             <p>
               <code className="bg-surface text-ink rounded-sm px-1.5 text-[0.88em]">
-                /gaia forensics
+                /gaia-forensics
               </code>
               {
                 ' turns “this didn’t work” into a complete report: redacted, classified, ready to file. User-config issues return the fix inline. Probable GAIA bugs file straight to my GitHub with one prompt. Same body byte-for-byte, so I can fix them fast.'
