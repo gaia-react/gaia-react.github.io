@@ -159,7 +159,7 @@ const ReleaseCard = ({
 
 const Changelog = () => (
   <div className="px-4 sm:px-8">
-    <header className="mx-auto max-w-275 pt-24 pb-2">
+    <header className="mx-auto max-w-275 pt-14 pb-4 sm:pt-24">
       <div className="mb-4 inline-flex items-center gap-2" data-reveal={true}>
         <span
           aria-hidden={true}
@@ -173,7 +173,7 @@ const Changelog = () => (
         Release history
       </h1>
       <p
-        className="text-ink-dim mb-6 max-w-[60ch] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]"
+        className="text-ink-dim max-w-[60ch] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]"
         data-reveal={true}
         style={{'--reveal-delay': '180ms'} as CSSProperties}
       >

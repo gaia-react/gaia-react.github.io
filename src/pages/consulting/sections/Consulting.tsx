@@ -621,7 +621,7 @@ const Consulting = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-x-clip px-4 pt-20 pb-16 sm:px-8 sm:pt-28 sm:pb-20">
+      <section className="relative overflow-x-clip px-4 pt-14 pb-16 sm:px-8 sm:pt-28 sm:pb-20">
         <Orbs />
         <div className="relative z-10 mx-auto max-w-5xl">
           <div

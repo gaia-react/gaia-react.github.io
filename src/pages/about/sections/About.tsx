@@ -133,7 +133,7 @@ const Orbs = () => (
 const About = () => (
   <>
     {/* Lede / hero */}
-    <section className="relative overflow-x-clip px-4 pt-20 pb-24 sm:px-8 sm:pt-28 sm:pb-32">
+    <section className="relative overflow-x-clip px-4 pt-14 pb-24 sm:px-8 sm:pt-28 sm:pb-32">
       <Orbs />
       <div className="relative z-10 mx-auto max-w-4xl">
         <div
