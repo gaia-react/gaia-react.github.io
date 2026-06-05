@@ -102,7 +102,7 @@ const GaiaCi = () => (
 
       {/* Ledger · centerpiece */}
       <div className="bg-surface border-line-soft overflow-hidden rounded-lg border font-mono">
-        <div className="border-line-soft text-muted grid grid-cols-[1fr_auto] border-b bg-black/15 px-5 py-[0.7rem] text-[0.65rem] tracking-[0.18em] uppercase sm:grid-cols-[1fr_120px_140px]">
+        <div className="border-line-soft text-muted grid grid-cols-[1fr_auto] gap-x-4 border-b bg-black/15 px-5 py-[0.7rem] text-[0.65rem] tracking-[0.18em] uppercase sm:grid-cols-[1fr_120px_140px]">
           <span>What</span>
           <span className="hidden sm:block">When</span>
           <span>Action</span>

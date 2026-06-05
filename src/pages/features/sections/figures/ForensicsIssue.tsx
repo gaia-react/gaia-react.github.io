@@ -3,7 +3,7 @@ const ForensicsIssue = () => (
     aria-hidden={true}
     className="bg-surface border-line-soft rounded-lg border p-[1.1rem_1.25rem_1.25rem]"
   >
-    <div className="text-muted border-line-soft mb-[0.95rem] flex items-baseline justify-between gap-3 border-b pb-[0.65rem] font-mono text-[0.62rem] tracking-[0.16em] uppercase">
+    <div className="text-muted border-line-soft mb-[0.95rem] flex items-baseline justify-between gap-3 border-b pb-[0.65rem] font-mono text-[0.62rem] tracking-[0.16em]">
       <span>
         <span className="text-ink-dim">github.com/</span>gaia-react/gaia
       </span>

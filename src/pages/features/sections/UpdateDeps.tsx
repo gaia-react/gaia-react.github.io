@@ -76,8 +76,8 @@ const DependabotCard = () => (
 
 const GaiaCard = () => (
   <div className="bg-surface border-secondary/40 relative flex flex-col rounded-lg border p-[1.1rem_1.2rem_1.2rem]">
-    <div className="text-secondary-soft mb-3 font-mono text-[0.65rem] tracking-[0.2em] uppercase">
-      GAIA Update Deps
+    <div className="text-secondary-soft mb-3 font-mono text-[0.65rem] tracking-[0.2em]">
+      GAIA /update-deps
     </div>
     <RepoHead chip="deps" />
     <div className="text-ink mb-[0.85rem] text-[0.98rem] tracking-[-0.005em]">
