@@ -150,16 +150,16 @@ const TESTIMONIALS: TestimonialItem[] = [
       'Steven was hired to fix the fiasco which was the front-end of the project. The front-end was months behind schedule and hardly progressing at all. Steven quickly brought order to chaos, got the front-end moving again.',
   },
   {
+    attribution: 'Senior Engineering Manager, American Express',
+    name: 'Chris Hutchinson',
+    quote:
+      'Brought much-needed stability to our front end through both codebase and process improvements for our restaurant booking platform... features not only release on time, but to a very high level of quality every time.',
+  },
+  {
     attribution: 'Security Consultant, Deja vu Security',
     name: 'Rhett Brown',
     quote:
       'Steven brings a level of rigor to development that is very rare. He approaches his work almost philosophically, working hard to incorporate best practices and logical structure.',
-  },
-  {
-    attribution: 'COO, Allman Consulting and Training',
-    name: 'Todd Thurston',
-    quote:
-      'He does what he says he will do with high integrity. He has always delivered for me, and that is appreciated when working with deadlines. He is innovative and can help work out a solution when you hit the wall.',
   },
 ];
 
@@ -547,7 +547,7 @@ const TestimonialCard = ({item}: {item: TestimonialItem}) => (
       <div className="font-display text-ink text-base/tight font-normal tracking-[-0.01em]">
         {item.name}
       </div>
-      <div className="text-muted mt-2 font-mono text-[0.65rem] tracking-[0.18em] uppercase">
+      <div className="text-muted mt-2 min-h-[2lh] font-mono text-[0.65rem] tracking-[0.18em] uppercase">
         {item.attribution}
       </div>
     </div>
