@@ -136,7 +136,7 @@ const SELECTED_WORK: WorkItem[] = [
   },
   {
     company: 'Plug DJ',
-    note: 'Social music platform. 6M registered users, 1M monthly actives. Raised $2.25M from Javelin Venture Partners. Acquired.',
+    note: 'Social music platform. 6M registered users, 1M monthly actives. Raised $2.5M led by Javelin Venture Partners. Acquired.',
     period: '2012–2015',
     role: 'Founder',
   },
@@ -225,7 +225,7 @@ const SKUS: SkuData[] = [
       '30 days of post-delivery email support.',
     ],
     pitch:
-      'Full GAIA setup, done with you. The greenfield path for teams starting a new Claude-native project the right way.',
+      'The greenfield path for teams starting a new Claude-native project. GAIA set up and tuned to your stack alongside your team, so the discipline is in place before the first feature ships.',
     price: '$25,000',
     stage: 'Greenfield',
     tagline: 'Full GAIA setup, done with you',
@@ -244,7 +244,7 @@ const SKUS: SkuData[] = [
       '10% discount on additional Migration Sprints or a Foundation engagement.',
     ],
     pitch:
-      'Ongoing oversight after the cleanup or the setup. GAIA’s gates enforce the rules without anyone watching. The retainer is for the judgment they can’t automate, the edge cases and the roadmap calls.',
+      'Once the cleanup or the setup is done, GAIA’s gates enforce the rules without anyone watching. The retainer is for the judgment they can’t automate, the edge cases and the roadmap calls.',
     price: 'From $5,000/mo',
     stage: 'Sustain',
     tagline: 'Ongoing oversight as the codebase grows',
@@ -399,7 +399,7 @@ const AuditBlock = ({sku}: {sku: SkuData}) => (
   </div>
 );
 
-const MigrateBlock = ({sku}: {sku: SkuData}) => (
+const MigrationBlock = ({sku}: {sku: SkuData}) => (
   <div>
     <SkuHeader sku={sku} />
     <p className="text-ink-dim mt-6 max-w-prose text-[1.125rem] leading-[1.7]">
@@ -528,7 +528,7 @@ const RetainerBlock = ({sku}: {sku: SkuData}) => (
 
 const SkuBlock = ({sku}: {sku: SkuData}) => {
   if (sku.anchor === 'audit') return <AuditBlock sku={sku} />;
-  if (sku.anchor === 'migration') return <MigrateBlock sku={sku} />;
+  if (sku.anchor === 'migration') return <MigrationBlock sku={sku} />;
   if (sku.anchor === 'foundation') return <FoundationBlock sku={sku} />;
 
   return <RetainerBlock sku={sku} />;
