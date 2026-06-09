@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Claude is raw power. GAIA is order and focus. A professional foundation for Claude Code that keeps technical debt from piling up as AI writes more of your code."
+      content="GAIA is the engineering discipline for Claude Code. Enforced quality gates Claude can't skip, so sloppy AI code never reaches production."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -20,7 +20,7 @@
     <meta property="og:title" content="GAIA: A Claude-native foundation for React and your backend" />
     <meta
       property="og:description"
-      content="Claude is raw power. GAIA is order and focus. A professional foundation for Claude Code that keeps technical debt from piling up as AI writes more of your code."
+      content="GAIA is the engineering discipline for Claude Code. Enforced quality gates Claude can't skip, so sloppy AI code never reaches production."
     />
     <meta property="og:image" content="https://gaiareact.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -35,7 +35,7 @@
     <meta name="twitter:title" content="GAIA: A Claude-native foundation for React and your backend" />
     <meta
       name="twitter:description"
-      content="Claude is raw power. GAIA is order and focus. A professional foundation for Claude Code that keeps technical debt from piling up as AI writes more of your code."
+      content="GAIA is the engineering discipline for Claude Code. Enforced quality gates Claude can't skip, so sloppy AI code never reaches production."
     />
     <meta name="twitter:image" content="https://gaiareact.com/og-image.png" />
     <link rel="dns-prefetch" href="https://github.com">
@@ -96,7 +96,7 @@
             "alternateName": "GAIA",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
-            "description": "Claude is raw power. GAIA is order and focus. A professional foundation for Claude Code that keeps technical debt from piling up as AI writes more of your code.",
+            "description": "GAIA is the engineering discipline for Claude Code. Enforced quality gates Claude can't skip, so sloppy AI code never reaches production.",
             "url": "https://gaiareact.com/",
             "author": {"@id": "https://gaiareact.com/#person"},
             "publisher": {"@id": "https://gaiareact.com/#organization"},
@@ -119,6 +119,37 @@
               "priceCurrency": "USD",
               "availability": "https://schema.org/InStock"
             }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://gaiareact.com/#faq",
+            "isPartOf": {"@id": "https://gaiareact.com/#website"},
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is GAIA for Claude Code?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "GAIA is an engineering discipline built into a React project for Claude Code. It enforces quality gates Claude can't skip, so AI-written code clears typecheck, lint, tests, and build before it reaches production. React is handled on the frontend. Your stack everywhere else."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does GAIA stop Claude from shipping bad code?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Skills advise, GAIA enforces. Test-driven development is required, secrets can't be written into source, and every commit clears typecheck, lint, tests, and build. Every merge is read line by line for security holes, fixed automatically where it's safe and blocked for review where it isn't."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does GAIA keep token costs down as a project grows?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. GAIA keeps state on disk and reads only what each task needs instead of the whole project. Upkeep commands keep Claude's context lean, so token costs stay flat as the codebase grows."
+                }
+              }
+            ]
           }
         ]
       }

@@ -28,7 +28,7 @@ const SELECTED_WORK: WorkItem[] = [
   },
   {
     company: 'Plug DJ',
-    note: 'Social music platform. 6M registered users, 1M monthly actives, 60K simultaneous connections. Raised $2.5M from Javelin Venture Partners. Acquired.',
+    note: 'Social music platform. 6M registered users, 1M monthly actives, 60K simultaneous connections. Raised $2.5M led by Javelin Venture Partners. Acquired.',
     period: '2012–2015',
     role: 'Founder',
   },
@@ -47,8 +47,8 @@ const ERA_NOW = [
 ];
 
 const CLOSING = [
-  'Every team using Claude right now is paying a tax. Prompt drift, skipped tests, code the next engineer inherits cold. Any powerful tool without enforced structure runs up that tax, and Claude runs it up faster. It’s the same tax Flash teams paid before GAIA Flash, and it compounds quietly until the only fix left is a rewrite.',
-  'GAIA stops the compounding: discipline built into the project itself, the way it was in GAIA Flash. I’ve done this before, at scale.',
+  'Every team using Claude right now is paying a tax. Code the next engineer inherits cold. Any powerful tool without enforced structure runs up that tax, and Claude runs it up faster. It compounds quietly until the only fix left is a rewrite.',
+  'GAIA stops the compounding. Discipline built into the project itself, the way it was in GAIA Flash. I’ve done this before, at scale.',
   'My goal hasn’t changed since then. Each person shipping the work of a team. Code the next engineer can build on.',
 ];
 

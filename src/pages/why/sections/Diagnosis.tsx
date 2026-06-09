@@ -8,7 +8,7 @@ type Item = {
 
 const FAILURES: Item[] = [
   {
-    desc: 'Every session reinvents how the project does things. One file goes one way, the next file goes another. Conventions exist on paper. The model does not read them by default.',
+    desc: 'A fresh session reinvents how the project does things. One file goes one way, the next file goes another. Conventions exist on paper. The model does not read them by default.',
     name: 'Convention drift',
   },
   {
@@ -24,8 +24,8 @@ const FAILURES: Item[] = [
         <code className="bg-surface text-ink rounded-sm px-1.5 font-mono text-[0.875em]">
           any
         </code>
-        . AI moves at AI speed, so tech debt piles up faster than any human team
-        would tolerate.
+        . AI moves at AI speed, so tech debt accumulates faster than any human
+        team would tolerate.
       </>
     ),
     name: 'No backstop',
@@ -63,8 +63,8 @@ const Diagnosis = () => (
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
           If you’ve used Claude on a real project, you’ve seen it happen.
-          Working code rewritten. Features hallucinated. Tests never written.
-          The failures are not random. They have shapes.
+          Working code rewritten. Features hallucinated. Tests never run. The
+          failures are not random. They have shapes.
         </p>
       </div>
       <ol className="grid list-none gap-x-10 gap-y-12 p-0 sm:grid-cols-2 sm:gap-y-14">

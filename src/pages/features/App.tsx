@@ -9,9 +9,9 @@ import GaiaCi from './sections/GaiaCi';
 import Hero from './sections/Hero';
 import LoadOnDemand from './sections/LoadOnDemand';
 import ObsidianWikiDetail from './sections/ObsidianWikiDetail';
-import Pillar from './sections/Pillar';
+import Principles from './sections/Principles';
 import Stack from './sections/Stack';
-import TokenEconomics from './sections/TokenEconomics';
+import StateOnDisk from './sections/StateOnDisk';
 import Trust from './sections/Trust';
 import UpdateDeps from './sections/UpdateDeps';
 
@@ -24,9 +24,9 @@ const App = () => {
       <Hero />
       <Trust />
       <LoadOnDemand />
-      <TokenEconomics />
+      <StateOnDisk />
       <AgenticDesignDetail />
-      <Pillar />
+      <Principles />
       <ObsidianWikiDetail />
       <GaiaCi />
       <UpdateDeps />

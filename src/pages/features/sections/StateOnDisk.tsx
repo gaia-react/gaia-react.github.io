@@ -1,6 +1,6 @@
 import TokenArtifacts from './figures/TokenArtifacts';
 
-const TokenEconomics = () => (
+const StateOnDisk = () => (
   <section
     className="border-line-soft bg-tint scroll-mt-20 border-b py-20"
     id="tokens"
@@ -32,4 +32,4 @@ const TokenEconomics = () => (
   </section>
 );
 
-export default TokenEconomics;
+export default StateOnDisk;

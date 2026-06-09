@@ -32,7 +32,7 @@ const Discipline = () => (
           <p>
             GAIA provides structure in layers. Skills and Rules advise. Hooks
             own every action, Gates own the commit, Audits own the merge. They
-            fire no matter what the model decides. Discipline is structural.
+            fire no matter what the model decides.
           </p>
           <p className="text-ink">
             GAIA makes Claude disciplined. That is what “vibe coding” is

@@ -136,7 +136,7 @@ const SELECTED_WORK: WorkItem[] = [
   },
   {
     company: 'Plug DJ',
-    note: 'Social music platform. 6M registered users, 1M monthly actives. Raised $2.25M from Javelin Venture Partners. Acquired.',
+    note: 'Social music platform. 6M registered users, 1M monthly actives. Raised $2.5M led by Javelin Venture Partners. Acquired.',
     period: '2012–2015',
     role: 'Founder',
   },
@@ -150,16 +150,16 @@ const TESTIMONIALS: TestimonialItem[] = [
       'Steven was hired to fix the fiasco which was the front-end of the project. The front-end was months behind schedule and hardly progressing at all. Steven quickly brought order to chaos, got the front-end moving again.',
   },
   {
+    attribution: 'Senior Engineering Manager, American Express',
+    name: 'Chris Hutchinson',
+    quote:
+      'Steven brought much-needed stability to our front end through both codebase and process improvements for our restaurant booking platform... features not only released on time, but to a very high level of quality every time.',
+  },
+  {
     attribution: 'Security Consultant, Deja vu Security',
     name: 'Rhett Brown',
     quote:
       'Steven brings a level of rigor to development that is very rare. He approaches his work almost philosophically, working hard to incorporate best practices and logical structure.',
-  },
-  {
-    attribution: 'COO, Allman Consulting and Training',
-    name: 'Todd Thurston',
-    quote:
-      'He does what he says he will do with high integrity. He has always delivered for me, and that is appreciated when working with deadlines. He is innovative and can help work out a solution when you hit the wall.',
   },
 ];
 
@@ -225,7 +225,7 @@ const SKUS: SkuData[] = [
       '30 days of post-delivery email support.',
     ],
     pitch:
-      'Full GAIA setup, done with you. The greenfield path for teams starting a new Claude-native project the right way.',
+      'The greenfield path for teams starting a new Claude-native project. GAIA set up and tuned to your stack alongside your team, so the discipline is in place before the first feature ships.',
     price: '$25,000',
     stage: 'Greenfield',
     tagline: 'Full GAIA setup, done with you',
@@ -244,7 +244,7 @@ const SKUS: SkuData[] = [
       '10% discount on additional Migration Sprints or a Foundation engagement.',
     ],
     pitch:
-      'Ongoing oversight after the cleanup or the setup. GAIA’s gates enforce the rules without anyone watching. The retainer is for the judgment they can’t automate, the edge cases and the roadmap calls.',
+      'Once the cleanup or the setup is done, GAIA’s gates enforce the rules without anyone watching. The retainer is for the judgment they can’t automate, the edge cases and the roadmap calls.',
     price: 'From $5,000/mo',
     stage: 'Sustain',
     tagline: 'Ongoing oversight as the codebase grows',
@@ -399,7 +399,7 @@ const AuditBlock = ({sku}: {sku: SkuData}) => (
   </div>
 );
 
-const MigrateBlock = ({sku}: {sku: SkuData}) => (
+const MigrationBlock = ({sku}: {sku: SkuData}) => (
   <div>
     <SkuHeader sku={sku} />
     <p className="text-ink-dim mt-6 max-w-prose text-[1.125rem] leading-[1.7]">
@@ -528,7 +528,7 @@ const RetainerBlock = ({sku}: {sku: SkuData}) => (
 
 const SkuBlock = ({sku}: {sku: SkuData}) => {
   if (sku.anchor === 'audit') return <AuditBlock sku={sku} />;
-  if (sku.anchor === 'migration') return <MigrateBlock sku={sku} />;
+  if (sku.anchor === 'migration') return <MigrationBlock sku={sku} />;
   if (sku.anchor === 'foundation') return <FoundationBlock sku={sku} />;
 
   return <RetainerBlock sku={sku} />;
@@ -547,7 +547,7 @@ const TestimonialCard = ({item}: {item: TestimonialItem}) => (
       <div className="font-display text-ink text-base/tight font-normal tracking-[-0.01em]">
         {item.name}
       </div>
-      <div className="text-muted mt-2 font-mono text-[0.65rem] tracking-[0.18em] uppercase">
+      <div className="text-muted mt-2 min-h-[2lh] font-mono text-[0.65rem] tracking-[0.18em] uppercase">
         {item.attribution}
       </div>
     </div>
