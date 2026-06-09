@@ -2,10 +2,10 @@ import Closing from '@/components/Closing';
 import {Layout} from '@/components/Layout';
 import {useScrollReveal} from '@/hooks/useScrollReveal';
 import {useScrollToHash} from '@/hooks/useScrollToHash';
-import Enforcement from './sections/Enforcement';
-import Focus from './sections/Focus';
+import Gate from './sections/Gate';
 import Hero from './sections/Hero';
-import Performance from './sections/Performance';
+import Opinionated from './sections/Opinionated';
+import TokenEfficiency from './sections/TokenEfficiency';
 import Why from './sections/Why';
 
 const App = () => {
@@ -15,10 +15,10 @@ const App = () => {
   return (
     <Layout>
       <Hero />
-      <Enforcement />
+      <Gate />
       <Why />
-      <Focus />
-      <Performance />
+      <Opinionated />
+      <TokenEfficiency />
       <Closing secondaryHref="/why/" secondaryLabel="Why GAIA →" />
     </Layout>
   );

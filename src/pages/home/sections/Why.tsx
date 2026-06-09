@@ -11,8 +11,11 @@ const Why = () => (
             Why GAIA
           </span>
         </div>
-        <h2 className="text-ink mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
-          Vibe coding doesn’t scale. Discipline does.
+        <h2 className="mb-4 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.02em]">
+          <span className="text-ink-dim">Vibe coding doesn’t scale.</span>
+          <br className="hidden sm:inline" />
+          <span className="sm:hidden"> </span>
+          <span className="text-ink">Discipline does.</span>
         </h2>
         <p className="text-ink-dim mb-4 text-[1.125rem] leading-[1.65]">
           Every codebase drifts. AI just gets there faster.

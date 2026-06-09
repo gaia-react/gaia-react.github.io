@@ -1,11 +1,11 @@
 import {twJoin} from 'tailwind-merge';
 
 const RULE_ROWS = [
-  {active: true, pattern: '**/api/**', rule: 'api-service'},
-  {active: true, pattern: '**/*.tsx', rule: 'tailwind'},
-  {pattern: '**/*.test.{ts,tsx}', rule: 'playwright'},
-  {pattern: '**/*.stories.tsx', rule: 'storybook'},
-  {pattern: '**/a11y/**', rule: 'accessibility'},
+  {active: true, pattern: 'app/**/*.{tsx,css}', rule: 'tailwind'},
+  {active: true, pattern: 'app/services/**', rule: 'api-service'},
+  {pattern: 'app/components/**', rule: 'accessibility'},
+  {pattern: 'app/**/*.stories.tsx', rule: 'storybook'},
+  {pattern: '.playwright/**', rule: 'playwright'},
 ];
 
 const MatchLedger = () => (
@@ -15,7 +15,7 @@ const MatchLedger = () => (
         .claude/rules/
       </span>
       <span className="text-muted font-mono text-[0.6rem] tracking-[0.16em] uppercase">
-        on match
+        apply on match
       </span>
     </div>
     <div className="divide-line-soft divide-y">
@@ -54,10 +54,10 @@ const MatchLedger = () => (
   </div>
 );
 
-const Focus = () => (
+const Opinionated = () => (
   <section
     className="border-line-soft bg-tint border-y px-4 py-20 sm:px-8"
-    id="focus"
+    id="opinionated"
   >
     <div className="mx-auto max-w-6xl">
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-16">
@@ -71,20 +71,25 @@ const Focus = () => (
               Opinionated by default
             </span>
           </div>
-          <h2 className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
-            Opinionated defaults, not a blank config.
+          <h2 className="mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em] text-balance">
+            <span className="text-ink-dim">
+              Without standards, Claude improvises.
+            </span>
+            <span> </span>
+            <span className="text-ink">
+              With GAIA’s standards, quality holds up.
+            </span>
           </h2>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65] text-pretty">
-            React on the frontend, your stack everywhere else. GAIA ships with
-            informed opinions. Styling, tests, stories, accessibility, services.
-            Claude follows them on every file it touches, so the codebase stays
-            consistent instead of a patchwork of whatever the model felt like
-            that session.
+            GAIA ships with informed opinions on styling, tests, stories,
+            accessibility, and services. Claude applies them to every file it
+            touches, so the codebase stays consistent instead of a patchwork of
+            whatever the model felt like that session.
           </p>
           <p className="text-ink-dim text-[1.05rem] leading-[1.65] text-pretty">
-            Add your own backend and the same conventions extend to it. Each
-            rule applies only to the files it matches, so Claude always gets the
-            right standard, and the gates enforce it.
+            Each rule is scoped to the files it matches, so Claude gets the
+            right standard and none of the noise. Whatever you build on top
+            inherits the same gates.
           </p>
         </div>
 
@@ -96,4 +101,4 @@ const Focus = () => (
   </section>
 );
 
-export default Focus;
+export default Opinionated;
