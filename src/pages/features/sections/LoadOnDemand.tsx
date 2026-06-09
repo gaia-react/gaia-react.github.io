@@ -84,9 +84,11 @@ const COLUMNS: Column[] = [
     body: (
       <>
         <code>/gaia-audit</code> sweeps memory, the wiki, and autoloaded files
-        for cross-store duplication, stale entries, and rules that drift over
-        budget. Two stages: a report with sha256 drift checks, then a mechanical
-        apply. Anything that changed since the report gets skipped.
+        for duplication, stale entries, and rules over budget. It catches
+        contradictions, not just copies. One review gate stands between the
+        findings and your files, cleared with one keystroke. Interrupted runs
+        resume, every change is a git-revertable diff, and GAIA flags when a
+        sweep is worth running.
       </>
     ),
     name: 'Knowledge audit',
@@ -104,6 +106,10 @@ const COLUMNS: Column[] = [
             <span className="text-warn-soft">6</span>
           </div>
           <div className="flex justify-between gap-3">
+            <span>Contradictions</span>
+            <span className="text-warn-soft">2</span>
+          </div>
+          <div className="flex justify-between gap-3">
             <span>Over-budget</span>
             <span className="text-warn-soft">1</span>
           </div>
@@ -113,12 +119,12 @@ const COLUMNS: Column[] = [
           </div>
           <div className="flex justify-between gap-3">
             <span>Actions queued</span>
-            <span className="text-ink">11</span>
+            <span className="text-ink">12</span>
           </div>
         </div>
       </>
     ),
-    when: 'Periodic sweep',
+    when: 'When debt accrues',
   },
 ];
 
@@ -146,7 +152,7 @@ const LoadOnDemand = () => (
         <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
           Three intercepts keep Claude&apos;s working surface lean. Rules sit
           dormant until you touch matching files. Symbol queries return one
-          answer, not every match. Periodic audits prune what accumulates.
+          answer, not every match. Audits prune what accumulates.
         </p>
       </div>
 
