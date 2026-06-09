@@ -55,10 +55,13 @@ const MatchLedger = () => (
 );
 
 const Opinionated = () => (
-  <section className="px-4 py-20 sm:px-8" id="opinionated">
+  <section
+    className="border-line-soft bg-tint border-y px-4 py-20 sm:px-8"
+    id="opinionated"
+  >
     <div className="mx-auto max-w-6xl">
-      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-16">
-        <div className="lg:sticky lg:top-24 lg:self-start">
+      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-24 lg:order-2 lg:self-start">
           <div className="mb-4 inline-flex items-center gap-2">
             <span
               aria-hidden={true}
@@ -90,7 +93,7 @@ const Opinionated = () => (
           </p>
         </div>
 
-        <div>
+        <div className="lg:order-1">
           <MatchLedger />
         </div>
       </div>

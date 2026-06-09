@@ -51,10 +51,10 @@ const TrustLedger = () => (
           <span className="text-muted">$ </span>git commit -m &quot;add discount
           logic&quot;
         </div>
-        <div className="text-secondary mt-1">
+        <div className="text-secondary-soft mt-1">
           ✓ total.test.ts failed first (RED)
         </div>
-        <div className="text-secondary mt-1 flex flex-wrap gap-x-4 gap-y-0.5">
+        <div className="text-secondary-soft mt-1 flex flex-wrap gap-x-4 gap-y-0.5">
           {COMMIT_GATES.map((gate) => (
             <span key={gate}>{`✓ ${gate}`}</span>
           ))}
@@ -78,7 +78,7 @@ const TrustLedger = () => (
               <span className="text-ink-dim max-sm:col-span-2">
                 {finding.note}
                 {finding.resolution === 'fixed' && (
-                  <span className="text-secondary"> → fixed</span>
+                  <span className="text-secondary-soft"> → fixed</span>
                 )}
               </span>
             </div>
@@ -93,19 +93,16 @@ const TrustLedger = () => (
 );
 
 const Trust = () => (
-  <section
-    className="border-line-soft bg-tint border-y px-4 py-20 sm:px-8"
-    id="trust"
-  >
+  <section className="px-4 py-20 sm:px-8" id="trust">
     <div className="mx-auto max-w-6xl">
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <div className="mb-4 inline-flex items-center gap-2">
             <span
               aria-hidden={true}
-              className="bg-secondary-soft size-1.5 rounded-full"
+              className="bg-accent-soft size-1.5 rounded-full"
             />
-            <span className="text-secondary-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
+            <span className="text-accent-soft font-mono text-[0.7rem] tracking-[0.18em] uppercase">
               Code you can trust
             </span>
           </div>
@@ -123,19 +120,15 @@ const Trust = () => (
               no such choice.
             </p>
             <p>
-              Test-driven development is required. A new test has to fail before
-              the code that makes it pass can be committed.
+              The rules that matter most don’t depend on the model remembering
+              them. Test-driven development is required. Secrets can’t be
+              written into source. Every commit clears typecheck, lint, tests,
+              and build.
             </p>
             <p>
-              Your secrets stay out of the codebase. GAIA’s config denies Claude
-              access to your .env and secret key files, and blocks any
-              credential from being written into source.
-            </p>
-            <p>
-              Every commit clears typecheck, lint, tests, and build. Every merge
-              is read line by line for security holes and risky patterns, fixed
-              automatically where it’s safe and blocked for your review where it
-              isn’t.
+              Every merge is read line by line for security holes and risky
+              patterns, fixed automatically where it’s safe, blocked for your
+              review where it isn’t.
             </p>
           </div>
         </div>
