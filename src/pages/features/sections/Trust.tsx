@@ -45,12 +45,11 @@ const Trust = () => (
     isAboveFold={true}
     lead={
       <>
-        <p>
-          You can&apos;t trust output you can&apos;t predict. Without
-          enforceable conventions, Claude reverts to its training distribution,
-          an average of every codebase on the internet.
+        <p className="max-w-[38ch]">
+          You can&apos;t trust output you can&apos;t predict. On its own,
+          AI&apos;s output isn&apos;t.
         </p>
-        <p>
+        <p className="max-w-[38ch]">
           GAIA&apos;s coding style is what you actually want Claude matching.
           With GAIA, Claude writes code that follows best practices on day one,
           and can&apos;t ship code that doesn&apos;t.

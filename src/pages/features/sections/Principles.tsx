@@ -7,7 +7,7 @@ const PRINCIPLES = [
   ['Always Verify Work', 'Pass the gates before reporting done.'],
 ] as const;
 
-const Pillar = () => (
+const Principles = () => (
   <section
     className="border-line-soft relative scroll-mt-20 overflow-hidden border-b py-24 sm:py-32"
     id="discipline"
@@ -41,4 +41,4 @@ const Pillar = () => (
   </section>
 );
 
-export default Pillar;
+export default Principles;
