@@ -9,6 +9,7 @@ dist
 .claude
 .playwright-cli
 .review
+.impeccable
 CLAUDE.md
 DESIGN.md
 PRODUCT.md
