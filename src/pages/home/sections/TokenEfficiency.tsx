@@ -56,7 +56,10 @@ const StateLedger = () => (
 );
 
 const TokenEfficiency = () => (
-  <section className="px-4 py-20 sm:px-8" id="token-efficiency">
+  <section
+    className="border-line-soft border-b px-4 py-20 sm:px-8"
+    id="token-efficiency"
+  >
     <div className="mx-auto max-w-6xl">
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:self-start">
