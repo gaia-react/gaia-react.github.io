@@ -17,28 +17,27 @@ const Hero = () => (
           style={{'--reveal-delay': '80ms'} as React.CSSProperties}
         >
           The skepticism about AI-built code is fair. Vibe coding ships fast and
-          breaks just as fast. Tests get skipped, conventions drift, quality
-          degrades.
+          breaks just as fast.
         </p>
         <p
           className="mb-4"
           data-reveal={true}
           style={{'--reveal-delay': '160ms'} as React.CSSProperties}
         >
-          {'Every codebase drifts. AI just gets there faster. Most setups run '}
+          {'Most setups run '}
           <code className="bg-surface text-ink rounded-sm px-1.5 font-mono text-[0.875em]">
             /init
           </code>
           , add a few skills, and hope Claude figures out the rest. It does, for
-          a while, then debt piles up, in your code and in Claude’s own memory.
+          a while, then debt sets in across your code and Claude’s own memory.
         </p>
         <p
           className="font-display text-ink text-[1.15rem]"
           data-reveal={true}
           style={{'--reveal-delay': '240ms'} as React.CSSProperties}
         >
-          GAIA is the discipline. Built into the project, so Claude has to
-          follow it.
+          GAIA replaces the hope with enforcement. Built into the project, so
+          Claude has to follow it.
         </p>
       </div>
     </div>
