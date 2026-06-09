@@ -57,7 +57,7 @@ const StateLedger = () => (
 
 const TokenEfficiency = () => (
   <section
-    className="border-line-soft border-b px-4 py-20 sm:px-8"
+    className="border-line-soft bg-tint border-y px-4 py-20 sm:px-8"
     id="token-efficiency"
   >
     <div className="mx-auto max-w-6xl">
