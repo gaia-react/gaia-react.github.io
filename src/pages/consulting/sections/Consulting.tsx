@@ -153,7 +153,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     attribution: 'Senior Engineering Manager, American Express',
     name: 'Chris Hutchinson',
     quote:
-      'Brought much-needed stability to our front end through both codebase and process improvements for our restaurant booking platform... features not only release on time, but to a very high level of quality every time.',
+      'Steven brought much-needed stability to our front end through both codebase and process improvements for our restaurant booking platform... features not only released on time, but to a very high level of quality every time.',
   },
   {
     attribution: 'Security Consultant, Deja vu Security',
