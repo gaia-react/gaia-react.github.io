@@ -15,8 +15,7 @@ const Why = () => (
           Vibe coding doesn’t scale. Discipline does.
         </h2>
         <p className="text-ink-dim mb-4 text-[1.125rem] leading-[1.65]">
-          Every codebase drifts. AI just gets there faster. GAIA is built to
-          resist it.
+          Every codebase drifts. AI just gets there faster.
         </p>
         <p className="text-ink-dim mb-4 text-[1.125rem] leading-[1.65]">
           {'Most setups run '}
@@ -25,7 +24,8 @@ const Why = () => (
           </code>
           , install a few skills, and hope Claude figures out the rest. It does,
           for a while. Then technical debt builds up, in your codebase and in
-          Claude’s configuration and memory. Both compound as the project grows.
+          Claude’s own configuration and memory. Both compound as the project
+          grows.
         </p>
         <p className="text-ink-dim text-[1.125rem] leading-[1.65]">
           <span className="text-ink">GAIA fixes this.</span> Its structure and

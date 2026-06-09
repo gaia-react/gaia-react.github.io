@@ -72,7 +72,7 @@ const Focus = () => (
             </span>
           </div>
           <h2 className="text-ink mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
-            Nothing to assemble.
+            Opinionated defaults, not a blank config.
           </h2>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65] text-pretty">
             React on the frontend, your stack everywhere else. GAIA ships with
@@ -84,7 +84,7 @@ const Focus = () => (
           <p className="text-ink-dim text-[1.05rem] leading-[1.65] text-pretty">
             Add your own backend and the same conventions extend to it. Each
             rule applies only to the files it matches, so Claude always gets the
-            right standard, and the gates make it stick.
+            right standard, and the gates enforce it.
           </p>
         </div>
 

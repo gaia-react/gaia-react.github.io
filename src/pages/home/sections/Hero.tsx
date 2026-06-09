@@ -52,31 +52,34 @@ const Hero = () => (
     <Orbs />
     <div className="relative z-10 mx-auto max-w-6xl">
       <div className="max-w-270">
-        <h1 className="text-ink mb-4 max-w-[22ch] text-[clamp(2.5rem,5.4vw,4.75rem)] leading-[1.1] tracking-tight">
-          Claude is raw power.
-          <br className="hidden sm:inline" />
-          <span className="inline sm:hidden"> </span>
-          {'GAIA is '}
+        <p className="text-ink-dim mb-6 font-mono text-[0.65rem] tracking-[0.22em] uppercase">
+          Claude is raw power. GAIA is order and focus.
+        </p>
+
+        <h1 className="text-ink mb-5 text-[clamp(2.25rem,4.8vw,3.85rem)] leading-[1.12] tracking-tight text-balance">
+          GAIA is the engineering discipline for Claude Code.
+          <br />
           <em className="text-accent-soft font-light italic">
-            order and focus.
+            Keep the AI speed, lose the debt.
           </em>
         </h1>
 
         <p
-          className="text-ink-dim mb-4 max-w-[50ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
+          className="text-ink-dim mb-4 max-w-[54ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-pretty"
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          GAIA is a professional foundation for Claude Code, with the discipline
-          of a strong engineering team baked in.
+          Enforced quality gates Claude can’t skip, so sloppy AI code never
+          reaches production. GAIA keeps Claude’s own config and memory clean as
+          the project grows, so your AI engineer stays as sharp as day one.
         </p>
 
         <p
-          className="text-ink-dim mb-4 max-w-[60ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.55] text-pretty"
+          className="text-ink-dim mb-4 max-w-[60ch] text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-pretty"
           data-reveal={true}
           style={{'--reveal-delay': '215ms'} as React.CSSProperties}
         >
-          AI writes more code now. GAIA keeps technical debt from piling up.
+          React on the frontend, your stack everywhere else.
         </p>
 
         <p
@@ -84,8 +87,8 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '260ms'} as React.CSSProperties}
         >
-          Built by Steven Sacks, creator of the original GAIA framework (used on
-          100,000+ sites).
+          Built by Steven Sacks, creator of the original GAIA framework, used on
+          100,000+ sites.
         </p>
 
         <div
