@@ -53,7 +53,14 @@ const Hero = () => (
     <div className="relative z-10 mx-auto max-w-6xl">
       <div className="max-w-270">
         <p className="text-ink-dim mb-6 font-mono text-[0.65rem] tracking-[0.22em] uppercase">
-          Claude is raw power. GAIA is order and focus.
+          <span className="inline-block whitespace-nowrap">
+            Claude is raw power.
+          </span>
+          <br className="sm:hidden" />
+          <span className="hidden sm:inline">&nbsp;</span>
+          <span className="inline-block whitespace-nowrap">
+            GAIA is order and focus.
+          </span>
         </p>
 
         <h1 className="text-ink mb-5 text-[clamp(2.25rem,4.8vw,3.85rem)] leading-[1.12] tracking-tight text-balance">
