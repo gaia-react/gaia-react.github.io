@@ -76,9 +76,9 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          Enforced quality gates Claude can’t skip, so sloppy AI code never
-          reaches production. GAIA keeps Claude’s own config and memory clean as
-          the project grows, so your AI engineer stays as sharp as day one.
+          Enforced quality gates Claude can’t skip, so flawed code never reaches
+          production. GAIA keeps Claude’s own config and memory clean as the
+          project grows. Your AI engineer stays sharp, session after session.
         </p>
 
         <p
