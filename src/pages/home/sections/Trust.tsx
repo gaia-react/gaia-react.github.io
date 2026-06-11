@@ -30,7 +30,11 @@ const TrustLedger = () => (
     <div className="space-y-4 p-4 leading-relaxed">
       <div>
         <div className="text-ink-dim">
-          <span className="text-muted">$ </span>pnpm add @acme/parser@2.4.0
+          {/* <wbr> keeps Cloudflare email obfuscation from rewriting
+              parser@2.4.0 into a mailto link, which breaks hydration (#418) */}
+          <span className="text-muted">$ </span>pnpm add @acme/parser
+          <wbr />
+          @2.4.0
         </div>
         <div className="text-warn mt-1">
           ✗ held, published 6h ago, under the 7-day minimum

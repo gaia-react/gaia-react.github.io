@@ -55,8 +55,8 @@ const META = [
     name: 'Auto-merge on green, auto-revert on failure',
   },
   {
-    desc: 'GAIA CI runs against your Claude Code Pro/Max subscription or your Anthropic API key. A $5 hard ceiling per run caps API spend.',
-    name: 'Cost-capped by design',
+    desc: 'GAIA CI runs against your Claude Code Pro/Max subscription or your Anthropic API key. A fixed turn limit caps every scheduled run, so no run loops without end.',
+    name: 'Bounded by design',
   },
 ];
 

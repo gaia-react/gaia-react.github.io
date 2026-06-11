@@ -31,7 +31,7 @@ type TypingState = {
 
 // ── Terminal script ────────────────────────────────────────────────────────
 
-const GAIA_VERSION = '1.5.0';
+const GAIA_VERSION = '1.6.0';
 const OPUS_VERSION = '4.8';
 
 const TERM_SCRIPT: TermStep[] = [
@@ -70,7 +70,7 @@ const TERM_SCRIPT: TermStep[] = [
   {
     cls: 'dim',
     delay: 320,
-    text: 'Done in 5.8s using pnpm v10.18.2',
+    text: 'Done in 5.8s using pnpm v11.5.2',
     type: 'line',
   },
   {text: '', type: 'line'},
@@ -690,7 +690,7 @@ const GetStartedHero = ({
         GAIA gives you a production-grade React frontend and the Claude-native
         system to build everything else on it. The frontend is handled. You add
         your backend, your services, your domain logic, and Claude builds them
-        {" inside GAIA's conventions."}
+        inside GAIA&apos;s conventions.
       </p>
 
       <div
