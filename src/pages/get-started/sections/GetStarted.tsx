@@ -690,7 +690,7 @@ const GetStartedHero = ({
         GAIA gives you a production-grade React frontend and the Claude-native
         system to build everything else on it. The frontend is handled. You add
         your backend, your services, your domain logic, and Claude builds them
-        {" inside GAIA's conventions."}
+        inside GAIA&apos;s conventions.
       </p>
 
       <div
