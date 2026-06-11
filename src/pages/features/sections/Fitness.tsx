@@ -38,7 +38,7 @@ const FINDINGS: FindingGroup[] = [
       {
         file: '.gaia/manifest.json',
         remediation:
-          'GAIA v1.4.0 installed; v1.5.0 available. Run /update-gaia to upgrade.',
+          'GAIA v1.5.0 installed; v1.6.0 available. Run /update-gaia to upgrade.',
         severity: 'info',
       },
     ],
