@@ -52,7 +52,7 @@ const Hero = () => (
     <Orbs />
     <div className="relative z-10 mx-auto max-w-6xl">
       <div className="max-w-270">
-        <p className="text-ink-dim mb-6 font-mono text-[0.65rem] tracking-[0.22em] uppercase">
+        <p className="text-ink-dim mb-6 pl-0.5 font-mono text-[0.65rem] tracking-[0.22em] uppercase sm:pl-2">
           <span className="inline-block whitespace-nowrap">
             Claude is raw power.
           </span>
@@ -63,7 +63,7 @@ const Hero = () => (
           </span>
         </p>
 
-        <h1 className="text-ink mb-5 text-[clamp(2.25rem,4.8vw,3.85rem)] leading-[1.12] tracking-tight text-balance">
+        <h1 className="text-ink mb-5 text-[clamp(1.55rem,4.8vw,3.85rem)] leading-[1.12] tracking-tight text-balance">
           GAIA is the engineering discipline for Claude Code.
           <br />
           <em className="text-accent-soft font-light italic">
