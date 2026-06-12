@@ -1,6 +1,6 @@
 # gaia-react.github.io
 
-Source for <https://gaia-react.github.io> — the GAIA marketing + docs site.
+Source for <https://gaiareact.com> - the GAIA marketing + docs site.
 
 Built with Vite + React + Tailwind v4. Deployed via GitHub Pages on push to `main`.
 
