@@ -31,7 +31,7 @@ type TypingState = {
 
 // ── Terminal script ────────────────────────────────────────────────────────
 
-const GAIA_VERSION = '1.6.0';
+const GAIA_VERSION = '1.6.1';
 const OPUS_VERSION = '4.8';
 
 const TERM_SCRIPT: TermStep[] = [
