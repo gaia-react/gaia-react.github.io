@@ -7,7 +7,7 @@ const StateOnDisk = () => (
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
       <div className="mx-auto mb-12 max-w-[60ch] md:mb-14">
-        <h2 className="group font-display text-ink mb-6 text-center text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em]">
+        <h2 className="group font-display text-ink mb-6 text-[clamp(2rem,4vw,2.85rem)] leading-[1.1] font-normal tracking-[-0.02em] sm:text-center">
           <a className="text-inherit no-underline" href="#tokens">
             State lives on disk
             <span

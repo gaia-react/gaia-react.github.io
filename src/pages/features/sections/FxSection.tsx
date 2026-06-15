@@ -6,7 +6,7 @@ type Properties = {
   isAboveFold?: boolean;
   isCool?: boolean;
   lead: ReactNode;
-  title: string;
+  title: ReactNode;
 };
 
 const FxSection = ({

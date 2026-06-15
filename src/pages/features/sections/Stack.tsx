@@ -331,7 +331,13 @@ const Stack = () => (
         </p>
       </>
     }
-    title="A professional frontend stack"
+    title={
+      <>
+        A professional
+        <br />
+        frontend stack
+      </>
+    }
   >
     <div className="bg-surface border-line-soft overflow-hidden rounded-lg border">
       {GROUPS.map((group, groupIndex) => (

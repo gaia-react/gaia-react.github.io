@@ -76,7 +76,7 @@ const Opinionated = () => (
               Without standards, Claude improvises.
             </span>
             <span> </span>
-            <span className="text-ink">
+            <span className="text-ink mt-1 inline-block">
               With GAIA’s standards, quality holds up.
             </span>
           </h2>

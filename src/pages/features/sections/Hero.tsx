@@ -6,7 +6,7 @@ const Hero = () => (
       aria-hidden={true}
       className="gaia-haze-cool gaia-haze-drift pointer-events-none absolute inset-[-3%] z-0"
     />
-    <div className="relative z-10 mx-auto grid max-w-275 items-end gap-10 md:grid-cols-2 md:gap-16">
+    <div className="relative z-10 mx-auto grid max-w-275 items-end gap-10 sm:min-h-59.5 md:grid-cols-2 md:gap-16">
       <h1 className="font-display text-ink text-[clamp(2.6rem,6vw,4.4rem)] leading-[1.05] font-light tracking-[-0.03em]">
         The Discipline of GAIA
       </h1>

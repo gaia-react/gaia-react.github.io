@@ -74,9 +74,10 @@ const TokenEfficiency = () => (
           </div>
           <h2 className="mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.15] tracking-[-0.02em]">
             <span className="text-ink-dim">Your project grows.</span>
-            <br className="hidden sm:inline" />
-            <span className="sm:hidden"> </span>
-            <span className="text-ink">Your context doesn’t.</span>
+            <br />
+            <span className="text-ink mt-1 inline-block">
+              Your context doesn’t.
+            </span>
           </h2>
           <p className="text-ink-dim mb-4 text-[1.05rem] leading-[1.65] text-pretty">
             A bigger codebase usually means a bigger context and a bigger bill.

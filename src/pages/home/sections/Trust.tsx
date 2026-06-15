@@ -113,9 +113,8 @@ const Trust = () => (
 
           <h2 className="mb-5 text-[clamp(2rem,4vw,3rem)] leading-[1.12] tracking-[-0.02em]">
             <span className="text-ink-dim">Skills advise.</span>
-            <br className="hidden sm:inline" />
-            <span className="sm:hidden"> </span>
-            <span className="text-ink">GAIA enforces.</span>
+            <br />
+            <span className="text-ink mt-1 inline-block">GAIA enforces.</span>
           </h2>
 
           <div className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.65] text-pretty">
