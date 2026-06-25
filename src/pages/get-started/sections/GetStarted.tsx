@@ -798,7 +798,14 @@ const RECAP = [
     title: 'A real test stack',
   },
   {
-    body: 'Workflows keep dependencies current, run a daily security audit, sync the wiki on commit, and prune stale branches.',
+    body: (
+      <>
+        {
+          'Workflows keep dependencies current, run a daily security audit, sync the wiki on commit, and prune stale branches. One command, '
+        }
+        <InlineCode>/setup-gaia-ci</InlineCode>, installs them.
+      </>
+    ),
     title: 'Standing CI',
   },
 ];
@@ -875,7 +882,7 @@ const WhatYouGet = () => (
                   '         # /gaia-wiki, tdd, react-code, ...',
                 ],
                 ['├── ', '.gaia/', '              # GAIA CLI, manifest'],
-                ['├── ', '.github/workflows/', ' # standing CI'],
+                ['├── ', '.github/workflows/', ' # test + visual CI'],
                 ['├── ', '.husky/', '             # pre-commit'],
                 ['├── ', '.specify/', '           # spec-driven workflow'],
                 ['├── ', '.storybook/', ''],
