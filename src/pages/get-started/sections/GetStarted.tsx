@@ -786,7 +786,7 @@ const RECAP = [
     title: 'Project memory & rules',
   },
   {
-    body: '1,314 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
+    body: '1,450 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
     title: 'Quality gates',
   },
   {
@@ -812,7 +812,7 @@ const RECAP = [
 
 const WhatYouGet = () => (
   <section
-    className="border-line-soft bg-tint scroll-mt-20 border-y py-20 sm:py-28"
+    className="border-line-soft bg-tint scroll-mt-16 border-y py-20 sm:py-28"
     id="whats-included"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">

@@ -120,7 +120,7 @@ const GaiaCard = () => (
 
 const UpdateDeps = () => (
   <section
-    className="border-line-soft scroll-mt-20 border-b py-20"
+    className="border-line-soft scroll-mt-16 border-b py-20"
     id="update-deps"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">

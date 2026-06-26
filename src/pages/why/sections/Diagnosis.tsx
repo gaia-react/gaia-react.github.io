@@ -38,7 +38,7 @@ const FAILURES: Item[] = [
 
 const Diagnosis = () => (
   <section
-    className="border-line-soft scroll-mt-20 border-b px-4 py-14 sm:px-8 sm:py-20"
+    className="border-line-soft scroll-mt-16 border-b px-4 py-14 sm:px-8 sm:py-20"
     id="diagnosis"
   >
     <div className="mx-auto max-w-275">

@@ -5,7 +5,7 @@ type Stage = {
 
 const STAGES: Stage[] = [
   {label: 'typecheck', result: '0 errors'},
-  {label: 'lint · 1,314 rules', result: '0 violations'},
+  {label: 'lint · 1,450 rules', result: '0 violations'},
   {label: 'tests · vitest + RTL', result: '47 / 47'},
   {label: 'build · 9 entries', result: 'green'},
 ];
