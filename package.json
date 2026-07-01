@@ -48,6 +48,7 @@
       "puppeteer"
     ],
     "overrides": {
+      "@babel/core": "^7.29.6",
       "esbuild": ">=0.28.1",
       "fast-uri": ">=3.1.2"
     }
