@@ -803,7 +803,7 @@ const RECAP = [
         {
           'Workflows keep dependencies current, run a daily security audit, sync the wiki on commit, and prune stale branches. One command, '
         }
-        <InlineCode>/setup-gaia-ci</InlineCode>, installs them.
+        <InlineCode>/setup-gaia</InlineCode>, installs them.
       </>
     ),
     title: 'Standing CI',
@@ -865,11 +865,7 @@ const WhatYouGet = () => (
                 ['', 'my-app/'],
                 ['├── ', '.claude/', ''],
                 ['│   ├── ', 'agents/', '        # code-review-audit'],
-                [
-                  '│   ├── ',
-                  'commands/',
-                  '       # /gaia-init, /setup-gaia-ci',
-                ],
+                ['│   ├── ', 'commands/', '       # /gaia-init, /setup-gaia'],
                 ['│   ├── ', 'hooks/', '          # guardrail hooks'],
                 [
                   '│   ├── ',
@@ -886,7 +882,7 @@ const WhatYouGet = () => (
                 ['├── ', '.husky/', '             # pre-commit'],
                 ['├── ', '.specify/', '           # spec-driven workflow'],
                 ['├── ', '.storybook/', ''],
-                ['├── ', 'app/', '                # React Router 7 app'],
+                ['├── ', 'app/', '                # React Router 8 app'],
                 ['├── ', 'test/', '               # Vitest, RTL, MSW'],
                 ['├── ', 'wiki/', '               # Obsidian project memory'],
                 ['├── ', 'CLAUDE.md', '           # project brain'],

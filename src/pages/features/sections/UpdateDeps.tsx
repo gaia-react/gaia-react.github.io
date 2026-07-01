@@ -1,14 +1,30 @@
-const POINTS = [
+import type {ReactNode} from 'react';
+
+const POINTS: {desc: ReactNode; name: string}[] = [
   {
     desc: 'When a new dependency version requires a codemod or breaking-change migration, GAIA makes sure Claude handles it. The PR includes the bump and the migration together.',
     name: 'Codemods and migrations applied',
   },
   {
-    desc: 'When the new version moves or renames public API surface, Update Deps updates the call sites. Grep-replace-with-context work, automated.',
+    desc: (
+      <>
+        {'When the new version moves or renames public API surface, '}
+        <code className="text-ink font-mono text-[0.9em]">/update-deps</code>
+        {' updates the call sites. Grep-replace-with-context work, automated.'}
+      </>
+    ),
     name: 'Call sites updated when APIs change',
   },
   {
-    desc: 'When two simultaneous upgrades touch the same code path, Update Deps resolves the overlap before opening the PR. No conflicting PRs that fight at merge.',
+    desc: (
+      <>
+        {'When two simultaneous upgrades touch the same code path, '}
+        <code className="text-ink font-mono text-[0.9em]">/update-deps</code>
+        {
+          ' resolves the overlap before opening the PR. No conflicting PRs that fight at merge.'
+        }
+      </>
+    ),
     name: 'Conflicts resolved before the PR opens',
   },
   {
