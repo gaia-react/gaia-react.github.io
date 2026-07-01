@@ -177,19 +177,19 @@ const ReactPerf = () => (
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                   <span className="text-[0.85rem]">
                     <span className="text-ink">{finding.component}</span>
-                    {finding.isMemo ?
+                    {finding.isMemo && (
                       <span className="text-secondary-soft ml-2 text-[0.62rem] tracking-[0.14em] uppercase">
                         memo
                       </span>
-                    : null}
+                    )}
                   </span>
                   <span
                     className={`text-[0.8rem] ${finding.exceedsBudget ? 'text-warn-soft' : 'text-ink-dim'}`}
                   >
                     {`${finding.maxTotalMs} ms max`}
-                    {finding.exceedsBudget ?
+                    {finding.exceedsBudget && (
                       <span className="text-warn-soft">{` · over ${FRAME_BUDGET}`}</span>
-                    : null}
+                    )}
                   </span>
                 </div>
                 <p className="text-muted text-[0.72rem]">
@@ -197,7 +197,7 @@ const ReactPerf = () => (
                     `${finding.renderCount} renders · ${finding.memoDefeated} memo-defeated`
                   : `${finding.renderCount} renders`}
                 </p>
-                {finding.inputs.length > 0 ?
+                {finding.inputs.length > 0 && (
                   <p className="text-[0.78rem]">
                     <span className="text-muted">
                       {finding.source === 'context' ?
@@ -208,13 +208,13 @@ const ReactPerf = () => (
                       {finding.inputs.join(', ')}
                     </span>
                   </p>
-                : null}
-                {finding.cause ?
+                )}
+                {finding.cause && (
                   <p className="text-muted text-[0.72rem]">
                     <span>{'react-doctor · '}</span>
                     <span className="text-secondary-soft">{finding.cause}</span>
                   </p>
-                : null}
+                )}
               </div>
             </div>
           ))}

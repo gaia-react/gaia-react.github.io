@@ -14,5 +14,4 @@ export type Release = ReleaseLead & {
 // required union documents the rule; scripts/check-release-titles.mjs enforces
 // it across every release file at build time.
 type ReleaseLead =
-  | {headline: string; summary?: string}
-  | {headline?: string; summary: string};
+  {headline: string; summary?: string} | {headline?: string; summary: string};
