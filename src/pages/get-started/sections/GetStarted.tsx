@@ -995,10 +995,12 @@ const GetStarted = () => {
       const section = document.querySelector('#whats-included');
       if (!section) return;
       const {top} = section.getBoundingClientRect();
-      // Leave the user alone if they've already scrolled the section into view.
-      if (top < window.innerHeight - 80) return;
       const headerHeight =
         document.querySelector('header')?.getBoundingClientRect().height ?? 60;
+      // Only bail once the user has already scrolled the section to (or past)
+      // its resting spot under the sticky header. A small nudge that leaves the
+      // section partway down still gets finished for them; we never yank up.
+      if (top <= headerHeight + 8) return;
       // Land the section's top flush under the sticky header, no gap.
       window.scrollTo({
         behavior: 'smooth',
