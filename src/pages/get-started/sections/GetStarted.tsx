@@ -66,7 +66,6 @@ const TERM_SCRIPT: TermStep[] = [
     type: 'line',
   },
   {text: '', type: 'line'},
-  {cls: 'muted', text: '+ 47 dependencies, 41 devDependencies', type: 'line'},
   {
     cls: 'dim',
     delay: 320,
@@ -739,7 +738,7 @@ const GetStartedHero = ({
         </span>
         <span className="text-line">·</span>
         <span>
-          Node.js <strong className="text-ink font-medium">&ge; 22.19.0</strong>
+          Node.js <strong className="text-ink font-medium">&ge; 22.22.0</strong>
           {'. We recommend '}
           <a
             className="text-ink-dim border-line-soft hover:border-accent-soft hover:text-ink border-b no-underline transition-colors duration-150"
