@@ -66,7 +66,6 @@ const TERM_SCRIPT: TermStep[] = [
     type: 'line',
   },
   {text: '', type: 'line'},
-  {cls: 'muted', text: '+ 47 dependencies, 41 devDependencies', type: 'line'},
   {
     cls: 'dim',
     delay: 320,
@@ -739,7 +738,7 @@ const GetStartedHero = ({
         </span>
         <span className="text-line">·</span>
         <span>
-          Node.js <strong className="text-ink font-medium">&ge; 22.19.0</strong>
+          Node.js <strong className="text-ink font-medium">&ge; 22.22.0</strong>
           {'. We recommend '}
           <a
             className="text-ink-dim border-line-soft hover:border-accent-soft hover:text-ink border-b no-underline transition-colors duration-150"
@@ -786,7 +785,7 @@ const RECAP = [
     title: 'Project memory & rules',
   },
   {
-    body: '1,314 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
+    body: '1,450 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
     title: 'Quality gates',
   },
   {
@@ -803,7 +802,7 @@ const RECAP = [
         {
           'Workflows keep dependencies current, run a daily security audit, sync the wiki on commit, and prune stale branches. One command, '
         }
-        <InlineCode>/setup-gaia-ci</InlineCode>, installs them.
+        <InlineCode>/setup-gaia</InlineCode>, installs them.
       </>
     ),
     title: 'Standing CI',
@@ -812,7 +811,7 @@ const RECAP = [
 
 const WhatYouGet = () => (
   <section
-    className="border-line-soft bg-tint scroll-mt-20 border-y py-20 sm:py-28"
+    className="border-line-soft bg-tint scroll-mt-16 border-y py-20 sm:py-28"
     id="whats-included"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
@@ -865,11 +864,7 @@ const WhatYouGet = () => (
                 ['', 'my-app/'],
                 ['├── ', '.claude/', ''],
                 ['│   ├── ', 'agents/', '        # code-review-audit'],
-                [
-                  '│   ├── ',
-                  'commands/',
-                  '       # /gaia-init, /setup-gaia-ci',
-                ],
+                ['│   ├── ', 'commands/', '       # /gaia-init, /setup-gaia'],
                 ['│   ├── ', 'hooks/', '          # guardrail hooks'],
                 [
                   '│   ├── ',
@@ -886,7 +881,7 @@ const WhatYouGet = () => (
                 ['├── ', '.husky/', '             # pre-commit'],
                 ['├── ', '.specify/', '           # spec-driven workflow'],
                 ['├── ', '.storybook/', ''],
-                ['├── ', 'app/', '                # React Router 7 app'],
+                ['├── ', 'app/', '                # React Router 8 app'],
                 ['├── ', 'test/', '               # Vitest, RTL, MSW'],
                 ['├── ', 'wiki/', '               # Obsidian project memory'],
                 ['├── ', 'CLAUDE.md', '           # project brain'],
@@ -1000,10 +995,12 @@ const GetStarted = () => {
       const section = document.querySelector('#whats-included');
       if (!section) return;
       const {top} = section.getBoundingClientRect();
-      // Leave the user alone if they've already scrolled the section into view.
-      if (top < window.innerHeight - 80) return;
       const headerHeight =
         document.querySelector('header')?.getBoundingClientRect().height ?? 60;
+      // Only bail once the user has already scrolled the section to (or past)
+      // its resting spot under the sticky header. A small nudge that leaves the
+      // section partway down still gets finished for them; we never yank up.
+      if (top <= headerHeight + 8) return;
       // Land the section's top flush under the sticky header, no gap.
       window.scrollTo({
         behavior: 'smooth',

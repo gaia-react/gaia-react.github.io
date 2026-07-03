@@ -9,7 +9,7 @@ if (typeof document !== 'undefined') {
   document.documentElement.classList.add('js-ready');
 }
 
-export const useScrollReveal = () => {
+export const useScrollReveal = (): void => {
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

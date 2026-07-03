@@ -1,24 +1,18 @@
-import {
-  base,
-  betterTailwind,
-  guardrails,
-  ignores,
-  prettier,
-  react,
-  styleHygiene,
-} from '@gaia-react/lint';
+import gaiaLint from '@gaia-react/lint';
 import {defineConfig} from 'eslint/config';
 
+const lint = gaiaLint({sourceDir: 'src'});
+
 export default defineConfig([
-  ...ignores({gitignore: '.gitignore'}),
-  ...base,
-  ...react,
-  ...styleHygiene,
-  ...guardrails,
-  ...betterTailwind({
+  ...lint.ignores({gitignore: '.gitignore'}),
+  ...lint.base,
+  ...lint.react,
+  ...lint.styleHygiene,
+  ...lint.guardrails,
+  ...lint.betterTailwind({
     entryPoint: './src/styles.css',
   }),
-  ...prettier,
+  ...lint.prettier,
   {
     rules: {
       'unicorn/prevent-abbreviations': [
@@ -32,6 +26,18 @@ export default defineConfig([
           },
         },
       ],
+    },
+  },
+  {
+    // GAIA's file/folder naming conventions target the GAIA app layout
+    // (index.tsx components inside PascalCase folders). This marketing site is a
+    // multi-entry Vite app with a different structure (per-page main.tsx + App.tsx
+    // entries, PascalCase section components, a lowercase components/icons folder),
+    // so these conventions don't apply here.
+    name: 'gaia-website/disable-check-file-conventions',
+    rules: {
+      'check-file/filename-naming-convention': 'off',
+      'check-file/folder-naming-convention': 'off',
     },
   },
 ]);
