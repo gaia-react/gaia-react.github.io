@@ -14,7 +14,8 @@
     "lint": "eslint --fix --max-warnings=0 --cache --cache-location ./node_modules/.cache/eslint .",
     "lint-dry": "eslint --max-warnings=0 .",
     "format": "prettier --write \"src/**/*.{ts,tsx,html,md,css,json}\" \"*.{html,md,json}\"",
-    "lint-all": "tsc --noEmit && eslint --max-warnings=0 . && prettier --check \"src/**/*.{ts,tsx,html,md,css,json}\""
+    "lint-all": "tsc --noEmit && eslint --max-warnings=0 . && prettier --check \"src/**/*.{ts,tsx,html,md,css,json}\"",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
