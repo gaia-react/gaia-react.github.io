@@ -1,6 +1,6 @@
 # Migrate this project from GAIA 1.6.1 to GAIA 2.0.0
 
-You are migrating this repository, a project built on GAIA 1.6.1, to GAIA 2.0.0. GAIA 2.0.0 moves the React app and its frontend-only Claude harness into `frontend/` and leaves the shared harness (`.claude/`, `.gaia/`, `.github/`, `.husky/`, `.specify/`, `wiki/`, root `CLAUDE.md`) at the root, which becomes a pnpm workspace. The 1.6.1 `/update-gaia` cannot make this hop, so this guideline replaces it for this one release.
+You are migrating this repository, a project built on GAIA 1.6.1, to GAIA 2.0.0. GAIA 2.0.0 moves the React app and its frontend-only Claude harness into `frontend/` and leaves the shared harness (`.claude/`, `.gaia/`, `.github/`, `.githooks/`, `.specify/`, `wiki/`, root `CLAUDE.md`) at the root, which becomes a pnpm workspace. The 1.6.1 `/update-gaia` cannot make this hop, so this guideline replaces it for this one release.
 
 Follow the steps below in order. They are a guideline, not a script: use judgement on anything unusual, and ask the user whenever ownership of a file or a change is unclear. Never guess at a rename, a merge, or a deletion. When a step says stop, stop and report.
 
@@ -18,17 +18,17 @@ Follow the steps below in order. They are a guideline, not a script: use judgeme
 
 Until the restart at the end of step 7, the user's 1.6.1 hooks are live:
 
-| Guard (1.6.1)                   | What it blocks                                                                                                                                             | Allowed spelling                                                                                                                                                                           |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `block-eslint-config-edit.sh`   | Edit or Write of any `eslint.config.*`                                                                                                                     | Move it with `git mv eslint.config.mjs frontend/eslint.config.mjs`; never recreate it with Write.                                                                                          |
-| `block-rm-rf.sh`                | `rm -rf node_modules` anywhere, and other broad `rm -rf` targets                                                                                           | Never delete `node_modules`; run `pnpm install`, which prunes and rebuilds it. Delete other regenerable dirs by explicit path (`rm -rf build`).                                            |
-| `block-lockfile-edit.sh`        | Edit or Write of `pnpm-lock.yaml`                                                                                                                          | Run `pnpm install`.                                                                                                                                                                        |
-| `block-env-write.sh`            | Edit or Write of any `.env*` except `.env.example`                                                                                                         | Move env files with `mv` in Bash.                                                                                                                                                          |
-| `block-main-destructive-git.sh` | Commits and force-pushes on `main`                                                                                                                         | Work on `chore/migrate-gaia-2.0.0`.                                                                                                                                                        |
-| `block-no-verify.sh`            | `--no-verify` on commit or push                                                                                                                            | Fix the failing check instead.                                                                                                                                                             |
-| `block-bare-test.sh`            | `pnpm test` without `--run`                                                                                                                                | `pnpm test --run`.                                                                                                                                                                         |
-| `red-verify-commit-check.sh`    | Committing a new passing test with no recorded failing run                                                                                                 | Do not add new tests during the migration; pure renames are exempt.                                                                                                                        |
-| `.husky/pre-commit` (1.6.1)     | Runs `pnpm typecheck`, `lint-staged`, `test:lint-staged` when a staged added, copied, modified, or deleted path contains `app/`, `test/`, or `.storybook/` | Keep the move commit rename-only (renames are not in that filter), and land the 2.0.0 pre-commit with the package split in step 7, before any commit stages content under `frontend/app/`. |
+| Guard (1.6.1)                   | What it blocks                                                                                                                                             | Allowed spelling                                                                                                                                                                                                  |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `block-eslint-config-edit.sh`   | Edit or Write of any `eslint.config.*`                                                                                                                     | Move it with `git mv eslint.config.mjs frontend/eslint.config.mjs`; never recreate it with Write.                                                                                                                 |
+| `block-rm-rf.sh`                | `rm -rf node_modules` anywhere, and other broad `rm -rf` targets                                                                                           | Never delete `node_modules`; run `pnpm install`, which prunes and rebuilds it. Delete other regenerable dirs by explicit path (`rm -rf build`).                                                                   |
+| `block-lockfile-edit.sh`        | Edit or Write of `pnpm-lock.yaml`                                                                                                                          | Run `pnpm install`.                                                                                                                                                                                               |
+| `block-env-write.sh`            | Edit or Write of any `.env*` except `.env.example`                                                                                                         | Move env files with `mv` in Bash.                                                                                                                                                                                 |
+| `block-main-destructive-git.sh` | Commits and force-pushes on `main`                                                                                                                         | Work on `chore/migrate-gaia-2.0.0`.                                                                                                                                                                               |
+| `block-no-verify.sh`            | `--no-verify` on commit or push                                                                                                                            | Fix the failing check instead.                                                                                                                                                                                    |
+| `block-bare-test.sh`            | `pnpm test` without `--run`                                                                                                                                | `pnpm test --run`.                                                                                                                                                                                                |
+| `red-verify-commit-check.sh`    | Committing a new passing test with no recorded failing run                                                                                                 | Do not add new tests during the migration; pure renames are exempt.                                                                                                                                               |
+| `.husky/pre-commit` (1.6.1)     | Runs `pnpm typecheck`, `lint-staged`, `test:lint-staged` when a staged added, copied, modified, or deleted path contains `app/`, `test/`, or `.storybook/` | Keep the move commit rename-only (renames are not in that filter), and land the 2.0.0 `.githooks/pre-commit`, with `core.hooksPath` switched, in step 7f, before any commit stages content under `frontend/app/`. |
 
 After the restart, the 2.0.0 guards apply. One difference you will notice: the 2.0.0 `eslint.config.*` guard asks the user instead of refusing, so the step 9 merge of `frontend/eslint.config.mjs` needs their approval.
 
@@ -140,13 +140,18 @@ If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/lo
 
 ### 7f. Package split
 
-- **Root `package.json`** (`shared`) takes L's root shape: `prepare`, the `gaia` config block, the proxy scripts (`"typecheck": "pnpm -C frontend typecheck"` and the rest), and only the root devDependencies L lists (`@gaia-react/lint`, `husky`, `is-ci`, `lint-staged`, `prettier`, `typescript`). Keep any root script or setting the user added that is not about the app; move app-related ones to `frontend/package.json`.
+- **Root `package.json`** (`shared`) takes L's root shape: `prepare`, the `gaia` config block, the proxy scripts (`"typecheck": "pnpm -C frontend typecheck"` and the rest), and only the root devDependencies L lists (`@gaia-react/lint`, `lint-staged`, `prettier`, `typescript`; `husky` and `is-ci` are gone). Its `prepare` is `[ -n "$CI" ] || [ ! -e .git ] || git config core.hooksPath .githooks`. Keep any root script or setting the user added that is not about the app; move app-related ones to `frontend/package.json`.
 - **`frontend/package.json`** (new): a pure split, no upgrades. It takes the app half of the user's 1.6.1 `package.json` exactly as it is: every app dependency and devDependency at its current version, and every app script (`typecheck`, `lint`, `test`, `test:lint-staged`, `dev`, `build`, and the rest). Name it `frontend`, as L's is (the Dockerfile builds with `pnpm deploy --filter frontend`). Upgrading it to L's versions is step 9. Keep `remix-flat-routes` and `@react-router/remix-routes-option-adapter` for now; step 8 removes them.
 - **`pnpm-workspace.yaml`** (`shared`): `packages: [frontend]`, plus every supply-chain setting from L (`minimumReleaseAge`, `minimumReleaseAgeStrict`, `trustPolicy`, `allowBuilds`, and the rest), merged with the user's own `overrides`, exclusions, and build approvals.
 - **`.gitignore`**: L's root `.gitignore` plus `frontend/.gitignore`; carry the user's own entries to whichever side they belong to (app build output to `frontend/.gitignore`).
 - **`.prettierignore`, `prettier.config.mjs`**: merge root and `frontend/` copies against L.
 - **`CLAUDE.md`**: root `CLAUDE.md` (`shared`) and `frontend/CLAUDE.md` (`shared`, new). Move the user's own frontend instructions (components, routes, styling, i18n) from root `CLAUDE.md` into `frontend/CLAUDE.md`; keep project-wide ones at the root.
-- **`.husky/pre-commit`**: take L's version. It reads `.gaia/packages.json` and `frontend/gaia.package.json`, which the harness merge brought in.
+- **Pre-commit hook (husky to `.githooks/`)**: 2.0.0 runs the hook straight from git, with no husky. Do these in order:
+  1. `git rm .husky/pre-commit`.
+  2. Take L's `.githooks/pre-commit` and confirm it is executable with `test -x .githooks/pre-commit`; if the copy lost the bit, run `chmod +x .githooks/pre-commit`. Git silently ignores a hook that is not executable. The hook reads `.gaia/packages.json` and `frontend/gaia.package.json`, which the harness merge brought in.
+  3. Run `git config core.hooksPath .githooks`.
+  4. Verify: `git config --get core.hooksPath` must print exactly `.githooks`, and `test -x .githooks/pre-commit` must pass. If either fails, stop and report. This matters because a clone left on `core.hooksPath=.husky/_` after `.husky/pre-commit` is gone runs no pre-commit hook and prints no error, so the 7h commit would skip the floor unnoticed.
+  5. Remove husky's untracked runtime with `rm -rf .husky/_` (an explicit relative path, which 1.6.1's `block-rm-rf.sh` allows; never `rm -rf .`, a glob, or an absolute path), then `rmdir .husky`. If `rmdir` reports the directory is not empty, show the user what remains and ask.
 - **`doctor.config.jsonc`**: the 2.0.0 pre-commit refuses a package with two react-doctor configs, so keep exactly one under `frontend/` in this commit: leave the moved `frontend/doctor.config.jsonc` in place until step 9 replaces it with `frontend/doctor.config.ts`.
 
 ### 7g. Generate the frontend settings and install
@@ -154,7 +159,7 @@ If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/lo
 1. Run `./.gaia/cli/gaia packages sync-settings` to generate `frontend/.claude/settings.json` from the root `.claude/settings.json` and `frontend/.claude/settings.overlay.json`.
 2. Run `bash .gaia/scripts/check-settings-drift.sh`; it must exit 0.
 3. `.claude/settings.local.json`: keep it at the root. A Claude Code session launched in `frontend/` reads the root `.claude/settings.local.json` (Claude Code 2.1.211 and later) and also reads a `frontend/.claude/settings.local.json` if one exists; a root launch does not read the `frontend/` one. If the user launches in `frontend/` on an older Claude Code, copy the file to `frontend/.claude/settings.local.json` (gitignored). Rewrite any path in it that pointed at a moved root path.
-4. Run `pnpm install` (the lockfile's importer moves to `frontend`). Record `lock-packages-2.txt` and diff it against `lock-packages-1.txt`: a pure split should change no resolved version.
+4. Run `pnpm install` (the lockfile's importer moves to `frontend`). It runs L's `prepare`, which sets the same `core.hooksPath` value as 7f; re-run the 7f verification afterwards (`git config --get core.hooksPath` prints exactly `.githooks`). Record `lock-packages-2.txt` and diff it against `lock-packages-1.txt`: a pure split should change no resolved version.
 5. Run `pnpm typecheck` and `pnpm test --run` from the root. They run the frontend with its 1.6.1 content, dependencies, and `+` route folders, which still work here; fix anything the split broke.
 
 ### 7h. Commit and restart
@@ -257,7 +262,7 @@ Every check must pass. Report each with its result.
 6. **Settings drift:** `bash .gaia/scripts/check-settings-drift.sh` exits 0.
 7. **Hook registrations:** no hook command in `.claude/settings.json`, `frontend/.claude/settings.json`, or `.claude/settings.local.json` points at a missing script, and `.claude/hooks/janitor-report-drain.sh` is registered under `UserPromptSubmit`.
 8. **Audit roster:** on a throwaway branch, commit a comment-only change to a file under `frontend/app/`; `bash .gaia/scripts/resolve-audit-members.sh --base HEAD~1` exits 0 and prints exactly `code-audit-frontend`. Commit a comment-only change to a `.gaia/scripts/*.sh` file instead; it exits 0 and prints nothing. Delete the throwaway branch.
-9. **Pre-commit:** a staged `frontend/app/` change runs the frontend lint-staged on commit (the throwaway commit above shows it).
+9. **Pre-commit:** a staged `frontend/app/` change runs the frontend lint-staged on commit (the throwaway commit above shows it). Its output must show the hook's `Running pre-commit check` line, which proves git ran `.githooks/pre-commit`.
 10. **Worktree provisioning:** `git worktree add ../<repo>-migrate-check` from this branch, run `bash .claude/hooks/provision-worktree.sh <absolute path of that worktree>`, confirm its `frontend/.env` is a link to the main checkout's (check with `ls -l`, never read it) and its dependencies installed, then `git worktree remove ../<repo>-migrate-check`.
 11. **SPEC-021:** `.gaia/specs.json` is gone from the tree and `.gaia/local/specs/ledger.json` holds its rows.
 12. **CI removal:** none of the files in 7b exists.
@@ -265,6 +270,7 @@ Every check must pass. Report each with its result.
 14. **`cn`:** `git grep -nE "tailwind-merge|twMerge|twJoin"` returns nothing.
 15. **Routes:** no `+` folder under `frontend/app/routes`, and the step 8 equivalence check passed.
 16. **Workflows:** `tests.yml`, `chromatic.yml`, and every user workflow that builds the app reference `frontend/` paths only.
+17. **Git hook:** `git config --get core.hooksPath` prints `.githooks`, `test -x .githooks/pre-commit` passes, and `.husky/` does not exist.
 
 Then ask the user to run one manual smoke: start Claude Code from `frontend/`, and confirm the session loads `frontend/CLAUDE.md` and that a guarded action (for example asking it to edit `frontend/.env`) is refused.
 
@@ -272,7 +278,7 @@ Then ask the user to run one manual smoke: start Claude Code from `frontend/`, a
 
 1. Copy L's `.gaia/manifest.json` over the root one and write `2.0.0` to `.gaia/VERSION`. Commit: `chore: GAIA 2.0.0`.
 2. Push the branch and open a pull request. In its body, list the step 11 resolution report, every deletion you skipped at the user's request, every conflict and how it was resolved, and the keep-yours notice. Review the rename commit with `git diff -M` so it reads as renames.
-3. Merge through the user's normal flow (the 2.0.0 PR Merge Workflow).
+3. Merge through the user's normal flow (the 2.0.0 PR Merge Workflow). In the PR body or your report to the user, say that every other clone of the repository must run `pnpm install` (or `git config core.hooksPath .githooks`) after pulling; until then that clone runs no pre-commit hook.
 4. **Only after the PR has merged**, list each remote-touching act below for the user and run each one only on their explicit confirmation:
    - Push the SPEC number seed tag from step 7d: `git tag -a "spec/<N>" 4b825dc642cb6eb9a060e54bf8d69288fbee4904 -m "seed: SPEC number high-water mark at cutover"` then `git push origin "refs/tags/spec/<N>"` (an "already present" refusal is fine).
    - Required status context: if the default branch requires the `code-review-audit` context, rewrite the list without it, keeping `GAIA-Audit` and every other context. Read the contexts with `gh api repos/<owner>/<repo>/branches/<default>/protection/required_status_checks --jq '.contexts[]'`, and write through `PUT .../required_status_checks/contexts` with a JSON body built by `jq`. A failed read aborts before any write.
@@ -289,14 +295,14 @@ Before the PR merges, everything is local and reversible:
 1. Move the env files back: `mv frontend/.env* .` (only the untracked ones you moved in step 6).
 2. `git switch main` and `git branch -D chore/migrate-gaia-2.0.0`.
 3. Restore `.gaia/local`: if step 7d moved the SPEC ledger, `.gaia/specs.json` comes back with the branch switch; delete `.gaia/local/specs/ledger.json` only if it did not exist before. Delete `.gaia/local/cache/shared/migrate-2/` if you want a clean retry.
-4. Run `pnpm install` on `main` to restore `node_modules` for the 1.6.1 layout.
+4. Run `pnpm install` on `main` to restore `node_modules` for the 1.6.1 layout. 1.6.1's `prepare` re-runs husky, which restores `.husky/_` and `core.hooksPath`; verify `git config --get core.hooksPath` prints `.husky/_`.
 5. Restart Claude Code so the 1.6.1 hooks load again.
 
 No remote state changes before the PR merges, so there is nothing remote to undo.
 
 ## What this guideline covers
 
-The migration notes written alongside 2.0.0 had six sections. All six are carried here:
+The migration notes written alongside 2.0.0 had six sections. All six are carried here, along with the hook switch:
 
 - SPEC-021 SPEC-number ledger cutover: step 7d, with the seed tag in step 13.
 - SPEC-034 Code Audit Team rename and roster: step 7a (agent rename with carry-across, `auditors:` roster in the 2.0.0 `frontend/`-prefixed shape, remit regeneration) and step 12 checks 8 and 9. The wiki page renames ride the wiki merge.
@@ -304,6 +310,7 @@ The migration notes written alongside 2.0.0 had six sections. All six are carrie
 - SPEC-091 GAIA CI removal: step 7b locally, step 13 remotely, step 12 checks 7 and 12.
 - SPEC-085 route files: step 8.
 - `cn` switch: step 9 and step 12 check 14.
+- Husky removal and the `core.hooksPath` switch to `.githooks/`: step 7f, with step 12 check 17.
 
 ## Appendix A: deletion list (1.6.1 shipped, absent from 2.0.0)
 
@@ -314,6 +321,8 @@ Relocations, not losses (handled in the step named, never deleted blind):
 - `.claude/agents/code-review-audit.md`: renamed to `.claude/agents/code-audit-frontend.md` in step 7a. `.claude/agents/code-review-audit/{README,conform,form-components,react-i18next}.md`: moved to `frontend/.claude/agents/code-audit-frontend/` in step 7a. `.claude/agents/code-review-audit/tailwind-merge.md`: deleted.
 - `app/routes/_legal+/_layout.tsx`, `_legal+/privacy.tsx`, `_legal+/terms.tsx`, `_public+/_index.tsx`, `_public+/_layout.tsx`, `_session+/README.md`, `actions+/set-language.ts`, `resources+/theme-switch.tsx`: renamed in step 8.
 - `wiki/concepts/Code Review Audit CI.md`: superseded by the 2.0.0 wiki; delete after carrying any user notes into the matching 2.0.0 page.
+- `wiki/dependencies/Husky.md`: superseded by `wiki/dependencies/lint-staged.md` and `wiki/concepts/Pre-commit Hooks.md` in the 2.0.0 wiki; delete after carrying any user notes into the matching 2.0.0 page.
+- `.husky/pre-commit`: replaced by `.githooks/pre-commit` in step 7f (the `husky` and `is-ci` devDependencies leave the root `package.json` there too).
 - `doctor.config.jsonc`: replaced by `frontend/doctor.config.ts` in step 9.
 
 Deleted:

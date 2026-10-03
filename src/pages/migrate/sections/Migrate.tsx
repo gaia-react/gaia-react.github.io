@@ -55,7 +55,7 @@ const STEPS = [
   'Record the route table, the lockfile, and your hook registrations before anything changes.',
   'Bump pnpm and Node in their own commit.',
   'Move the app into `frontend/` in a rename-only commit, so history follows every file.',
-  'Merge the 2.0.0 harness three ways, keeping your customizations, split the workspace, and generate the `frontend/` settings.',
+  'Merge the 2.0.0 harness three ways, keeping your customizations, split the workspace, switch the pre-commit hook from husky to `.githooks/`, and generate the `frontend/` settings.',
   'Rename route files from `+` folders to flat `@react-router/fs-routes` names, and prove every URL is unchanged.',
   'Merge the frontend, upgrade its dependencies, and switch to `cn`.',
   'Point your own files at `frontend/`, verify with the full Quality Gate, and open a pull request.',
@@ -66,6 +66,7 @@ const AFTER_MERGE = [
   'Drop the retired `code-review-audit` required status check, if your branch protection has it.',
   'Delete the GAIA CI secrets, then revoke the token at its source and uninstall the Claude GitHub App.',
   'Prune the `gaia-ci` label, close open `gaia-ci` pull requests, and delete `gaia-ci/` branches by name.',
+  'Have every other clone run `pnpm install` after pulling, which points git at `.githooks/`; until then that clone runs no pre-commit hook.',
 ];
 
 // Renders `code` spans in the short list copy above. Plain text otherwise.
