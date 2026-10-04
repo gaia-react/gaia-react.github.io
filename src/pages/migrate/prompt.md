@@ -263,7 +263,7 @@ Every check must pass. Report each with its result.
 7. **Hook registrations:** no hook command in `.claude/settings.json`, `frontend/.claude/settings.json`, or `.claude/settings.local.json` points at a missing script, and `.claude/hooks/janitor-report-drain.sh` is registered under `UserPromptSubmit`.
 8. **Audit roster:** on a throwaway branch, commit a comment-only change to a file under `frontend/app/`; `bash .gaia/scripts/resolve-audit-members.sh --base HEAD~1` exits 0 and prints exactly `code-audit-frontend`. Commit a comment-only change to a `.gaia/scripts/*.sh` file instead; it exits 0 and prints nothing. Delete the throwaway branch.
 9. **Pre-commit:** a staged `frontend/app/` change runs the frontend lint-staged on commit (the throwaway commit above shows it). Its output must show the hook's `Running pre-commit check` line, which proves git ran `.githooks/pre-commit`.
-10. **Worktree provisioning:** `git worktree add ../<repo>-migrate-check` from this branch, run `bash .claude/hooks/provision-worktree.sh <absolute path of that worktree>`, confirm its `frontend/.env` is a link to the main checkout's (check with `ls -l`, never read it) and its dependencies installed, then `git worktree remove ../<repo>-migrate-check`.
+10. **Worktree provisioning:** `git worktree add ../<repo>-migrate-check` from this branch, run `bash .claude/hooks/provision-worktree.sh <absolute path of that worktree>`, confirm its `frontend/.env` is a link to the main checkout's (check with `ls -l`, never read it) and its dependencies installed. Confirm `frontend/.gaia-ports` exists in it and that `bash .gaia/scripts/ports.sh`, run inside it, prints slot 1 (dev 5174, Storybook 6007). A linked worktree with no port file refuses `pnpm dev`, `pnpm storybook`, and `pnpm pw`. Then `git worktree remove ../<repo>-migrate-check`.
 11. **SPEC-021:** `.gaia/specs.json` is gone from the tree and `.gaia/local/specs/ledger.json` holds its rows.
 12. **CI removal:** none of the files in 7b exists.
 13. **Deletions:** no path in Appendix A's delete list exists at its 2.0.0 path, except the relocation destinations named there.
@@ -286,7 +286,8 @@ Then ask the user to run one manual smoke: start Claude Code from `frontend/`, a
    - Labels: `./.gaia/cli/gaia labels sync --prune-deprecated` (or `gh label delete gaia-ci --yes`).
    - Open `gaia-ci` pull requests: list them with `gh pr list --label gaia-ci --state open`, and close each by number.
    - CI branches: list `git ls-remote --heads origin | grep -F 'refs/heads/gaia-ci/'`, then delete each by exact name with `git push origin --delete <branch>`, never by glob.
-5. Delete `.gaia/local/cache/shared/migrate-2/` once the user is satisfied.
+5. **Existing worktrees:** each linked worktree created before 2.0.0 has no port slot or port file, so it refuses `pnpm dev`, `pnpm storybook`, and `pnpm pw` until it gets them. Re-enter each one once, or run `bash .claude/hooks/provision-worktree.sh <worktree-path>` for each, so each gets its slot and port file.
+6. Delete `.gaia/local/cache/shared/migrate-2/` once the user is satisfied.
 
 ## Rollback
 
