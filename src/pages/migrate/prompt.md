@@ -291,7 +291,7 @@ Three-way merge every GAIA-shipped file under `frontend/` that step 7 left alone
 
 Start with `frontend/package.json` (`shared`): B is the app half of B's root `package.json`, A is the step 7 split, L is L's `frontend/package.json`. This upgrades the app to 2.0.0's versions (React Router 8, Vitest 5, `@gaia-react/lint` 2.3.0, and the rest); keep the user's own dependencies, keep their versions where they pinned newer ones, and ask when they pinned older ones. Run `pnpm install`, then merge the configs (React Router 8 rejects the `future` block in a 1.6.1 `react-router.config.ts`; L has none) and the source.
 
-Frontend deletions from Appendix A: `.storybook/env.ts`, `app/components/GaiaLogo/tests/index.stories.tsx`, and `doctor.config.jsonc` (now under `frontend/`, replaced by L's `frontend/doctor.config.ts` in the same commit). Ask before deleting any the user edited.
+Frontend deletions from Appendix A: `.storybook/env.ts`, `app/components/GaiaLogo/tests/index.stories.tsx`, `test/msw.server.ts`, and `doctor.config.jsonc` (now under `frontend/`, replaced by L's `frontend/doctor.config.ts` in the same commit). Ask before deleting any the user edited.
 
 **Keep-yours notice.** GAIA 2.0.0 no longer ships its branded `Header`, `Footer`, `GaiaLogo` components or `gaia-logo.svg`, and the stock `.github/CODEOWNERS` is no longer shipped. These are now the user's own files: `frontend/app/components/Header/index.tsx`, `frontend/app/components/Footer/index.tsx`, `frontend/app/components/GaiaLogo/index.tsx`, `frontend/app/assets/images/gaia-logo.svg`, and `.github/CODEOWNERS`. Never delete them. Tell the user they are theirs to keep, edit, or remove.
 
@@ -378,7 +378,7 @@ The migration notes written alongside 2.0.0 had six sections. All six are carrie
 
 ## Appendix A: deletion list (1.6.1 shipped, absent from 2.0.0)
 
-Paths are as they are in 1.6.1; a path under `app/`, `.storybook/`, or `doctor.config.jsonc` is under `frontend/` after step 6. Cross-check: this list equals every key of B's `.gaia/manifest.json`, with frontend paths mapped to their `frontend/` paths, that is absent from L's `.gaia/manifest.json`, minus the sentinels and the keep-yours files. If your derivation differs, stop and report the difference. For the `.specify/` keys it is reproducible by script: `comm -23 <(jq -r '.files|keys[]' <B>/.gaia/manifest.json | grep '^\.specify/' | sort) <(jq -r '.files|keys[]' <L>/.gaia/manifest.json | sort)` must print exactly the `.specify` entries named in this appendix plus the 7c3 table.
+Paths are as they are in 1.6.1; a path under `app/`, `test/`, `.storybook/`, or `doctor.config.jsonc` is under `frontend/` after step 6. Cross-check: this list equals every key of B's `.gaia/manifest.json`, with frontend paths mapped to their `frontend/` paths, that is absent from L's `.gaia/manifest.json`, minus the sentinels and the keep-yours files. If your derivation differs, stop and report the difference. For the `.specify/` keys it is reproducible by script: `comm -23 <(jq -r '.files|keys[]' <B>/.gaia/manifest.json | grep '^\.specify/' | sort) <(jq -r '.files|keys[]' <L>/.gaia/manifest.json | sort)` must print exactly the `.specify` entries named in this appendix plus the 7c3 table.
 
 Relocations, not losses (handled in the step named, never deleted blind):
 
@@ -458,6 +458,7 @@ Deleted:
 .specify/presets/gaia/templates/spec-template.md
 .storybook/env.ts
 app/components/GaiaLogo/tests/index.stories.tsx
+test/msw.server.ts
 wiki/concepts/Agentic Design.md
 wiki/concepts/Telemetry.md
 wiki/dependencies/React Router 7.md
