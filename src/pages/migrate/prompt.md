@@ -1,6 +1,6 @@
 # Migrate this project from GAIA 1.6.1 to GAIA 2.0.0
 
-You are migrating this repository, a project built on GAIA 1.6.1, to GAIA 2.0.0. GAIA 2.0.0 moves the React app and its frontend-only Claude harness into `frontend/` and leaves the shared harness (`.claude/`, `.gaia/`, `.github/`, `.githooks/`, `.specify/`, `wiki/`, root `CLAUDE.md`) at the root, which becomes a pnpm workspace. The 1.6.1 `/update-gaia` cannot make this hop, so this guideline replaces it for this one release.
+You are migrating this repository, a project built on GAIA 1.6.1, to GAIA 2.0.0. GAIA 2.0.0 moves the React app and its frontend-only Claude harness into `frontend/` and leaves the shared harness (`.claude/`, `.gaia/`, `.github/`, `.githooks/`, `wiki/`, root `CLAUDE.md`) at the root, which becomes a pnpm workspace. The 1.6.1 `/update-gaia` cannot make this hop, so this guideline replaces it for this one release.
 
 Follow the steps below in order. They are a guideline, not a script: use judgement on anything unusual, and ask the user whenever ownership of a file or a change is unclear. Never guess at a rename, a merge, or a deletion. When a step says stop, stop and report.
 
@@ -81,7 +81,7 @@ GAIA 2.0.0 moves pnpm and the Node floor. Do this before the move so any resolut
 List every top-level entry (tracked and untracked) and sort each into one group. Show the user the list and confirm it before moving anything.
 
 - **Frontend (moves whole into `frontend/`):** `app/`, `test/`, `public/`, `.storybook/`, `.playwright/`, `vite.config.ts`, `vitest.config.ts`, `playwright.config.ts`, `react-router.config.ts`, `stylelint.config.mjs`, `knip.config.ts`, `doctor.config.jsonc`, `tsconfig.json`, `eslint.config.mjs`, `.lintstagedrc.json`, `Dockerfile`, `.env.example`. `.dockerignore` moves to `frontend/Dockerfile.dockerignore` (Docker reads a `<Dockerfile>.dockerignore` beside a Dockerfile that is built from the root context).
-- **Harness (stays at the root):** `.claude/`, `.gaia/`, `.github/`, `.husky/`, `.specify/`, `wiki/`, `CLAUDE.md`.
+- **Harness (stays at the root):** `.claude/`, `.gaia/`, `.github/`, `.husky/`, `wiki/`, `CLAUDE.md`.
 - **Split (root keeps one half, `frontend/` gets the other):** `package.json`, `pnpm-workspace.yaml`, `.gitignore`, `.prettierignore`, `prettier.config.mjs`. These are handled in step 7.
 - **Stays at the root unchanged:** `pnpm-lock.yaml` (one lockfile for the workspace), `.npmrc`, `.nvmrc`, `.node-version`, `.editorconfig`, `README.md`, `LICENSE`, and the like.
 - **Anything else:** stays at the root by default. Ask the user if it looks frontend-owned (an extra config the app's build reads, an app-only script folder). Backends (`server/`, `api/`, and similar) stay at the root. Deploy configs (`fly.toml`, `vercel.json`, `netlify.toml`, and similar) stay at the root, and their build paths get rewritten in step 10.
@@ -128,7 +128,7 @@ Do not surface the 1.6.1 `/setup-gaia` suggestion to configure CI; it no longer 
 
 ### 7c. Deletions (harness half)
 
-Delete every path in Appendix A that is not under `frontend/app/`, `frontend/test/`, `frontend/.storybook/`, or `doctor.config.jsonc` (those go in steps 8 and 9). The relocations in Appendix A are already handled above (the agent rename) or in step 8 (routes); do not delete their destinations. Skip the `.specify/` paths; 7c2 removes them without asking. For each other file the user edited (A differs from B), show the diff and ask before deleting. Use `git rm`.
+Delete every path in Appendix A that is not under `frontend/app/`, `frontend/test/`, `frontend/.storybook/`, or `doctor.config.jsonc` (those go in steps 8 and 9). The relocations in Appendix A are already handled above (the agent rename) or in step 8 (routes), and the moved spec-lifecycle files are carried by 7c3; do not delete their destinations. Skip the `.specify/` paths; 7c2 removes them without asking, and 7c3 carries the moved spec-lifecycle files. For each other file the user edited (A differs from B), show the diff and ask before deleting. Use `git rm`.
 
 ### 7c2. spec-kit core cleanup
 
@@ -149,9 +149,49 @@ Delete every path in Appendix A that is not under `frontend/app/`, `frontend/tes
 
 End state: the files under `.specify/` are exactly the shipped `.specify` set.
 
+### 7c3. Carry GAIA's spec-lifecycle edits to their new paths
+
+7c2's premise that nobody authors files in `.specify/` covers spec-kit core; GAIA's own files under `.specify/extensions/gaia/` are the exception, already removed by 7c2 and carried here from `pre_sha`.
+
+2.0.0 moves 16 of the files 1.6.1 shipped there to new paths and deletes 2. This table is the whole list (the 10 spec-kit-core `.specify` entries stay in Appendix A, and the files 2.0.0 adds that 1.6.1 never shipped are plain new files for 7a):
+
+| 1.6.1 path (B)                                          | 2.0.0 path (L)                                           |
+| ------------------------------------------------------- | -------------------------------------------------------- |
+| `.specify/extensions/gaia/commands/self-review.md`      | `.claude/skills/gaia/references/spec/self-review.md`     |
+| `.specify/extensions/gaia/commands/spec-close.md`       | `.claude/skills/gaia/references/spec/spec-close.md`      |
+| `.specify/extensions/gaia/commands/uat-write.md`        | `.claude/skills/gaia/references/spec/uat-write.md`       |
+| `.specify/extensions/gaia/commands/wiki-promote.md`     | `.claude/skills/gaia/references/spec/wiki-promote.md`    |
+| `.specify/extensions/gaia/lib/ledger-update.sh`         | `.gaia/scripts/spec/ledger-update.sh`                    |
+| `.specify/extensions/gaia/lib/lint.sh`                  | `.gaia/scripts/spec/lint.sh`                             |
+| `.specify/extensions/gaia/lib/spec-allocator.sh`        | `.gaia/scripts/spec/spec-allocator.sh`                   |
+| `.specify/extensions/gaia/lib/spec-renumber.sh`         | `.gaia/scripts/spec/spec-renumber.sh`                    |
+| `.specify/extensions/gaia/lib/uat-write.sh`             | `.gaia/scripts/spec/uat-write.sh`                        |
+| `.specify/extensions/gaia/lib/with-ledger-lock.sh`      | `.gaia/scripts/spec/with-ledger-lock.sh`                 |
+| `.specify/extensions/gaia/rules/uat-divergence.md`      | `.claude/skills/gaia/references/spec/uat-divergence.md`  |
+| `.specify/extensions/gaia/templates/clarify-prompts.md` | `.claude/skills/gaia/references/spec/clarify-prompts.md` |
+| `.specify/extensions/gaia/templates/spec-template.md`   | `.claude/skills/gaia/references/spec/spec-template.md`   |
+| `.specify/extensions/gaia/templates/system-prompt.md`   | `.claude/skills/gaia/references/spec/system-prompt.md`   |
+| `.specify/extensions/gaia/templates/uat-fixme.ts.tmpl`  | `.gaia/templates/spec/uat-fixme.ts.tmpl`                 |
+| `.specify/extensions/gaia/templates/uat-spec.ts.tmpl`   | `.gaia/templates/spec/uat-spec.ts.tmpl`                  |
+
+Deleted in 2.0.0, with no new path:
+
+| 1.6.1 path (B)                              | 2.0.0            |
+| ------------------------------------------- | ---------------- |
+| `.specify/extensions/gaia/README.md`        | deleted in 2.0.0 |
+| `.specify/extensions/gaia/commands/lint.md` | deleted in 2.0.0 |
+
+For each moved file, B is the 1.6.1 copy at the old path (from the B tree), A is the user's committed copy from `git show <pre_sha>:<old path>` (the committed blob, never the working tree), and L is the 2.0.0 copy at the new path. 7a already copied L to the new path as a placeholder; three-way merge B, A, and L onto the new path and overwrite that placeholder, and ask the user on a conflict (the same carry-over 7a does for the agent rename). Conflicts are expected near re-pathed path lines, for example a hardcoded `.specify/extensions/gaia/...` path inside a moved script, because B to L differs by more than the move. If A does not exist at `pre_sha` (the user removed the file), ask the user and do not re-add it.
+
+For each deleted file, read A from `git show <pre_sha>:<old path>`. If A differs from B, show the diff and ask whether to keep the user's content elsewhere. On yes, write A to a path the user chooses outside `.specify/` and report it. On no, report that the content stays recoverable at `pre_sha`. Never restore it under `.specify/`.
+
+Changes here are staged now and land in the 7h commit.
+
+End state: every new path in the table exists, and no old path in it does.
+
 ### 7d. SPEC-021 SPEC-number ledger cutover
 
-If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/local/specs/ledger.json` (this keeps uncommitted pending rows), then `git rm --cached -q .gaia/specs.json` and `rm -f .gaia/specs.json`. Then run `bash .gaia/scripts/ledger-status-migrate.sh` so old status words (`specified`, `allocated`, `completed`, `archived`, `in-progress`) become the 2.0.0 vocabulary. Record the highest SPEC number with `bash .specify/extensions/gaia/lib/spec-allocator.sh highest "$(git rev-parse --show-toplevel)"`; the seed tag for it is pushed only after the PR merges (step 13).
+If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/local/specs/ledger.json` (this keeps uncommitted pending rows), then `git rm --cached -q .gaia/specs.json` and `rm -f .gaia/specs.json`. Then run `bash .gaia/scripts/ledger-status-migrate.sh` so old status words (`specified`, `allocated`, `completed`, `archived`, `in-progress`) become the 2.0.0 vocabulary. Record the highest SPEC number with `bash .gaia/scripts/spec/spec-allocator.sh highest "$(git rev-parse --show-toplevel)"`; the seed tag for it is pushed only after the PR merges (step 13).
 
 ### 7e. `.gaia/cache` to `.gaia/local/cache`
 
@@ -290,7 +330,8 @@ Every check must pass. Report each with its result.
 15. **Routes:** no `+` folder under `frontend/app/routes`, and the step 8 equivalence check passed.
 16. **Workflows:** `tests.yml`, `chromatic.yml`, and every user workflow that builds the app reference `frontend/` paths only.
 17. **Git hook:** `git config --get core.hooksPath` prints `.githooks`, `test -x .githooks/pre-commit` passes, and `.husky/` does not exist.
-18. **spec-kit cleanup:** `diff <(find .specify -type f | sort) <(jq -r '.files | keys[] | select(startswith(".specify/"))' <L>/.gaia/manifest.json | sort)` prints nothing (the files under `.specify/` are exactly the `.specify/` keys of L's `.gaia/manifest.json`); `ls -d .claude/skills/speckit-* 2>/dev/null` prints nothing; and `git grep -l 'SPECKIT' -- 'CLAUDE.md' '*/CLAUDE.md'` prints nothing.
+18. **spec-kit cleanup:** `test ! -e .specify` passes (if it fails, show the user what remains with `find .specify -type f` and ask, as 7f step 5 does for `.husky`); `diff <(find .specify -type f | sort) <(jq -r '.files | keys[] | select(startswith(".specify/"))' <L>/.gaia/manifest.json | sort)` prints nothing (the files under `.specify/` are exactly the `.specify/` keys of L's `.gaia/manifest.json`, and L has none, which is why `.specify/` is gone); `ls -d .claude/skills/speckit-* 2>/dev/null` prints nothing; and `git grep -l 'SPECKIT' -- 'CLAUDE.md' '*/CLAUDE.md'` prints nothing.
+19. **Spec-lifecycle carry-over:** no old path in the 7c3 table exists, and every new path in it exists (check each row of the table; the deleted files have no new path).
 
 Then ask the user to run one manual smoke: start Claude Code from `frontend/`, and confirm the session loads `frontend/CLAUDE.md` and that a guarded action (for example asking it to edit `frontend/.env`) is refused.
 
@@ -333,10 +374,11 @@ The migration notes written alongside 2.0.0 had six sections. All six are carrie
 - `cn` switch: step 9 and step 12 check 14.
 - Husky removal and the `core.hooksPath` switch to `.githooks/`: step 7f, with step 12 check 17.
 - spec-kit core removal: step 7c (GAIA's own spec-kit integration files, through Appendix A) and step 7c2 (spec-kit core's install footprint), with step 12 check 18.
+- Spec-lifecycle file carry-over: step 7c3 (GAIA's own spec files moved out of `.specify/extensions/gaia/`, three-way merged onto their new paths), with step 12 check 19.
 
 ## Appendix A: deletion list (1.6.1 shipped, absent from 2.0.0)
 
-Paths are as they are in 1.6.1; a path under `app/`, `.storybook/`, or `doctor.config.jsonc` is under `frontend/` after step 6. Cross-check: this list equals every key of B's `.gaia/manifest.json`, with frontend paths mapped to their `frontend/` paths, that is absent from L's `.gaia/manifest.json`, minus the sentinels and the keep-yours files. If your derivation differs, stop and report the difference.
+Paths are as they are in 1.6.1; a path under `app/`, `.storybook/`, or `doctor.config.jsonc` is under `frontend/` after step 6. Cross-check: this list equals every key of B's `.gaia/manifest.json`, with frontend paths mapped to their `frontend/` paths, that is absent from L's `.gaia/manifest.json`, minus the sentinels and the keep-yours files. If your derivation differs, stop and report the difference. For the `.specify/` keys it is reproducible by script: `comm -23 <(jq -r '.files|keys[]' <B>/.gaia/manifest.json | grep '^\.specify/' | sort) <(jq -r '.files|keys[]' <L>/.gaia/manifest.json | sort)` must print exactly the `.specify` entries named in this appendix plus the 7c3 table.
 
 Relocations, not losses (handled in the step named, never deleted blind):
 
@@ -346,6 +388,9 @@ Relocations, not losses (handled in the step named, never deleted blind):
 - `wiki/dependencies/Husky.md`: superseded by `wiki/dependencies/lint-staged.md` and `wiki/concepts/Pre-commit Hooks.md` in the 2.0.0 wiki; delete after carrying any user notes into the matching 2.0.0 page.
 - `.husky/pre-commit`: replaced by `.githooks/pre-commit` in step 7f (the `husky` and `is-ci` devDependencies leave the root `package.json` there too).
 - `doctor.config.jsonc`: replaced by `frontend/doctor.config.ts` in step 9.
+- `.specify/extensions/gaia/lib/*.sh` (six files in the 7c3 table): moved to `.gaia/scripts/spec/` in 7c3.
+- `.specify/extensions/gaia/commands/*.md` (four files), `.specify/extensions/gaia/rules/uat-divergence.md`, and `.specify/extensions/gaia/templates/*.md` (three files) in the 7c3 table: moved to `.claude/skills/gaia/references/spec/` in 7c3.
+- `.specify/extensions/gaia/templates/*.ts.tmpl` (two files in the 7c3 table): moved to `.gaia/templates/spec/` in 7c3.
 
 Deleted:
 
@@ -399,7 +444,9 @@ Deleted:
 .github/ISSUE_TEMPLATE/config.yml
 .github/ISSUE_TEMPLATE/feature_request.yml
 .github/pull_request_template.md
+.specify/extensions/gaia/README.md
 .specify/extensions/gaia/commands/constitution-check.md
+.specify/extensions/gaia/commands/lint.md
 .specify/extensions/gaia/commands/spec.md
 .specify/extensions/gaia/extension.yml
 .specify/extensions/gaia/lib/gh-mirror.sh
