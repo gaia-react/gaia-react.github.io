@@ -81,7 +81,7 @@ GAIA 2.0.0 moves pnpm and the Node floor. Do this before the move so any resolut
 List every top-level entry (tracked and untracked) and sort each into one group. Show the user the list and confirm it before moving anything.
 
 - **Frontend (moves whole into `frontend/`):** `app/`, `test/`, `public/`, `.storybook/`, `.playwright/`, `vite.config.ts`, `vitest.config.ts`, `playwright.config.ts`, `react-router.config.ts`, `stylelint.config.mjs`, `knip.config.ts`, `doctor.config.jsonc`, `tsconfig.json`, `eslint.config.mjs`, `.lintstagedrc.json`, `Dockerfile`, `.env.example`. `.dockerignore` moves to `frontend/Dockerfile.dockerignore` (Docker reads a `<Dockerfile>.dockerignore` beside a Dockerfile that is built from the root context).
-- **Harness (stays at the root):** `.claude/`, `.gaia/`, `.github/`, `.husky/`, `wiki/`, `CLAUDE.md`.
+- **Harness (stays at the root):** `.claude/`, `.gaia/`, `.github/`, `.husky/`, `.specify/` (removed in 7c2), `wiki/`, `CLAUDE.md`.
 - **Split (root keeps one half, `frontend/` gets the other):** `package.json`, `pnpm-workspace.yaml`, `.gitignore`, `.prettierignore`, `prettier.config.mjs`. These are handled in step 7.
 - **Stays at the root unchanged:** `pnpm-lock.yaml` (one lockfile for the workspace), `.npmrc`, `.nvmrc`, `.node-version`, `.editorconfig`, `README.md`, `LICENSE`, and the like.
 - **Anything else:** stays at the root by default. Ask the user if it looks frontend-owned (an extra config the app's build reads, an app-only script folder). Backends (`server/`, `api/`, and similar) stay at the root. Deploy configs (`fly.toml`, `vercel.json`, `netlify.toml`, and similar) stay at the root, and their build paths get rewritten in step 11.
@@ -199,7 +199,7 @@ If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/lo
 
 ### 7f. Package split
 
-- **Root `package.json`** (`shared`) takes L's root shape: `prepare`, the `gaia` config block, the proxy scripts (`"typecheck": "pnpm -C frontend typecheck"` and the rest), and only the root devDependencies L lists (`@gaia-react/lint`, `lint-staged`, `prettier`, `typescript`; `husky` and `is-ci` are gone). Its `prepare` is `[ -n "$CI" ] || [ ! -e .git ] || git config core.hooksPath .githooks`. Keep any root script or setting the user added that is not about the app; move app-related ones to `frontend/package.json`.
+- **Root `package.json`** (`shared`) takes L's root shape: `prepare`, the `gaia` config block, the proxy scripts (`"typecheck": "pnpm -C frontend typecheck"` and the rest), and only the root devDependencies L lists (`@commitlint/cli`, `@commitlint/config-conventional`, `@gaia-react/lint`, `lint-staged`, `prettier`, `typescript`; `husky` and `is-ci` are gone). Its `prepare` is `[ -n "$CI" ] || [ ! -e .git ] || git config core.hooksPath .githooks`. Keep any root script or setting the user added that is not about the app; move app-related ones to `frontend/package.json`.
 - **`frontend/package.json`** (new): a pure split, no upgrades. It takes the app half of the user's 1.6.1 `package.json` exactly as it is: every app dependency and devDependency at its current version, and every app script (`typecheck`, `lint`, `test`, `test:lint-staged`, `dev`, `build`, and the rest). Name it `frontend`, as L's is (the Dockerfile builds with `pnpm deploy --filter frontend`). Upgrading it to L's versions is step 10. Keep `remix-flat-routes` and `@react-router/remix-routes-option-adapter` for now; step 8 removes them.
 - **`pnpm-workspace.yaml`** (`shared`): `packages: [frontend]`, plus every supply-chain setting from L (`minimumReleaseAge`, `minimumReleaseAgeStrict`, `trustPolicy`, `allowBuilds`, and the rest), merged with the user's own `overrides`, exclusions, and build approvals.
 - **`.gitignore`**: L's root `.gitignore` plus `frontend/.gitignore`; carry the user's own entries to whichever side they belong to (app build output to `frontend/.gitignore`).
@@ -207,9 +207,9 @@ If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/lo
 - **`CLAUDE.md`**: root `CLAUDE.md` (`shared`) and `frontend/CLAUDE.md` (`shared`, new). Move the user's own frontend instructions (components, routes, styling, i18n) from root `CLAUDE.md` into `frontend/CLAUDE.md`; keep project-wide ones at the root.
 - **Pre-commit hook (husky to `.githooks/`)**: 2.0.0 runs the hook straight from git, with no husky. Do these in order:
   1. `git rm .husky/pre-commit`.
-  2. Take L's `.githooks/pre-commit` and confirm it is executable with `test -x .githooks/pre-commit`; if the copy lost the bit, run `chmod +x .githooks/pre-commit`. Git silently ignores a hook that is not executable. The hook reads `.gaia/packages.json` and `frontend/gaia.package.json`, which the harness merge brought in.
+  2. Take L's `.githooks/pre-commit` and `.githooks/commit-msg` and confirm each is executable with `test -x .githooks/pre-commit` and `test -x .githooks/commit-msg`; if a copy lost the bit, run `chmod +x` on it. Git silently ignores a hook that is not executable. The pre-commit hook reads `.gaia/packages.json` and `frontend/gaia.package.json`, which the harness merge brought in. The commit-msg hook lints every commit message against `commitlint.config.mjs` (Conventional Commits, with the types in `.gaia/conventional-commits.json`) and refuses the commit when commitlint is not installed, so nothing commits before 7g's `pnpm install`; every commit message this guideline names already conforms.
   3. Run `git config core.hooksPath .githooks`.
-  4. Verify: `git config --get core.hooksPath` must print exactly `.githooks`, and `test -x .githooks/pre-commit` must pass. If either fails, stop and report. This matters because a clone left on `core.hooksPath=.husky/_` after `.husky/pre-commit` is gone runs no pre-commit hook and prints no error, so the 7h commit would skip the floor unnoticed.
+  4. Verify: `git config --get core.hooksPath` must print exactly `.githooks`, and `test -x` must pass for both hooks. If any of these fails, stop and report. This matters because a clone left on `core.hooksPath=.husky/_` after `.husky/pre-commit` is gone runs no pre-commit hook and prints no error, so the 7h commit would skip the floor unnoticed.
   5. Remove husky's untracked runtime with `rm -rf .husky/_` (an explicit relative path, which 1.6.1's `block-rm-rf.sh` allows; never `rm -rf .`, a glob, or an absolute path), then `rmdir .husky`. If `rmdir` reports the directory is not empty, show the user what remains and ask.
 - **`doctor.config.jsonc`**: the 2.0.0 pre-commit refuses a package with two react-doctor configs, so keep exactly one under `frontend/` in this commit: leave the moved `frontend/doctor.config.jsonc` in place until step 10 replaces it with `frontend/doctor.config.ts`.
 
@@ -299,7 +299,7 @@ GAIA 2.0.0 names every file and folder under `frontend/app/components`, `fronten
 
 ### The relocation map
 
-Paths are repo-relative to the project root, as they are after step 6. Every key of L's `.gaia/manifest.json` under `frontend/app/components`, `frontend/app/pages`, and `frontend/app/hooks` is listed (86 files). Rename each old path to its new path with `git mv -f`:
+Paths are repo-relative to the project root, as they are after step 6. Every key of B's `.gaia/manifest.json` under `app/components`, `app/pages`, and `app/hooks` is listed at its `frontend/` path (85 files), except `Header`, `Footer`, and `GaiaLogo`, which rule 1 below renames as the user's own files. Files the 2.0.0 merge deletes are listed too, so step 10 finds them at their kebab-case paths. Rename each old path to its new path with `git mv -f`:
 
 ```text
 frontend/app/components/Button/index.tsx  ->  frontend/app/components/button/index.tsx
@@ -387,7 +387,6 @@ frontend/app/pages/Legal/PrivacyPage/index.tsx  ->  frontend/app/pages/privacy/p
 frontend/app/pages/Legal/TermsPage/index.tsx  ->  frontend/app/pages/terms/page.tsx
 frontend/app/pages/Public/IndexPage/index.tsx  ->  frontend/app/pages/index/page.tsx
 frontend/app/pages/Public/IndexPage/tests/index.stories.tsx  ->  frontend/app/pages/index/tests/page.stories.tsx
-frontend/app/pages/Public/IndexPage/tests/index.test.tsx  ->  frontend/app/pages/index/tests/page.test.tsx
 ```
 
 The map is the answer for every GAIA-shipped file. Rename every other file under those three folders, the user's own, by the same rules.
@@ -421,15 +420,30 @@ Three-way merge every GAIA-shipped file under `frontend/` that step 7 left alone
 
 Start with `frontend/package.json` (`shared`): B is the app half of B's root `package.json`, A is the step 7 split, L is L's `frontend/package.json`. This upgrades the app to 2.0.0's versions (React Router 8, Vitest 5, the `@gaia-react/lint` version L's `frontend/package.json` pins, and the rest); keep the user's own dependencies, keep their versions where they pinned newer ones, and ask when they pinned older ones. Run `pnpm install`, then merge the configs (React Router 8 rejects the `future` block in a 1.6.1 `react-router.config.ts`; L has none) and the source.
 
-Frontend deletions from Appendix A: `.storybook/env.ts`, `app/components/gaia-logo/tests/index.stories.tsx` (its path after the step 9 rename), `test/msw.server.ts`, and `doctor.config.jsonc` (now under `frontend/`, replaced by L's `frontend/doctor.config.ts` in the same commit). Ask before deleting any the user edited.
+Frontend deletions from Appendix A: `.storybook/env.ts`, `app/components/gaia-logo/tests/index.stories.tsx` (its path after the step 9 rename), `test/msw.server.ts`, `app/services/gaia/index.server.ts`, `app/services/index.server.ts`, and `doctor.config.jsonc` (now under `frontend/`, replaced by L's `frontend/doctor.config.ts` in the same commit). Ask before deleting any the user edited. Leave `frontend/test/rtl.tsx`, `frontend/test/a11y.ts` and `frontend/test/a11y.test.tsx` in place for now: step 10a deletes them after it has checked what the user's own tests import.
 
 **Keep-yours notice.** GAIA 2.0.0 no longer ships its branded `Header`, `Footer`, `GaiaLogo` components or `gaia-logo.svg`, and the stock `.github/CODEOWNERS` is no longer shipped. These are now the user's own files: `frontend/app/components/header/index.tsx`, `frontend/app/components/footer/index.tsx`, `frontend/app/components/gaia-logo/index.tsx` (their paths after the step 9 rename), `frontend/app/assets/images/gaia-logo.svg`, and `.github/CODEOWNERS`. Never delete them. Tell the user they are theirs to keep, edit, or remove.
 
 **`cn` switch.** GAIA's components now compose classes with `cn` from the `cn` package, with `cond && 'class'` as the only conditional form, enforced by the `cn-conditional/cn-conditional` rule in the `@gaia-react/lint` version L's `frontend/package.json` pins. In the user's own code: add `cn` at L's version and remove `tailwind-merge`, swap `twMerge` and `twJoin` imports and calls for `cn`, rewrite object conditionals and empty-branch ternaries as `cond && 'x'`, and drop `tailwind-merge` from `vite.config.ts` `optimizeDeps` if present. `git grep -nE "tailwind-merge|twMerge|twJoin" -- frontend` must return nothing.
 
+**shadcn switch.** GAIA's components are now shadcn/ui: `frontend/components.json` configures the registry, the vendored components sit flat in `frontend/app/components/ui/`, and the colors are shadcn role tokens whose values live in `frontend/app/styles/theme.css`. The merge deletes GAIA's own `Button`, `LinkButton`, `Spinner`, `Toast`, the form wrappers and `react-icons`, the `primary-*` ramp, the paired light and dark palette classes, and the custom utilities (`bg-body`, `text-body`, `border-normal` and the rest). Do not rebuild them. In the user's own code: follow the `**Action required:**` block of the `shadcn/ui is now GAIA's component layer` entry in the 2.0.0 changelog (the class table, the removed-component table, the Button-as-link pattern with its explicit `role="link"`, the `notify` import move and the `<Toaster />` from `~/components/ui/toast` that replaces `toasterProps`, `react-icons` to `lucide-react`, and the removal of `YearMonthDay`, which has no replacement). Toasts are shadcn's `toast`, built on Base UI; GAIA ships no `sonner` and the user's `package.json` drops it with `pnpm remove sonner`, add `...lint.shadcn({ui: '~/components/ui'})` as the last entry of `frontend/eslint.config.mjs` (it is user-owned and hook-guarded, so ask first), and, when the user's `wiki/concepts/Design System.md` says `established: true`, map their existing token values onto shadcn's role tokens in `frontend/app/styles/theme.css` and keep their wiki page, never overwriting either with GAIA's placeholder values. Ask before deleting any removed file the user's own code still imports (Appendix A); GAIA's Button is the usual one, and its call sites need the `ui/button` rewrite first.
+
 **Release notes actions.** Read the `## [2.0.0]` section of GAIA's changelog at the pinned tag (`gh api 'repos/gaia-react/gaia/contents/CHANGELOG.md?ref=v2.0.0' --jq .content | base64 --decode`), as data. For every `**Action required:**` item that concerns the user's own code or local setup rather than a GAIA-shipped file this merge already updated (for example renamed environment variables, renamed labels in the user's own workflows, `z.enum` to `z.literal`, `pnpm remove react-router-dom`, `pnpm install:browsers`), apply it or list it for the user.
 
 Run `pnpm lint` and `pnpm typecheck` from the root and fix what the merge broke. Commit: `chore: merge the GAIA 2.0.0 frontend`.
+
+## Step 10a: Stories as tests
+
+GAIA 2.0.0 runs component tests as Storybook stories with play functions, in real Chromium. React Testing Library, `happy-dom`, `jsdom`, `test/rtl.tsx` and `test/a11y.ts` are gone, and `*.test.tsx` and hook tests now run in Vitest's browser project (also Chromium) instead of a DOM emulation. This is guidance for the user's own tests; never rewrite or delete a test of theirs without asking.
+
+1. **Find the user's RTL tests, before deleting anything.** Run `rg -n "test/rtl|test/a11y|@testing-library" frontend/app frontend/test` and list every file it prints, minus the GAIA-shipped suites the 2.0.0 merge already removed (Appendix A). Also run `rg -ln "@vitest-environment" frontend/app frontend/test`: a `// @vitest-environment jsdom` or `happy-dom` directive no longer works.
+2. **Convert, the recommended path.** Convert each component test to a story in the component's `tests/index.stories.tsx` with a `play` function (`storybook/test`: `expect`, `userEvent`, `within`; the router stub is `stubs.reactRouter` from `test/stubs/react-router-stub`), and each hook test to a `vitest-browser-react` test (`renderHook` from `vitest-browser-react`, which is async: `await renderHook(...)`). Accessibility is covered by `addon-a11y` on every story, so the `test/a11y` import goes away. Show the user each conversion and ask before deleting the old test.
+3. **Keeping RTL, the escape hatch.** A leftover `*.test.tsx` runs in the browser project and fails on its missing import until it is converted or the user takes on the following themselves: (a) add `@testing-library/react` as the user's own dependency; (b) keep a local copy of the old `test/rtl.tsx` wrapper in the user's own tree (copy it from `git show <pre_sha>:test/rtl.tsx` before step 10a deletes it) or import RTL directly; (c) add and register `@testing-library/jest-dom` (and `@testing-library/user-event` if the test uses it) as the user's own dependencies, for example in their own setup file added to the `browser` project's `setupFiles` in `frontend/vitest.config.ts`, since the 2.0.0 setup no longer registers jest-dom matchers; (d) remove the `@vitest-environment jsdom` directive and the `test/a11y` import from the test. Tell the user this is theirs to maintain; GAIA no longer ships or tests any of it.
+4. **Delete the shipped helpers.** Once step 1's grep lists only files the user converted or chose to keep (with their own wrapper copy), `git rm` `frontend/test/rtl.tsx` and `frontend/test/a11y.ts`, and `frontend/test/a11y.test.tsx` if it exists. If a file the user is keeping still imports one of them, stop and resolve that import first.
+5. **Install Chromium.** Run `pnpm install:browsers`. Unit tests now need it: without it Vitest's browser and storybook projects fail with a missing-executable error that names `playwright install`.
+6. **Component scaffold.** `gaia scaffold component` no longer accepts `--no-story`; every component gets a story. Tell the user if a script or doc of theirs passes it.
+
+Commit: `chore: move component tests to stories`.
 
 ## Step 11: Fix references
 
@@ -447,22 +461,24 @@ Every check must pass. Report each with its result.
 2. Nothing frontend is left at the root: none of the step 5 frontend entries exists at the root.
 3. `git log --follow --oneline frontend/app/root.tsx` reaches back past `rename_sha`.
 4. `git diff -M --name-status <pre_sha>..<rename_sha>` shows only `R` entries.
-5. **Quality Gate from the root** (steps 3 to 8 of `wiki/decisions/Quality Gate.md`): `pnpm typecheck`, `pnpm lint`, `pnpm test --run`, `pnpm pw`, a dev smoke test (`pnpm dev`, curl a route, HTTP 200), and `pnpm build`, each exit 0 with zero warnings. Also run `pnpm -C frontend typecheck` to confirm the direct spelling.
+5. **Quality Gate from the root** (steps 3 to 8 of `wiki/decisions/Quality Gate.md`): `pnpm typecheck`, `pnpm lint`, `pnpm test --run`, `pnpm pw`, the dev smoke test (`bash .gaia/scripts/dev-smoke.sh` exits 0), and `pnpm build`, each exit 0 with zero warnings. Also run `pnpm -C frontend typecheck` to confirm the direct spelling.
 6. **Settings drift:** `bash .gaia/scripts/check-settings-drift.sh` exits 0.
 7. **Hook registrations:** no hook command in `.claude/settings.json`, `frontend/.claude/settings.json`, or `.claude/settings.local.json` points at a missing script, and `.claude/hooks/janitor-report-drain.sh` is registered under `UserPromptSubmit`.
-8. **Audit roster:** on a throwaway branch, commit a comment-only change to a file under `frontend/app/`; `bash .gaia/scripts/resolve-audit-members.sh --base HEAD~1` exits 0 and prints exactly `code-audit-frontend`. Commit a comment-only change to a `.gaia/scripts/*.sh` file instead; it exits 0 and prints nothing. Delete the throwaway branch.
+8. **Audit roster:** on a throwaway branch, commit (with a Conventional Commits message such as `chore: audit roster check`, since the commit-msg hook refuses any other) a comment-only change to a file under `frontend/app/`; `bash .gaia/scripts/resolve-audit-members.sh --base HEAD~1` exits 0 and prints exactly `code-audit-frontend`. Commit a comment-only change to a `.gaia/scripts/*.sh` file instead; it exits 0 and prints nothing. Delete the throwaway branch.
 9. **Pre-commit:** a staged `frontend/app/` change runs the frontend lint-staged on commit (the throwaway commit above shows it). Its output must show the hook's `Running pre-commit check` line, which proves git ran `.githooks/pre-commit`.
-10. **Worktree provisioning:** `git worktree add ../<repo>-migrate-check` from this branch, run `bash .claude/hooks/provision-worktree.sh <absolute path of that worktree>`, confirm its `frontend/.env` is a link to the main checkout's (check with `ls -l`, never read it) and its dependencies installed. Confirm `frontend/.gaia-ports` exists in it and that `bash .gaia/scripts/ports.sh`, run inside it, prints slot 1 (dev 5174, Storybook 6007). A linked worktree with no port file refuses `pnpm dev`, `pnpm storybook`, and `pnpm pw`. Then `git worktree remove ../<repo>-migrate-check`.
+10. **Worktree provisioning:** `git worktree add ../<repo>-migrate-check` from this branch, run `bash .claude/hooks/provision-worktree.sh <absolute path of that worktree>`, confirm its `frontend/.env` is a link to the main checkout's (check with `ls -l`, never read it) and its dependencies installed. Confirm `frontend/.gaia-ports` exists in it and that `bash .gaia/scripts/ports.sh`, run inside it, prints a slot of 1 or higher, with dev 5173 plus the slot and Storybook 6006 plus the slot. A linked worktree with no port file refuses `pnpm dev`, `pnpm storybook`, and `pnpm pw`. Then `git worktree remove ../<repo>-migrate-check`.
 11. **SPEC-021:** `.gaia/specs.json` is gone from the tree and `.gaia/local/specs/ledger.json` holds its rows.
 12. **CI removal:** none of the files in 7b exists.
 13. **Deletions:** no path in Appendix A's delete list exists at its 2.0.0 path, except the relocation destinations named there.
 14. **`cn`:** `git grep -nE "tailwind-merge|twMerge|twJoin"` returns nothing.
 15. **Routes:** no `+` folder under `frontend/app/routes`, and the step 8 equivalence check passed.
 16. **Workflows:** `tests.yml`, `chromatic.yml`, and every user workflow that builds the app reference `frontend/` paths only.
-17. **Git hook:** `git config --get core.hooksPath` prints `.githooks`, `test -x .githooks/pre-commit` passes, and `.husky/` does not exist.
+17. **Git hooks:** `git config --get core.hooksPath` prints `.githooks`, `test -x .githooks/pre-commit` and `test -x .githooks/commit-msg` pass, and `.husky/` does not exist.
 18. **spec-kit cleanup:** `test ! -e .specify` passes (if it fails, show the user what remains with `find .specify` and ask, as 7f step 5 does for `.husky`); `diff <(find .specify -type f | sort) <(jq -r '.files | keys[] | select(startswith(".specify/"))' <L>/.gaia/manifest.json | sort)` prints nothing (the files under `.specify/` are exactly the `.specify/` keys of L's `.gaia/manifest.json`, and L has none, which is why `.specify/` is gone); `ls -d .claude/skills/speckit-* 2>/dev/null` prints nothing; and `git grep -l 'SPECKIT' -- 'CLAUDE.md' '*/CLAUDE.md'` prints nothing.
 19. **Spec-lifecycle carry-over:** no old path in the 7c3 table exists, and every new path in it exists (check each row of the table; the deleted files have no new path).
 20. **Kebab-case layout:** `git ls-files frontend/app/components frontend/app/pages frontend/app/hooks | grep '[A-Z]'` prints nothing, and `git diff -M --name-status <pre_kebab_sha>..<kebab_rename_sha>` shows only `R` entries.
+21. **shadcn switch:** from the root, `git grep -nE "primary-[0-9]|react-icons|(^|[^A-Za-z-])(bg-body|bg-secondary|text-body|text-disabled|text-secondary|text-invalid|text-placeholder|border-strong|border-normal|border-medium|border-light|border-disabled|border-invalid|bg-invalid|input-invalid|hide-required)([^A-Za-z-]|$)|import[^;]*[{, ](FC|FunctionComponent)[,} ][^;]*from 'react'" -- frontend/app ':!frontend/app/components/ui'` returns nothing, and no path in Appendix A's shadcn list exists unless the user declined its deletion.
+22. **Stories as tests:** `rg -n "test/rtl|test/a11y|@testing-library" frontend/app frontend/test` returns nothing, or only files the user chose to keep with their own `@testing-library/react` dependency and local wrapper (step 10a); `rg -n "@vitest-environment" frontend/app frontend/test` returns nothing; `pnpm install:browsers` has run; and `pnpm -C frontend test --run` passes with its three projects (`node`, `browser`, `storybook`).
 
 Then ask the user to run one manual smoke: start Claude Code from `frontend/`, and confirm the session loads `frontend/CLAUDE.md` and that a guarded action (for example asking it to edit `frontend/.env`) is refused.
 
@@ -493,9 +509,11 @@ Before the PR merges, everything is local and reversible:
 
 No remote state changes before the PR merges, so there is nothing remote to undo.
 
+Rolling back the shadcn switch means reverting the whole PR that landed it, including the `frontend/package.json` pin of `@gaia-react/lint` (and the root `package.json` pin): a published lint release cannot be unpublished, so the revert has to restore the earlier pin explicitly, and the lockfile with it.
+
 ## What this guideline covers
 
-The migration notes written alongside 2.0.0 had six sections. All six are carried here, along with the hook switch, the spec-kit removal, and the kebab-case layout:
+The migration notes written alongside 2.0.0 had six sections. All six are carried here, along with the hook switch, the spec-kit removal, the kebab-case layout, the shadcn/ui component layer, and stories as tests:
 
 - SPEC-021 SPEC-number ledger cutover: step 7d, with the seed tag in step 14.
 - SPEC-034 Code Audit Team rename and roster: step 7a (agent rename with carry-across, `auditors:` roster in the 2.0.0 `frontend/`-prefixed shape, remit regeneration) and step 13 checks 8 and 9. The wiki page renames ride the wiki merge.
@@ -507,6 +525,8 @@ The migration notes written alongside 2.0.0 had six sections. All six are carrie
 - spec-kit core removal: step 7c (GAIA's own spec-kit integration files, through Appendix A) and step 7c2 (spec-kit core's install footprint), with step 13 check 18.
 - Spec-lifecycle file carry-over: step 7c3 (GAIA's own spec files moved out of `.specify/extensions/gaia/`, three-way merged onto their new paths), with step 13 check 19.
 - Kebab-case component, page and hook layout: step 9 and step 13 check 20.
+- shadcn/ui component layer: step 10 and step 13 check 21, with the deleted paths in Appendix A.
+- Stories as tests: step 10a and step 13 check 22, with the deleted paths in Appendix A.
 
 ## Appendix A: deletion list (1.6.1 shipped, absent from 2.0.0)
 
@@ -539,9 +559,11 @@ Deleted:
 .claude/hooks/telemetry-task-postuse.sh
 .claude/hooks/wiki-commit-nudge.sh
 .claude/hooks/wiki-drift-check.sh
+.claude/hooks/wiki-squash-autocommits.sh
 .claude/rules/dep-audit.md
 .claude/rules/instruction-files.md
 .claude/rules/knip.md
+.claude/skills/playwright-cli/references/commands.md
 .claude/skills/tdd/references/tests-react.md
 .claude/skills/typescript/references/naming-conventions.md
 .gaia/cli/templates/workflows/code-review-audit.yml.tmpl
@@ -590,6 +612,8 @@ Deleted:
 .specify/presets/gaia/templates/spec-template.md
 .storybook/env.ts
 app/components/GaiaLogo/tests/index.stories.tsx
+app/services/gaia/index.server.ts
+app/services/index.server.ts
 test/msw.server.ts
 wiki/concepts/Agentic Design.md
 wiki/concepts/Telemetry.md
@@ -597,8 +621,95 @@ wiki/dependencies/React Router 7.md
 wiki/dependencies/remix-flat-routes.md
 ```
 
-The `app/components/GaiaLogo/tests/index.stories.tsx` entry above is the 1.6.1 path. Step 9 renames the user's `GaiaLogo` folder to `gaia-logo` (it is not in the relocation map because 2.0.0 does not ship it), so step 10 deletes it at `frontend/app/components/gaia-logo/tests/index.stories.tsx`. No other Appendix A path is under `app/components`, `app/pages`, or `app/hooks`.
+The `app/components/GaiaLogo/tests/index.stories.tsx` entry above is the 1.6.1 path. Step 9 renames the user's `GaiaLogo` folder to `gaia-logo` (it is not in the relocation map because 2.0.0 does not ship it), so step 10 deletes it at `frontend/app/components/gaia-logo/tests/index.stories.tsx`. No other path in this list is under `app/components`, `app/pages`, or `app/hooks`; the shadcn and stories-as-tests lists below give theirs.
 
 The `.claude/rules/*`, `.claude/skills/*`, and `.claude/instructions/*` files that moved to `frontend/.claude/` in 2.0.0 are not deletions: they are relocations handled by the step 7a merge (B at the root path, L at the `frontend/.claude/` path). Remove the root copy once its merged `frontend/.claude/` file is in place.
+
+Deleted by the shadcn switch (paths as they are after step 9, at their `frontend/` kebab-case location; each is a GAIA-owned file the 2.0.0 merge removes). These are 61 frontend component files, tests, stories and CSS modules GAIA no longer ships, plus 6 wiki component pages, `wiki/decisions/No Component Library.md` and `wiki/dependencies/react-icons.md`. `frontend/app/components/toast/tests/stack.ts` is a relocation, not a loss: its content now lives at `frontend/app/utils/tests/stack.ts`. Before deleting any of these, `git grep` the user's own code for an import of it: a path the user's code imports (a page that renders GAIA's `Button`, for example) is not deleted blind. Ask the user, rewrite the call sites to the shadcn replacement from the changelog's removed-component table first, then delete.
+
+```
+frontend/app/components/button/index.tsx
+frontend/app/components/button/tests/index.stories.tsx
+frontend/app/components/button/tests/index.test.tsx
+frontend/app/components/form/chain/index.tsx
+frontend/app/components/form/chain/styles.module.css
+frontend/app/components/form/chain/tests/index.stories.tsx
+frontend/app/components/form/checkbox-radio-group/index.tsx
+frontend/app/components/form/checkbox-radio-group/styles.module.css
+frontend/app/components/form/checkbox/index.tsx
+frontend/app/components/form/checkbox/tests/index.stories.tsx
+frontend/app/components/form/checkbox/tests/index.test.tsx
+frontend/app/components/form/checkboxes/index.tsx
+frontend/app/components/form/checkboxes/tests/index.stories.tsx
+frontend/app/components/form/checkboxes/tests/index.test.tsx
+frontend/app/components/form/field/field-label/field-extra/index.tsx
+frontend/app/components/form/field/field-label/field-required-text/index.tsx
+frontend/app/components/form/field/field-label/field-required-text/tests/index.stories.tsx
+frontend/app/components/form/field/field-label/index.tsx
+frontend/app/components/form/field/field-label/span-or-legend/index.tsx
+frontend/app/components/form/field/field-status/field-description/index.tsx
+frontend/app/components/form/field/field-status/field-error/index.tsx
+frontend/app/components/form/field/field-status/index.tsx
+frontend/app/components/form/field/field-status/max-length/index.tsx
+frontend/app/components/form/field/index.tsx
+frontend/app/components/form/form-actions/index.tsx
+frontend/app/components/form/input-email/index.tsx
+frontend/app/components/form/input-email/tests/index.stories.tsx
+frontend/app/components/form/input-email/tests/index.test.tsx
+frontend/app/components/form/input-password/index.tsx
+frontend/app/components/form/input-password/tests/index.stories.tsx
+frontend/app/components/form/input-radio/index.tsx
+frontend/app/components/form/input-text/index.tsx
+frontend/app/components/form/input-text/tests/index.stories.tsx
+frontend/app/components/form/input-text/tests/index.test.tsx
+frontend/app/components/form/radio-buttons/base-radio-buttons/index.tsx
+frontend/app/components/form/radio-buttons/index.tsx
+frontend/app/components/form/radio-buttons/tests/index.stories.tsx
+frontend/app/components/form/radio-buttons/tests/index.test.tsx
+frontend/app/components/form/select/index.tsx
+frontend/app/components/form/select/tests/index.stories.tsx
+frontend/app/components/form/select/tests/index.test.tsx
+frontend/app/components/form/select/types.ts
+frontend/app/components/form/text-area/index.tsx
+frontend/app/components/form/text-area/tests/index.stories.tsx
+frontend/app/components/form/text-area/tests/index.test.tsx
+frontend/app/components/form/types.ts
+frontend/app/components/link-button/index.tsx
+frontend/app/components/link-button/tests/index.stories.tsx
+frontend/app/components/loaders/spinner/index.tsx
+frontend/app/components/loaders/spinner/tests/index.stories.tsx
+frontend/app/components/loaders/spinner/tests/index.test.tsx
+frontend/app/components/toast/index.tsx
+frontend/app/components/toast/tests/index.stories.tsx
+frontend/app/components/toast/toast-notification/index.tsx
+frontend/app/components/toast/toast-notification/tests/index.test.tsx
+frontend/app/components/toast/toast-notification/utils.ts
+frontend/app/components/toast/tests/stack.ts
+frontend/app/components/form/year-month-day/index.tsx
+frontend/app/components/form/year-month-day/tests/index.stories.tsx
+frontend/app/components/form/year-month-day/tests/index.test.tsx
+frontend/app/components/form/year-month-day/utils.ts
+wiki/components/Form Choices.md
+wiki/components/Form Field.md
+wiki/components/Form Layout.md
+wiki/components/Form Select.md
+wiki/components/Form Text Inputs.md
+wiki/components/Form YearMonthDay.md
+wiki/decisions/No Component Library.md
+wiki/dependencies/react-icons.md
+```
+
+Deleted by the stories-as-tests switch (GAIA-owned test helpers, RTL component tests and test scaffolds 2.0.0 no longer ships; paths as they are in 1.6.1, with a path under `app/` or `test/` under `frontend/` after step 6). Step 10a deletes the `frontend/` ones after checking what the user's own tests import:
+
+```
+.gaia/cli/templates/component/index.test.tsx.tmpl
+.gaia/cli/templates/route/page.test.tsx.tmpl
+app/components/Errors/ErrorStack/tests/index.test.tsx
+app/components/Form/FormError/tests/index.test.tsx
+test/a11y.ts
+test/rtl.tsx
+```
+
+`app/components/Errors/ErrorStack/tests/index.test.tsx` and `app/components/Form/FormError/tests/index.test.tsx` are at `frontend/app/components/errors/error-stack/tests/index.test.tsx` and `frontend/app/components/form/form-error/tests/index.test.tsx` after step 9. The stories-as-tests change also deletes `.gaia/scripts/a11y-structural/check-a11y-triviality.mjs` and several test files that postdate 1.6.1, which a 1.6.1 project does not have: nothing to delete for them.
 
 Never delete: `wiki/hot.md`, `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json`, and the keep-yours files listed in step 10.
