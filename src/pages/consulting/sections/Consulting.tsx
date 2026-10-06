@@ -772,7 +772,7 @@ const Consulting = () => {
         {SKUS.map((sku) => (
           <section
             key={sku.anchor}
-            className="border-line-soft scroll-mt-20 border-t py-20 sm:py-28"
+            className="border-line-soft scroll-mt-16 border-t py-20 sm:py-28"
             id={sku.anchor}
           >
             <div className="mx-auto max-w-5xl">

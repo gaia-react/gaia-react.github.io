@@ -110,11 +110,11 @@ const ReleaseCard = ({
       <span>{release.date}</span>
     </p>
     <div>
-      {release.headline ?
+      {release.headline && (
         <h2 className="text-ink m-0 mb-3 text-[1.15rem] leading-snug font-medium tracking-[-0.01em]">
           {renderInline(release.headline)}
         </h2>
-      : null}
+      )}
       {release.summary ?
         <p className="text-ink-dim m-0 max-w-[68ch] text-[0.98rem] leading-[1.7]">
           {renderInline(release.summary)}
@@ -124,7 +124,7 @@ const ReleaseCard = ({
             const items = release[field];
 
             if (!items?.length) {
-              return null;
+              return undefined;
             }
 
             return (

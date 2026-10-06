@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 
-export const useScrollToHash = () => {
+export const useScrollToHash = (): void => {
   useEffect(() => {
     const {hash} = window.location;
 

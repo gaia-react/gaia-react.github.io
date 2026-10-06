@@ -67,7 +67,7 @@ const Hero = () => (
           GAIA is the engineering discipline for Claude Code.
           <br />
           <em className="text-accent-soft mt-1 inline-block font-light italic">
-            Keep the AI speed, lose the debt.
+            Keep the speed, lose the debt.
           </em>
         </h1>
 
