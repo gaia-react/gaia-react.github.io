@@ -130,6 +130,29 @@ Do not surface the 1.6.1 `/setup-gaia` suggestion to configure CI; it no longer 
 
 Delete every path in Appendix A that is not under `frontend/app/`, `frontend/test/`, `frontend/.storybook/`, or `doctor.config.jsonc` (those go in steps 8 and 9). The relocations in Appendix A are already handled above (the agent rename) or in step 8 (routes); do not delete their destinations. For each file the user edited (A differs from B), show the diff and ask before deleting. Use `git rm`.
 
+### 7c2. spec-kit core cleanup
+
+1.6.1 installed GitHub spec-kit core around GAIA's own `.specify/extensions/gaia/` files. 2.0.0 does not use spec-kit. The GAIA-owned files it no longer ships were deleted in 7c through Appendix A; this sub-step removes what spec-kit core itself installed, which no GAIA manifest lists. The rules below apply only to paths absent from B's `.gaia/manifest.json`: any `.specify` path that is a key of B's manifest belongs to Appendix A and 7c, never to this sub-step. Throughout, "the shipped `.specify` set" means the `.specify/` keys of L's `.gaia/manifest.json` (list them with `jq -r '.files | keys[] | select(startswith(".specify/"))' <L>/.gaia/manifest.json`); never remove a path in that set. Changes here are staged now and land in the 7h commit.
+
+1. **Stop on a dirty target.** Run `git status --porcelain --untracked-files=all -- .specify .claude/skills specs`. Ignore entries under `.specify/extensions/gaia/` and entries for paths 7a to 7c already changed. Any other entry is an uncommitted change to a spec-kit-installed path: stop and report it. Every removal in this sub-step must be recoverable from the pre-migration commit, and an uncommitted change is not. (Step 1 already required a clean tree, so on a normal run nothing is left after the ignores.)
+2. **In-flight `/gaia-spec`.** If any `.gaia/local/cache/draft-*.md` exists, tell the user that an in-flight `/gaia-spec` draft is untouched by this cleanup and resumes from its draft checkpoint in a 2.0.0 session. Nothing here deletes it.
+3. **Feature branches from spec-kit's git extension.** List local branches whose names start with three digits and a dash: `git branch --list --format='%(refname:short)' | grep -E '^[0-9]{3}-'`. Show the list to the user and, on their confirmation, delete each by exact name with `git branch -D <name>`. Never delete by glob, and never the current branch. If the list is empty, skip this.
+4. **Constitution, before `templates/` goes.** This comparison must run before step 5 below removes `.specify/templates/`, because the stock template it compares against lives there. If `.specify/memory/constitution.md` exists and `cmp -s .specify/memory/constitution.md .specify/templates/constitution-template.md` succeeds, the file is byte-identical to spec-kit's stock template, so the user wrote nothing in it: remove it without asking. If `cmp` fails for any reason (the file differs, or the template is missing), show the user the file and ask; on a decline, keep it and record it as kept.
+5. **Remove spec-kit core's known install set.** Candidates: `.specify/extensions.yml`, `.specify/extensions/.registry`, `.specify/extensions/git/`, `.specify/init-options.json`, `.specify/integration.json`, `.specify/integrations/`, `.specify/memory/` (every file in it except a constitution kept in step 4), `.specify/presets/.registry`, `.specify/presets/gaia/.composed/`, `.specify/scripts/`, `.specify/templates/`, `.specify/workflows/`, `.specify/feature.json`, and every `.claude/skills/speckit-*` directory (list them with `ls -d .claude/skills/speckit-* 2>/dev/null` and treat each by its exact name). For each candidate that exists:
+   - First re-check it is absent from B's manifest. For a file, `jq -e --arg p "<path>" '.files | has($p)' <B>/.gaia/manifest.json` must fail. For a directory, `jq -e --arg p "<dir>/" '.files | keys | any(startswith($p))' <B>/.gaia/manifest.json` must fail. A candidate that is in B's manifest (or, for a directory, holds a B key) is skipped here and reported to the user.
+   - Then remove it by its exact relative path. If `git ls-files -- <path>` prints anything, run `git rm -r -q -- <path>`. If the path still exists afterwards (untracked or ignored spec-kit output), run `rm -rf <path>`. Never use a glob and never an absolute path; 1.6.1's `block-rm-rf.sh` allows an explicit relative path.
+6. **Ask about anything else.** List every remaining file under `.specify/` that is neither in the shipped `.specify` set nor a constitution kept in step 4, and every file under a root `specs/` directory (spec-kit's default feature tree): run `find .specify specs -type f 2>/dev/null`, then drop the shipped set and the kept constitution. Ask the user about each entry. Remove it (as in step 5) only on a yes; on a decline or no answer, keep it and record it as kept. Unknown means keep.
+7. **Empty directories.** Remove the directories this left empty with `find .specify -depth -type d -empty -exec rmdir {} \;`, and the same for `specs` if it exists. Never `rm -rf` here.
+8. **CLAUDE.md block.** For every tracked `CLAUDE.md` (`git ls-files -- 'CLAUDE.md' '*/CLAUDE.md'`) that contains `<!-- SPECKIT START -->` or `<!-- SPECKIT END -->`:
+   - Find the markers with `grep -n -F -e '<!-- SPECKIT START -->' -e '<!-- SPECKIT END -->' <that CLAUDE.md>`. There must be exactly one START line and exactly one END line, with START before END. If a marker is missing, duplicated, or out of order, stop and ask the user; change nothing in that file.
+   - Immediately before the edit, snapshot the file: `mkdir -p .gaia/local/cache/shared/migrate-2/claude-md-snapshot/<dir>` then `cp <dir>/CLAUDE.md .gaia/local/cache/shared/migrate-2/claude-md-snapshot/<dir>/CLAUDE.md` (for the root file, `<dir>` is `.`).
+   - Delete the lines from `<!-- SPECKIT START -->` through `<!-- SPECKIT END -->` inclusive, plus the one line immediately before START only if that line is blank. Change no other line.
+   - Confirm with `diff .gaia/local/cache/shared/migrate-2/claude-md-snapshot/<dir>/CLAUDE.md <dir>/CLAUDE.md` that the only difference is those deleted lines. Do not confirm with `git diff`: 7a's three-way merge of the root `CLAUDE.md` is still unstaged until 7h, so `git diff` mixes that merge into the output and the marker removal cannot be told apart from it. If the `diff` shows anything else, restore the file from the snapshot and stop.
+   - This runs before 7f splits `CLAUDE.md`, so the root file is the one that carries the block.
+9. **Report.** Write a cleanup report to the progress file, and carry it into the step 13 pull request body. List each removed `.claude/skills/speckit-*` directory and each removed `.specify/extensions/git/` file, each with the note that it is recoverable from git with `git show <pre_sha>:<path>` (untracked ones were regenerable spec-kit output, not in git); every branch deleted in step 3; every candidate skipped in step 5 because B's manifest lists it; and every file kept by the user's choice in steps 4 and 6.
+
+End state: the paths under `.specify/` are exactly the `.specify/` keys of L's `.gaia/manifest.json` plus the files the user chose to keep.
+
 ### 7d. SPEC-021 SPEC-number ledger cutover
 
 If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/local/specs/ledger.json` (this keeps uncommitted pending rows), then `git rm --cached -q .gaia/specs.json` and `rm -f .gaia/specs.json`. Then run `bash .gaia/scripts/ledger-status-migrate.sh` so old status words (`specified`, `allocated`, `completed`, `archived`, `in-progress`) become the 2.0.0 vocabulary. Record the highest SPEC number with `bash .specify/extensions/gaia/lib/spec-allocator.sh highest "$(git rev-parse --show-toplevel)"`; the seed tag for it is pushed only after the PR merges (step 13).
@@ -271,6 +294,7 @@ Every check must pass. Report each with its result.
 15. **Routes:** no `+` folder under `frontend/app/routes`, and the step 8 equivalence check passed.
 16. **Workflows:** `tests.yml`, `chromatic.yml`, and every user workflow that builds the app reference `frontend/` paths only.
 17. **Git hook:** `git config --get core.hooksPath` prints `.githooks`, `test -x .githooks/pre-commit` passes, and `.husky/` does not exist.
+18. **spec-kit cleanup:** every path `find .specify -type f` prints is a `.specify/` key of L's `.gaia/manifest.json` (`jq -r '.files | keys[] | select(startswith(".specify/"))' <L>/.gaia/manifest.json`) or a file the user chose to keep in 7c2; `ls -d .claude/skills/speckit-* 2>/dev/null` prints nothing; and `git grep -l 'SPECKIT' -- 'CLAUDE.md' '*/CLAUDE.md'` prints nothing.
 
 Then ask the user to run one manual smoke: start Claude Code from `frontend/`, and confirm the session loads `frontend/CLAUDE.md` and that a guarded action (for example asking it to edit `frontend/.env`) is refused.
 
@@ -303,7 +327,7 @@ No remote state changes before the PR merges, so there is nothing remote to undo
 
 ## What this guideline covers
 
-The migration notes written alongside 2.0.0 had six sections. All six are carried here, along with the hook switch:
+The migration notes written alongside 2.0.0 had six sections. All six are carried here, along with the hook switch and the spec-kit removal:
 
 - SPEC-021 SPEC-number ledger cutover: step 7d, with the seed tag in step 13.
 - SPEC-034 Code Audit Team rename and roster: step 7a (agent rename with carry-across, `auditors:` roster in the 2.0.0 `frontend/`-prefixed shape, remit regeneration) and step 12 checks 8 and 9. The wiki page renames ride the wiki merge.
@@ -312,6 +336,7 @@ The migration notes written alongside 2.0.0 had six sections. All six are carrie
 - SPEC-085 route files: step 8.
 - `cn` switch: step 9 and step 12 check 14.
 - Husky removal and the `core.hooksPath` switch to `.githooks/`: step 7f, with step 12 check 17.
+- spec-kit core removal: step 7c (GAIA's own spec-kit integration files, through Appendix A) and step 7c2 (spec-kit core's install footprint), with step 12 check 18.
 
 ## Appendix A: deletion list (1.6.1 shipped, absent from 2.0.0)
 
@@ -378,9 +403,16 @@ Deleted:
 .github/ISSUE_TEMPLATE/config.yml
 .github/ISSUE_TEMPLATE/feature_request.yml
 .github/pull_request_template.md
+.specify/extensions/gaia/commands/constitution-check.md
+.specify/extensions/gaia/commands/spec.md
+.specify/extensions/gaia/extension.yml
 .specify/extensions/gaia/lib/gh-mirror.sh
 .specify/extensions/gaia/lib/spec-folderize.sh
+.specify/extensions/gaia/lib/version-check.sh
 .specify/extensions/gaia/rules/smoke.md
+.specify/presets/gaia/commands/speckit.specify.md
+.specify/presets/gaia/preset.yml
+.specify/presets/gaia/templates/spec-template.md
 .storybook/env.ts
 app/components/GaiaLogo/tests/index.stories.tsx
 wiki/concepts/Agentic Design.md
