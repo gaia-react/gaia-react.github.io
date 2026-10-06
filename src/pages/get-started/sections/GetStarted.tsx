@@ -884,7 +884,6 @@ const WhatYouGet = () => (
                 ['├── ', '.gaia/', '              # GAIA CLI, manifest'],
                 ['├── ', '.github/workflows/', ' # test + visual CI'],
                 ['├── ', '.husky/', '             # pre-commit'],
-                ['├── ', '.specify/', '           # spec-driven workflow'],
                 ['├── ', '.storybook/', ''],
                 ['├── ', 'app/', '                # React Router 7 app'],
                 ['├── ', 'test/', '               # Vitest, RTL, MSW'],
