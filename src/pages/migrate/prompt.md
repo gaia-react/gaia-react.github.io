@@ -191,7 +191,7 @@ End state: every new path in the table exists, and no old path in it does.
 
 ### 7d. SPEC-021 SPEC-number ledger cutover
 
-If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/local/specs/ledger.json` (this keeps uncommitted pending rows), then `git rm --cached -q .gaia/specs.json` and `rm -f .gaia/specs.json`. Then run `bash .gaia/scripts/ledger-status-migrate.sh` so old status words (`specified`, `allocated`, `completed`, `archived`, `in-progress`) become the 2.0.0 vocabulary. Record the highest SPEC number with `bash .gaia/scripts/spec/spec-allocator.sh highest "$(git rev-parse --show-toplevel)"`; the seed tag for it is pushed only after the PR merges (step 13).
+If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/local/specs/ledger.json` (this keeps uncommitted pending rows), then `git rm --cached -q .gaia/specs.json` and `rm -f .gaia/specs.json`. Then run `bash .gaia/scripts/ledger-status-migrate.sh "$(git rev-parse --show-toplevel)"` so old status words (`specified`, `allocated`, `completed`, `archived`, `in-progress`) become the 2.0.0 vocabulary. Record the highest SPEC number with `bash .gaia/scripts/spec/spec-allocator.sh highest "$(git rev-parse --show-toplevel)"`; the seed tag for it is pushed only after the PR merges (step 13).
 
 ### 7e. `.gaia/cache` to `.gaia/local/cache`
 
@@ -330,7 +330,7 @@ Every check must pass. Report each with its result.
 15. **Routes:** no `+` folder under `frontend/app/routes`, and the step 8 equivalence check passed.
 16. **Workflows:** `tests.yml`, `chromatic.yml`, and every user workflow that builds the app reference `frontend/` paths only.
 17. **Git hook:** `git config --get core.hooksPath` prints `.githooks`, `test -x .githooks/pre-commit` passes, and `.husky/` does not exist.
-18. **spec-kit cleanup:** `test ! -e .specify` passes (if it fails, show the user what remains with `find .specify -type f` and ask, as 7f step 5 does for `.husky`); `diff <(find .specify -type f | sort) <(jq -r '.files | keys[] | select(startswith(".specify/"))' <L>/.gaia/manifest.json | sort)` prints nothing (the files under `.specify/` are exactly the `.specify/` keys of L's `.gaia/manifest.json`, and L has none, which is why `.specify/` is gone); `ls -d .claude/skills/speckit-* 2>/dev/null` prints nothing; and `git grep -l 'SPECKIT' -- 'CLAUDE.md' '*/CLAUDE.md'` prints nothing.
+18. **spec-kit cleanup:** `test ! -e .specify` passes (if it fails, show the user what remains with `find .specify` and ask, as 7f step 5 does for `.husky`); `diff <(find .specify -type f | sort) <(jq -r '.files | keys[] | select(startswith(".specify/"))' <L>/.gaia/manifest.json | sort)` prints nothing (the files under `.specify/` are exactly the `.specify/` keys of L's `.gaia/manifest.json`, and L has none, which is why `.specify/` is gone); `ls -d .claude/skills/speckit-* 2>/dev/null` prints nothing; and `git grep -l 'SPECKIT' -- 'CLAUDE.md' '*/CLAUDE.md'` prints nothing.
 19. **Spec-lifecycle carry-over:** no old path in the 7c3 table exists, and every new path in it exists (check each row of the table; the deleted files have no new path).
 
 Then ask the user to run one manual smoke: start Claude Code from `frontend/`, and confirm the session loads `frontend/CLAUDE.md` and that a guarded action (for example asking it to edit `frontend/.env`) is refused.
