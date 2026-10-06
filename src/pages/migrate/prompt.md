@@ -30,7 +30,7 @@ Until the restart at the end of step 7, the user's 1.6.1 hooks are live:
 | `red-verify-commit-check.sh`    | Committing a new passing test with no recorded failing run                                                                                                 | Do not add new tests during the migration; pure renames are exempt.                                                                                                                                               |
 | `.husky/pre-commit` (1.6.1)     | Runs `pnpm typecheck`, `lint-staged`, `test:lint-staged` when a staged added, copied, modified, or deleted path contains `app/`, `test/`, or `.storybook/` | Keep the move commit rename-only (renames are not in that filter), and land the 2.0.0 `.githooks/pre-commit`, with `core.hooksPath` switched, in step 7f, before any commit stages content under `frontend/app/`. |
 
-After the restart, the 2.0.0 guards apply. One difference you will notice: the 2.0.0 `eslint.config.*` guard asks the user instead of refusing, so the step 9 merge of `frontend/eslint.config.mjs` needs their approval.
+After the restart, the 2.0.0 guards apply. One difference you will notice: the 2.0.0 `eslint.config.*` guard asks the user instead of refusing, so the step 10 merge of `frontend/eslint.config.mjs` needs their approval.
 
 ## Step 1: Preflight
 
@@ -84,7 +84,7 @@ List every top-level entry (tracked and untracked) and sort each into one group.
 - **Harness (stays at the root):** `.claude/`, `.gaia/`, `.github/`, `.husky/`, `wiki/`, `CLAUDE.md`.
 - **Split (root keeps one half, `frontend/` gets the other):** `package.json`, `pnpm-workspace.yaml`, `.gitignore`, `.prettierignore`, `prettier.config.mjs`. These are handled in step 7.
 - **Stays at the root unchanged:** `pnpm-lock.yaml` (one lockfile for the workspace), `.npmrc`, `.nvmrc`, `.node-version`, `.editorconfig`, `README.md`, `LICENSE`, and the like.
-- **Anything else:** stays at the root by default. Ask the user if it looks frontend-owned (an extra config the app's build reads, an app-only script folder). Backends (`server/`, `api/`, and similar) stay at the root. Deploy configs (`fly.toml`, `vercel.json`, `netlify.toml`, and similar) stay at the root, and their build paths get rewritten in step 10.
+- **Anything else:** stays at the root by default. Ask the user if it looks frontend-owned (an extra config the app's build reads, an app-only script folder). Backends (`server/`, `api/`, and similar) stay at the root. Deploy configs (`fly.toml`, `vercel.json`, `netlify.toml`, and similar) stay at the root, and their build paths get rewritten in step 11.
 
 ## Step 6: The move (rename-only commit)
 
@@ -102,7 +102,7 @@ This is the large step. Everything here lands in one commit, so the 2.0.0 pre-co
 
 ### 7a. Harness merge
 
-Walk every path in L's `.gaia/manifest.json` that is not under `frontend/`, and three-way merge it per the ground rules. A path in L that is absent from B is a new file: copy it in. Of the `frontend/` paths, take only the frontend harness here: `frontend/CLAUDE.md`, `frontend/.claude/**`, and `frontend/gaia.package.json`. Every other `frontend/` file (the app, the tests, and the frontend configs such as `tsconfig.json`, `vite.config.ts`, `eslint.config.mjs`, `.lintstagedrc.json`) stays exactly as moved until step 9: the app still runs on its 1.6.1 dependencies here, and the 1.6.1 eslint guard is still live.
+Walk every path in L's `.gaia/manifest.json` that is not under `frontend/`, and three-way merge it per the ground rules. A path in L that is absent from B is a new file: copy it in. Of the `frontend/` paths, take only the frontend harness here: `frontend/CLAUDE.md`, `frontend/.claude/**`, and `frontend/gaia.package.json`. Every other `frontend/` file (the app, the tests, and the frontend configs such as `tsconfig.json`, `vite.config.ts`, `eslint.config.mjs`, `.lintstagedrc.json`) stays exactly as moved until step 10: the app still runs on its 1.6.1 dependencies here, and the 1.6.1 eslint guard is still live.
 
 Files that need more than a plain merge:
 
@@ -112,7 +112,7 @@ Files that need more than a plain merge:
 - **`.claude/settings.json`** (`shared`): merge so it carries every 2.0.0 hook registration, drops every registration whose script no longer exists in L (for example `wiki-drift-check.sh`, `wiki-commit-nudge.sh`, `intercept-init.sh`, `block-bare-test.sh`, `check-i18n-strings.sh`, `check-story-exists.sh`, `block-vitest-globals-tsconfig.sh`, `telemetry-task-postuse.sh`, and the `WorktreeCreate` entry for `create-worktree.sh`), and keeps the user's own additions. Then check `.claude/settings.local.json` the same way: list any registration pointing at a script that will not exist and, with the user's approval, remove it.
 - **`.github/workflows/tests.yml` and `chromatic.yml`** (`shared`): L already carries the `frontend/` path filters and run paths. After the merge, read every path filter, `paths:` entry, `working-directory`, `run:` path, and `cache-dependency-path` in both, including lines the user added, and rewrite any remaining root app path (`app/`, `test/`, `.storybook/`, `.playwright/`, `public/`, a root frontend config) to its `frontend/` path. `cache-dependency-path` stays on the one root `pnpm-lock.yaml`. Do the same for any other user workflow that builds or tests the app.
 - **`wiki/.state.json`**: keep the user's file. L carries GAIA's own commit SHAs, which do not exist in this repository.
-- **Sentinels, never deleted or overwritten:** `wiki/hot.md`, `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json` (the last two are written in step 13).
+- **Sentinels, never deleted or overwritten:** `wiki/hot.md`, `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json` (the last two are written in step 14).
 
 ### 7b. GAIA CI removal (SPEC-091)
 
@@ -124,11 +124,11 @@ GAIA no longer runs Claude on GitHub Actions. Delete these with `git rm` when pr
 - Config: `.gaia/automation.json` (`git rm`), `.gaia/local/automation.json` (`rm -f`). Do not create `.gaia/project.json`; `/setup-gaia` owns it.
 - Stale per-session markers (untracked): `rm -f .claude/wiki-drift-checked .claude/wiki-safety-checked .claude/i18n-strings-checked`.
 
-Do not surface the 1.6.1 `/setup-gaia` suggestion to configure CI; it no longer applies. The remote half of the CI removal (secrets, the required status context, labels, CI branches) waits until after the migration PR merges: see step 13.
+Do not surface the 1.6.1 `/setup-gaia` suggestion to configure CI; it no longer applies. The remote half of the CI removal (secrets, the required status context, labels, CI branches) waits until after the migration PR merges: see step 14.
 
 ### 7c. Deletions (harness half)
 
-Delete every path in Appendix A that is not under `frontend/app/`, `frontend/test/`, `frontend/.storybook/`, or `doctor.config.jsonc` (those go in steps 8 and 9). The relocations in Appendix A are already handled above (the agent rename) or in step 8 (routes), and the moved spec-lifecycle files are carried by 7c3; do not delete their destinations. Skip the `.specify/` paths; 7c2 removes them without asking, and 7c3 carries the moved spec-lifecycle files. For each other file the user edited (A differs from B), show the diff and ask before deleting. Use `git rm`.
+Delete every path in Appendix A that is not under `frontend/app/`, `frontend/test/`, `frontend/.storybook/`, or `doctor.config.jsonc` (those go in steps 8 and 10). The relocations in Appendix A are already handled above (the agent rename) or in step 8 (routes), and the moved spec-lifecycle files are carried by 7c3; do not delete their destinations. Skip the `.specify/` paths; 7c2 removes them without asking, and 7c3 carries the moved spec-lifecycle files. For each other file the user edited (A differs from B), show the diff and ask before deleting. Use `git rm`.
 
 ### 7c2. spec-kit core cleanup
 
@@ -145,7 +145,7 @@ Delete every path in Appendix A that is not under `frontend/app/`, `frontend/tes
    - Delete the lines from `<!-- SPECKIT START -->` through `<!-- SPECKIT END -->` inclusive, plus the one line immediately before START only if that line is blank. Change no other line.
    - Confirm with `diff .gaia/local/cache/shared/migrate-2/claude-md-snapshot/<dir>/CLAUDE.md <dir>/CLAUDE.md` that the only difference is those deleted lines. Do not confirm with `git diff`: 7a's three-way merge of the root `CLAUDE.md` is still unstaged until 7h, so `git diff` mixes that merge into the output and the marker removal cannot be told apart from it. If the `diff` shows anything else, restore the file from the snapshot and stop.
    - This runs before 7f splits `CLAUDE.md`, so the root file is the one that carries the block.
-7. **Report.** Write a cleanup report to the progress file, and carry it into the step 13 pull request body. List each removed `.claude/skills/speckit-*` directory and each removed tracked `.specify` file, with the note that each is recoverable from git with `git show <pre_sha>:<path>` (untracked ones were regenerable spec-kit output, not in git); every branch deleted in step 2; and whether a root `specs/` was removed or kept.
+7. **Report.** Write a cleanup report to the progress file, and carry it into the step 14 pull request body. List each removed `.claude/skills/speckit-*` directory and each removed tracked `.specify` file, with the note that each is recoverable from git with `git show <pre_sha>:<path>` (untracked ones were regenerable spec-kit output, not in git); every branch deleted in step 2; and whether a root `specs/` was removed or kept.
 
 End state: the files under `.specify/` are exactly the shipped `.specify` set.
 
@@ -191,7 +191,7 @@ End state: every new path in the table exists, and no old path in it does.
 
 ### 7d. SPEC-021 SPEC-number ledger cutover
 
-If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/local/specs/ledger.json` (this keeps uncommitted pending rows), then `git rm --cached -q .gaia/specs.json` and `rm -f .gaia/specs.json`. Then run `bash .gaia/scripts/ledger-status-migrate.sh "$(git rev-parse --show-toplevel)"` so old status words (`specified`, `allocated`, `completed`, `archived`, `in-progress`) become the 2.0.0 vocabulary. Record the highest SPEC number with `bash .gaia/scripts/spec/spec-allocator.sh highest "$(git rev-parse --show-toplevel)"`; the seed tag for it is pushed only after the PR merges (step 13).
+If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/local/specs/ledger.json` (this keeps uncommitted pending rows), then `git rm --cached -q .gaia/specs.json` and `rm -f .gaia/specs.json`. Then run `bash .gaia/scripts/ledger-status-migrate.sh "$(git rev-parse --show-toplevel)"` so old status words (`specified`, `allocated`, `completed`, `archived`, `in-progress`) become the 2.0.0 vocabulary. Record the highest SPEC number with `bash .gaia/scripts/spec/spec-allocator.sh highest "$(git rev-parse --show-toplevel)"`; the seed tag for it is pushed only after the PR merges (step 14).
 
 ### 7e. `.gaia/cache` to `.gaia/local/cache`
 
@@ -200,7 +200,7 @@ If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/lo
 ### 7f. Package split
 
 - **Root `package.json`** (`shared`) takes L's root shape: `prepare`, the `gaia` config block, the proxy scripts (`"typecheck": "pnpm -C frontend typecheck"` and the rest), and only the root devDependencies L lists (`@gaia-react/lint`, `lint-staged`, `prettier`, `typescript`; `husky` and `is-ci` are gone). Its `prepare` is `[ -n "$CI" ] || [ ! -e .git ] || git config core.hooksPath .githooks`. Keep any root script or setting the user added that is not about the app; move app-related ones to `frontend/package.json`.
-- **`frontend/package.json`** (new): a pure split, no upgrades. It takes the app half of the user's 1.6.1 `package.json` exactly as it is: every app dependency and devDependency at its current version, and every app script (`typecheck`, `lint`, `test`, `test:lint-staged`, `dev`, `build`, and the rest). Name it `frontend`, as L's is (the Dockerfile builds with `pnpm deploy --filter frontend`). Upgrading it to L's versions is step 9. Keep `remix-flat-routes` and `@react-router/remix-routes-option-adapter` for now; step 8 removes them.
+- **`frontend/package.json`** (new): a pure split, no upgrades. It takes the app half of the user's 1.6.1 `package.json` exactly as it is: every app dependency and devDependency at its current version, and every app script (`typecheck`, `lint`, `test`, `test:lint-staged`, `dev`, `build`, and the rest). Name it `frontend`, as L's is (the Dockerfile builds with `pnpm deploy --filter frontend`). Upgrading it to L's versions is step 10. Keep `remix-flat-routes` and `@react-router/remix-routes-option-adapter` for now; step 8 removes them.
 - **`pnpm-workspace.yaml`** (`shared`): `packages: [frontend]`, plus every supply-chain setting from L (`minimumReleaseAge`, `minimumReleaseAgeStrict`, `trustPolicy`, `allowBuilds`, and the rest), merged with the user's own `overrides`, exclusions, and build approvals.
 - **`.gitignore`**: L's root `.gitignore` plus `frontend/.gitignore`; carry the user's own entries to whichever side they belong to (app build output to `frontend/.gitignore`).
 - **`.prettierignore`, `prettier.config.mjs`**: merge root and `frontend/` copies against L.
@@ -211,7 +211,7 @@ If `.gaia/specs.json` exists: `mkdir -p .gaia/local/specs`, copy it to `.gaia/lo
   3. Run `git config core.hooksPath .githooks`.
   4. Verify: `git config --get core.hooksPath` must print exactly `.githooks`, and `test -x .githooks/pre-commit` must pass. If either fails, stop and report. This matters because a clone left on `core.hooksPath=.husky/_` after `.husky/pre-commit` is gone runs no pre-commit hook and prints no error, so the 7h commit would skip the floor unnoticed.
   5. Remove husky's untracked runtime with `rm -rf .husky/_` (an explicit relative path, which 1.6.1's `block-rm-rf.sh` allows; never `rm -rf .`, a glob, or an absolute path), then `rmdir .husky`. If `rmdir` reports the directory is not empty, show the user what remains and ask.
-- **`doctor.config.jsonc`**: the 2.0.0 pre-commit refuses a package with two react-doctor configs, so keep exactly one under `frontend/` in this commit: leave the moved `frontend/doctor.config.jsonc` in place until step 9 replaces it with `frontend/doctor.config.ts`.
+- **`doctor.config.jsonc`**: the 2.0.0 pre-commit refuses a package with two react-doctor configs, so keep exactly one under `frontend/` in this commit: leave the moved `frontend/doctor.config.jsonc` in place until step 10 replaces it with `frontend/doctor.config.ts`.
 
 ### 7g. Generate the frontend settings and install
 
@@ -282,38 +282,168 @@ Run `pnpm -C frontend exec react-router routes --json` and normalize it and the 
 
 1. `pnpm -C frontend remove remix-flat-routes @react-router/remix-routes-option-adapter`.
 2. Drop any user knip `ignoreDependencies` entry for `@react-router/fs-routes`.
-3. Run React Router typegen and `pnpm typecheck`; any unresolved import stops the run. If the frontend's `@gaia-react/lint` is older than `2.2.0`, lint may flag the flat file names until step 9 raises it to L's `2.3.0`; that is expected, but nothing else may fail.
+3. Run React Router typegen and `pnpm typecheck`; any unresolved import stops the run. If the frontend's `@gaia-react/lint` is older than `2.2.0`, lint may flag the flat file names until step 10 raises it to the `@gaia-react/lint` version L's `frontend/package.json` pins; that is expected. So is the naming-rule failure step 9 introduces: once the kebab-case rename is committed, the older `@gaia-react/lint` still installed rejects every kebab-case component folder and `use-*.ts` hook file until step 10 raises the pin. Nothing else may fail.
 4. Commit: `refactor(routes): migrate to @react-router/fs-routes flat route files`.
 
-## Step 9: Merge the frontend
+## Step 9: Kebab-case layout (rename before the merge)
+
+GAIA 2.0.0 names every file and folder under `frontend/app/components`, `frontend/app/pages`, and `frontend/app/hooks` in kebab-case, and the `@gaia-react/lint` version L pins enforces it (step 10 raises your pin to it). The three-way merge is keyed on path, so rename first: if a GAIA-shipped file such as `Layout` stays at its old path, the merge reads "delete the old file, add the new one" and the user's edits to it are lost. After this step the merge resolves B at its old path from the relocation map below, and A and L at the new path.
+
+### The layout
+
+- `components/<name>/index.tsx` is a component, with the default export in PascalCase of the folder name. Its stories and tests live in `components/<name>/tests/` as `index.stories.tsx` and `index.test.tsx`. A real family of components may sit under a grouping folder (`form/`, `errors/`, `loaders/`, `toast/`), and a sub-component is a nested `<kebab-name>/index.tsx`.
+- `components/ui/` holds flat kebab-case files only (`button.tsx`), with their stories in `components/ui/tests/button.stories.tsx`. It is for shadcn components and takes no other subfolder.
+- `pages/<route path>/page.tsx` is a page, with the default export named `<Name>Page`, and its stories and tests in `tests/page.stories.tsx` and `tests/page.test.tsx`. The folder path derives from the route file name (see rule 3 below). Page content used by that page alone may sit in a nested `<kebab-name>/index.tsx`.
+- `hooks/use-<kebab-name>.ts` is a hook, with the camelCase named export unchanged (`use-breakpoint.ts` exports `useBreakpoint`), and its test is `hooks/tests/use-<kebab-name>.test.ts`.
+- Inside a component or page folder, only `assets`, `hooks`, `state`, `tests`, and `utils` may keep a non-kebab role name; a page folder is never named after one of them. Files that are already lowercase (`types.ts`, `utils.ts`, `styles.module.css`) keep their names.
+
+### The relocation map
+
+Paths are repo-relative to the project root, as they are after step 6. Every key of L's `.gaia/manifest.json` under `frontend/app/components`, `frontend/app/pages`, and `frontend/app/hooks` is listed (86 files). Rename each old path to its new path with `git mv -f`:
+
+```text
+frontend/app/components/Button/index.tsx  ->  frontend/app/components/button/index.tsx
+frontend/app/components/Button/tests/index.stories.tsx  ->  frontend/app/components/button/tests/index.stories.tsx
+frontend/app/components/Button/tests/index.test.tsx  ->  frontend/app/components/button/tests/index.test.tsx
+frontend/app/components/Document/MetaHydrated/index.tsx  ->  frontend/app/components/document/meta-hydrated/index.tsx
+frontend/app/components/Document/index.tsx  ->  frontend/app/components/document/index.tsx
+frontend/app/components/Errors/ErrorStack/index.tsx  ->  frontend/app/components/errors/error-stack/index.tsx
+frontend/app/components/Errors/ErrorStack/tests/index.stories.tsx  ->  frontend/app/components/errors/error-stack/tests/index.stories.tsx
+frontend/app/components/Errors/ErrorStack/tests/index.test.tsx  ->  frontend/app/components/errors/error-stack/tests/index.test.tsx
+frontend/app/components/Errors/RootErrorBoundary/index.tsx  ->  frontend/app/components/errors/root-error-boundary/index.tsx
+frontend/app/components/Form/Chain/index.tsx  ->  frontend/app/components/form/chain/index.tsx
+frontend/app/components/Form/Chain/styles.module.css  ->  frontend/app/components/form/chain/styles.module.css
+frontend/app/components/Form/Chain/tests/index.stories.tsx  ->  frontend/app/components/form/chain/tests/index.stories.tsx
+frontend/app/components/Form/Checkbox/index.tsx  ->  frontend/app/components/form/checkbox/index.tsx
+frontend/app/components/Form/Checkbox/tests/index.stories.tsx  ->  frontend/app/components/form/checkbox/tests/index.stories.tsx
+frontend/app/components/Form/Checkbox/tests/index.test.tsx  ->  frontend/app/components/form/checkbox/tests/index.test.tsx
+frontend/app/components/Form/CheckboxRadioGroup/index.tsx  ->  frontend/app/components/form/checkbox-radio-group/index.tsx
+frontend/app/components/Form/CheckboxRadioGroup/styles.module.css  ->  frontend/app/components/form/checkbox-radio-group/styles.module.css
+frontend/app/components/Form/Checkboxes/index.tsx  ->  frontend/app/components/form/checkboxes/index.tsx
+frontend/app/components/Form/Checkboxes/tests/index.stories.tsx  ->  frontend/app/components/form/checkboxes/tests/index.stories.tsx
+frontend/app/components/Form/Checkboxes/tests/index.test.tsx  ->  frontend/app/components/form/checkboxes/tests/index.test.tsx
+frontend/app/components/Form/Field/FieldLabel/FieldExtra/index.tsx  ->  frontend/app/components/form/field/field-label/field-extra/index.tsx
+frontend/app/components/Form/Field/FieldLabel/FieldRequiredText/index.tsx  ->  frontend/app/components/form/field/field-label/field-required-text/index.tsx
+frontend/app/components/Form/Field/FieldLabel/FieldRequiredText/tests/index.stories.tsx  ->  frontend/app/components/form/field/field-label/field-required-text/tests/index.stories.tsx
+frontend/app/components/Form/Field/FieldLabel/SpanOrLegend/index.tsx  ->  frontend/app/components/form/field/field-label/span-or-legend/index.tsx
+frontend/app/components/Form/Field/FieldLabel/index.tsx  ->  frontend/app/components/form/field/field-label/index.tsx
+frontend/app/components/Form/Field/FieldStatus/FieldDescription/index.tsx  ->  frontend/app/components/form/field/field-status/field-description/index.tsx
+frontend/app/components/Form/Field/FieldStatus/FieldError/index.tsx  ->  frontend/app/components/form/field/field-status/field-error/index.tsx
+frontend/app/components/Form/Field/FieldStatus/MaxLength/index.tsx  ->  frontend/app/components/form/field/field-status/max-length/index.tsx
+frontend/app/components/Form/Field/FieldStatus/index.tsx  ->  frontend/app/components/form/field/field-status/index.tsx
+frontend/app/components/Form/Field/index.tsx  ->  frontend/app/components/form/field/index.tsx
+frontend/app/components/Form/FormActions/index.tsx  ->  frontend/app/components/form/form-actions/index.tsx
+frontend/app/components/Form/FormError/index.tsx  ->  frontend/app/components/form/form-error/index.tsx
+frontend/app/components/Form/FormError/tests/index.test.tsx  ->  frontend/app/components/form/form-error/tests/index.test.tsx
+frontend/app/components/Form/InputEmail/index.tsx  ->  frontend/app/components/form/input-email/index.tsx
+frontend/app/components/Form/InputEmail/tests/index.stories.tsx  ->  frontend/app/components/form/input-email/tests/index.stories.tsx
+frontend/app/components/Form/InputEmail/tests/index.test.tsx  ->  frontend/app/components/form/input-email/tests/index.test.tsx
+frontend/app/components/Form/InputPassword/index.tsx  ->  frontend/app/components/form/input-password/index.tsx
+frontend/app/components/Form/InputPassword/tests/index.stories.tsx  ->  frontend/app/components/form/input-password/tests/index.stories.tsx
+frontend/app/components/Form/InputRadio/index.tsx  ->  frontend/app/components/form/input-radio/index.tsx
+frontend/app/components/Form/InputText/index.tsx  ->  frontend/app/components/form/input-text/index.tsx
+frontend/app/components/Form/InputText/tests/index.stories.tsx  ->  frontend/app/components/form/input-text/tests/index.stories.tsx
+frontend/app/components/Form/InputText/tests/index.test.tsx  ->  frontend/app/components/form/input-text/tests/index.test.tsx
+frontend/app/components/Form/RadioButtons/BaseRadioButtons/index.tsx  ->  frontend/app/components/form/radio-buttons/base-radio-buttons/index.tsx
+frontend/app/components/Form/RadioButtons/index.tsx  ->  frontend/app/components/form/radio-buttons/index.tsx
+frontend/app/components/Form/RadioButtons/tests/index.stories.tsx  ->  frontend/app/components/form/radio-buttons/tests/index.stories.tsx
+frontend/app/components/Form/RadioButtons/tests/index.test.tsx  ->  frontend/app/components/form/radio-buttons/tests/index.test.tsx
+frontend/app/components/Form/Select/index.tsx  ->  frontend/app/components/form/select/index.tsx
+frontend/app/components/Form/Select/tests/index.stories.tsx  ->  frontend/app/components/form/select/tests/index.stories.tsx
+frontend/app/components/Form/Select/tests/index.test.tsx  ->  frontend/app/components/form/select/tests/index.test.tsx
+frontend/app/components/Form/Select/types.ts  ->  frontend/app/components/form/select/types.ts
+frontend/app/components/Form/TextArea/index.tsx  ->  frontend/app/components/form/text-area/index.tsx
+frontend/app/components/Form/TextArea/tests/index.stories.tsx  ->  frontend/app/components/form/text-area/tests/index.stories.tsx
+frontend/app/components/Form/TextArea/tests/index.test.tsx  ->  frontend/app/components/form/text-area/tests/index.test.tsx
+frontend/app/components/Form/YearMonthDay/index.tsx  ->  frontend/app/components/form/year-month-day/index.tsx
+frontend/app/components/Form/YearMonthDay/tests/index.stories.tsx  ->  frontend/app/components/form/year-month-day/tests/index.stories.tsx
+frontend/app/components/Form/YearMonthDay/tests/index.test.tsx  ->  frontend/app/components/form/year-month-day/tests/index.test.tsx
+frontend/app/components/Form/YearMonthDay/utils.ts  ->  frontend/app/components/form/year-month-day/utils.ts
+frontend/app/components/Form/types.ts  ->  frontend/app/components/form/types.ts
+frontend/app/components/LanguageSelect/index.tsx  ->  frontend/app/components/language-select/index.tsx
+frontend/app/components/Layout/index.tsx  ->  frontend/app/components/layout/index.tsx
+frontend/app/components/LinkButton/index.tsx  ->  frontend/app/components/link-button/index.tsx
+frontend/app/components/LinkButton/tests/index.stories.tsx  ->  frontend/app/components/link-button/tests/index.stories.tsx
+frontend/app/components/Loaders/Spinner/index.tsx  ->  frontend/app/components/loaders/spinner/index.tsx
+frontend/app/components/Loaders/Spinner/tests/index.stories.tsx  ->  frontend/app/components/loaders/spinner/tests/index.stories.tsx
+frontend/app/components/Loaders/Spinner/tests/index.test.tsx  ->  frontend/app/components/loaders/spinner/tests/index.test.tsx
+frontend/app/components/ThemeSwitch/index.tsx  ->  frontend/app/components/theme-switch/index.tsx
+frontend/app/components/Toast/ToastNotification/index.tsx  ->  frontend/app/components/toast/toast-notification/index.tsx
+frontend/app/components/Toast/ToastNotification/tests/index.test.tsx  ->  frontend/app/components/toast/toast-notification/tests/index.test.tsx
+frontend/app/components/Toast/ToastNotification/utils.ts  ->  frontend/app/components/toast/toast-notification/utils.ts
+frontend/app/components/Toast/index.tsx  ->  frontend/app/components/toast/index.tsx
+frontend/app/components/Toast/tests/index.stories.tsx  ->  frontend/app/components/toast/tests/index.stories.tsx
+frontend/app/components/Toast/tests/stack.ts  ->  frontend/app/components/toast/tests/stack.ts
+frontend/app/hooks/tests/useBreakpoint.test.ts  ->  frontend/app/hooks/tests/use-breakpoint.test.ts
+frontend/app/hooks/tests/useComponentRect.test.ts  ->  frontend/app/hooks/tests/use-component-rect.test.ts
+frontend/app/hooks/tests/useDebounce.test.ts  ->  frontend/app/hooks/tests/use-debounce.test.ts
+frontend/app/hooks/tests/useTimeout.test.ts  ->  frontend/app/hooks/tests/use-timeout.test.ts
+frontend/app/hooks/useBreakpoint.ts  ->  frontend/app/hooks/use-breakpoint.ts
+frontend/app/hooks/useComponentRect.ts  ->  frontend/app/hooks/use-component-rect.ts
+frontend/app/hooks/useDebounce.ts  ->  frontend/app/hooks/use-debounce.ts
+frontend/app/hooks/useTheme.ts  ->  frontend/app/hooks/use-theme.ts
+frontend/app/hooks/useTimeout.ts  ->  frontend/app/hooks/use-timeout.ts
+frontend/app/pages/Legal/PrivacyPage/index.tsx  ->  frontend/app/pages/privacy/page.tsx
+frontend/app/pages/Legal/TermsPage/index.tsx  ->  frontend/app/pages/terms/page.tsx
+frontend/app/pages/Public/IndexPage/index.tsx  ->  frontend/app/pages/index/page.tsx
+frontend/app/pages/Public/IndexPage/tests/index.stories.tsx  ->  frontend/app/pages/index/tests/page.stories.tsx
+frontend/app/pages/Public/IndexPage/tests/index.test.tsx  ->  frontend/app/pages/index/tests/page.test.tsx
+```
+
+The map is the answer for every GAIA-shipped file. Rename every other file under those three folders, the user's own, by the same rules.
+
+### Rules for the user's own files
+
+1. **Kebab-case.** For every folder and file under `frontend/app/components`, `frontend/app/pages`, and `frontend/app/hooks` that has an uppercase letter, insert `-` between a lowercase letter or digit and an uppercase letter, then lowercase everything (`LocaleThemeControls` becomes `locale-theme-controls`, `useDebounce.ts` becomes `use-debounce.ts`). A component keeps its `index.tsx` and its PascalCase default export. A component that is a single flat file such as `components/Foo.tsx` becomes `components/foo/index.tsx`. Include `Header`, `Footer`, and `GaiaLogo`: 2.0.0 does not ship them, so they are the user's now, and they become `header`, `footer`, and `gaia-logo`.
+2. **Hooks.** A hook file `useX.ts` becomes `use-x.ts` and its test `tests/useX.test.ts` becomes `tests/use-x.test.ts`. The exported name does not change.
+3. **Pages.** A page moves to `pages/<route path>/page.tsx`, derived from the route file that renders it: take the route file name under `frontend/app/routes` (after step 8), drop pathless-layout segments (a leading `_`), turn each `.` into a nested folder, keep static segments as they are, turn the `_index` leaf into `index`, `$slug` into `slug`, `$` into `splat`, drop an optional `($x)` segment, and use the literal kebab name for an escaped or trailing-underscore segment. Examples: `_legal.privacy.tsx` becomes `pages/privacy/page.tsx`, `_public._index.tsx` becomes `pages/index/page.tsx`, `account._index.tsx` becomes `pages/account/index/page.tsx`. The page's `tests/index.*` files become `tests/page.*`. The default export becomes `<Name>Page` if it is not already. **When a page is rendered by zero routes or by several, ask the user where it belongs; never guess.** On a collision with an existing sibling folder, ask the user for a distinguishing name.
+4. **App chrome stays in `components/`.** A component several pages share, or one that is part of the app shell, stays a top-level `components/<name>/` folder, for example a `LocaleThemeControls` that imports ThemeSwitch and LanguageSelect. Colocating a component into a page folder is optional, and only for page content that exactly one page imports; when in doubt, leave it in `components/` and rename it in place.
+5. **Stories and tests.** A story or test file is named `tests/<source file name>.stories.tsx` or `.test.tsx` after its source. Leave story `title` strings alone except where the file is GAIA-shipped, which the merge in step 10 takes from L.
+
+Show the user the full plan (every old path to new path, the user's own files marked) and wait for their approval before moving anything. Stop and report on any target path that already exists, or two files mapping to one target.
+
+### Apply
+
+1. Record the current HEAD as `pre_kebab_sha`. Run every `git mv -f <old> <new>`, creating parent folders as needed. Move files with `git mv`, never copy and delete, so history follows. On a case-insensitive filesystem (macOS, Windows), a rename that differs only in letter case goes through a temporary name, deepest path first: `git mv Foo foo.tmp && git mv foo.tmp foo`, then the same for each parent folder up to `components/`, `pages/`, or `hooks/`.
+2. Verify with `git ls-files frontend/app/components frontend/app/pages frontend/app/hooks`: every new path is tracked, no old path is, and `git ls-files frontend/app/components frontend/app/pages frontend/app/hooks | grep '[A-Z]'` prints nothing.
+3. Check `git diff --cached -M --name-status` shows only `R` entries (100 percent renames). Any `D` plus `A` pair means the rename was not detected; fix it before committing.
+4. Commit: `refactor(frontend)!: kebab-case components, pages and hooks (rename only)`. Record its SHA as `kebab_rename_sha`. If the user's pre-commit hook refuses a rename-only commit, do not pass `--no-verify`: stage the importer rewrite below into the same commit and commit once (git still detects the renames), and tell the user why.
+5. **Importers.** Rewrite every module specifier that resolved to a renamed file, in the user's code too: static `import`, dynamic `import()`, `vi.mock`, relative paths, and `~/components`, `~/pages`, and `~/hooks` aliases, across `frontend/app/` and `frontend/test/`, including route files (a route imports its page from `~/pages/<route path>/page`) and Storybook files. Then clear the generated and cached state: `.react-router`, `frontend/.react-router`, `node_modules/.vite`, `frontend/node_modules/.vite`, `node_modules/.cache`, `frontend/node_modules/.cache`, and Storybook's caches. Run React Router typegen and `pnpm typecheck`; any unresolved import stops the run. On a case-insensitive filesystem a stale-case import can still resolve locally and fail on a case-sensitive CI, so also run the typecheck in a clean clone: `git clone . ../<repo>-kebab-check`, `pnpm install`, `pnpm -C frontend typecheck`, then delete the clone.
+6. Commit the importer rewrite: `refactor(frontend): point imports at the kebab-case layout`. Record its SHA.
+
+Lint is expected to fail on file names between this commit and step 10: the older `@gaia-react/lint` still installed rejects every kebab-case component folder and `use-*.ts` hook file until step 10 raises the pin. Nothing else may fail; do not run the full quality gate yet.
+
+Update the progress file (next step: 10).
+
+## Step 10: Merge the frontend
 
 Three-way merge every GAIA-shipped file under `frontend/` that step 7 left alone (B at its old root path in B, A at its `frontend/` path, L at its `frontend/` path): the app, the tests, `public/`, `.storybook/`, `.playwright/`, and every frontend config. The `frontend/eslint.config.mjs` merge goes through the 2.0.0 eslint guard, which asks the user to approve.
 
-Start with `frontend/package.json` (`shared`): B is the app half of B's root `package.json`, A is the step 7 split, L is L's `frontend/package.json`. This upgrades the app to 2.0.0's versions (React Router 8, Vitest 5, `@gaia-react/lint` 2.3.0, and the rest); keep the user's own dependencies, keep their versions where they pinned newer ones, and ask when they pinned older ones. Run `pnpm install`, then merge the configs (React Router 8 rejects the `future` block in a 1.6.1 `react-router.config.ts`; L has none) and the source.
+Start with `frontend/package.json` (`shared`): B is the app half of B's root `package.json`, A is the step 7 split, L is L's `frontend/package.json`. This upgrades the app to 2.0.0's versions (React Router 8, Vitest 5, the `@gaia-react/lint` version L's `frontend/package.json` pins, and the rest); keep the user's own dependencies, keep their versions where they pinned newer ones, and ask when they pinned older ones. Run `pnpm install`, then merge the configs (React Router 8 rejects the `future` block in a 1.6.1 `react-router.config.ts`; L has none) and the source.
 
-Frontend deletions from Appendix A: `.storybook/env.ts`, `app/components/GaiaLogo/tests/index.stories.tsx`, `test/msw.server.ts`, and `doctor.config.jsonc` (now under `frontend/`, replaced by L's `frontend/doctor.config.ts` in the same commit). Ask before deleting any the user edited.
+Frontend deletions from Appendix A: `.storybook/env.ts`, `app/components/gaia-logo/tests/index.stories.tsx` (its path after the step 9 rename), `test/msw.server.ts`, and `doctor.config.jsonc` (now under `frontend/`, replaced by L's `frontend/doctor.config.ts` in the same commit). Ask before deleting any the user edited.
 
-**Keep-yours notice.** GAIA 2.0.0 no longer ships its branded `Header`, `Footer`, `GaiaLogo` components or `gaia-logo.svg`, and the stock `.github/CODEOWNERS` is no longer shipped. These are now the user's own files: `frontend/app/components/Header/index.tsx`, `frontend/app/components/Footer/index.tsx`, `frontend/app/components/GaiaLogo/index.tsx`, `frontend/app/assets/images/gaia-logo.svg`, and `.github/CODEOWNERS`. Never delete them. Tell the user they are theirs to keep, edit, or remove.
+**Keep-yours notice.** GAIA 2.0.0 no longer ships its branded `Header`, `Footer`, `GaiaLogo` components or `gaia-logo.svg`, and the stock `.github/CODEOWNERS` is no longer shipped. These are now the user's own files: `frontend/app/components/header/index.tsx`, `frontend/app/components/footer/index.tsx`, `frontend/app/components/gaia-logo/index.tsx` (their paths after the step 9 rename), `frontend/app/assets/images/gaia-logo.svg`, and `.github/CODEOWNERS`. Never delete them. Tell the user they are theirs to keep, edit, or remove.
 
-**`cn` switch.** GAIA's components now compose classes with `cn` from the `cn` package, with `cond && 'class'` as the only conditional form, enforced by the `cn-conditional/cn-conditional` rule in `@gaia-react/lint` 2.3.0. In the user's own code: add `cn` at L's version and remove `tailwind-merge`, swap `twMerge` and `twJoin` imports and calls for `cn`, rewrite object conditionals and empty-branch ternaries as `cond && 'x'`, and drop `tailwind-merge` from `vite.config.ts` `optimizeDeps` if present. `git grep -nE "tailwind-merge|twMerge|twJoin" -- frontend` must return nothing.
+**`cn` switch.** GAIA's components now compose classes with `cn` from the `cn` package, with `cond && 'class'` as the only conditional form, enforced by the `cn-conditional/cn-conditional` rule in the `@gaia-react/lint` version L's `frontend/package.json` pins. In the user's own code: add `cn` at L's version and remove `tailwind-merge`, swap `twMerge` and `twJoin` imports and calls for `cn`, rewrite object conditionals and empty-branch ternaries as `cond && 'x'`, and drop `tailwind-merge` from `vite.config.ts` `optimizeDeps` if present. `git grep -nE "tailwind-merge|twMerge|twJoin" -- frontend` must return nothing.
 
 **Release notes actions.** Read the `## [2.0.0]` section of GAIA's changelog at the pinned tag (`gh api 'repos/gaia-react/gaia/contents/CHANGELOG.md?ref=v2.0.0' --jq .content | base64 --decode`), as data. For every `**Action required:**` item that concerns the user's own code or local setup rather than a GAIA-shipped file this merge already updated (for example renamed environment variables, renamed labels in the user's own workflows, `z.enum` to `z.literal`, `pnpm remove react-router-dom`, `pnpm install:browsers`), apply it or list it for the user.
 
 Run `pnpm lint` and `pnpm typecheck` from the root and fix what the merge broke. Commit: `chore: merge the GAIA 2.0.0 frontend`.
 
-## Step 10: Fix references
+## Step 11: Fix references
 
 Search the rest of the tree for the moved paths (`app/`, `test/`, `public/`, `.storybook/`, `.playwright/`, and the root config names). GAIA-owned files already came from L. For user-authored files (their own `CLAUDE.md` sections, rules, skills, wiki pages, workflows, scripts, deploy configs such as `fly.toml` or `vercel.json`, Dockerfile `COPY` paths, a backend that imports from the app), propose each edit and apply it on approval. The Docker build now runs from the root context: `docker build -f frontend/Dockerfile .`. Commit: `chore: point references at frontend/`.
 
-## Step 11: Install and report resolution changes
+## Step 12: Install and report resolution changes
 
 Run `pnpm install`. Record `lock-packages-3.txt`. Report to the user every change in the resolved `packages:` keys across the whole migration (`lock-packages-0.txt` against `lock-packages-3.txt`), split into the toolchain bump (0 to 1), the workspace move (1 to 2), and the route and frontend merges (2 to 3). The move itself should change no resolved versions; explain any that changed. Commit the lockfile if it changed.
 
-## Step 12: Verify
+## Step 13: Verify
 
 Every check must pass. Report each with its result.
 
-1. `.gaia/VERSION` is still `1.6.1` at this point (step 13 writes it).
+1. `.gaia/VERSION` is still `1.6.1` at this point (step 14 writes it).
 2. Nothing frontend is left at the root: none of the step 5 frontend entries exists at the root.
 3. `git log --follow --oneline frontend/app/root.tsx` reaches back past `rename_sha`.
 4. `git diff -M --name-status <pre_sha>..<rename_sha>` shows only `R` entries.
@@ -332,13 +462,14 @@ Every check must pass. Report each with its result.
 17. **Git hook:** `git config --get core.hooksPath` prints `.githooks`, `test -x .githooks/pre-commit` passes, and `.husky/` does not exist.
 18. **spec-kit cleanup:** `test ! -e .specify` passes (if it fails, show the user what remains with `find .specify` and ask, as 7f step 5 does for `.husky`); `diff <(find .specify -type f | sort) <(jq -r '.files | keys[] | select(startswith(".specify/"))' <L>/.gaia/manifest.json | sort)` prints nothing (the files under `.specify/` are exactly the `.specify/` keys of L's `.gaia/manifest.json`, and L has none, which is why `.specify/` is gone); `ls -d .claude/skills/speckit-* 2>/dev/null` prints nothing; and `git grep -l 'SPECKIT' -- 'CLAUDE.md' '*/CLAUDE.md'` prints nothing.
 19. **Spec-lifecycle carry-over:** no old path in the 7c3 table exists, and every new path in it exists (check each row of the table; the deleted files have no new path).
+20. **Kebab-case layout:** `git ls-files frontend/app/components frontend/app/pages frontend/app/hooks | grep '[A-Z]'` prints nothing, and `git diff -M --name-status <pre_kebab_sha>..<kebab_rename_sha>` shows only `R` entries.
 
 Then ask the user to run one manual smoke: start Claude Code from `frontend/`, and confirm the session loads `frontend/CLAUDE.md` and that a guarded action (for example asking it to edit `frontend/.env`) is refused.
 
-## Step 13: Finalize
+## Step 14: Finalize
 
 1. Copy L's `.gaia/manifest.json` over the root one and write `2.0.0` to `.gaia/VERSION`. Commit: `chore: GAIA 2.0.0`.
-2. Push the branch and open a pull request. In its body, list the step 11 resolution report, every deletion you skipped at the user's request, every conflict and how it was resolved, and the keep-yours notice. Review the rename commit with `git diff -M` so it reads as renames.
+2. Push the branch and open a pull request. In its body, list the step 12 resolution report, every deletion you skipped at the user's request, every conflict and how it was resolved, and the keep-yours notice. Review the rename commit with `git diff -M` so it reads as renames.
 3. Merge through the user's normal flow (the 2.0.0 PR Merge Workflow). In the PR body or your report to the user, say that every other clone of the repository must run `pnpm install` (or `git config core.hooksPath .githooks`) after pulling; until then that clone runs no pre-commit hook.
 4. **Only after the PR has merged**, list each remote-touching act below for the user and run each one only on their explicit confirmation:
    - Push the SPEC number seed tag from step 7d: `git tag -a "spec/<N>" 4b825dc642cb6eb9a060e54bf8d69288fbee4904 -m "seed: SPEC number high-water mark at cutover"` then `git push origin "refs/tags/spec/<N>"` (an "already present" refusal is fine).
@@ -364,17 +495,18 @@ No remote state changes before the PR merges, so there is nothing remote to undo
 
 ## What this guideline covers
 
-The migration notes written alongside 2.0.0 had six sections. All six are carried here, along with the hook switch and the spec-kit removal:
+The migration notes written alongside 2.0.0 had six sections. All six are carried here, along with the hook switch, the spec-kit removal, and the kebab-case layout:
 
-- SPEC-021 SPEC-number ledger cutover: step 7d, with the seed tag in step 13.
-- SPEC-034 Code Audit Team rename and roster: step 7a (agent rename with carry-across, `auditors:` roster in the 2.0.0 `frontend/`-prefixed shape, remit regeneration) and step 12 checks 8 and 9. The wiki page renames ride the wiki merge.
-- Registry consolidation (no fallback roster): step 7a's required `auditors:` block and step 12 check 8. The note about `append-audit-author.sh` minting a roster-less file does not apply: 1.6.1 never shipped it and 2.0.0 does not either.
-- SPEC-091 GAIA CI removal: step 7b locally, step 13 remotely, step 12 checks 7 and 12.
+- SPEC-021 SPEC-number ledger cutover: step 7d, with the seed tag in step 14.
+- SPEC-034 Code Audit Team rename and roster: step 7a (agent rename with carry-across, `auditors:` roster in the 2.0.0 `frontend/`-prefixed shape, remit regeneration) and step 13 checks 8 and 9. The wiki page renames ride the wiki merge.
+- Registry consolidation (no fallback roster): step 7a's required `auditors:` block and step 13 check 8. The note about `append-audit-author.sh` minting a roster-less file does not apply: 1.6.1 never shipped it and 2.0.0 does not either.
+- SPEC-091 GAIA CI removal: step 7b locally, step 14 remotely, step 13 checks 7 and 12.
 - SPEC-085 route files: step 8.
-- `cn` switch: step 9 and step 12 check 14.
-- Husky removal and the `core.hooksPath` switch to `.githooks/`: step 7f, with step 12 check 17.
-- spec-kit core removal: step 7c (GAIA's own spec-kit integration files, through Appendix A) and step 7c2 (spec-kit core's install footprint), with step 12 check 18.
-- Spec-lifecycle file carry-over: step 7c3 (GAIA's own spec files moved out of `.specify/extensions/gaia/`, three-way merged onto their new paths), with step 12 check 19.
+- `cn` switch: step 10 and step 13 check 14.
+- Husky removal and the `core.hooksPath` switch to `.githooks/`: step 7f, with step 13 check 17.
+- spec-kit core removal: step 7c (GAIA's own spec-kit integration files, through Appendix A) and step 7c2 (spec-kit core's install footprint), with step 13 check 18.
+- Spec-lifecycle file carry-over: step 7c3 (GAIA's own spec files moved out of `.specify/extensions/gaia/`, three-way merged onto their new paths), with step 13 check 19.
+- Kebab-case component, page and hook layout: step 9 and step 13 check 20.
 
 ## Appendix A: deletion list (1.6.1 shipped, absent from 2.0.0)
 
@@ -387,7 +519,7 @@ Relocations, not losses (handled in the step named, never deleted blind):
 - `wiki/concepts/Code Review Audit CI.md`: superseded by the 2.0.0 wiki; delete after carrying any user notes into the matching 2.0.0 page.
 - `wiki/dependencies/Husky.md`: superseded by `wiki/dependencies/lint-staged.md` and `wiki/concepts/Pre-commit Hooks.md` in the 2.0.0 wiki; delete after carrying any user notes into the matching 2.0.0 page.
 - `.husky/pre-commit`: replaced by `.githooks/pre-commit` in step 7f (the `husky` and `is-ci` devDependencies leave the root `package.json` there too).
-- `doctor.config.jsonc`: replaced by `frontend/doctor.config.ts` in step 9.
+- `doctor.config.jsonc`: replaced by `frontend/doctor.config.ts` in step 10.
 - `.specify/extensions/gaia/lib/*.sh` (six files in the 7c3 table): moved to `.gaia/scripts/spec/` in 7c3.
 - `.specify/extensions/gaia/commands/*.md` (four files), `.specify/extensions/gaia/rules/uat-divergence.md`, and `.specify/extensions/gaia/templates/*.md` (three files) in the 7c3 table: moved to `.claude/skills/gaia/references/spec/` in 7c3.
 - `.specify/extensions/gaia/templates/*.ts.tmpl` (two files in the 7c3 table): moved to `.gaia/templates/spec/` in 7c3.
@@ -465,6 +597,8 @@ wiki/dependencies/React Router 7.md
 wiki/dependencies/remix-flat-routes.md
 ```
 
+The `app/components/GaiaLogo/tests/index.stories.tsx` entry above is the 1.6.1 path. Step 9 renames the user's `GaiaLogo` folder to `gaia-logo` (it is not in the relocation map because 2.0.0 does not ship it), so step 10 deletes it at `frontend/app/components/gaia-logo/tests/index.stories.tsx`. No other Appendix A path is under `app/components`, `app/pages`, or `app/hooks`.
+
 The `.claude/rules/*`, `.claude/skills/*`, and `.claude/instructions/*` files that moved to `frontend/.claude/` in 2.0.0 are not deletions: they are relocations handled by the step 7a merge (B at the root path, L at the `frontend/.claude/` path). Remove the root copy once its merged `frontend/.claude/` file is in place.
 
-Never delete: `wiki/hot.md`, `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json`, and the keep-yours files listed in step 9.
+Never delete: `wiki/hot.md`, `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json`, and the keep-yours files listed in step 10.
