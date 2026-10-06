@@ -1,0 +1,15 @@
+# pnpm 11+ reads settings from here; the package.json "pnpm" field is no
+# longer honored.
+
+# Build-script approval (replaces onlyBuiltDependencies). Unlisted packages
+# that need to build fail the install.
+allowBuilds:
+  esbuild: false
+  puppeteer: true
+  unrs-resolver: false
+
+# Supply-chain hardening. pnpm 12 applies a default minimumReleaseAge; strict
+# mode fails a breach instead of silently writing a permanent
+# minimumReleaseAgeExclude entry here. Wait for the version to age past the
+# cutoff rather than exempting it.
+minimumReleaseAgeStrict: true
