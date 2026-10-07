@@ -594,6 +594,7 @@ Deleted:
 .github/audit/tests/repo-scope.bats
 .github/audit/tests/resolve-audit-base.bats
 .github/audit/tests/resolve-check-base.bats
+.github/FUNDING.yml
 .github/ISSUE_TEMPLATE/bug_report.yml
 .github/ISSUE_TEMPLATE/config.yml
 .github/ISSUE_TEMPLATE/feature_request.yml
@@ -617,8 +618,11 @@ app/services/index.server.ts
 test/msw.server.ts
 wiki/concepts/Agentic Design.md
 wiki/concepts/Telemetry.md
+wiki/decisions/Dispatched-Check Rollup via Polling.md
+wiki/decisions/spec-kit Extension Strategy.md
 wiki/dependencies/React Router 7.md
 wiki/dependencies/remix-flat-routes.md
+wiki/dependencies/spec-kit.md
 ```
 
 The `app/components/GaiaLogo/tests/index.stories.tsx` entry above is the 1.6.1 path. Step 9 renames the user's `GaiaLogo` folder to `gaia-logo` (it is not in the relocation map because 2.0.0 does not ship it), so step 10 deletes it at `frontend/app/components/gaia-logo/tests/index.stories.tsx`. No other path in this list is under `app/components`, `app/pages`, or `app/hooks`; the shadcn and stories-as-tests lists below give theirs.
