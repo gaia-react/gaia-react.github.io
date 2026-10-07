@@ -153,12 +153,11 @@ End state: the files under `.specify/` are exactly the shipped `.specify` set.
 
 7c2's premise that nobody authors files in `.specify/` covers spec-kit core; GAIA's own files under `.specify/extensions/gaia/` are the exception, already removed by 7c2 and carried here from `pre_sha`.
 
-2.0.0 moves 16 of the files 1.6.1 shipped there to new paths and deletes 2. This table is the whole list (the 10 spec-kit-core `.specify` entries stay in Appendix A, and the files 2.0.0 adds that 1.6.1 never shipped are plain new files for 7a):
+2.0.0 moves 14 of the files 1.6.1 shipped there to new paths and deletes 4. This table is the whole list (the 10 spec-kit-core `.specify` entries stay in Appendix A, and the files 2.0.0 adds that 1.6.1 never shipped are plain new files for 7a):
 
 | 1.6.1 path (B)                                          | 2.0.0 path (L)                                           |
 | ------------------------------------------------------- | -------------------------------------------------------- |
 | `.specify/extensions/gaia/commands/self-review.md`      | `.claude/skills/gaia/references/spec/self-review.md`     |
-| `.specify/extensions/gaia/commands/spec-close.md`       | `.claude/skills/gaia/references/spec/spec-close.md`      |
 | `.specify/extensions/gaia/commands/uat-write.md`        | `.claude/skills/gaia/references/spec/uat-write.md`       |
 | `.specify/extensions/gaia/commands/wiki-promote.md`     | `.claude/skills/gaia/references/spec/wiki-promote.md`    |
 | `.specify/extensions/gaia/lib/ledger-update.sh`         | `.gaia/scripts/spec/ledger-update.sh`                    |
@@ -171,15 +170,16 @@ End state: the files under `.specify/` are exactly the shipped `.specify` set.
 | `.specify/extensions/gaia/templates/clarify-prompts.md` | `.claude/skills/gaia/references/spec/clarify-prompts.md` |
 | `.specify/extensions/gaia/templates/spec-template.md`   | `.claude/skills/gaia/references/spec/spec-template.md`   |
 | `.specify/extensions/gaia/templates/system-prompt.md`   | `.claude/skills/gaia/references/spec/system-prompt.md`   |
-| `.specify/extensions/gaia/templates/uat-fixme.ts.tmpl`  | `.gaia/templates/spec/uat-fixme.ts.tmpl`                 |
 | `.specify/extensions/gaia/templates/uat-spec.ts.tmpl`   | `.gaia/templates/spec/uat-spec.ts.tmpl`                  |
 
 Deleted in 2.0.0, with no new path:
 
-| 1.6.1 path (B)                              | 2.0.0            |
-| ------------------------------------------- | ---------------- |
-| `.specify/extensions/gaia/README.md`        | deleted in 2.0.0 |
-| `.specify/extensions/gaia/commands/lint.md` | deleted in 2.0.0 |
+| 1.6.1 path (B)                                         | 2.0.0            |
+| ------------------------------------------------------ | ---------------- |
+| `.specify/extensions/gaia/README.md`                   | deleted in 2.0.0 |
+| `.specify/extensions/gaia/commands/lint.md`            | deleted in 2.0.0 |
+| `.specify/extensions/gaia/commands/spec-close.md`      | deleted in 2.0.0 |
+| `.specify/extensions/gaia/templates/uat-fixme.ts.tmpl` | deleted in 2.0.0 |
 
 For each moved file, B is the 1.6.1 copy at the old path (from the B tree), A is the user's committed copy from `git show <pre_sha>:<old path>` (the committed blob, never the working tree), and L is the 2.0.0 copy at the new path. 7a already copied L to the new path as a placeholder; three-way merge B, A, and L onto the new path and overwrite that placeholder, and ask the user on a conflict (the same carry-over 7a does for the agent rename). Conflicts are expected near re-pathed path lines, for example a hardcoded `.specify/extensions/gaia/...` path inside a moved script, because B to L differs by more than the move. If A does not exist at `pre_sha` (the user removed the file), ask the user whether to keep it removed. If they do, delete the placeholder 7a copied to the new path (`git rm -q -f -- <new path>`, then `rm -f -- <new path>` if it still exists); otherwise keep L there as is.
 
