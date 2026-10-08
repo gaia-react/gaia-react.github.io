@@ -109,11 +109,12 @@ Files that need more than a plain merge:
 - **Code Audit Team rename (SPEC-034).** `git mv .claude/agents/code-review-audit.md .claude/agents/code-audit-frontend.md`, and move the lens-brief folder into the frontend harness, where 2.0.0 keeps it: `mkdir -p frontend/.claude/agents && git mv .claude/agents/code-review-audit frontend/.claude/agents/code-audit-frontend`. Then three-way merge each file against L with B at the old path, so a user's customization of the old agent or its briefs carries across the rename instead of being lost to a delete plus add. The lens-brief `tailwind-merge.md` is deleted in 2.0.0: ask before deleting it if the user edited it.
 - **Audit remit regions.** In `.claude/agents/code-audit-frontend.md` and `.claude/agents/code-audit-github-workflows.md`, do not hand-merge the block between `<!-- gaia:audit-remit:start -->` and `<!-- gaia:audit-remit:end -->`; after merging the rest and `.gaia/audit-ci.yml`, run `bash .gaia/scripts/write-audit-remits.sh` to regenerate it.
 - **`.gaia/audit-ci.yml` roster (registry consolidation, required).** The class changed from `owned` to `shared`. The merged file must contain L's `auditors:` block (a single `code-audit-frontend` member, `default: true`, with `frontend/`-prefixed globs such as `frontend/app/**`, `frontend/test/**`, `frontend/.storybook/**`) while keeping every scalar the user tuned (`budget_seconds`, `max_turns`, `push_fixes`, `gate_label`, `default_mode`, `override_label`, `retrigger_workflows`, and any `audit_authors` entries). There is no fallback roster in 2.0.0: without this block every merge is refused.
-- **`.claude/settings.json`** (`shared`): merge so it carries every 2.0.0 hook registration, drops every registration whose script no longer exists in L (for example `wiki-drift-check.sh`, `wiki-commit-nudge.sh`, `intercept-init.sh`, `block-bare-test.sh`, `check-i18n-strings.sh`, `check-story-exists.sh`, `block-vitest-globals-tsconfig.sh`, `telemetry-task-postuse.sh`, and the `WorktreeCreate` entry for `create-worktree.sh`), and keeps the user's own additions. Then check `.claude/settings.local.json` the same way: list any registration pointing at a script that will not exist and, with the user's approval, remove it.
+- **`.claude/settings.json`** (`shared`): merge so it carries every 2.0.0 hook registration, drops every registration whose script no longer exists in L (for example `wiki-drift-check.sh`, `wiki-commit-nudge.sh`, `wiki-session-stop.sh`, `intercept-init.sh`, `block-bare-test.sh`, `check-i18n-strings.sh`, `check-story-exists.sh`, `block-vitest-globals-tsconfig.sh`, `telemetry-task-postuse.sh`, and the `WorktreeCreate` entry for `create-worktree.sh`), and keeps the user's own additions. Afterwards `grep -n -e wiki-hot-inject -e wiki-session-stop -e janitor-report-drain .claude/settings.json` must print nothing: 2.0.0 has none of those hooks, and its `wiki-session-start.sh` prints the janitor's one-line base-catch-up report at session start. Then check `.claude/settings.local.json` the same way: list any registration pointing at a script that will not exist and, with the user's approval, remove it.
 - **Dotenv and secret guards.** 2.0.0 folds `block-env-write.sh` into `block-secrets-write.sh` and adds `block-sensitive-read.sh` as the read-side guard for dotenv, key, certificate and credential paths. Delete the old file with `git rm .claude/hooks/block-env-write.sh`; if the user edited it (A differs from B), show the diff and ask first, and carry any edit they want to keep into `block-secrets-write.sh`. Then confirm nothing still registers it: `grep -n block-env-write .claude/settings.json` must print nothing, and so must the same grep on `.claude/settings.local.json` when that file exists. Several advisory hooks in the 2.0.0 settings carry an `if` filter, which needs a Claude Code version that honors hook `if` (verified on 2.1.293). An older version runs those hooks on every call: slower, but no protection is lost, because deny guards never use `if`.
 - **`.github/workflows/tests.yml` and `chromatic.yml`** (`shared`): L already carries the `frontend/` path filters and run paths. After the merge, read every path filter, `paths:` entry, `working-directory`, `run:` path, and `cache-dependency-path` in both, including lines the user added, and rewrite any remaining root app path (`app/`, `test/`, `.storybook/`, `.playwright/`, `public/`, a root frontend config) to its `frontend/` path. `cache-dependency-path` stays on the one root `pnpm-lock.yaml`. Do the same for any other user workflow that builds or tests the app.
 - **`wiki/.state.json`**: keep the user's file. L carries GAIA's own commit SHAs, which do not exist in this repository.
-- **Sentinels, never deleted or overwritten:** `wiki/hot.md`, `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json` (the last two are written in step 14).
+- **Sentinels, never deleted or overwritten:** `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json` (the last two are written in step 14).
+- **`wiki/hot.md`**: 2.0.0 no longer loads it at session start or resets it on release, and does not ship it. Ask the user whether to delete it (`git rm wiki/hot.md`) or keep it as an ordinary note; never overwrite it.
 
 ### 7b. GAIA CI removal (SPEC-091)
 
@@ -464,7 +465,7 @@ Every check must pass. Report each with its result.
 4. `git diff -M --name-status <pre_sha>..<rename_sha>` shows only `R` entries.
 5. **Quality Gate from the root** (steps 3 to 8 of `wiki/decisions/Quality Gate.md`): `pnpm typecheck`, `pnpm lint`, `pnpm test --run`, `pnpm pw`, the dev smoke test (`bash .gaia/scripts/dev-smoke.sh` exits 0), and `pnpm build`, each exit 0 with zero warnings. Also run `pnpm -C frontend typecheck` to confirm the direct spelling.
 6. **Settings drift:** `bash .gaia/scripts/check-settings-drift.sh` exits 0.
-7. **Hook registrations:** no hook command in `.claude/settings.json`, `frontend/.claude/settings.json`, or `.claude/settings.local.json` points at a missing script, and `.claude/hooks/janitor-report-drain.sh` is registered under `UserPromptSubmit`.
+7. **Hook registrations:** no hook command in `.claude/settings.json`, `frontend/.claude/settings.json`, or `.claude/settings.local.json` points at a missing script, `grep -n -e wiki-hot-inject -e wiki-session-stop -e janitor-report-drain` on each of those files prints nothing, and `.claude/hooks/wiki-session-start.sh` is registered under `SessionStart` for `startup|resume`.
 8. **Audit roster:** on a throwaway branch, commit (with a Conventional Commits message such as `chore: audit roster check`, since the commit-msg hook refuses any other) a comment-only change to a file under `frontend/app/`; `bash .gaia/scripts/resolve-audit-members.sh --base HEAD~1` exits 0 and prints exactly `code-audit-frontend`. Commit a comment-only change to a `.gaia/scripts/*.sh` file instead; it exits 0 and prints nothing. Delete the throwaway branch.
 9. **Pre-commit:** a staged `frontend/app/` change runs the frontend lint-staged on commit (the throwaway commit above shows it). Its output must show the hook's `Running pre-commit check` line, which proves git ran `.githooks/pre-commit`.
 10. **Worktree provisioning:** `git worktree add ../<repo>-migrate-check` from this branch, run `bash .claude/hooks/provision-worktree.sh <absolute path of that worktree>`, confirm its `frontend/.env` is a link to the main checkout's (check with `ls -l`, never read it) and its dependencies installed. Confirm `frontend/.gaia-ports` exists in it and that `bash .gaia/scripts/ports.sh`, run inside it, prints a slot of 1 or higher, with dev 5173 plus the slot and Storybook 6006 plus the slot. A linked worktree with no port file refuses `pnpm dev`, `pnpm storybook`, and `pnpm pw`. Then `git worktree remove ../<repo>-migrate-check`.
@@ -496,7 +497,8 @@ Then ask the user to run one manual smoke: start Claude Code from `frontend/`, a
    - Open `gaia-ci` pull requests: list them with `gh pr list --label gaia-ci --state open`, and close each by number.
    - CI branches: list `git ls-remote --heads origin | grep -F 'refs/heads/gaia-ci/'`, then delete each by exact name with `git push origin --delete <branch>`, never by glob.
 5. **Existing worktrees:** each linked worktree created before 2.0.0 has no port slot or port file, so it refuses `pnpm dev`, `pnpm storybook`, and `pnpm pw` until it gets them. Re-enter each one once, or run `bash .claude/hooks/provision-worktree.sh <worktree-path>` for each, so each gets its slot and port file.
-6. Delete `.gaia/local/cache/shared/migrate-2/` once the user is satisfied.
+6. **Retired handoff state:** 2.0.0 removes `/gaia-handoff` and `/gaia-pickup`; work resumes from the run folder's `STATE.md` (`.gaia/local/runs/<branch>/STATE.md`), or the user asks Claude for a continuation prompt. Delete the leftover state, from the repository root, with exactly `rm -rf .gaia/local/handoff` (skip when absent). Run it in this spelling only: the 2.0.0 rm guard allows the relative path and denies the absolute one.
+7. Delete `.gaia/local/cache/shared/migrate-2/` once the user is satisfied.
 
 ## Rollback
 
@@ -560,10 +562,15 @@ Deleted:
 .claude/hooks/telemetry-task-postuse.sh
 .claude/hooks/wiki-commit-nudge.sh
 .claude/hooks/wiki-drift-check.sh
+.claude/hooks/wiki-session-stop.sh
 .claude/hooks/wiki-squash-autocommits.sh
 .claude/rules/dep-audit.md
 .claude/rules/instruction-files.md
 .claude/rules/knip.md
+.claude/skills/gaia-handoff/SKILL.md
+.claude/skills/gaia-pickup/SKILL.md
+.claude/skills/gaia/references/handoff.md
+.claude/skills/gaia/references/pickup.md
 .claude/skills/playwright-cli/references/commands.md
 .claude/skills/tdd/references/tests-react.md
 .claude/skills/typescript/references/naming-conventions.md
@@ -618,6 +625,8 @@ app/services/gaia/index.server.ts
 app/services/index.server.ts
 test/msw.server.ts
 wiki/concepts/Agentic Design.md
+wiki/concepts/GAIA Handoff.md
+wiki/concepts/GAIA Pickup.md
 wiki/concepts/Telemetry.md
 wiki/decisions/Dispatched-Check Rollup via Polling.md
 wiki/decisions/spec-kit Extension Strategy.md
@@ -717,4 +726,4 @@ test/rtl.tsx
 
 `app/components/Errors/ErrorStack/tests/index.test.tsx` and `app/components/Form/FormError/tests/index.test.tsx` are at `frontend/app/components/errors/error-stack/tests/index.test.tsx` and `frontend/app/components/form/form-error/tests/index.test.tsx` after step 9. The stories-as-tests change also deletes `.gaia/scripts/a11y-structural/check-a11y-triviality.mjs` and several test files that postdate 1.6.1, which a 1.6.1 project does not have: nothing to delete for them.
 
-Never delete: `wiki/hot.md`, `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json`, and the keep-yours files listed in step 10.
+Never delete: `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json`, and the keep-yours files listed in step 10.
