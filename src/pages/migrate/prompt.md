@@ -498,7 +498,9 @@ Then ask the user to run one manual smoke: start Claude Code from `frontend/`, a
    - CI branches: list `git ls-remote --heads origin | grep -F 'refs/heads/gaia-ci/'`, then delete each by exact name with `git push origin --delete <branch>`, never by glob.
 5. **Existing worktrees:** each linked worktree created before 2.0.0 has no port slot or port file, so it refuses `pnpm dev`, `pnpm storybook`, and `pnpm pw` until it gets them. Re-enter each one once, or run `bash .claude/hooks/provision-worktree.sh <worktree-path>` for each, so each gets its slot and port file.
 6. **Retired handoff state:** 2.0.0 removes `/gaia-handoff` and `/gaia-pickup`; work resumes from the run folder's `STATE.md` (`.gaia/local/runs/<branch>/STATE.md`), or the user asks Claude for a continuation prompt. Delete the leftover state, from the repository root, with exactly `rm -rf .gaia/local/handoff` (skip when absent). Run it in this spelling only: the 2.0.0 rm guard allows the relative path and denies the absolute one.
-7. Delete `.gaia/local/cache/shared/migrate-2/` once the user is satisfied.
+7. **Decline ledger:** 2.0.0 reads only the version-2 `/gaia-harden` decline ledger, and 1.6.1 writes version 1. If `.gaia/local/harden/declines.json` exists, delete it from the repository root with `rm -f .gaia/local/harden/declines.json` (skip when absent). Until it is deleted, `/gaia-harden` shows no candidates and its statusline nudge stays silent; afterwards each candidate the user declined re-surfaces once and can be declined again. Tell the user that.
+8. **Changed CLI spellings:** tell the user, so they can update any script of their own that calls the GAIA CLI: `gaia setup-ci <subcommand>` is now `gaia setup <subcommand>`; `gaia labels docs` is gone from `gaia` (the GitHub Labels wiki page arrives through `/update-gaia`); `gaia residue-tally` drops `--attribute-only`, `--cap`, `--no-cap` and `--json` (set the cap with `GAIA_RESIDUE_CAP`); `gaia harden-ledger is-suppressed` is removed; `gaia sandbox` exits 2, not 1, on invalid arguments. No command to run.
+9. Delete `.gaia/local/cache/shared/migrate-2/` once the user is satisfied.
 
 ## Rollback
 
