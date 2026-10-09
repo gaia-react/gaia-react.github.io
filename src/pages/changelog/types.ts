@@ -3,6 +3,9 @@ export type Release = ReleaseLead & {
   date: string; // ISO yyyy-mm-dd
   fixed?: string[]; // "Fixed"
   improved?: string[]; // "Improved"
+  // GitHub release body only: lines emitted verbatim before the headline by
+  // scripts/render-release-md.mjs. The changelog page does not render them.
+  preamble?: string[];
   version: string; // semver, no leading 'v'
 };
 
@@ -14,5 +17,4 @@ export type Release = ReleaseLead & {
 // required union documents the rule; scripts/check-release-titles.mjs enforces
 // it across every release file at build time.
 type ReleaseLead =
-  | {headline: string; summary?: string}
-  | {headline?: string; summary: string};
+  {headline: string; summary?: string} | {headline?: string; summary: string};

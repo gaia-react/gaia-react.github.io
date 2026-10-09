@@ -58,7 +58,8 @@
               {"@type": "ListItem", "position": 3, "name": "Obsidian wiki for token-efficient context"},
               {"@type": "ListItem", "position": 4, "name": "Durable state on disk"},
               {"@type": "ListItem", "position": 5, "name": "Automated CI maintenance"},
-              {"@type": "ListItem", "position": 6, "name": "Modern React stack"}
+              {"@type": "ListItem", "position": 6, "name": "Modern React stack"},
+              {"@type": "ListItem", "position": 7, "name": "React render-performance diagnostics"}
             ]
           },
           {
@@ -115,10 +116,18 @@
               },
               {
                 "@type": "Question",
+                "name": "How does GAIA diagnose slow React renders?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Run /gaia-react-perf. It drives a micro-interaction you point it at, captures real per-render attribution with a bippy harness, and reduces the raw capture to a small ranked summary so it never enters Claude's context. It flags a React.memo that re-renders anyway because a prop or context value is a new object or callback every render, plus any component whose render crosses a 16 ms frame budget. It ranks findings by how costly each wasted render is and how widely it ripples, then names the structural fix. v1 is measure-only: GAIA diagnoses, Claude applies the fix you approve."
+                }
+              },
+              {
+                "@type": "Question",
                 "name": "How does GAIA automate project maintenance?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "GAIA CI handles dependency updates (patch and minor auto-merge with codemods, major routes to a review PR), daily security audits with pnpm audit, wiki sync whenever app code changes, and monthly stale branch cleanup. Claude handles the safe cases automatically. Humans only see what it cannot safely recover from, with a hard $5 cost cap per run."
+                  "text": "GAIA CI handles dependency updates (patch and minor auto-merge with codemods, major routes to a review PR), daily security audits with pnpm audit, wiki sync whenever app code changes, and monthly stale branch cleanup. Claude handles the safe cases automatically. Humans only see what it cannot safely recover from. GAIA CI runs against your Claude Code Pro/Max subscription or your Anthropic API key, and a fixed turn limit caps every scheduled run, so no run loops without end."
                 }
               },
               {

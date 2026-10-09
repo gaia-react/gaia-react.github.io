@@ -10,9 +10,9 @@ const ESLintLogo: FC<ESLintLogoProperties> = ({
   ...properties
 }) => {
   const adjustedWidth =
-    height ? height * (323.999_73 / 285.096_01) : (width ?? 323.999_73);
+    height ? height * (323.99973 / 285.09601) : (width ?? 323.99973);
   const adjustedHeight =
-    width ? width * (285.096_01 / 323.999_73) : (height ?? 285.096_01);
+    width ? width * (285.09601 / 323.99973) : (height ?? 285.09601);
 
   return (
     <svg

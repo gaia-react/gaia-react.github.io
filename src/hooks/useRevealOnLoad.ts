@@ -17,7 +17,7 @@ if (typeof document !== 'undefined') {
 // convention), and it stays correct no matter how many entries happen to sit
 // above the fold on a given viewport. Use this on list pages where the count of
 // above-the-fold items is data-dependent, like the changelog.
-export const useRevealOnLoad = () => {
+export const useRevealOnLoad = (): void => {
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

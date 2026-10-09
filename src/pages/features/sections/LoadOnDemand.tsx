@@ -36,6 +36,9 @@ const COLUMNS: Column[] = [
             - <span className="text-ink">&apos;app/**/*.css&apos;</span>
           </div>
           <div>---</div>
+          <div>
+            <span className="text-muted">#</span> Tailwind Conventions
+          </div>
         </div>
       </>
     ),
@@ -75,6 +78,10 @@ const COLUMNS: Column[] = [
           <div>imports</div>
           <div className="text-warn-soft text-right">guess</div>
           <div className="text-secondary-soft text-right">trace</div>
+
+          <div>rename</div>
+          <div className="text-warn-soft text-right">sed</div>
+          <div className="text-secondary-soft text-right">safe</div>
         </div>
       </>
     ),
@@ -86,9 +93,7 @@ const COLUMNS: Column[] = [
         <code>/gaia-audit</code> sweeps memory, the wiki, and autoloaded files
         for duplication, stale entries, and rules over budget. It catches
         contradictions, not just copies. One review gate stands between the
-        findings and your files, cleared with one keystroke. Interrupted runs
-        resume, every change is a git-revertable diff, and GAIA flags when a
-        sweep is worth running.
+        findings and your files, and GAIA flags when a sweep is worth running.
       </>
     ),
     name: 'Knowledge audit',
@@ -133,7 +138,7 @@ const codeStyles =
 
 const LoadOnDemand = () => (
   <section
-    className="border-line-soft scroll-mt-20 border-b py-20"
+    className="border-line-soft scroll-mt-16 border-b py-20"
     id="context"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
