@@ -88,7 +88,7 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
 
 const AgenticDesignDetail = () => (
   <section
-    className="border-line-soft scroll-mt-20 border-b py-20"
+    className="border-line-soft scroll-mt-16 border-b py-20"
     id="agentic-design"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">

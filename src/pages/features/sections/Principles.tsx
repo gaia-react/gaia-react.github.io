@@ -9,7 +9,7 @@ const PRINCIPLES = [
 
 const Principles = () => (
   <section
-    className="border-line-soft relative scroll-mt-20 overflow-hidden border-b py-24 sm:py-32"
+    className="border-line-soft relative scroll-mt-16 overflow-hidden border-b py-24 sm:py-32"
     id="discipline"
   >
     <div

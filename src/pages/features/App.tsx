@@ -10,6 +10,7 @@ import Hero from './sections/Hero';
 import LoadOnDemand from './sections/LoadOnDemand';
 import ObsidianWikiDetail from './sections/ObsidianWikiDetail';
 import Principles from './sections/Principles';
+import ReactPerf from './sections/ReactPerf';
 import Stack from './sections/Stack';
 import StateOnDisk from './sections/StateOnDisk';
 import Trust from './sections/Trust';
@@ -23,6 +24,7 @@ const App = () => {
     <Layout>
       <Hero />
       <Trust />
+      <ReactPerf />
       <LoadOnDemand />
       <StateOnDisk />
       <AgenticDesignDetail />
