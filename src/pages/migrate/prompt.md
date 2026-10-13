@@ -115,6 +115,7 @@ Files that need more than a plain merge:
 - **`wiki/.state.json`**: keep the user's file. L carries GAIA's own commit SHAs, which do not exist in this repository.
 - **Sentinels, never deleted or overwritten:** `wiki/log.md`, `.gaia/VERSION`, `.gaia/manifest.json` (the last two are written in step 14).
 - **`wiki/hot.md`**: 2.0.0 no longer loads it at session start or resets it on release, and does not ship it. Ask the user whether to delete it (`git rm wiki/hot.md`) or keep it as an ordinary note; never overwrite it.
+- **Dated `wiki/meta/` reports**: 2.0.0's `/gaia-wiki` overwrites one `wiki/meta/lint-report.md` and one `wiki/meta/consolidate-report.md` each run instead of adding a dated file. The user's dated `lint-report-<date>.md` and `consolidate-report-<date>.md` files are their own history, not GAIA's: offer to delete them (`git rm wiki/meta/lint-report-*.md wiki/meta/consolidate-report-*.md`), and keep them if the user declines.
 
 ### 7b. GAIA CI removal (SPEC-091)
 
@@ -552,6 +553,7 @@ Relocations, not losses (handled in the step named, never deleted blind):
 - `app/routes/_legal+/_layout.tsx`, `_legal+/privacy.tsx`, `_legal+/terms.tsx`, `_public+/_index.tsx`, `_public+/_layout.tsx`, `_session+/README.md`, `actions+/set-language.ts`, `resources+/theme-switch.tsx`: renamed in step 8.
 - `wiki/concepts/Code Review Audit CI.md`: superseded by the 2.0.0 wiki; delete after carrying any user notes into the matching 2.0.0 page.
 - `wiki/dependencies/Husky.md`: superseded by `wiki/dependencies/lint-staged.md` and `wiki/concepts/Pre-commit Hooks.md` in the 2.0.0 wiki; delete after carrying any user notes into the matching 2.0.0 page.
+- `wiki/concepts/Chromatic Opt-Out.md` and `wiki/concepts/Test Runner.md`: folded into the Opt-out section of `wiki/dependencies/Chromatic.md` and into `wiki/dependencies/Vitest.md` in the 2.0.0 wiki; delete after carrying any user notes into the matching 2.0.0 page.
 - `.husky/pre-commit`: replaced by `.githooks/pre-commit` in step 7f (the `husky` and `is-ci` devDependencies leave the root `package.json` there too).
 - `doctor.config.jsonc`: replaced by `frontend/doctor.config.ts` in step 10.
 - `.specify/extensions/gaia/lib/*.sh` (six files in the 7c3 table): moved to `.gaia/scripts/spec/` in 7c3.
