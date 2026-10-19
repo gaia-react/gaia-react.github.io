@@ -785,7 +785,7 @@ const RECAP = [
     title: 'Project memory & rules',
   },
   {
-    body: '1,450 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
+    body: '1,279 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
     title: 'Quality gates',
   },
   {
