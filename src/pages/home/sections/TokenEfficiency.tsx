@@ -1,12 +1,12 @@
 const STATE_ARTIFACTS = [
   {desc: 'Architecture, flows, and decisions', name: 'wiki'},
-  {desc: 'What Claude touched this session', name: 'hot cache'},
-  {desc: 'Compact state for handoff and pickup', name: 'handoff'},
-  {desc: 'Each subagent’s notes, between runs', name: 'agent memory'},
+  {desc: 'Specs, plans, and research for work in flight', name: 'notebook'},
+  {desc: 'Where paused work picks up', name: 'run state'},
+  {desc: 'Claude’s own notes, between sessions', name: 'memory'},
 ];
 
 const UPKEEP = [
-  {desc: 'Prunes duplicate, conflicting, and stale notes', name: 'audit'},
+  {desc: 'Prunes duplicate, conflicting, and stale notes', name: 'cleanse'},
   {desc: 'Heals config rot before it degrades Claude', name: 'fitness'},
 ];
 

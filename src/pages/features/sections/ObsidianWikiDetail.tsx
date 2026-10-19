@@ -5,8 +5,8 @@ import PointList from './PointList';
 
 const POINTS: {desc: ReactNode; name: string}[] = [
   {
-    desc: 'GAIA keeps the wiki current without you managing it. Commits are evaluated for wiki-worthy content and synced automatically. Consolidation passes catch redundancy and reversed decisions before they compound. Lint sweeps flag orphan pages, dead links, and drift. None of this is a feature you invoke. It is a discipline you get.',
-    name: 'Self-maintaining knowledge base',
+    desc: 'When the wiki trails your code, the statusline says so. One /gaia-wiki command syncs what changed, consolidates redundancy and reversed decisions before they compound, and fixes orphan pages, dead links, and drift, all in one pull request.',
+    name: 'A knowledge base that stays current',
   },
   {
     desc: 'Token costs do not balloon as the wiki gets richer. Claude only reads the specific information a task needs, so a project with 1,000 pages of context is no more expensive to work in than one with 100.',
@@ -35,18 +35,9 @@ const ObsidianWikiDetail = () => (
           CLAUDE.md, not chat history, not machine-local memory.
         </p>
         <p>
-          {'GAIA comes with the '}
-          <a
-            className="text-accent hover:text-accent-soft transition-colors duration-150"
-            href="https://github.com/AgriciDaniel/claude-obsidian"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            claude-obsidian
-          </a>
-          {
-            ' integration already set up. On top of it, GAIA’s custom tooling keeps the wiki organized and up to date as your project grows, with nothing for you to maintain.'
-          }
+          The wiki is an Obsidian vault committed to git. GAIA&apos;s tooling
+          keeps it organized as your project grows: a statusline nudge says when
+          it needs attention, and one /gaia-wiki command brings it current.
         </p>
       </>
     }

@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import ShadcnLogo from '@/assets/logos/ShadcnLogo';
 import StylelintLogo from '@/assets/logos/StylelintLogo';
 import ZodLogo from '@/assets/logos/ZodLogo';
 import FxSection from './FxSection';
@@ -87,6 +88,26 @@ const FOUNDATION: LogoEntry[] = [
     name: 'Conform',
     role: 'forms',
   },
+  {
+    component: <ShadcnLogo height={32} />,
+    href: 'https://ui.shadcn.com/',
+    name: 'shadcn/ui',
+    role: 'components',
+  },
+  {
+    component: (
+      <img
+        alt="React Compiler"
+        height={32}
+        loading="lazy"
+        src="/logos/react-logo.svg"
+        width={36}
+      />
+    ),
+    href: 'https://react.dev/learn/react-compiler',
+    name: 'React Compiler',
+    role: 'memoization',
+  },
 ];
 
 const TESTING: LogoEntry[] = [
@@ -103,20 +124,6 @@ const TESTING: LogoEntry[] = [
     href: 'https://vitest.dev/',
     name: 'Vitest',
     role: 'unit runner',
-  },
-  {
-    component: (
-      <img
-        alt="RTL"
-        height={32}
-        loading="lazy"
-        src="/logos/rtl-logo.svg"
-        width={32}
-      />
-    ),
-    href: 'https://testing-library.com/docs/react-testing-library/intro/',
-    name: 'RTL',
-    role: 'component testing',
   },
   {
     component: (
@@ -236,8 +243,8 @@ type Group = {
 
 const GROUPS: Group[] = [
   {
-    cols: 3,
-    gridClass: 'grid-cols-2 sm:grid-cols-3',
+    cols: 4,
+    gridClass: 'grid-cols-2 sm:grid-cols-4',
     items: FOUNDATION,
     title: 'Foundation',
   },

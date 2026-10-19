@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="How GAIA turns Claude Code into work that ships: enforced coding rules, code-review audits, Agentic Design patterns, an Obsidian wiki, automated CI."
+      content="How GAIA turns Claude Code into work that ships: enforced coding rules, the Code Audit Team, Agentic Design patterns, an Obsidian wiki, on-demand maintenance."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gaiareact.com/features/" />
     <meta property="og:title" content="GAIA Features: Claude Code Rules, Hooks, Agents & Memory" />
-    <meta property="og:description" content="How GAIA turns Claude Code into work that ships: enforced coding rules, code-review audits, Agentic Design patterns, an Obsidian wiki, automated CI." />
+    <meta property="og:description" content="How GAIA turns Claude Code into work that ships: enforced coding rules, the Code Audit Team, Agentic Design patterns, an Obsidian wiki, on-demand maintenance." />
     <meta property="og:image" content="https://gaiareact.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -26,7 +26,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="GAIA Features: Claude Code Rules, Hooks, Agents & Memory" />
-    <meta name="twitter:description" content="How GAIA turns Claude Code into work that ships: enforced coding rules, code-review audits, Agentic Design patterns, an Obsidian wiki, automated CI." />
+    <meta name="twitter:description" content="How GAIA turns Claude Code into work that ships: enforced coding rules, the Code Audit Team, Agentic Design patterns, an Obsidian wiki, on-demand maintenance." />
     <meta name="twitter:image" content="https://gaiareact.com/og-image.png" />
     <link rel="dns-prefetch" href="https://github.com">
     <link rel="dns-prefetch" href="https://docs.gaiareact.com">
@@ -42,7 +42,7 @@
             "@id": "https://gaiareact.com/features/#page",
             "url": "https://gaiareact.com/features/",
             "name": "GAIA Features",
-            "description": "How GAIA makes Claude trustworthy and token-efficient. Coding rules, code-review audit, Agentic Design patterns, an Obsidian wiki, and automated CI.",
+            "description": "How GAIA makes Claude trustworthy and token-efficient. Coding rules, the Code Audit Team, Agentic Design patterns, an Obsidian wiki, and on-demand maintenance.",
             "isPartOf": {"@id": "https://gaiareact.com/#website"},
             "about": {"@id": "https://gaiareact.com/#software"},
             "breadcrumb": {"@id": "https://gaiareact.com/features/#breadcrumb"},
@@ -53,11 +53,11 @@
             "@id": "https://gaiareact.com/features/#features",
             "name": "GAIA Features",
             "itemListElement": [
-              {"@type": "ListItem", "position": 1, "name": "Coding rules and code-review audit"},
+              {"@type": "ListItem", "position": 1, "name": "Coding rules and the Code Audit Team"},
               {"@type": "ListItem", "position": 2, "name": "Agentic Design patterns"},
               {"@type": "ListItem", "position": 3, "name": "Obsidian wiki for token-efficient context"},
               {"@type": "ListItem", "position": 4, "name": "Durable state on disk"},
-              {"@type": "ListItem", "position": 5, "name": "Automated CI maintenance"},
+              {"@type": "ListItem", "position": 5, "name": "On-demand maintenance"},
               {"@type": "ListItem", "position": 6, "name": "Modern React stack"},
               {"@type": "ListItem", "position": 7, "name": "React render-performance diagnostics"}
             ]
@@ -87,7 +87,7 @@
                 "name": "How does GAIA make Claude output trustworthy?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "GAIA encodes your coding standards as enforceable rules loaded automatically every session. Six coding principles, guardrails against technical debt patterns, scoped skills that apply project conventions at write time, test-driven development with Playwright E2E tests written before code, and a code-review-audit agent that scans every PR for security, performance, and architecture issues before merge."
+                  "text": "GAIA encodes your coding standards as enforceable rules loaded automatically every session. Four coding principles, guardrails against technical debt patterns, scoped skills that apply project conventions at write time, test-driven development with Playwright E2E tests written before code, and the Code Audit Team, which scans every PR in Claude Code for security, performance, and architecture issues before merge."
                 }
               },
               {
@@ -95,7 +95,7 @@
                 "name": "How does GAIA manage Claude's context window?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "GAIA uses three intercepts to keep Claude's working surface lean: path-scoped rules that load only when you edit matching files, LSP-backed symbol search that returns one canonical definition instead of dozens of grep matches, and knowledge audits that catch contradictions, prune stale entries, and flag over-budget rules. Token costs stay predictable as the project grows."
+                  "text": "GAIA uses three intercepts to keep Claude's working surface lean: path-scoped rules that load only when you edit matching files, LSP-backed symbol search that returns one canonical definition instead of dozens of grep matches, and /gaia-cleanse, which catches contradictions, prunes stale entries, and flags over-budget rules. Token costs stay predictable as the project grows."
                 }
               },
               {
@@ -111,7 +111,7 @@
                 "name": "How does GAIA keep a Claude Code project healthy over time?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Run /gaia-fitness. It audits your entire Claude integration, including hooks, rules, skills, CLAUDE.md, settings, and GAIA install fitness, then grades each area A+ to F and heals what it can on a branch. You review the diff and commit when satisfied. The check protocol survives /update-gaia."
+                  "text": "Run /gaia-fitness. A fixed rule catalog lints your Claude integration, including skills, commands, agents, rules, hooks, settings, CLAUDE.md files, and the wiki, and grades each area A+ to F. It proposes fixes for your own files, applies each one only on a per-file yes, then offers to publish them as a pull request. Findings in files GAIA ships go to /update-gaia."
                 }
               },
               {
@@ -127,7 +127,7 @@
                 "name": "How does GAIA automate project maintenance?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "GAIA CI handles dependency updates (patch and minor auto-merge with codemods, major routes to a review PR), daily security audits with pnpm audit, wiki sync whenever app code changes, and monthly stale branch cleanup. Claude handles the safe cases automatically. Humans only see what it cannot safely recover from. GAIA CI runs against your Claude Code Pro/Max subscription or your Anthropic API key, and a fixed turn limit caps every scheduled run, so no run loops without end."
+                  "text": "Maintenance runs on demand, on your machine, under your own Claude plan. The statusline says when something needs attention. /update-deps brings dependencies current and resolves security advisories, /gaia-debt drains tracked tech debt through the audit gate, /gaia-wiki brings the wiki current, and /gaia-cleanse prunes stale memory. Every model call lands in a local usage ledger, so what upkeep costs stays visible."
                 }
               },
               {
@@ -135,7 +135,7 @@
                 "name": "What agentic design patterns does GAIA implement?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "GAIA implements 17 of the 29 patterns in the agentic design taxonomy: durable planning artifacts requiring user approval, five-tier memory and knowledge base, resource-aware model routing (Sonnet and Haiku for mechanical work, Opus for deep reasoning), session isolation with git worktrees, and six human-in-the-loop checkpoints between Claude's intent and its impact on the codebase."
+                  "text": "GAIA implements 17 of the 29 patterns in the agentic design taxonomy: durable planning artifacts requiring user approval, layered memory and knowledge base, resource-aware model routing (Sonnet and Haiku for mechanical work, Opus for deep reasoning), session isolation with git worktrees, and six human-in-the-loop checkpoints between Claude's intent and its impact on the codebase."
                 }
               }
             ]

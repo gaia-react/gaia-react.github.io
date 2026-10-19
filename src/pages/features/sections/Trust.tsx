@@ -8,7 +8,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     desc: (
       <>
         {
-          'Six coding principles encoded as rules and loaded automatically. Every session starts from the same disciplined baseline. See '
+          'Four coding principles encoded as rules and loaded automatically. Every session starts from the same disciplined baseline. See '
         }
         <a
           className="text-accent hover:text-accent-soft transition-colors duration-150"
@@ -41,7 +41,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     desc: (
       <>
         {
-          'The code-review-audit agent scans for security, performance, architecture, code smells, and antipatterns. Real problems it finds beyond the PR’s scope aren’t dropped or used to block your merge. The audit files them as tracked, deduplicated issues, and '
+          'In Claude Code, the Code Audit Team scans every pull request for security, performance, architecture, code smells, and antipatterns. Real problems it finds beyond the PR’s scope aren’t dropped or used to block your merge. The audit files them as tracked, deduplicated issues, and '
         }
         <code className="text-ink font-mono text-[0.9em]">/gaia-debt</code>
         {' drains them one reviewed PR at a time.'}

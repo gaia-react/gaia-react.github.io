@@ -5,7 +5,6 @@ import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesignDetail from './sections/AgenticDesignDetail';
 import Fitness from './sections/Fitness';
 import Forensics from './sections/Forensics';
-import GaiaCi from './sections/GaiaCi';
 import Hero from './sections/Hero';
 import LoadOnDemand from './sections/LoadOnDemand';
 import ObsidianWikiDetail from './sections/ObsidianWikiDetail';
@@ -30,7 +29,6 @@ const App = () => {
       <AgenticDesignDetail />
       <Principles />
       <ObsidianWikiDetail />
-      <GaiaCi />
       <UpdateDeps />
       <Fitness />
       <Forensics />

@@ -9,7 +9,7 @@ const WORKFLOW: Pattern[] = [
     name: 'Planning',
   },
   {
-    body: 'Five tiers so Claude stops relearning the codebase: wiki, hot cache, handoff snapshots, per-agent memory, cross-project memory.',
+    body: 'Layers so Claude stops relearning the codebase: the wiki, specs and plans in the notebook, run state for paused work, and Claude’s own memory.',
     name: 'Memory & Knowledge Base',
   },
   {
@@ -32,7 +32,7 @@ const CONTEXT: Pattern[] = [
     name: 'Skill Activation',
   },
   {
-    body: 'Claude pulls facts from the wiki on demand. A hot cache primes at session start; deeper questions trigger explicit retrieval.',
+    body: 'Claude pulls facts from the wiki on demand. The wiki stays on disk until a task needs it; each question triggers explicit retrieval.',
     name: 'Knowledge Retrieval',
   },
   {
@@ -43,7 +43,7 @@ const CONTEXT: Pattern[] = [
 
 const TOOLING: Pattern[] = [
   {
-    body: "Six checkpoints between Claude's intent and impact. Quality gate, code-review audit, plan approval, phase gates, destructive-command block, merge confirmation.",
+    body: "Six checkpoints between Claude's intent and impact. Quality gate, Code Audit Team branch checkpoint, plan approval, phase gates, destructive-command block, merge confirmation.",
     name: 'Human-in-the-Loop',
   },
   {

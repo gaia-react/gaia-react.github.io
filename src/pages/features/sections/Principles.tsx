@@ -1,10 +1,8 @@
 const PRINCIPLES = [
-  ['Think Before Coding', 'Surface assumptions. Ask when unclear.'],
   ['Simplicity First', 'Write the minimum that works.'],
   ['Surgical Changes', 'Touch only what is needed.'],
-  ['Goal-Driven Execution', 'Define done. Loop until verified.'],
   ['Always Use TDD', 'Tests before code, always.'],
-  ['Always Verify Work', 'Pass the gates before reporting done.'],
+  ['Always Verify Your Work', 'Pass the gates before reporting done.'],
 ] as const;
 
 const Principles = () => (
@@ -18,7 +16,7 @@ const Principles = () => (
     />
     <div className="relative z-10 mx-auto max-w-275 px-4 sm:px-8">
       <div className="text-accent-soft mb-12 text-center font-mono text-[0.7rem] tracking-[0.2em] uppercase sm:mb-14">
-        Discipline, in six principles
+        Discipline, in four principles
       </div>
 
       <dl className="mx-auto grid max-w-200 grid-cols-[max-content_1fr] items-baseline gap-x-[clamp(1.5rem,5vw,3.5rem)] gap-y-5 sm:gap-y-7">
@@ -35,7 +33,7 @@ const Principles = () => (
       </dl>
 
       <div className="text-muted mx-auto mt-10 text-center font-mono text-[0.65rem] tracking-[0.2em] uppercase sm:mt-12">
-        Four from Karpathy · Two added by GAIA
+        Two from Karpathy · Two added by GAIA
       </div>
     </div>
   </section>

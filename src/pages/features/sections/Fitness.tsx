@@ -4,53 +4,38 @@ type ReportRow = {category: string; grade: string; note?: string};
 type Severity = 'error' | 'info' | 'warning';
 
 const REPORT: ReportRow[] = [
-  {category: 'CLAUDE.md hygiene', grade: 'A', note: '1 info'},
-  {category: 'GAIA-install fitness', grade: 'A', note: '1 info'},
-  {category: 'Hook integrity', grade: 'A+'},
-  {category: 'Rule hygiene', grade: 'A+'},
-  {category: 'Settings hygiene', grade: 'A+'},
-  {
-    category: 'Skill / command / agent frontmatter',
-    grade: 'B+',
-    note: '1 warning',
-  },
-  {category: 'Wiki fitness', grade: 'A+'},
+  {category: 'authoring', grade: 'A+'},
+  {category: 'claudemd', grade: 'A', note: '1 info'},
+  {category: 'frontmatter', grade: 'B+', note: '1 warning'},
+  {category: 'hooks', grade: 'A+'},
+  {category: 'prompt', grade: 'A+'},
+  {category: 'rules', grade: 'A+'},
+  {category: 'settings', grade: 'A+'},
+  {category: 'wiki', grade: 'A+'},
 ];
 
 const OVERALL = 'B+';
 
 const FINDINGS: FindingGroup[] = [
   {
-    category: 'CLAUDE.md hygiene',
+    category: 'claudemd',
     findings: [
       {
-        file: 'CLAUDE.md',
+        file: 'CLAUDE.md:14',
         remediation:
-          '@-import of a path-scoped rule resolves but is always-loaded; consider whether it warrants it.',
+          '@../shared/notes.md points outside the project root, so it is not checked.',
         severity: 'info',
       },
     ],
     grade: 'A',
   },
   {
-    category: 'GAIA-install fitness',
+    category: 'frontmatter',
     findings: [
       {
-        file: '.gaia/manifest.json',
+        file: '.claude/commands/deploy.md:2',
         remediation:
-          'GAIA v1.6.0 installed; v1.6.1 available. Run /update-gaia to upgrade.',
-        severity: 'info',
-      },
-    ],
-    grade: 'A',
-  },
-  {
-    category: 'Skill / command / agent frontmatter',
-    findings: [
-      {
-        file: '.claude/commands/deploy.md',
-        remediation:
-          'description frontmatter is missing; add a concise description of what this command does.',
+          'Add a description saying what the file does and when to use it.',
         severity: 'warning',
       },
     ],
@@ -60,20 +45,24 @@ const FINDINGS: FindingGroup[] = [
 
 const META = [
   {
-    desc: 'Fixes land on a branch (a fresh chore/gaia-fitness branch if you’re on main, your current branch otherwise). You review the diff and the report, then commit when you’re satisfied.',
-    name: 'Heals on a branch, waits for your commit',
+    desc: 'A fixed rule catalog grades the files your project owns, so the same tree earns the same grade every run. An advisory judgment pass reads descriptions, trigger overlap, and rule scope, and never moves the grade.',
+    name: 'Graded by rules, not by mood',
   },
   {
-    desc: 'Detached HEAD, or a rebase, merge, or cherry-pick in progress: it runs triage, prints the grades, and stops. No mutation on a state it can’t safely touch.',
+    desc: 'Each fix is shown as a diff and applied only on a yes, one file at a time. Then you choose: publish through the merge gate, open a draft PR only, or keep the changes for review.',
+    name: 'Heals per file, on your say',
+  },
+  {
+    desc: 'Findings in files GAIA ships are listed on their own and fixed by /update-gaia, never edited in place.',
+    name: 'Your files and GAIA’s stay apart',
+  },
+  {
+    desc: 'Detached HEAD, or a rebase, merge, or cherry-pick in progress: it grades, prints the card, and stops. No mutation on a state it can’t safely touch.',
     name: 'Won’t touch an unsafe tree',
   },
   {
-    desc: 'Add project-specific graded check categories. /gaia-fitness runs whatever you define alongside the built-in seven.',
-    name: 'Yours to extend',
-  },
-  {
-    desc: 'The check protocol three-way-merges on upgrade, so the checks you add to it carry forward.',
-    name: 'Survives /update-gaia',
+    desc: 'A finding you accept on purpose is suppressed in .claude/gaia-fitness.json by rule id and path, with the reason written down beside it.',
+    name: 'Exceptions carry a reason',
   },
 ];
 
@@ -128,7 +117,7 @@ const Fitness = () => (
               /gaia-fitness
             </code>
             {
-              ' audits the whole surface, grades it F to A+, and heals what it can, keeping your Claude integration lean and current as the project grows.'
+              ' lints the whole surface, grades it F to A+, and heals what it can, keeping your Claude integration lean and current as the project grows.'
             }
           </p>
         </div>
@@ -207,8 +196,8 @@ const Fitness = () => (
       </div>
 
       <p className="text-muted mt-3 font-mono text-[0.72rem] leading-normal">
-        Changes applied on branch chore/gaia-fitness-2026-05-12-1430. Review
-        with git diff, then commit when satisfied.
+        Fitness healed 1 finding. Publish, open a draft PR only, or keep it for
+        review.
       </p>
 
       {/* Meta strip */}

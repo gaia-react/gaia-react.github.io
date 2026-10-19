@@ -31,8 +31,8 @@ type TypingState = {
 
 // ── Terminal script ────────────────────────────────────────────────────────
 
-const GAIA_VERSION = '1.6.1';
-const OPUS_VERSION = '4.8';
+const GAIA_VERSION = '2.0.0';
+const OPUS_VERSION = '5.5';
 
 const TERM_SCRIPT: TermStep[] = [
   {prompt: '$', text: 'npx create-gaia@latest my-app', type: 'type'},
@@ -46,7 +46,7 @@ const TERM_SCRIPT: TermStep[] = [
   {
     cls: 'muted',
     delay: 280,
-    text: `  > downloading gaia-v${GAIA_VERSION}.tar.gz`,
+    text: `  ↓ downloading gaia-bundle-v${GAIA_VERSION}.tar.gz`,
     type: 'line',
   },
   {cls: 'muted', delay: 220, text: '  ↳ extracting', type: 'line'},
@@ -59,19 +59,6 @@ const TERM_SCRIPT: TermStep[] = [
   },
   {ms: 240, type: 'pause'},
   {type: 'progress'},
-  {
-    cls: 'muted',
-    delay: 240,
-    text: 'Progress: resolved 885, reused 884, downloaded 0, added 885, done',
-    type: 'line',
-  },
-  {text: '', type: 'line'},
-  {
-    cls: 'dim',
-    delay: 320,
-    text: 'Done in 5.8s using pnpm v11.5.2',
-    type: 'line',
-  },
   {text: '', type: 'line'},
   {
     cls: 'ok',
@@ -89,23 +76,15 @@ const TERM_SCRIPT: TermStep[] = [
   {text: '', type: 'line'},
   {
     cls: 'plain',
-    delay: 320,
-    text: 'Bash(if command -v corepack &>/dev/null; then corepack enable pnpm...)',
-    type: 'line',
-  },
-  {cls: 'muted', delay: 200, text: '└ (No output)', type: 'line'},
-  {text: '', type: 'line'},
-  {
-    cls: 'plain',
     delay: 360,
-    text: 'Installing dependencies -- this may take a minute...',
+    text: 'Installing dependencies, this may take a minute...',
     type: 'line',
   },
   {text: '', type: 'line'},
   {
     cls: 'plain',
     delay: 420,
-    text: 'Now spawning a Haiku agent for Phases 0-4 (override audit, outdated discovery, wave classification, Wave A updates).',
+    text: 'Running /update-deps to resolve security advisories and bring every package to its latest compatible version.',
     type: 'line',
   },
   {ms: 280, type: 'pause'},
@@ -785,27 +764,16 @@ const RECAP = [
     title: 'Project memory & rules',
   },
   {
-    body: '1,279 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
+    body: 'Over 1,200 lint rules on every commit. The Code Audit Team on every merge in Claude Code: security, performance, architecture.',
     title: 'Quality gates',
   },
   {
-    body: 'An Obsidian wiki, a hot cache, and handoff notes, so a new session never relearns the codebase.',
+    body: 'An Obsidian wiki, plus specs, plans, and run state on disk, so a new session never relearns the codebase.',
     title: 'Persistent knowledge',
   },
   {
-    body: 'Vitest, React Testing Library, Playwright, MSW, Storybook, Chromatic, wired and ready.',
+    body: 'Vitest, Playwright, MSW, Storybook, Chromatic, wired and ready. Components are tested as stories in real Chromium, with accessibility checked on every story.',
     title: 'A real test stack',
-  },
-  {
-    body: (
-      <>
-        {
-          'Workflows keep dependencies current, run a daily security audit, sync the wiki on commit, and prune stale branches. One command, '
-        }
-        <InlineCode>/setup-gaia</InlineCode>, installs them.
-      </>
-    ),
-    title: 'Standing CI',
   },
 ];
 
@@ -861,9 +829,9 @@ const WhatYouGet = () => (
           <div className="overflow-x-auto p-5 text-[0.72rem] leading-[1.7] sm:text-[0.8rem]">
             <pre className="m-0 whitespace-pre">
               {[
-                ['', 'my-app/'],
+                ['', 'my-app/', ''],
                 ['├── ', '.claude/', ''],
-                ['│   ├── ', 'agents/', '        # code-review-audit'],
+                ['│   ├── ', 'agents/', '         # Code Audit Team'],
                 ['│   ├── ', 'commands/', '       # /gaia-init, /setup-gaia'],
                 ['│   ├── ', 'hooks/', '          # guardrail hooks'],
                 [
@@ -874,24 +842,22 @@ const WhatYouGet = () => (
                 [
                   '│   └── ',
                   'skills/',
-                  '         # /gaia-wiki, tdd, react-code, ...',
+                  '         # /gaia-wiki, tdd, update-deps, ...',
                 ],
                 ['├── ', '.gaia/', '              # GAIA CLI, manifest'],
-                ['├── ', '.github/workflows/', ' # test + visual CI'],
-                ['├── ', '.husky/', '             # pre-commit'],
-                ['├── ', '.storybook/', ''],
-                ['├── ', 'app/', '                # React Router 8 app'],
-                ['├── ', 'test/', '               # Vitest, RTL, MSW'],
+                ['├── ', '.githooks/', '          # pre-commit, commit-msg'],
+                ['├── ', '.github/workflows/', '  # test + visual CI'],
+                ['├── ', 'frontend/', '           # React Router 8 app'],
+                ['│   ├── ', '.claude/', '        # frontend rules and skills'],
+                ['│   ├── ', '.storybook/', ''],
+                ['│   ├── ', 'app/', ''],
+                ['│   └── ', 'test/', '           # Vitest, MSW'],
                 ['├── ', 'wiki/', '               # Obsidian project memory'],
                 ['├── ', 'CLAUDE.md', '           # project brain'],
-                ['├── ', 'package.json', ''],
-                [
-                  '└── ',
-                  'eslint · vitest · playwright · vite · tsconfig configs',
-                  '',
-                ],
+                ['├── ', 'pnpm-workspace.yaml', ' # workspace root'],
+                ['└── ', 'package.json', ''],
               ].map(([connector, name, comment]) => (
-                <span key={name}>
+                <span key={`${connector}${name}`}>
                   <span aria-hidden={true} className="text-muted">
                     {connector}
                   </span>

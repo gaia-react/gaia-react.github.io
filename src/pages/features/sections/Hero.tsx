@@ -24,7 +24,7 @@ const Hero = () => (
           style={{'--reveal-delay': '160ms'} as React.CSSProperties}
         >
           Hooks intercept the tool call. Rules shape the writing. Gates hold the
-          commit. Audits guard the merge. CI keeps the project current.
+          commit. Audits guard the merge. Maintenance keeps the project current.
         </p>
         <p
           className="font-display text-ink text-[1.15rem]"

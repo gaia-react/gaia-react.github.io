@@ -12,7 +12,7 @@ const MatchLedger = () => (
   <div className="border-line bg-surface overflow-hidden rounded-lg border">
     <div className="bg-surface-raised border-line flex items-center justify-between border-b px-4 py-2">
       <span className="text-ink-dim font-mono text-xs tracking-wider">
-        .claude/rules/
+        frontend/.claude/rules/
       </span>
       <span className="text-muted font-mono text-[0.6rem] tracking-[0.16em] uppercase">
         apply on match

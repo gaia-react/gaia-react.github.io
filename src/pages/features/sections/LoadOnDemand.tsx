@@ -22,7 +22,7 @@ const COLUMNS: Column[] = [
     name: 'Scoped rules',
     specimen: (
       <>
-        <div className="text-muted">.claude/rules/tailwind.md</div>
+        <div className="text-muted">frontend/.claude/rules/tailwind.md</div>
         <div className="border-line-soft my-[0.6rem] border-t" />
         <div className="text-ink-dim">
           <div>---</div>
@@ -90,13 +90,14 @@ const COLUMNS: Column[] = [
   {
     body: (
       <>
-        <code>/gaia-audit</code> sweeps memory, the wiki, and autoloaded files
-        for duplication, stale entries, and rules over budget. It catches
-        contradictions, not just copies. One review gate stands between the
-        findings and your files, and GAIA flags when a sweep is worth running.
+        <code>/gaia-cleanse</code> sweeps memory and autoloaded files against
+        the wiki for duplication, stale entries, and rules over budget. It
+        catches contradictions, not just copies. One review gate stands between
+        the findings and your files, and GAIA flags when a sweep is worth
+        running.
       </>
     ),
-    name: 'Knowledge audit',
+    name: 'Knowledge cleanse',
     specimen: (
       <>
         <div className="text-muted">KNOWLEDGE-2026-05-12.md</div>
@@ -157,7 +158,7 @@ const LoadOnDemand = () => (
         <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
           Three intercepts keep Claude&apos;s working surface lean. Rules sit
           dormant until you touch matching files. Symbol queries return one
-          answer, not every match. Audits prune what accumulates.
+          answer, not every match. A cleanse prunes what accumulates.
         </p>
       </div>
 

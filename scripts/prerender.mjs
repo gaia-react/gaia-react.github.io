@@ -15,7 +15,6 @@ const ROUTES = [
   {url: '/consulting/', out: 'consulting/index.html'},
   {url: '/features/', out: 'features/index.html'},
   {url: '/get-started/', out: 'get-started/index.html'},
-  {url: '/mentorship/', out: 'mentorship/index.html'},
   {url: '/why/', out: 'why/index.html'},
 ];
 
