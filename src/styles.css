@@ -2,7 +2,7 @@
 @import '@fontsource-variable/fraunces/standard.css';
 @import '@fontsource-variable/fraunces/standard-italic.css';
 
-/* Fraunces metric overrides — reduce FOUT layout shift on the Home hero */
+/* Fraunces metric overrides: reduce FOUT layout shift on the Home hero */
 @font-face {
   font-family: 'Fraunces Variable';
   font-style: normal;

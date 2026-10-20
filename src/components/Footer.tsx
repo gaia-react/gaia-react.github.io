@@ -10,6 +10,11 @@ const FOOTER_NAV: FooterLink[] = [
   {href: '/changelog/', label: 'Changelog'},
   {href: '/consulting/', label: 'Consulting'},
   {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
+  {
+    external: true,
+    href: 'https://github.com/gaia-react/gaia/discussions',
+    label: 'Feedback',
+  },
 ];
 
 export const Footer = () => {
@@ -44,7 +49,6 @@ export const Footer = () => {
                 {item.label}
               </a>
             ))}
-            <span className="sm:hidden" />
             <a
               className="text-ink-dim hover:text-accent no-underline transition-colors duration-150"
               href="https://github.com/gaia-react/gaia"
