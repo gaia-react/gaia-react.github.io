@@ -12,7 +12,7 @@ const FOOTER_NAV: FooterLink[] = [
   {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
   {
     external: true,
-    href: 'https://github.com/gaia-react/gaia/discussions',
+    href: 'https://github.com/gaia-react/gaia/discussions/categories/feedback',
     label: 'Feedback',
   },
 ];
