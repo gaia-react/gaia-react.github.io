@@ -31,10 +31,6 @@ const Principles = () => (
           </div>
         ))}
       </dl>
-
-      <div className="text-muted mx-auto mt-10 text-center font-mono text-[0.65rem] tracking-[0.2em] uppercase sm:mt-12">
-        Two from Karpathy · Two added by GAIA
-      </div>
     </div>
   </section>
 );

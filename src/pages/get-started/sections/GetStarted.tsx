@@ -760,7 +760,7 @@ const InlineCode = ({children}: {children: string}) => (
 
 const RECAP = [
   {
-    body: 'A Karpathy-style CLAUDE.md, plus rules and skills that load only when the work touches them. Conventions hold across sessions.',
+    body: 'A short CLAUDE.md, plus rules and skills that load only when the work touches them. Conventions hold across sessions.',
     title: 'Project memory & rules',
   },
   {
