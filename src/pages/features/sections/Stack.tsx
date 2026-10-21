@@ -235,29 +235,38 @@ const CODE_QUALITY: LogoEntry[] = [
 ];
 
 type Group = {
+  rows: Row[];
+  title: string;
+};
+
+type Row = {
   cols: number;
   gridClass: string;
   items: LogoEntry[];
-  title: string;
 };
 
 const GROUPS: Group[] = [
   {
-    cols: 4,
-    gridClass: 'grid-cols-2 sm:grid-cols-4',
-    items: FOUNDATION,
+    rows: [
+      {cols: 4, gridClass: 'grid-cols-2 sm:grid-cols-4', items: FOUNDATION},
+    ],
     title: 'Foundation',
   },
   {
-    cols: 3,
-    gridClass: 'grid-cols-2 sm:grid-cols-3',
-    items: TESTING,
+    rows: [
+      {
+        cols: 3,
+        gridClass: 'grid-cols-2 sm:grid-cols-3',
+        items: TESTING.slice(0, 3),
+      },
+      {cols: 2, gridClass: 'grid-cols-2', items: TESTING.slice(3)},
+    ],
     title: 'Testing',
   },
   {
-    cols: 4,
-    gridClass: 'grid-cols-2 sm:grid-cols-4',
-    items: CODE_QUALITY,
+    rows: [
+      {cols: 4, gridClass: 'grid-cols-2 sm:grid-cols-4', items: CODE_QUALITY},
+    ],
     title: 'Code quality',
   },
 ];
@@ -265,12 +274,16 @@ const GROUPS: Group[] = [
 const MOBILE_COLS = 2;
 
 const tileBorders = (index: number, total: number, cols: number) => {
-  const mobileLastCol = (index + 1) % MOBILE_COLS === 0;
+  // A lone last tile on mobile spans the full row instead of leaving a gap.
+  const isMobileOrphan = total % MOBILE_COLS !== 0 && index === total - 1;
+  const mobileLastCol = isMobileOrphan || (index + 1) % MOBILE_COLS === 0;
   const desktopLastCol = (index + 1) % cols === 0;
-  const mobileLastRow = index >= total - MOBILE_COLS;
+  const mobileLastRow = index >= total - (total % MOBILE_COLS || MOBILE_COLS);
   const desktopLastRow = index >= total - (total % cols || cols);
 
   const classes = ['border-line-soft'];
+
+  if (isMobileOrphan) classes.push('col-span-2 sm:col-span-1');
 
   if (!mobileLastCol && !desktopLastCol) classes.push('border-r');
   else if (!mobileLastCol && desktopLastCol)
@@ -357,17 +370,22 @@ const Stack = () => (
               {group.title}
             </span>
           </div>
-          <div className={`grid ${group.gridClass}`}>
-            {group.items.map((item, index) => (
-              <Tile
-                key={item.name}
-                {...item}
-                cols={group.cols}
-                index={index}
-                total={group.items.length}
-              />
-            ))}
-          </div>
+          {group.rows.map((row, rowIndex) => (
+            <div
+              key={row.items[0].name}
+              className={`grid ${row.gridClass} ${rowIndex > 0 ? 'border-line-soft border-t' : ''}`}
+            >
+              {row.items.map((item, index) => (
+                <Tile
+                  key={item.name}
+                  {...item}
+                  cols={row.cols}
+                  index={index}
+                  total={row.items.length}
+                />
+              ))}
+            </div>
+          ))}
         </div>
       ))}
     </div>
