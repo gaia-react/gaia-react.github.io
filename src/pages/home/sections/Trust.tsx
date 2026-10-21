@@ -129,9 +129,10 @@ const Trust = () => (
               and build.
             </p>
             <p>
-              Every merge is read line by line for security holes and risky
-              patterns, fixed automatically where it’s safe, blocked for your
-              review where it isn’t.
+              Every merge is audited for security holes and risky patterns. A
+              change not proven small gets the full line-by-line review.
+              Problems are fixed automatically where it’s safe, blocked for your
+              review where they aren’t.
             </p>
           </div>
         </div>

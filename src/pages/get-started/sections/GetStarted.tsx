@@ -84,7 +84,7 @@ const TERM_SCRIPT: TermStep[] = [
   {
     cls: 'plain',
     delay: 420,
-    text: 'Running /update-deps to resolve security advisories and bring every package to its latest compatible version.',
+    text: 'Installing Chromium for the browser tests...',
     type: 'line',
   },
   {ms: 280, type: 'pause'},
@@ -764,7 +764,7 @@ const RECAP = [
     title: 'Project memory & rules',
   },
   {
-    body: 'Over 1,200 lint rules on every commit. The Code Audit Team on every merge in Claude Code: security, performance, architecture.',
+    body: 'Over 1,200 lint rules on every commit. The Code Audit Team on every merge in Claude Code: security, performance, architecture, with a lighter review for a change proven small.',
     title: 'Quality gates',
   },
   {

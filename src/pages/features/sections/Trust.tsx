@@ -41,7 +41,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     desc: (
       <>
         {
-          'In Claude Code, the Code Audit Team scans every pull request for security, performance, architecture, code smells, and antipatterns. Real problems it finds beyond the PR’s scope aren’t dropped or used to block your merge. The audit files them as tracked, deduplicated issues, and '
+          'In Claude Code, the Code Audit Team reviews every pull request for security, performance, architecture, code smells, and antipatterns. A small change can get a lighter review, and any change not proven small gets the full one. Real problems it finds beyond the PR’s scope aren’t dropped or used to block your merge. The audit files them as tracked, deduplicated issues, and '
         }
         <code className="text-ink font-mono text-[0.9em]">/gaia-debt</code>
         {' drains them one reviewed PR at a time.'}
