@@ -113,7 +113,7 @@ const ClaudeBanner = () => (
         <span className="text-ink font-medium">Claude Code</span>
       </div>
       <div className="text-ink-dim">
-        Opus {OPUS_VERSION} (1M context) with xhigh effort · Claude Max
+        Opus {OPUS_VERSION} (1M context) with medium effort · Claude Max
       </div>
       <div className="text-muted">~/projects/my-app</div>
     </div>
