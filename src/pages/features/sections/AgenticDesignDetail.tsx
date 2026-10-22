@@ -24,8 +24,8 @@ const WORKFLOW: Pattern[] = [
 
 const CONTEXT: Pattern[] = [
   {
-    body: 'Serena MCP gives Claude LSP-backed symbol search. A query returns the one definition, not every line that mentions the name.',
-    name: 'Symbol-Aware Retrieval',
+    body: 'The main thread decides and synthesizes. Read-heavy work fans out to sub-agents, which write their full result to a file and return a short summary.',
+    name: 'Lean Main Thread',
   },
   {
     body: 'Skills load by trigger, not by default. They sit on disk without burning a token until the matching phrase appears.',
