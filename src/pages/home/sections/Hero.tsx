@@ -72,7 +72,7 @@ const Hero = () => (
         </p>
 
         <h1 className="text-ink mb-5 text-[clamp(1.55rem,4.8vw,3.85rem)] leading-[1.12] tracking-tight text-balance">
-          GAIA is a complete harness for Claude Code.
+          GAIA: A serious harness for Claude Code
           <br />
           <em className="text-accent-soft mt-1 inline-block font-light italic">
             Keep the speed, lose the debt.
