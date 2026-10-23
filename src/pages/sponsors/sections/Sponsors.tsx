@@ -20,34 +20,21 @@ const RECURRING_TIERS: Tier[] = [
   {
     amount: 5,
     benefitGlyph: '─',
-    benefits: [
-      'Name in SUPPORTERS.md',
-      'Mention in release notes',
-      '24h early peek at release notes',
-    ],
+    benefits: ['Name in SUPPORTERS.md', 'Thanks in release notes'],
     description: 'Individual developers using GAIA.',
     name: 'Personal Supporter',
   },
   {
     amount: 25,
     benefitGlyph: '+',
-    benefits: [
-      'Team name on this page',
-      'Vote on roadmap RFCs',
-      'Priority issue triage',
-    ],
+    benefits: ['Team name on this page', 'Your issues triaged first'],
     description: 'Small engineering teams using GAIA.',
     name: 'Team Supporter',
   },
   {
     amount: 100,
     benefitGlyph: '+',
-    benefits: [
-      'Logo on this page',
-      'Logo in the repo README',
-      '“Powering” credit on relevant pages',
-      'Direct email priority',
-    ],
+    benefits: ['Logo on this page', 'Logo in the repo README'],
     description: 'Companies shipping on GAIA.',
     name: 'Company Sponsor',
   },
