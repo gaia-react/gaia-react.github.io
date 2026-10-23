@@ -22,7 +22,7 @@ const COLUMNS: Column[] = [
     name: 'Scoped rules',
     specimen: (
       <>
-        <div className="text-muted">.claude/rules/tailwind.md</div>
+        <div className="text-muted">frontend/.claude/rules/tailwind.md</div>
         <div className="border-line-soft my-[0.6rem] border-t" />
         <div className="text-ink-dim">
           <div>---</div>
@@ -36,6 +36,9 @@ const COLUMNS: Column[] = [
             - <span className="text-ink">&apos;app/**/*.css&apos;</span>
           </div>
           <div>---</div>
+          <div>
+            <span className="text-muted">#</span> Tailwind Conventions
+          </div>
         </div>
       </>
     ),
@@ -44,54 +47,45 @@ const COLUMNS: Column[] = [
   {
     body: (
       <>
-        {'Serena MCP gives Claude LSP-backed code intelligence. A query for '}
-        <code>createSession</code> returns one canonical definition. A grep
-        returns every line that mentions the name, and Claude reads each match
-        to triage. Symbol search returns the answer, not the noise.
+        The main thread decides and synthesizes. It never reads in bulk.
+        Read-heavy, low-yield work fans out to sub-agents in fresh contexts.
+        Each writes its full result to a file and returns a short summary, so
+        the session making the call carries the conclusion, not the file dumps.
       </>
     ),
-    name: 'Symbol search',
+    name: 'Lean main thread',
     specimen: (
       <>
-        <div className="text-muted">serena vs grep</div>
+        <div className="text-muted">.claude/rules/context-discipline.md</div>
         <div className="border-line-soft my-[0.6rem] border-t" />
-        <div className="grid grid-cols-[1fr_auto_auto] gap-x-4">
-          <div />
-          <div className="text-muted text-right">grep</div>
-          <div className="text-muted text-right">serena</div>
-
-          <div>matches</div>
-          <div className="text-warn-soft text-right">47</div>
-          <div className="text-secondary-soft text-right">1</div>
-
-          <div>read tax</div>
-          <div className="text-warn-soft text-right">46 ln</div>
-          <div className="text-secondary-soft text-right">0</div>
-
-          <div>type-resolved</div>
-          <div className="text-warn-soft text-right">no</div>
-          <div className="text-secondary-soft text-right">yes</div>
-
-          <div>imports</div>
-          <div className="text-warn-soft text-right">guess</div>
-          <div className="text-secondary-soft text-right">trace</div>
+        <div className="text-ink-dim">
+          <div>
+            <span className="text-muted">#</span> Context Discipline
+          </div>
+          <div className="mt-[0.4rem]">
+            - Keep the main thread lean: it decides, synthesizes, never reads in
+            bulk.
+          </div>
+          <div className="mt-[0.4rem]">
+            - Fan out read-heavy, low-yield work to sub-agents and keep their
+            returns small.
+          </div>
         </div>
       </>
     ),
-    when: 'Every lookup',
+    when: 'Every dispatch',
   },
   {
     body: (
       <>
-        <code>/gaia-audit</code> sweeps memory, the wiki, and autoloaded files
-        for duplication, stale entries, and rules over budget. It catches
-        contradictions, not just copies. One review gate stands between the
-        findings and your files, cleared with one keystroke. Interrupted runs
-        resume, every change is a git-revertable diff, and GAIA flags when a
-        sweep is worth running.
+        <code>/gaia-cleanse</code> sweeps memory and autoloaded files against
+        the wiki for duplication, stale entries, and rules over budget. It
+        catches contradictions, not just copies. One review gate stands between
+        the findings and your files, and GAIA flags when a sweep is worth
+        running.
       </>
     ),
-    name: 'Knowledge audit',
+    name: 'Knowledge cleanse',
     specimen: (
       <>
         <div className="text-muted">KNOWLEDGE-2026-05-12.md</div>
@@ -133,7 +127,7 @@ const codeStyles =
 
 const LoadOnDemand = () => (
   <section
-    className="border-line-soft scroll-mt-20 border-b py-20"
+    className="border-line-soft scroll-mt-16 border-b py-20"
     id="context"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
@@ -151,8 +145,8 @@ const LoadOnDemand = () => (
         </h2>
         <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
           Three intercepts keep Claude&apos;s working surface lean. Rules sit
-          dormant until you touch matching files. Symbol queries return one
-          answer, not every match. Audits prune what accumulates.
+          dormant until you touch matching files. Bulk reads go to sub-agents,
+          and only the conclusion comes back. A cleanse prunes what accumulates.
         </p>
       </div>
 

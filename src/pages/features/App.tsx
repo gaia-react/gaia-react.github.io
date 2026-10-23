@@ -5,11 +5,11 @@ import {useScrollToHash} from '@/hooks/useScrollToHash';
 import AgenticDesignDetail from './sections/AgenticDesignDetail';
 import Fitness from './sections/Fitness';
 import Forensics from './sections/Forensics';
-import GaiaCi from './sections/GaiaCi';
 import Hero from './sections/Hero';
 import LoadOnDemand from './sections/LoadOnDemand';
 import ObsidianWikiDetail from './sections/ObsidianWikiDetail';
 import Principles from './sections/Principles';
+import ReactPerf from './sections/ReactPerf';
 import Stack from './sections/Stack';
 import StateOnDisk from './sections/StateOnDisk';
 import Trust from './sections/Trust';
@@ -23,12 +23,12 @@ const App = () => {
     <Layout>
       <Hero />
       <Trust />
+      <ReactPerf />
       <LoadOnDemand />
       <StateOnDisk />
       <AgenticDesignDetail />
       <Principles />
       <ObsidianWikiDetail />
-      <GaiaCi />
       <UpdateDeps />
       <Fitness />
       <Forensics />

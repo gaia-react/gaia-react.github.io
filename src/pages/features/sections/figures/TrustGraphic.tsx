@@ -5,8 +5,8 @@ type Stage = {
 
 const STAGES: Stage[] = [
   {label: 'typecheck', result: '0 errors'},
-  {label: 'lint · 1,314 rules', result: '0 violations'},
-  {label: 'tests · vitest + RTL', result: '47 / 47'},
+  {label: 'lint · 1,200+ rules', result: '0 violations'},
+  {label: 'tests · vitest + storybook', result: '47 / 47'},
   {label: 'build · 9 entries', result: 'green'},
 ];
 
@@ -47,7 +47,7 @@ const TrustGraphic = () => (
     <div className="border-line-soft mt-4 rounded-sm border bg-white/2 p-[0.85rem]">
       <div className="mb-[0.6rem] flex items-baseline justify-between gap-3">
         <span className="text-warn-soft text-[0.7rem] tracking-[0.16em] uppercase">
-          code-review audit
+          code audit team
         </span>
         <span className="text-muted text-[0.66rem] tracking-[0.12em] uppercase">
           in parallel

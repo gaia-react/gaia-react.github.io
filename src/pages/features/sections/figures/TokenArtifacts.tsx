@@ -92,7 +92,7 @@ const PlanCard = () => (
     meta="subagent"
   >
     <div className="space-y-[0.55rem]">
-      <div className="text-ink">.gaia/local/plans/spec-007-card-grid/</div>
+      <div className="text-ink">.notebook/specs/SPEC-007/plan/</div>
       <div className="text-ink-dim space-y-[0.3rem] pl-[0.6rem] leading-normal">
         <div className="flex justify-between gap-3">
           <span className="text-ink">README.md</span>
@@ -119,8 +119,8 @@ const PlanCard = () => (
           <span className="text-muted">phase 2</span>
         </div>
         <div className="flex justify-between gap-3">
-          <span className="text-ink">SUMMARY.md</span>
-          <span className="text-muted">findings ledger</span>
+          <span className="text-ink">PROGRESS.md</span>
+          <span className="text-muted">resume point</span>
         </div>
       </div>
       <div className="text-muted pt-[0.2rem]">
@@ -130,107 +130,10 @@ const PlanCard = () => (
   </ArtifactCard>
 );
 
-const HandoffCard = () => (
-  <ArtifactCard
-    caption={
-      <>
-        Synthesized from the conversation, not dumped. References stay as
-        pointers to file lines, never inlined.
-      </>
-    }
-    command="/gaia-handoff"
-    meta="synthesis"
-  >
-    <div className="space-y-[0.65rem]">
-      <div className="text-ink">HANDOFF-2026-05-12-card-grid.md</div>
-
-      <div className="text-ink-dim space-y-[0.2rem] leading-normal">
-        <div>
-          <span className="text-muted">Branch:</span> feat/card-grid
-        </div>
-        <div>
-          <span className="text-muted">Context:</span> ported to CSS subgrid
-        </div>
-      </div>
-
-      <div>
-        <Label>Accomplishments</Label>
-        <ul className="text-ink-dim mt-[0.3rem] space-y-[0.2rem] leading-normal">
-          <li>· Grid shipped (a1b2c3d)</li>
-          <li>· Detail pane wired</li>
-        </ul>
-      </div>
-
-      <div>
-        <Label>Gaps</Label>
-        <div className="text-ink-dim mt-[0.3rem] leading-normal">
-          <div>· Mobile breakpoint @ 640px open</div>
-          <div className="text-muted pl-[0.7rem]">
-            ref: <span className="text-ink-dim">@app/Cards.tsx:42</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ArtifactCard>
-);
-
-const PickupCard = () => (
-  <ArtifactCard
-    caption={
-      <>
-        Reads the handoff, prints 15 lines, archives it after commit. No
-        transcript replay.
-      </>
-    }
-    command="/gaia-pickup"
-    meta="≤ 15 lines"
-  >
-    <div className="space-y-[0.65rem]">
-      <div className="text-ink-dim space-y-[0.2rem] leading-normal">
-        <div>
-          <span className="text-muted">Branch:</span>
-          {' feat/card-grid '}
-          <span className="text-secondary-soft">(clean)</span>
-        </div>
-        <div>
-          <span className="text-muted">Last handoff:</span> 2026-05-12 (12m ago)
-        </div>
-        <div>
-          <span className="text-muted">Context:</span> ported to CSS subgrid
-        </div>
-      </div>
-
-      <div>
-        <Label>State</Label>
-        <ul className="text-ink-dim mt-[0.3rem] space-y-[0.2rem] leading-normal">
-          <li>· Grid shipped (a1b2c3d)</li>
-          <li>· Detail pane wired</li>
-        </ul>
-      </div>
-
-      <div>
-        <Label>Open</Label>
-        <ul className="text-ink-dim mt-[0.3rem] space-y-[0.2rem] leading-normal">
-          <li>· Mobile breakpoint @ 640px</li>
-        </ul>
-      </div>
-
-      <div className="text-muted pt-[0.1rem]">
-        {'suggested next: '}
-        <span className="text-ink-dim normal-case">
-          pin breakpoint behavior
-        </span>
-      </div>
-    </div>
-  </ArtifactCard>
-);
-
 const TokenArtifacts = () => (
   <div className="grid gap-5 md:grid-cols-2 md:gap-6">
     <SpecCard />
     <PlanCard />
-    <HandoffCard />
-    <PickupCard />
   </div>
 );
 

@@ -42,7 +42,7 @@ export const BullseyeIcon = ({className, size = 24}: IconProperties) => (
   </svg>
 );
 
-// Reflection. Magnifying glass with a checkmark inside the lens — review/audit
+// Reflection. Magnifying glass with a checkmark inside the lens: review/audit
 export const ReflectionIcon = ({className, size = 24}: IconProperties) => (
   <svg {...svgProperties(size, className)}>
     <circle cx="10.5" cy="10.5" r="5.5" />
@@ -102,7 +102,7 @@ export const RuleIcon = ({className, size = 24}: IconProperties) => (
   </svg>
 );
 
-// Warning triangle. Filled triangle outline + exclamation — risk / debt state
+// Warning triangle. Filled triangle outline + exclamation: risk / debt state
 export const WarningIcon = ({className, size = 24}: IconProperties) => (
   <svg
     aria-hidden={true}

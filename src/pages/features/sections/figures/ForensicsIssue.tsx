@@ -11,16 +11,13 @@ const ForensicsIssue = () => (
     </div>
 
     <div className="mb-[0.6rem] flex flex-wrap gap-[0.4rem]">
-      <span className="border-warn text-warn-soft inline-block rounded-full border px-[0.65rem] py-[0.1rem] font-mono text-[0.6rem] tracking-[0.14em] uppercase">
-        bug
-      </span>
       <span className="border-accent text-accent-soft inline-block rounded-full border px-[0.65rem] py-[0.1rem] font-mono text-[0.6rem] tracking-[0.14em] uppercase">
-        forensics
+        gaia-forensics
       </span>
     </div>
 
     <div className="text-ink mb-[0.4rem] text-[1.08rem] leading-tight tracking-[-0.005em]">
-      Plan orchestrator exit 1 during phase 2
+      Plan verify exit 1 during phase 2
     </div>
 
     <div className="text-muted mb-[1.05rem] font-mono text-[0.68rem]">
@@ -33,12 +30,10 @@ const ForensicsIssue = () => (
           Stack
         </div>
         <div className="text-ink-dim">
-          <div>Error: orchestrator exit 1</div>
+          <div>Error: plan-verify exit 1</div>
           <div className="pl-[0.95rem]">
             {'at '}
-            <span className="text-ink">
-              gaia/skills/plan/orchestrator.ts:284
-            </span>
+            <span className="text-ink">.gaia/scripts/spec/plan-verify.sh</span>
           </div>
         </div>
       </div>
@@ -75,8 +70,8 @@ const ForensicsIssue = () => (
     </div>
 
     <div className="border-line-soft text-muted mt-[1.15rem] space-y-[0.18rem] border-t pt-[0.7rem] font-mono text-[0.62rem] tracking-[0.08em]">
-      <div>— filed via /gaia-forensics —</div>
-      <div>— body byte-identical to local report —</div>
+      <div>filed via /gaia-forensics</div>
+      <div>body byte-identical to local report</div>
     </div>
   </div>
 );

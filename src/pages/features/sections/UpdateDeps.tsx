@@ -1,14 +1,41 @@
-const POINTS = [
+import type {ReactNode} from 'react';
+
+const POINTS: {desc: ReactNode; name: string}[] = [
+  {
+    desc: (
+      <>
+        <code className="text-ink font-mono text-[0.9em]">/update-deps</code>
+        {
+          ' lists open security advisories first and resolves each one you accept: a refresh within range, a bump of the package that pulls it in, or a security-floor override.'
+        }
+      </>
+    ),
+    name: 'Security advisories resolved first',
+  },
   {
     desc: 'When a new dependency version requires a codemod or breaking-change migration, GAIA makes sure Claude handles it. The PR includes the bump and the migration together.',
     name: 'Codemods and migrations applied',
   },
   {
-    desc: 'When the new version moves or renames public API surface, Update Deps updates the call sites. Grep-replace-with-context work, automated.',
+    desc: (
+      <>
+        {'When the new version moves or renames public API surface, '}
+        <code className="text-ink font-mono text-[0.9em]">/update-deps</code>
+        {' updates the call sites. Grep-replace-with-context work, automated.'}
+      </>
+    ),
     name: 'Call sites updated when APIs change',
   },
   {
-    desc: 'When two simultaneous upgrades touch the same code path, Update Deps resolves the overlap before opening the PR. No conflicting PRs that fight at merge.',
+    desc: (
+      <>
+        {'When two simultaneous upgrades touch the same code path, '}
+        <code className="text-ink font-mono text-[0.9em]">/update-deps</code>
+        {
+          ' resolves the overlap before opening the PR. No conflicting PRs that fight at merge.'
+        }
+      </>
+    ),
     name: 'Conflicts resolved before the PR opens',
   },
   {
@@ -43,19 +70,19 @@ const DependabotCard = () => (
     </div>
     <RepoHead chip="deps" />
     <div className="text-ink-dim mb-[0.85rem] text-[0.98rem] tracking-[-0.005em]">
-      chore(deps): bump react-router 6.30 → 7.0
+      chore(deps): bump react-router 7.9 → 8.0
     </div>
     <div className="border-line-soft mb-[0.85rem] rounded-sm border bg-black/18 p-[0.5rem_0.7rem] font-mono text-[0.78rem]">
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] py-[0.18rem]">
         <span className="text-warn">-</span>
         <span className="text-warn/80">
-          &quot;react-router&quot;: &quot;^6.30.0&quot;
+          &quot;react-router&quot;: &quot;^7.9.0&quot;
         </span>
       </div>
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] py-[0.18rem]">
         <span className="text-secondary">+</span>
         <span className="text-secondary/70">
-          &quot;react-router&quot;: &quot;^7.0.0&quot;
+          &quot;react-router&quot;: &quot;^8.0.0&quot;
         </span>
       </div>
     </div>
@@ -81,13 +108,13 @@ const GaiaCard = () => (
     </div>
     <RepoHead chip="deps" />
     <div className="text-ink mb-[0.85rem] text-[0.98rem] tracking-[-0.005em]">
-      chore(deps): bump react-router 6.30 → 7.0
+      chore(deps): bump react-router 7.9 → 8.0
     </div>
     <div className="border-line-soft mb-[0.85rem] rounded-sm border bg-black/18 p-[0.5rem_0.7rem] font-mono text-[0.78rem]">
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] py-[0.18rem]">
         <span className="text-warn">-</span>
         <span className="text-warn/80">
-          {`import {useNavigate} from '@remix-run/react'`}
+          {`import {useNavigate} from 'react-router-dom'`}
         </span>
       </div>
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] py-[0.18rem]">
@@ -99,7 +126,7 @@ const GaiaCard = () => (
       <div className="grid grid-cols-[1.25rem_1fr] gap-[0.4rem] py-[0.18rem]">
         <span className="text-muted">~</span>
         <span className="text-muted italic">
-          codemod applied · v7-route-types · 14 files
+          react-router-dom dropped · imports moved
         </span>
       </div>
     </div>
@@ -120,7 +147,7 @@ const GaiaCard = () => (
 
 const UpdateDeps = () => (
   <section
-    className="border-line-soft scroll-mt-20 border-b py-20"
+    className="border-line-soft scroll-mt-16 border-b py-20"
     id="update-deps"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">

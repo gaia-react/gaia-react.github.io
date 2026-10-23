@@ -15,11 +15,12 @@ const ROUTES = [
   {url: '/consulting/', out: 'consulting/index.html'},
   {url: '/features/', out: 'features/index.html'},
   {url: '/get-started/', out: 'get-started/index.html'},
-  {url: '/mentorship/', out: 'mentorship/index.html'},
   {url: '/why/', out: 'why/index.html'},
 ];
 
-const PORT = 4321;
+// Off Astro's default 4321 so a docs dev server running alongside this one cannot block
+// the build.
+const PORT = 4399;
 
 const server = await preview({
   root,

@@ -32,7 +32,7 @@ type TypingState = {
 // ── Terminal script ────────────────────────────────────────────────────────
 
 const GAIA_VERSION = '2.0.0';
-const OPUS_VERSION = '4.8';
+const OPUS_VERSION = '5.5';
 
 const TERM_SCRIPT: TermStep[] = [
   {prompt: '$', text: 'npx create-gaia@latest my-app', type: 'type'},
@@ -46,7 +46,7 @@ const TERM_SCRIPT: TermStep[] = [
   {
     cls: 'muted',
     delay: 280,
-    text: `  > downloading gaia-v${GAIA_VERSION}.tar.gz`,
+    text: `  ↓ downloading gaia-bundle-v${GAIA_VERSION}.tar.gz`,
     type: 'line',
   },
   {cls: 'muted', delay: 220, text: '  ↳ extracting', type: 'line'},
@@ -59,20 +59,6 @@ const TERM_SCRIPT: TermStep[] = [
   },
   {ms: 240, type: 'pause'},
   {type: 'progress'},
-  {
-    cls: 'muted',
-    delay: 240,
-    text: 'Progress: resolved 885, reused 884, downloaded 0, added 885, done',
-    type: 'line',
-  },
-  {text: '', type: 'line'},
-  {cls: 'muted', text: '+ 47 dependencies, 41 devDependencies', type: 'line'},
-  {
-    cls: 'dim',
-    delay: 320,
-    text: 'Done in 5.8s using pnpm v11.5.2',
-    type: 'line',
-  },
   {text: '', type: 'line'},
   {
     cls: 'ok',
@@ -90,23 +76,15 @@ const TERM_SCRIPT: TermStep[] = [
   {text: '', type: 'line'},
   {
     cls: 'plain',
-    delay: 320,
-    text: 'Bash(if command -v corepack &>/dev/null; then corepack enable pnpm...)',
-    type: 'line',
-  },
-  {cls: 'muted', delay: 200, text: '└ (No output)', type: 'line'},
-  {text: '', type: 'line'},
-  {
-    cls: 'plain',
     delay: 360,
-    text: 'Installing dependencies -- this may take a minute...',
+    text: 'Installing dependencies, this may take a minute...',
     type: 'line',
   },
   {text: '', type: 'line'},
   {
     cls: 'plain',
     delay: 420,
-    text: 'Now spawning a Haiku agent for Phases 0-4 (override audit, outdated discovery, wave classification, Wave A updates).',
+    text: 'Installing Chromium for the browser tests...',
     type: 'line',
   },
   {ms: 280, type: 'pause'},
@@ -135,7 +113,7 @@ const ClaudeBanner = () => (
         <span className="text-ink font-medium">Claude Code</span>
       </div>
       <div className="text-ink-dim">
-        Opus {OPUS_VERSION} (1M context) with xhigh effort · Claude Max
+        Opus {OPUS_VERSION} (1M context) with medium effort · Claude Max
       </div>
       <div className="text-muted">~/projects/my-app</div>
     </div>
@@ -739,7 +717,7 @@ const GetStartedHero = ({
         </span>
         <span className="text-line">·</span>
         <span>
-          Node.js <strong className="text-ink font-medium">&ge; 22.19.0</strong>
+          Node.js <strong className="text-ink font-medium">&ge; 22.22.0</strong>
           {'. We recommend '}
           <a
             className="text-ink-dim border-line-soft hover:border-accent-soft hover:text-ink border-b no-underline transition-colors duration-150"
@@ -782,37 +760,26 @@ const InlineCode = ({children}: {children: string}) => (
 
 const RECAP = [
   {
-    body: 'A Karpathy-style CLAUDE.md, plus rules and skills that load only when the work touches them. Conventions hold across sessions.',
+    body: 'A short CLAUDE.md, plus rules and skills that load only when the work touches them. Conventions hold across sessions.',
     title: 'Project memory & rules',
   },
   {
-    body: '1,314 lint rules on every commit. A code-review-audit agent on every merge: security, performance, architecture.',
+    body: 'Over 1,200 lint rules on every commit. The Code Audit Team on every merge in Claude Code: security, performance, architecture, with a lighter review for a change proven small.',
     title: 'Quality gates',
   },
   {
-    body: 'An Obsidian wiki, a hot cache, and handoff notes, so a new session never relearns the codebase.',
+    body: 'An Obsidian wiki, plus specs, plans, and run state on disk, so a new session never relearns the codebase.',
     title: 'Persistent knowledge',
   },
   {
-    body: 'Vitest, React Testing Library, Playwright, MSW, Storybook, Chromatic, wired and ready.',
+    body: 'Vitest, Playwright, MSW, Storybook, Chromatic, wired and ready. Components are tested as stories in real Chromium, with accessibility checked on every story.',
     title: 'A real test stack',
-  },
-  {
-    body: (
-      <>
-        {
-          'Workflows keep dependencies current, run a daily security audit, sync the wiki on commit, and prune stale branches. One command, '
-        }
-        <InlineCode>/setup-gaia-ci</InlineCode>, installs them.
-      </>
-    ),
-    title: 'Standing CI',
   },
 ];
 
 const WhatYouGet = () => (
   <section
-    className="border-line-soft bg-tint scroll-mt-20 border-y py-20 sm:py-28"
+    className="border-line-soft bg-tint scroll-mt-16 border-y py-20 sm:py-28"
     id="whats-included"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
@@ -862,14 +829,10 @@ const WhatYouGet = () => (
           <div className="overflow-x-auto p-5 text-[0.72rem] leading-[1.7] sm:text-[0.8rem]">
             <pre className="m-0 whitespace-pre">
               {[
-                ['', 'my-app/'],
+                ['', 'my-app/', ''],
                 ['├── ', '.claude/', ''],
-                ['│   ├── ', 'agents/', '        # code-review-audit'],
-                [
-                  '│   ├── ',
-                  'commands/',
-                  '       # /gaia-init, /setup-gaia-ci',
-                ],
+                ['│   ├── ', 'agents/', '         # Code Audit Team'],
+                ['│   ├── ', 'commands/', '       # /gaia-init, /setup-gaia'],
                 ['│   ├── ', 'hooks/', '          # guardrail hooks'],
                 [
                   '│   ├── ',
@@ -879,25 +842,22 @@ const WhatYouGet = () => (
                 [
                   '│   └── ',
                   'skills/',
-                  '         # /gaia-wiki, tdd, react-code, ...',
+                  '         # /gaia-wiki, tdd, update-deps, ...',
                 ],
                 ['├── ', '.gaia/', '              # GAIA CLI, manifest'],
-                ['├── ', '.github/workflows/', ' # test + visual CI'],
-                ['├── ', '.husky/', '             # pre-commit'],
-                ['├── ', '.specify/', '           # spec-driven workflow'],
-                ['├── ', '.storybook/', ''],
-                ['├── ', 'app/', '                # React Router 7 app'],
-                ['├── ', 'test/', '               # Vitest, RTL, MSW'],
+                ['├── ', '.githooks/', '          # pre-commit, commit-msg'],
+                ['├── ', '.github/workflows/', '  # test + visual CI'],
+                ['├── ', 'frontend/', '           # React Router 8 app'],
+                ['│   ├── ', '.claude/', '        # frontend rules and skills'],
+                ['│   ├── ', '.storybook/', ''],
+                ['│   ├── ', 'app/', ''],
+                ['│   └── ', 'test/', '           # Vitest, MSW'],
                 ['├── ', 'wiki/', '               # Obsidian project memory'],
                 ['├── ', 'CLAUDE.md', '           # project brain'],
-                ['├── ', 'package.json', ''],
-                [
-                  '└── ',
-                  'eslint · vitest · playwright · vite · tsconfig configs',
-                  '',
-                ],
+                ['├── ', 'pnpm-workspace.yaml', ' # workspace root'],
+                ['└── ', 'package.json', ''],
               ].map(([connector, name, comment]) => (
-                <span key={name}>
+                <span key={`${connector}${name}`}>
                   <span aria-hidden={true} className="text-muted">
                     {connector}
                   </span>
@@ -1000,10 +960,12 @@ const GetStarted = () => {
       const section = document.querySelector('#whats-included');
       if (!section) return;
       const {top} = section.getBoundingClientRect();
-      // Leave the user alone if they've already scrolled the section into view.
-      if (top < window.innerHeight - 80) return;
       const headerHeight =
         document.querySelector('header')?.getBoundingClientRect().height ?? 60;
+      // Only bail once the user has already scrolled the section to (or past)
+      // its resting spot under the sticky header. A small nudge that leaves the
+      // section partway down still gets finished for them; we never yank up.
+      if (top <= headerHeight + 8) return;
       // Land the section's top flush under the sticky header, no gap.
       window.scrollTo({
         behavior: 'smooth',

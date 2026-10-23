@@ -8,7 +8,7 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     desc: (
       <>
         {
-          'Six coding principles encoded as rules and loaded automatically. Every session starts from the same disciplined baseline. See '
+          'Four coding principles encoded as rules and loaded automatically. Every session starts from the same disciplined baseline. See '
         }
         <a
           className="text-accent hover:text-accent-soft transition-colors duration-150"
@@ -30,11 +30,23 @@ const POINTS: {desc: ReactNode; name: string}[] = [
     name: 'Bundled skills wired in for write-time quality',
   },
   {
-    desc: 'Specs become Playwright E2E tests before code is written. The first task in any feature is turning red tests green.',
+    desc: 'Before any code, GAIA turns adversarial agents on its own spec and plan. They try to refute each decision and dependency against the real repo, so a flawed assumption surfaces at planning time, not in review.',
+    name: 'Verified before it’s built',
+  },
+  {
+    desc: 'Specs become Playwright E2E tests before code is written. The first task in any feature is turning red tests green, and the red has to be real. A test that can’t fail proves nothing.',
     name: 'Test-driven development',
   },
   {
-    desc: 'The code-review-audit agent scans for security, performance, architecture, code smells, and antipatterns. Extendable with custom rules.',
+    desc: (
+      <>
+        {
+          'In Claude Code, the Code Audit Team reviews every pull request for security, performance, architecture, code smells, and antipatterns. A small change can get a lighter review, and any change not proven small gets the full one. Real problems it finds beyond the PR’s scope aren’t dropped or used to block your merge. The audit files them as tracked, deduplicated issues, and '
+        }
+        <code className="text-ink font-mono text-[0.9em]">/gaia-debt</code>
+        {' drains them one reviewed PR at a time.'}
+      </>
+    ),
     name: 'Code review before every merge',
   },
 ];

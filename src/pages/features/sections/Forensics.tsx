@@ -2,7 +2,7 @@ import ForensicsIssue from './figures/ForensicsIssue';
 
 const Forensics = () => (
   <section
-    className="border-line-soft scroll-mt-20 border-b py-20"
+    className="border-line-soft scroll-mt-16 border-b py-20"
     id="forensics"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
@@ -29,7 +29,7 @@ const Forensics = () => (
                 /gaia-forensics
               </code>
               {
-                ' turns “this didn’t work” into a complete report: redacted, classified, ready to file. User-config issues return the fix inline. Probable GAIA bugs file straight to my GitHub with one prompt. Same body byte-for-byte, so I can fix them fast.'
+                ' turns “this didn’t work” into a complete report: redacted, classified, ready to file. User-config issues return the fix inline. Probable GAIA bugs file to the GAIA repository once you confirm, with the same redacted body as the local report, so they can be fixed fast.'
               }
             </p>
           </div>

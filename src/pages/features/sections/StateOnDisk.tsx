@@ -2,7 +2,7 @@ import TokenArtifacts from './figures/TokenArtifacts';
 
 const StateOnDisk = () => (
   <section
-    className="border-line-soft bg-tint scroll-mt-20 border-b py-20"
+    className="border-line-soft bg-tint scroll-mt-16 border-b py-20"
     id="tokens"
   >
     <div className="mx-auto max-w-6xl px-[clamp(1rem,4vw,2rem)]">
@@ -21,9 +21,9 @@ const StateOnDisk = () => (
         <p className="text-ink-dim text-[1.05rem] leading-[1.65]">
           Long sessions accumulate state. Context grows each turn, memory
           carries between turns, and every new session starts cold. That is how
-          any conversation works. GAIA&apos;s four workflow commands write
-          durable artifacts to disk, then read them on demand. State persists.
-          The conversation stays small.
+          any conversation works. GAIA&apos;s workflow commands write durable
+          artifacts to disk, then read them on demand. State persists. The
+          conversation stays small.
         </p>
       </div>
 

@@ -5,19 +5,19 @@ const AUDIT_FINDINGS = [
     file: 'cart/total.ts:24',
     note: 'discount path has no test',
     resolution: 'blocks',
-    severity: 'IMPORTANT',
+    severity: 'MAJOR',
   },
   {
     file: 'ui/Modal.tsx:12',
     note: 'prefer native dialog',
     resolution: 'fixed',
-    severity: 'SUGGESTION',
+    severity: 'MINOR',
   },
 ] as const;
 
 const SEVERITY_STYLE = {
-  IMPORTANT: 'text-accent-soft',
-  SUGGESTION: 'text-muted',
+  MAJOR: 'text-accent-soft',
+  MINOR: 'text-muted',
 };
 
 const TrustLedger = () => (
@@ -37,7 +37,7 @@ const TrustLedger = () => (
           @2.4.0
         </div>
         <div className="text-warn mt-1">
-          ✗ held, published 6h ago, under the 7-day minimum
+          ✗ held, published 6h ago, under the 3-day minimum
         </div>
         <div className="text-muted mt-1">
           a package poisoned the day it ships can’t get in
@@ -89,7 +89,7 @@ const TrustLedger = () => (
           ))}
         </div>
         <div className="text-warn mt-3">
-          ✗ merge blocked, 1 important must clear first
+          ✗ merge blocked, 1 major must clear first
         </div>
       </div>
     </div>
@@ -129,9 +129,10 @@ const Trust = () => (
               and build.
             </p>
             <p>
-              Every merge is read line by line for security holes and risky
-              patterns, fixed automatically where it’s safe, blocked for your
-              review where it isn’t.
+              Every merge is audited for security holes and risky patterns. A
+              change not proven small gets the full line-by-line review.
+              Problems are fixed automatically where it’s safe, blocked for your
+              review where they aren’t.
             </p>
           </div>
         </div>
