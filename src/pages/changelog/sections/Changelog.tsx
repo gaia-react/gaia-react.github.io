@@ -93,7 +93,7 @@ const ReleaseCard = ({
   release: Release;
 }) => (
   <li
-    className="border-line-soft m-0 grid items-start gap-3 border-t py-10 lg:grid-cols-[1fr_2fr] lg:gap-12"
+    className="border-line-soft m-0 grid scroll-mt-16 items-start gap-3 border-t py-10 lg:grid-cols-[1fr_2fr] lg:gap-12"
     data-reveal={isRevealed || undefined}
     id={`v${release.version.replaceAll('.', '-')}`}
     style={
