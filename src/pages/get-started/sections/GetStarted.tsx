@@ -705,10 +705,10 @@ const GetStartedHero = ({
         data-reveal={true}
         style={{'--reveal-delay': '120ms'} as React.CSSProperties}
       >
-        GAIA gives you a production-grade React frontend and the Claude-native
-        system to build everything else on it. The frontend is handled. You add
-        your backend, your services, your domain logic, and Claude builds them
-        inside GAIA&apos;s conventions.
+        GAIA gives you a production-grade React frontend and the harness to
+        build everything else on it. The frontend is handled. You add your
+        backend, your services, your domain logic, and Claude builds them inside
+        GAIA&apos;s conventions.
       </p>
 
       <div
