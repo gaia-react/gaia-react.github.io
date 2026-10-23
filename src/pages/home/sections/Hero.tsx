@@ -52,6 +52,14 @@ const Hero = () => (
     <Orbs />
     <div className="relative z-10 mx-auto max-w-6xl">
       <div className="max-w-270">
+        <a
+          className="border-line bg-surface text-ink-dim hover:text-ink hover:border-accent-soft mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.7rem] tracking-[0.04em] no-underline transition-colors duration-150 sm:ml-2"
+          href="/changelog/#v2-0-0"
+        >
+          <span className="text-accent-soft">GAIA 2.0 is out.</span>
+          See what’s in it →
+        </a>
+
         <p className="text-ink-dim mb-6 pl-0.5 font-mono text-[0.65rem] tracking-[0.22em] uppercase sm:pl-2">
           <span className="inline-block whitespace-nowrap">
             Claude is raw power.
