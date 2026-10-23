@@ -6,7 +6,7 @@ GAIA installs with one command, `npx create-gaia@latest my-app`, and scaffolds a
 
 ## Site
 
-- [GAIA: The Engineering Discipline for Claude Code](https://gaiareact.com/): What GAIA is, who it's for, and the core idea: structure that holds under pressure.
+- [GAIA: A harness for Claude Code](https://gaiareact.com/): What GAIA is, who it's for, and the core idea: structure that holds under pressure.
 - [Why Claude Code Breaks Without Structure](https://gaiareact.com/why/): The case for project-level discipline in AI-built code, and why vibe coding falls apart at scale.
 - [Features](https://gaiareact.com/features/): Coding rules, the Code Audit Team, Agentic Design patterns, the Obsidian wiki, token economics, and on-demand maintenance, covered pattern by pattern.
 - [Get Started](https://gaiareact.com/get-started/): Install GAIA in one command, and what `npx create-gaia` sets up.
