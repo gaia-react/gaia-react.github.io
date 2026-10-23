@@ -16,7 +16,13 @@ type ProgressState = {bar: string; pct: number};
 
 type TermStep =
   | {cls?: string; delay?: number; text: string; type: 'line'}
-  | {inputBarFrame?: boolean; prompt: string; text: string; type: 'type'}
+  | {
+      inputBarFrame?: boolean;
+      isSubmitted?: boolean;
+      prompt: string;
+      text: string;
+      type: 'type';
+    }
   | {ms: number; type: 'pause'}
   | {type: 'banner'}
   | {type: 'inputbar'}
@@ -46,7 +52,7 @@ const TERM_SCRIPT: TermStep[] = [
   {
     cls: 'muted',
     delay: 280,
-    text: `  ↓ downloading gaia-bundle-v${GAIA_VERSION}.tar.gz`,
+    text: `  ↓ downloading https://github.com/gaia-react/gaia/releases/download/v${GAIA_VERSION}/gaia-bundle-v${GAIA_VERSION}.tar.gz`,
     type: 'line',
   },
   {cls: 'muted', delay: 220, text: '  ↳ extracting', type: 'line'},
@@ -63,28 +69,46 @@ const TERM_SCRIPT: TermStep[] = [
   {
     cls: 'ok',
     delay: 320,
-    text: `+ my-app ready (GAIA v${GAIA_VERSION}). Starting setup...`,
+    text: `✓ my-app ready (GAIA v${GAIA_VERSION}). Starting setup…`,
     type: 'line',
   },
   {ms: 620, type: 'pause'},
   {type: 'banner'},
   {ms: 520, type: 'pause'},
-  {inputBarFrame: true, prompt: '>', text: '/gaia-init', type: 'type'},
+  // create-gaia launches `claude --permission-mode auto /gaia-init`, so the
+  // command arrives already submitted rather than typed.
+  {
+    inputBarFrame: true,
+    isSubmitted: true,
+    prompt: '>',
+    text: '/gaia-init',
+    type: 'type',
+  },
   {ms: 480, type: 'pause'},
   {text: '', type: 'line'},
-  {cls: 'plain', delay: 380, text: 'Checking for pnpm...', type: 'line'},
+  {
+    cls: 'plain',
+    delay: 380,
+    text: 'How do you want to handle the setup questions?',
+    type: 'line',
+  },
+  {cls: 'ok', delay: 160, text: '❯ 1. Interactive (Recommended)', type: 'line'},
+  {cls: 'dim', delay: 120, text: '  2. Automatic', type: 'line'},
+  {ms: 900, type: 'pause'},
+  {text: '', type: 'line'},
+  {cls: 'plain', delay: 380, text: 'Checking for pnpm…', type: 'line'},
   {text: '', type: 'line'},
   {
     cls: 'plain',
     delay: 360,
-    text: 'Installing dependencies, this may take a minute...',
+    text: 'Installing dependencies, this may take a minute…',
     type: 'line',
   },
   {text: '', type: 'line'},
   {
     cls: 'plain',
     delay: 420,
-    text: 'Installing Chromium for the browser tests...',
+    text: 'Installing Chromium for the browser tests…',
     type: 'line',
   },
   {ms: 280, type: 'pause'},
@@ -290,6 +314,22 @@ const AnimatedTerminal = ({
     for (const step of TERM_SCRIPT) {
       if (step.type === 'pause') {
         t += step.ms;
+      } else if (step.type === 'type' && step.isSubmitted) {
+        const frame = !!step.inputBarFrame;
+        const capturedText = step.text;
+        const capturedPrompt = step.prompt;
+        queue(t, () =>
+          setEmitted((previous) => [
+            ...previous,
+            {
+              frame,
+              id: previous.length,
+              kind: 'cmd',
+              prompt: capturedPrompt,
+              text: capturedText,
+            },
+          ])
+        );
       } else if (step.type === 'type') {
         const frame = !!step.inputBarFrame;
         queue(t, () =>
@@ -488,7 +528,7 @@ const AnimatedTerminal = ({
           return (
             <div
               key={item.id}
-              className={`gs-term__out min-h-[1.4em] leading-[1.55] whitespace-pre-wrap ${
+              className={`gs-term__out min-h-[1.4em] leading-[1.55] wrap-anywhere whitespace-pre-wrap ${
                 clsMap[item.cls ?? 'plain'] ?? 'text-ink'
               }`}
             >
