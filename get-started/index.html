@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="One command scaffolds a React 19 project with the Claude Code workflow built in: rules, hooks, skills, an Obsidian wiki, and a full test stack."
+      content="One command scaffolds a monorepo with a React 19 frontend and the GAIA harness built in: rules, hooks, skills, an Obsidian wiki, and a full test stack."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href="https://gaiareact.com/get-started/" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fraunces-latin-standard-normal-DihXLNYH.woff2">
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fraunces-latin-standard-italic-lSdLDfvT.woff2">
-    <title>Install GAIA: Set Up Claude Code for React in One Command</title>
+    <title>Install GAIA: Set Up Claude Code in One Command</title>
 
     <!-- Open Graph -->
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://gaiareact.com/get-started/" />
-    <meta property="og:title" content="Install GAIA: Set Up Claude Code for React in One Command" />
-    <meta property="og:description" content="One command scaffolds a React 19 project with the Claude Code workflow built in: rules, hooks, skills, an Obsidian wiki, and a full test stack." />
+    <meta property="og:title" content="Install GAIA: Set Up Claude Code in One Command" />
+    <meta property="og:description" content="One command scaffolds a monorepo with a React 19 frontend and the GAIA harness built in: rules, hooks, skills, an Obsidian wiki, and a full test stack." />
     <meta property="og:image" content="https://gaiareact.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -26,8 +26,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Install GAIA: Set Up Claude Code for React in One Command" />
-    <meta name="twitter:description" content="One command scaffolds a React 19 project with the Claude Code workflow built in: rules, hooks, skills, an Obsidian wiki, and a full test stack." />
+    <meta name="twitter:title" content="Install GAIA: Set Up Claude Code in One Command" />
+    <meta name="twitter:description" content="One command scaffolds a monorepo with a React 19 frontend and the GAIA harness built in: rules, hooks, skills, an Obsidian wiki, and a full test stack." />
     <meta name="twitter:image" content="https://gaiareact.com/og-image.png" />
     <link rel="dns-prefetch" href="https://github.com">
     <link rel="dns-prefetch" href="https://docs.gaiareact.com">
@@ -41,10 +41,10 @@
           {
             "@type": "TechArticle",
             "@id": "https://gaiareact.com/get-started/#article",
-            "headline": "Install GAIA: Set Up Claude Code for React in One Command",
-            "name": "Install GAIA: Set Up Claude Code for React in One Command",
+            "headline": "Install GAIA: Set Up Claude Code in One Command",
+            "name": "Install GAIA: Set Up Claude Code in One Command",
             "url": "https://gaiareact.com/get-started/",
-            "description": "One command scaffolds a React 19 project with the Claude Code workflow built in: rules, hooks, skills, an Obsidian wiki, and a full test stack.",
+            "description": "One command scaffolds a monorepo with a React 19 frontend and the GAIA harness built in: rules, hooks, skills, an Obsidian wiki, and a full test stack.",
             "author": {"@id": "https://gaiareact.com/#person"},
             "publisher": {"@id": "https://gaiareact.com/#organization"},
             "isPartOf": {"@id": "https://gaiareact.com/#website"},
@@ -89,8 +89,8 @@
           {
             "@type": "HowTo",
             "@id": "https://gaiareact.com/get-started/#howto",
-            "name": "Install GAIA: Set Up Claude Code for React",
-            "description": "One command scaffolds a React 19 project with the Claude Code workflow built in.",
+            "name": "Install GAIA: Set Up Claude Code",
+            "description": "One command scaffolds a monorepo with the GAIA harness built in.",
             "totalTime": "PT5M",
             "supply": [{"@type": "HowToSupply", "name": "Node.js >= 22.22.0"}],
             "step": [
@@ -105,7 +105,7 @@
                 "@type": "HowToStep",
                 "position": 2,
                 "name": "What gets scaffolded",
-                "text": "GAIA creates a React 19 + TypeScript project with .claude/ rules, hooks, skills, agents, .gaia/, .github/workflows/, .husky/, .specify/, .storybook/, and a wiki/ directory."
+                "text": "GAIA creates a pnpm monorepo. The harness lives at the root (.claude/ rules, hooks, skills and agents, .gaia/, .githooks/, .github/workflows/, and a wiki/ directory), and a React 19 + TypeScript app lives in frontend/."
               }
             ],
             "isPartOf": {"@id": "https://gaiareact.com/#website"}
