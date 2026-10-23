@@ -788,6 +788,29 @@ const GetStartedHero = ({
           .
         </span>
       </div>
+
+      <div
+        className="text-muted mx-auto mt-3 flex max-w-142 flex-wrap items-baseline justify-center gap-2 text-[0.92rem]"
+        data-reveal={true}
+        style={{'--reveal-delay': '280ms'} as React.CSSProperties}
+      >
+        <span className="text-muted font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+          Already on GAIA 1.<span className="normal-case">x</span>?
+        </span>
+        <span className="text-line">·</span>
+        <span>
+          {'The '}
+          <a
+            className="text-ink-dim border-line-soft hover:border-accent-soft hover:text-ink border-b no-underline transition-colors duration-150"
+            href="https://github.com/gaia-react/gaia/releases/tag/v2.0.0"
+            rel="noreferrer"
+            target="_blank"
+          >
+            v2.0.0 release notes
+          </a>
+          {' open with the upgrade steps for Claude.'}
+        </span>
+      </div>
     </div>
   </section>
 );
