@@ -90,14 +90,6 @@ const Hero = () => (
         </p>
 
         <p
-          className="text-ink-dim mb-4 max-w-[60ch] text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-pretty"
-          data-reveal={true}
-          style={{'--reveal-delay': '215ms'} as React.CSSProperties}
-        >
-          React on the frontend, your stack everywhere else.
-        </p>
-
-        <p
           className="text-muted mb-10 max-w-[66ch] text-[0.85rem] leading-normal italic"
           data-reveal={true}
           style={{'--reveal-delay': '260ms'} as React.CSSProperties}
