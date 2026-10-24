@@ -632,7 +632,7 @@ const Consulting = () => {
             Consulting
           </div>
           <h1 className="font-display text-ink max-w-[22ch] text-[clamp(2rem,5.8vw,4.75rem)] leading-[1.05] font-light tracking-[-0.03em]">
-            GAIA is the workflow.
+            GAIA is the harness.
             <em className="text-accent-soft block font-light italic">
               The author is the shortcut.
             </em>

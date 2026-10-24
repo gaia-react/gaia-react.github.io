@@ -72,7 +72,7 @@ const Hero = () => (
         </p>
 
         <h1 className="text-ink mb-5 text-[clamp(1.55rem,4.8vw,3.85rem)] leading-[1.12] tracking-tight text-balance">
-          GAIA is the engineering discipline for Claude Code.
+          GAIA: A serious harness for Claude Code
           <br />
           <em className="text-accent-soft mt-1 inline-block font-light italic">
             Keep the speed, lose the debt.
@@ -84,17 +84,9 @@ const Hero = () => (
           data-reveal={true}
           style={{'--reveal-delay': '200ms'} as React.CSSProperties}
         >
-          Enforced quality gates Claude can’t skip, so flawed code never reaches
-          production. GAIA keeps Claude’s own config and memory clean as the
-          project grows. Your AI engineer stays sharp, session after session.
-        </p>
-
-        <p
-          className="text-ink-dim mb-4 max-w-[60ch] text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-pretty"
-          data-reveal={true}
-          style={{'--reveal-delay': '215ms'} as React.CSSProperties}
-        >
-          React on the frontend, your stack everywhere else.
+          Specs before code. Gates on every commit. An audit on every merge.
+          GAIA keeps the project, and Claude’s own memory, clean as it grows.
+          Your AI engineer stays sharp, session after session.
         </p>
 
         <p

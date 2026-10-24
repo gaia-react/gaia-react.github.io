@@ -36,7 +36,7 @@ const CONTEXT: Pattern[] = [
     name: 'Knowledge Retrieval',
   },
   {
-    body: 'Path-scoped rules auto-load only when Claude is editing matching files. Conditional hooks route commands to the right gate.',
+    body: 'Path-scoped rules auto-load only when Claude reads or edits matching files. Conditional hooks route commands to the right gate.',
     name: 'Routing',
   },
 ];

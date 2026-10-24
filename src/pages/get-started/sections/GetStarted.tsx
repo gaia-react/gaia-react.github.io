@@ -705,10 +705,10 @@ const GetStartedHero = ({
         data-reveal={true}
         style={{'--reveal-delay': '120ms'} as React.CSSProperties}
       >
-        GAIA gives you a production-grade React frontend and the Claude-native
-        system to build everything else on it. The frontend is handled. You add
-        your backend, your services, your domain logic, and Claude builds them
-        inside GAIA&apos;s conventions.
+        GAIA gives you a production-grade React frontend and the harness to
+        build everything else on it. The frontend is handled. You add your
+        backend, your services, your domain logic, and Claude builds them inside
+        GAIA&apos;s conventions.
       </p>
 
       <div
@@ -844,9 +844,9 @@ const WhatYouGet = () => (
         </div>
         <div className="text-ink-dim space-y-4 text-[1.05rem] leading-[1.65]">
           <p>
-            One command writes a complete React 19 and TypeScript project to
-            disk, with the Claude Code workflow already wired in. No config to
-            write. No prompt library to assemble. Hooks and a commit gate
+            One command writes a monorepo to disk, with a React 19 and
+            TypeScript frontend and the GAIA harness already wired in. No config
+            to write. No prompt library to assemble. Hooks and a commit gate
             enforce the conventions, no prompting required. The discipline is
             built in.
           </p>
