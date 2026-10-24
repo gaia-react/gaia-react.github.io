@@ -1,4 +1,4 @@
-# https://gaiareact.com/robots.txt
+# https://gaiaharness.com/robots.txt
 
 User-agent: *
 Allow: /
@@ -31,4 +31,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://gaiareact.com/sitemap.xml
+Sitemap: https://gaiaharness.com/sitemap.xml

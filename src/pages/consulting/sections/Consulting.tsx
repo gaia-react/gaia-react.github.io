@@ -813,7 +813,7 @@ const Consulting = () => {
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
             <a
               className="text-ink-dim hover:text-accent-soft font-mono text-[0.7rem] tracking-[0.2em] uppercase no-underline transition-colors duration-150"
-              href="mailto:steven@gaiareact.com"
+              href="mailto:steven@gaiaharness.com"
             >
               Email me →
             </a>

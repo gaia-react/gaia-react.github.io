@@ -236,7 +236,7 @@ const svg = `<svg
       font-size="22"
       fill="#b0aea5"
       letter-spacing="0.5"
-    >gaiareact.com</text>
+    >gaiaharness.com</text>
   </g>
 </svg>
 `;
