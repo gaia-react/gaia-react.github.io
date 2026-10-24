@@ -19,7 +19,6 @@ export default {
   headline:
     '1.x clones catch up to 2.0.0, and Claude takes the steps it used to hand you.',
   improved: [
-    'The product is now named GAIA, a harness for Claude Code, across the docs, the wiki and `/gaia-init`. Repository, package and domain names are unchanged.',
     'Claude takes the steps it used to hand you: a failed `/gaia-init` step resumes once you confirm the cause is fixed, `/setup-gaia` offers your GitHub handle for a placeholder `CODEOWNERS` owner, an `in-progress` claim is released when Claude closes a pull request unmerged or you drop the work, and after an `/update-gaia` pull request merges Claude lists the retired leftover files and deletes them on your yes.',
     "`/gaia-plan` reads a SPEC from its id or its path only. The 1.x `SPEC-NNN: <description>` hand-off no longer selects a SPEC; pass `/gaia-plan SPEC-NNN` or the SPEC's path.",
   ],
