@@ -199,7 +199,7 @@ const SKUS: SkuData[] = [
     calEvent: 'migrate-intro',
     deliverables: [
       'Per sprint: hands-on refactor of the top roadmap items that fit the budget. Pattern consolidation, AI-debt cleanup, type tightening.',
-      'GAIA installed or extended on the code the sprint touches. Rules, hooks, skills, wiki templates.',
+      'GAIA installed or extended on the code the sprint touches. Rules, hooks, skills, a project wiki.',
       'Commit-by-commit migration log. Every change visible and reviewable.',
       'Short "what changed / what to watch" note after each sprint.',
       'Cumulative remediation report that grows across sprints. The full before/after catalog.',
@@ -218,7 +218,7 @@ const SKUS: SkuData[] = [
     cadence: '2 weeks · 2 to 3 live sessions',
     calEvent: 'foundation-intro',
     deliverables: [
-      'GAIA installed and customized for your repo. Rules, hooks, skills, wiki templates matched to your stack.',
+      'GAIA installed and customized for your repo. Rules, hooks, skills, a project wiki matched to your stack.',
       'Integration with your existing tooling (Sentry, Linear, etc.).',
       'Two to three live sessions. Kickoff, mid-foundation demo, handoff training. All recorded.',
       'Written runbook customized to you.',
@@ -439,7 +439,7 @@ const MigrationBlock = ({sku}: {sku: SkuData}) => (
 const FOUNDATION_PHASES = [
   {
     detail:
-      'Discovery and install. GAIA rules, hooks, skills, and wiki templates wired to your stack.',
+      'Discovery and install. GAIA rules, hooks, skills, and a project wiki wired to your stack.',
     label: 'Week 1',
   },
   {
