@@ -56,7 +56,7 @@ const Hero = () => (
           className="border-line bg-surface text-ink-dim hover:text-ink hover:border-accent-soft mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.7rem] tracking-[0.04em] no-underline transition-colors duration-150 sm:ml-2"
           href="/changelog/"
         >
-          <span className="text-accent-soft">GAIA 2.0 is out.</span>
+          <span className="text-accent-soft">GAIA 2.1 is out.</span>
           See what’s in it →
         </a>
 
