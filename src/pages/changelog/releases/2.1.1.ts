@@ -2,7 +2,6 @@ export default {
   date: '2026-10-24',
   fixed: [
     'The app server now resolves body-parser 2.4.0, closing a high-severity advisory (GHSA-27r3-jxmh-p828) that reached your app at runtime through `@react-router/serve` and express.',
-    'Messages that still called GAIA a template now say what they mean. The refusals from the audit scope, the merge gate and the member resolver point at the copy of `.gaia/audit-ci.yml` GAIA ships, `gaia init` refuses GAIA\'s own source tree by that name, and the default `siteName` is now `GAIA`.',
     'The CLAUDE.md category on the `/gaia-fitness` grade card is labelled `CLAUDE.md` instead of `claudemd`. The JSON report and rule ids are unchanged.',
     'A sentence in the Worktrees wiki page explaining why `.gaia/local/` has no allowlist was missing from the shipped page. It is back, and the release build now refuses any maintainer-only marker line that carries other text, so a scrub can no longer drop adopter content silently.',
   ],
