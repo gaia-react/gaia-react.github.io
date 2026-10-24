@@ -953,7 +953,7 @@ const ClosingSection = () => (
       <div className="flex flex-wrap items-center justify-center gap-6">
         <a
           className="bg-accent text-canvas hover:bg-accent-2 inline-flex h-11 items-center gap-2 rounded-sm px-5 text-[0.95rem] font-medium no-underline transition-colors duration-150"
-          href="https://docs.gaiareact.com/"
+          href="https://docs.gaiaharness.com/"
         >
           Read the docs →
         </a>

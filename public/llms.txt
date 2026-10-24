@@ -16,7 +16,7 @@ GAIA installs with one command, `npx create-gaia@latest my-app`, and scaffolds a
 
 ## Docs
 
-- [GAIA Documentation](https://docs.gaiareact.com/): Full reference for GAIA's features, commands, hooks, and agents.
+- [GAIA Documentation](https://docs.gaiaharness.com/): Full reference for GAIA's features, commands, hooks, and agents.
 
 ## Code
 

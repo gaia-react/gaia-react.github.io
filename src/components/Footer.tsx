@@ -9,7 +9,7 @@ const FOOTER_NAV: FooterLink[] = [
   {href: '/about/', label: 'About'},
   {href: '/changelog/', label: 'Changelog'},
   {href: '/consulting/', label: 'Consulting'},
-  {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
+  {external: true, href: 'https://docs.gaiaharness.com/', label: 'Docs'},
   {
     external: true,
     href: 'https://github.com/gaia-react/gaia/discussions/categories/feedback',
