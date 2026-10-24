@@ -97,15 +97,15 @@ const exitCode = await (async () => {
 
     // Update sitemap.xml with git-based lastmod dates
     const SITEMAP_ROUTES = [
-      {srcPath: 'index.html', url: 'https://gaiareact.com/'},
-      {srcPath: 'why/index.html', url: 'https://gaiareact.com/why/'},
-      {srcPath: 'get-started/index.html', url: 'https://gaiareact.com/get-started/'},
-      {srcPath: 'features/index.html', url: 'https://gaiareact.com/features/'},
-      {srcPath: 'consulting/index.html', url: 'https://gaiareact.com/consulting/'},
-      {srcPath: 'about/index.html', url: 'https://gaiareact.com/about/'},
+      {srcPath: 'index.html', url: 'https://gaiaharness.com/'},
+      {srcPath: 'why/index.html', url: 'https://gaiaharness.com/why/'},
+      {srcPath: 'get-started/index.html', url: 'https://gaiaharness.com/get-started/'},
+      {srcPath: 'features/index.html', url: 'https://gaiaharness.com/features/'},
+      {srcPath: 'consulting/index.html', url: 'https://gaiaharness.com/consulting/'},
+      {srcPath: 'about/index.html', url: 'https://gaiaharness.com/about/'},
       // Changelog freshness tracks the release data, not the shell HTML, which
       // rarely changes. A new release file bumps lastmod; the shell does not.
-      {srcPath: 'src/pages/changelog/releases', url: 'https://gaiareact.com/changelog/'},
+      {srcPath: 'src/pages/changelog/releases', url: 'https://gaiaharness.com/changelog/'},
     ];
 
     const today = new Date().toISOString().slice(0, 10);
