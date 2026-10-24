@@ -331,7 +331,7 @@ const Stack = () => (
     lead={
       <>
         <p>
-          Industry-standard tools, each a default in serious React projects.
+          Industry-standard tools, each a default in production React projects.
           Refined over years. The same tools humans rely on to ship reliable
           code. Claude works with them, just faster.
         </p>

@@ -5,7 +5,7 @@ import PointList from './PointList';
 
 const POINTS: {desc: ReactNode; name: string}[] = [
   {
-    desc: 'When the wiki trails your code, the statusline says so. One /gaia-wiki command syncs what changed, consolidates redundancy and reversed decisions before they compound, and fixes orphan pages, dead links, and drift, all in one pull request.',
+    desc: 'Claude writes to the wiki as work lands. When planned work merges, what it settled goes into the wiki in the same pull request. A quick fix or a decision changed along the way can still slip past, and the statusline flags the drift. /gaia-wiki catches the wiki up, consolidates redundancy and reversed decisions before they compound, and fixes orphan pages and dead links, all in one pull request.',
     name: 'A knowledge base that stays current',
   },
   {
