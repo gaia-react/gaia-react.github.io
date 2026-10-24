@@ -9,7 +9,7 @@ const NAV_DESKTOP: NavItem[] = [
   {href: '/features/', label: 'Features'},
   {href: '/about/', label: 'About'},
   {href: '/changelog/', label: 'Changelog'},
-  {external: true, href: 'https://docs.gaiareact.com/', label: 'Docs'},
+  {external: true, href: 'https://docs.gaiaharness.com/', label: 'Docs'},
 ];
 
 const isActivePath = (pathname: string, href: string) =>
