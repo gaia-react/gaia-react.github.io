@@ -5,7 +5,7 @@ type Severity = 'error' | 'info' | 'warning';
 
 const REPORT: ReportRow[] = [
   {category: 'authoring', grade: 'A+'},
-  {category: 'claudemd', grade: 'A', note: '1 info'},
+  {category: 'CLAUDE.md', grade: 'A', note: '1 info'},
   {category: 'frontmatter', grade: 'B+', note: '1 warning'},
   {category: 'hooks', grade: 'A+'},
   {category: 'prompt', grade: 'A+'},
@@ -18,7 +18,7 @@ const OVERALL = 'B+';
 
 const FINDINGS: FindingGroup[] = [
   {
-    category: 'claudemd',
+    category: 'CLAUDE.md',
     findings: [
       {
         file: 'CLAUDE.md:14',
